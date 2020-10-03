@@ -1,0 +1,103 @@
+{
+  "Splittermond": {
+    "Model": {
+      "SpliMoActor": {
+        "resources": {
+          "splitterpunkte": "Splitterpunkte",
+          "lebenspunkte": "Lebenspunkte",
+          "wunden": "Wunden",
+          "fokus": "Fokus"
+        },
+        "attributes": {
+          "ausstrahlung": "Ausstrahlung",
+          "beweglichkeit": "Beweglichkeit",
+          "intuition": "Intuition",
+          "konstitution": "Konstitution",
+          "mystik": "Mystik",
+          "staerke": "Stärke",
+          "verstand": "Verstand",
+          "willenskraft": "Willenskraft"
+        },
+        "derivedAttributes": {
+          "groessenklasse": "Größenklasse",
+          "geschwindigkeit": "Geschwindigkeit",
+          "initiative": "Initiative",
+          "lebenspunkte": "Lebenspunkte",
+          "fokus": "Fokus",
+          "verteidigung": "Verteidigung",
+          "geistigerWiderstand": "Geistiger Widerstand",
+          "koerperlicherWiderstand": "Körperlicher Widerstand"
+        },
+        "combatAttributes": {
+          "currentTick": "Aktueller Tick",
+          "currentWoundLevel": "Aktueller Wundlevel"
+        },
+        "skills":{
+          "akrobatik": "Akrobatik",
+          "alchemie": "Alchemie",
+          "anfuehren": "Anführen",
+          "arkaneKunde": "Arkane Kunde",
+          "athletik": "Athletik",
+          "darbietung": "Darbietung",
+          "diplomatie": "Diplomatie",
+          "edelhandwerk": "Edelhandwerk",
+          "empathie": "Empathi",
+          "entschlossenheit": "Entschlossenheit",
+          "fingerfertigkeit": "Fingerfertigkeit",
+          "geschichteUndMythen": "Geschichte und Mythen",
+          "handwerk": "Handwerk",
+          "heilkunde": "Heilkunde",
+          "heimlichkeit": "Heimlichkeit",
+          "jagdkunst": "Jagdkunst",
+          "laenderkunde": "Länderkunde",
+          "naturkunde": "Naturkunde",
+          "redegewandheit": "Redegewandheit",
+          "schloesserUndFallen": "Schlösser und Fallen",
+          "schwimmen": "Schwimmen",
+          "seefahrt": "Seefahrt",
+          "strassenkunde": "Straßenkunde",
+          "tierfuehrung": "Tierführung",
+          "ueberleben": "Überleben",
+          "wahrnehmung": "Wahrnehmung",
+          "zaehigkeit": "Zähigkeit"
+        },
+        "combatSkills": {
+          "handgemenge": "Handgemenge",
+          "hiebwaffen": "Hiebwaffen",
+          "kettenwaffen": "Kettenwaffen",
+          "klingenwaffen": "Klingenwaffen",
+          "schusswaffen": "Schusswaffen",
+          "stangenwaffen": "Stangenwaffen",
+          "wurfwaffen": "Wurfwaffen"
+        },
+        "magicSkills": {
+          "bann": "Bannmagie",
+          "beherrschung": "Beherrschungsmagie",
+          "bewegung": "Bewegungsmagie",
+          "erkenntnis": "Erkenntnismagie",
+          "fels": "Felsmagie",
+          "feuer": "Feuermagie",
+          "heilung": "Heilungsmagie",
+          "illusion": "Illusionsmagie",
+          "kampf": "Kampfmagie",
+          "licht": "Lichtmagie",
+          "natur": "Naturmagie",
+          "schatten": "Schattenmagie",
+          "schicksal": "Schicksalsmagie",
+          "schutz": "Schutzmagie",
+          "staerkung": "Stärkungsmagie",
+          "tod": "Todesmagie",
+          "verwandlung": "Verwandlungsmagie",
+          "wasser": "Wassermagie",
+          "wind": "Windmagie"
+        }
+      }
+    },
+    "View": {
+
+    },
+    "Controller": {
+
+    }
+  }
+}
