@@ -4,7 +4,10 @@ export abstract class AbstractItemSheet<ItemDataType, ViewData extends ItemDataT
 > {
     public abstract getViewData(item: Item<ItemDataType>): ViewData;
 
-    public abstract updateViewData(formData: FormData, item: Item<ItemDataType>): Promise<void>;
+    public abstract updateViewData(
+        formData: Record<string, any>,
+        item: Item<ItemDataType>
+    ): Promise<Record<string, any>>;
 
     public registerEventHandlers(html: JQuery<HTMLElement>): void {
         console.log('ItemSheet: registering event handlers...');

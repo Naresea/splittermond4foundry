@@ -9,8 +9,11 @@ export class NonPlayerCharacterSheet extends AbstractActorSheet<SpliMoNonPlayerA
         return actor.data.data;
     }
 
-    public updateViewData(formData: FormData, actor: Actor<SpliMoNonPlayerActor>): Promise<void> {
-        return Promise.resolve();
+    public updateViewData(
+        formData: Record<string, any>,
+        actor: Actor<SpliMoNonPlayerActor>
+    ): Promise<Record<string, any>> {
+        return Promise.resolve(formData);
     }
 
     public static get defaultOptions(): FormApplicationOptions {

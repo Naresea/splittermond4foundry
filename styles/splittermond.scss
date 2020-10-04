@@ -1,4 +1,28 @@
 .splittermond {
   // Apply styles that should be available in all templates here
   @import 'node_modules/normalize-scss/sass/normalize/import-now';
+  @import 'node_modules/bootstrap-scss/bootstrap';
+
+  .rollable {
+    cursor: pointer;
+  }
+
+  .splimo_delete {
+    cursor: pointer;
+  }
+
+  // Not precisely 40%, but these numbers match the golden layout
+  .w-40 {
+    width: 38% !important;
+  }
+  .mw-40 {
+    max-width: 38% !important;
+  }
+
+  .w-60 {
+    width: 62% !important;
+  }
+  .mw-60 {
+    max-width: 62% !important;
+  }
 }

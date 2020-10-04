@@ -91,10 +91,158 @@
           "wasser": "Wassermagie",
           "wind": "Windmagie"
         }
+      },
+      "SpliMoPlayerActor": {
+        "resourcen": {
+          "bedeutung": "Bedeutung",
+          "ansehen": "Ansehen",
+          "gefolge": "Gefolge",
+          "kontakte": "Kontakte",
+          "kreatur": "Kreatur",
+          "mentor": "Mentor",
+          "rang": "Rang",
+          "relikt": "Relikt",
+          "stand": "Stand",
+          "vermoegen": "Vermögen",
+          "zuflucht": "Zuflucht",
+          "glaube": "Glaube"
+        }
       }
     },
     "View": {
-
+      "AbstractActorSheet": {
+        "rollTypeDialog": {
+          "title": "Welchen Wurf?",
+          "content": "Bitte wähle zwischen Sicherheits-, Standard- oder Risikowurf.",
+          "buttons": {
+            "safety": "Sicherheit",
+            "normal": "Standard",
+            "risk": "Risiko"
+          }
+        }
+      },
+      "PlayerCharacterSheet": {
+        "name": "Name",
+        "namePlaceholder": "Name des Charakters",
+        "splitterpunkte": "Splitterpunkte",
+        "splitterpunktePlaceholder": "",
+        "solare": "Solare",
+        "lunare": "Lunare",
+        "kupfer": "Kupfer",
+        "hpTracker": "Lebenspunkte:",
+        "focusTracker": "Fokuspunkte",
+        "nav": {
+          "zustand": "Zustand",
+          "attributes": "Attribute",
+          "skills": "Fertigkeiten",
+          "magicSkills": "Magieschulen",
+          "combatSkills": "Kampffertigkeiten",
+          "masteries": "Meisterschaften",
+          "resources": "Resourcen",
+          "staerken": "Stärken",
+          "ausruestung": "Inventar",
+          "waffen": "Waffen",
+          "schilde": "Schilde",
+          "ruestungen": "Rüstungen",
+          "zauber": "Zauber"
+        },
+        "erfahrungspunkte": {
+          "gesamt": "XP Gesamt",
+          "benutzt": "Benutzt",
+          "offen": "Offen",
+          "naechsterHeldengrad": "N. HG"
+        },
+        "bio": {
+          "ausbildung": "Ausbildung",
+          "ausbildungPlaceholder": "Ausbildung des Charakters",
+          "kultur": "Kultur",
+          "kulturPlaceholder": "",
+          "abstammung": "Abstammung",
+          "abstammungPlaceholder": "",
+          "rasse": "Rasse",
+          "rassePlaceholder": "",
+          "geschlecht": "Geschlecht",
+          "geschlechtPlaceholder": "",
+          "haarfarbe": "Haarfarbe",
+          "haarfarbePlaceholder": "",
+          "koerpergroesse": "Körpergröße",
+          "koerpergroessePlaceholder": "",
+          "augenfarbe": "Augenfarbe",
+          "augenfarbePlaceholder": "",
+          "gewicht": "Gewicht",
+          "gewichtPlaceholder": "",
+          "hautfarbe": "Hautfarbe",
+          "hautfarbePlaceholder": "",
+          "geburtsort": "Geburtsort",
+          "geburtsortPlaceholder": "",
+          "staerken": "Stärken",
+          "staerkenPlaceholder": "",
+          "heldengrad": "Heldengrad",
+          "heldengradPlaceholder": "",
+          "sprachen": "Sprachen",
+          "sprachenPlaceholder": "",
+          "maxAttribute":"Max. Attribut",
+          "maxAttributePlaceholder": "",
+          "kulturkunde":"Kulturkunde",
+          "kulturkundePlaceholder": "",
+          "maxSkill": "Max. Fertigkeit",
+          "maxSkillPlaceholder": ""
+        },
+        "mondzeichen": {
+          "name": "Name",
+          "namePlaceholder": "",
+          "one": "Grad 1",
+          "onePlaceholder": "",
+          "two": "Grad 2",
+          "twoPlaceholder": "",
+          "three": "Grad 3",
+          "threePlaceholder": "",
+          "four": "Grad 4",
+          "fourPlaceholder": ""
+        },
+        "skillRanks": "Punkte",
+        "masteries": {
+          "newMastery": "Neue Meisterschaft",
+          "skillName": "Fertigkeit",
+          "level": "Schwelle",
+          "effect": "Effekt"
+        },
+        "ausruestung": {
+          "last": "Last"
+        },
+        "waffen": {
+          "name": "Name",
+          "wert": "Wert",
+          "skill": "Fertigkeit",
+          "primaryAttribute": "Attr. 1",
+          "secondaryAttribute": "Attr. 2",
+          "wgs": "WGS",
+          "dmg": "Schaden",
+          "merkmale": "Merkmale"
+        },
+        "schilde": {
+          "vtd": "VTD+",
+          "merkmale": "Merkmale"
+        },
+        "ruestungen": {
+          "sr": "SR",
+          "beh": "Beh.",
+          "tick": "Tick+"
+        },
+        "zauber": {
+          "schule": "Schule",
+          "grad": "Grad",
+          "schwierigkeit": "Schwierigkeit",
+          "fokus": "Fokus",
+          "zauberdauer": "Zauberdauer",
+          "reichweite": "Reichweite",
+          "wirkungsdauer": "Wirkungsdauer",
+          "verstaerkung": "Verstärkung",
+          "quelle": "Quelle",
+          "effekt": "Wirkung",
+          "wert": "Wert"
+        }
+      }
     },
     "Controller": {
 
