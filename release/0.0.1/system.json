@@ -28,7 +28,7 @@
       "lang": "en"
     }
   ],
-  "manifest": "https://github.com/Naresea/splittermond4foundry/release/0.0.1/system.json",
-  "download": "https://github.com/Naresea/splittermond4foundry/release/0.0.1/system.zip",
+  "manifest": "https://raw.githubusercontent.com/Naresea/splittermond4foundry/main/release/0.0.1/system.json",
+  "download": "https://github.com/Naresea/splittermond4foundry/raw/main/release/0.0.1/system.zip",
   "url": "https://github.com/Naresea/splittermond4foundry"
 }
