@@ -30,6 +30,13 @@ export interface SpliMoActor {
             value: number;
         };
     };
+    mondzeichen: {
+        one: string;
+        two: string;
+        three: string;
+        four: string;
+        name: string;
+    };
     attributes: {
         ausstrahlung: number;
         beweglichkeit: number;

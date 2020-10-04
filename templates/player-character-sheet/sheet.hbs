@@ -1,5 +1,1651 @@
-<form class="splittermond">
-    <div class="player-sheet">
-            Hello new Player!
-    </div>
+<form class="splittermond bg-light" autocomplete="off">
+    <div class="player-sheet container"> {{!-- Sheet --}}
+        <div class="row"> {{!-- Header --}}
+            <div class="col border border-primary rounded p-3 mr-3 w-60 mw-60"> {{!-- Bio & Name --}}
+                {{#formText 'Splittermond.View.PlayerCharacterSheet.name' 'name' actor.name}}
+                {{/formText}}
+                {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.ausbildung' 'data.ausbildung'
+                            actor.data.data.ausbildung}}
+                {{/formText}}
+                <div class="container m-0 p-0 mt-3"> {{!-- Bio --}}
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.kultur' 'data.kultur'
+                                    actor.data.data.kultur false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.abstammung' 'data.abstammung'
+                                    actor.data.data.abstammung false false 'col'}}
+                        {{/formText}}
+                    </div>
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.rasse' 'data.rasse'
+                                    actor.data.data.rasse false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.geschlecht' 'data.geschlecht'
+                                    actor.data.data.geschlecht false false 'col'}}
+                        {{/formText}}
+                    </div>
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.haarfarbe' 'data.haarfarbe'
+                                    actor.data.data.haarfarbe false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.koerpergroesse' 'data.koerpergroesse'
+                                    actor.data.data.koerpergroesse false false 'col'}}
+                        {{/formText}}
+                    </div>
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.augenfarbe' 'data.augenfarbe'
+                                    actor.data.data.augenfarbe false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.gewicht' 'data.gewicht'
+                                    actor.data.data.gewicht false false 'col'}}
+                        {{/formText}}
+                    </div>
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.hautfarbe' 'data.hautfarbe'
+                                    actor.data.data.hautfarbe false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.geburtsort' 'data.geburtsort'
+                                    actor.data.data.geburtsort false false 'col'}}
+                        {{/formText}}
+                    </div>
+                </div> {{!-- /Bio --}}
+                <div class="container m-0 p-0 mt-3"> {{!-- strengths & weakness --}}
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.staerken' 'data.staerken'
+                                    actor.data.data.staerken false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.heldengrad' 'data.heldengrad'
+                                    actor.data.data.heldengrad false false 'col'}}
+                        {{/formText}}
+                    </div>
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.sprachen' 'data.sprachen'
+                                    actor.data.data.sprachen false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.maxAttribute' 'data.maxAttribute'
+                                    actor.data.data.maxAttribute false false 'col'}}
+                        {{/formText}}
+                    </div>
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.kulturkunde' 'data.kulturkunde'
+                                    actor.data.data.kulturkunde false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.bio.maxSkill' 'data.maxSkill'
+                                    actor.data.data.maxSkill false false 'col'}}
+                        {{/formText}}
+                    </div>
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.erfahrungspunkte.gesamt' 'data.erfahrungspunkte.gesamt'
+                                    actor.data.data.erfahrungspunkte.gesamt false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.erfahrungspunkte.benutzt' 'data.erfahrungspunkte.benutzt'
+                                    actor.data.data.erfahrungspunkte.benutzt false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.erfahrungspunkte.offen' 'data.erfahrungspunkte.offen'
+                                    actor.data.data.erfahrungspunkte.offen false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.erfahrungspunkte.naechsterHeldengrad' 'data.erfahrungspunkte.naechsterHeldengrad'
+                                    actor.data.data.erfahrungspunkte.naechsterHeldengrad false false 'col'}}
+                        {{/formText}}
+                    </div>
+                    <div class="row">
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.solare' 'data.solare'
+                                    actor.data.data.solare false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.lunare' 'data.lunare'
+                                    actor.data.data.lunare false false 'col'}}
+                        {{/formText}}
+                        {{#formText 'Splittermond.View.PlayerCharacterSheet.kupfer' 'data.kupfer'
+                                                 actor.data.data.kupfer false false 'col'}}
+                        {{/formText}}
+                    </div>
+                </div> {{!-- /strengths & weakness --}}
+            </div>{{!-- /Bio & Name --}}
+            <div class="col border border-primary rounded p-3 w-40 mw-40"> {{!-- Img & Mondzeichen --}}
+                <div class="d-flex flex-column align-items-center mb-3">
+                    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
+                         width="100"/>
+                </div>
+                {{#formText 'Splittermond.View.PlayerCharacterSheet.mondzeichen.name' 'data.mondzeichen.name'
+                            actor.data.data.mondzeichen.name}}
+                {{/formText}}
+                {{#formText 'Splittermond.View.PlayerCharacterSheet.splitterpunkte' 'data.splitterpunkte.max'
+                            actor.data.data.splitterpunkte.max true}}
+                {{/formText}}
+                {{#formText 'Splittermond.View.PlayerCharacterSheet.mondzeichen.one' 'data.mondzeichen.one'
+                            actor.data.data.mondzeichen.one}}
+                {{/formText}}
+                {{#formText 'Splittermond.View.PlayerCharacterSheet.mondzeichen.two' 'data.mondzeichen.two'
+                            actor.data.data.mondzeichen.two}}
+                {{/formText}}
+                {{#formText 'Splittermond.View.PlayerCharacterSheet.mondzeichen.three' 'data.mondzeichen.three'
+                            actor.data.data.mondzeichen.three}}
+                {{/formText}}
+                {{#formText 'Splittermond.View.PlayerCharacterSheet.mondzeichen.four' 'data.mondzeichen.four'
+                            actor.data.data.mondzeichen.four}}
+                {{/formText}}
+            </div> {{!-- /Img & Mondzeichen --}}
+        </div> {{!-- /Header --}}
+
+        <nav class="pcs-navbar mt-3 d-flex justify-content-between w-100" data-group="navigation">
+            <a class="item" data-tab="zustand">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.zustand'}}</a>
+            <a class="item" data-tab="attribute">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.attributes'}}</a>
+            <a class="item" data-tab="skills">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.skills'}}</a>
+            <a class="item" data-tab="magicSkills">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.magicSkills'}}</a>
+            <a class="item" data-tab="combatSkills">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.combatSkills'}}</a>
+            <a class="item" data-tab="masteries">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.masteries'}}</a>
+            <a class="item" data-tab="resources">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.resources'}}</a>
+            <a class="item" data-tab="staerken">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.staerken'}}</a>
+            <a class="item" data-tab="ausruestung">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.ausruestung'}}</a>
+            <a class="item" data-tab="waffen">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.waffen'}}</a>
+            <a class="item" data-tab="schilde">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.schilde'}}</a>
+            <a class="item" data-tab="ruestungen">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.ruestungen'}}</a>
+            <a class="item" data-tab="zauber">{{localize 'Splittermond.View.PlayerCharacterSheet.nav.zauber'}}</a>
+        </nav>
+
+        <div class="pcs-content container">
+
+            <div data-group="navigation" data-tab="zustand" class="row border border-primary rounded p-3 mt-5">
+                <div class="col"> {{!-- HP --}}
+                    <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.hpTracker'}}</h3>
+                    {{#each actor.data.data.hpTracker}}
+                        <select name="{{concat 'data.hpTracker.' @key '.0'}}">
+                            {{#select (value '0' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '0' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '0' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '0' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.1'}}">
+                            {{#select (value '1' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '1' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '1' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '1' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.2'}}">
+                            {{#select (value '2' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '2' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '2' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '2' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.3'}}">
+                            {{#select (value '3' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '3' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '3' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '3' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.4'}}">
+                            {{#select (value '4' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '4' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '4' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '4' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.5'}}">
+                            {{#select (value '5' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '5' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '5' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '5' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.6'}}">
+                            {{#select (value '6' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '6' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '6' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '6' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.7'}}">
+                            {{#select (value '7' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '7' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '7' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '7' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.8'}}">
+                            {{#select (value '8' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '8' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '8' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '8' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.9'}}">
+                            {{#select (value '9' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '9' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '9' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '9' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.10'}}">
+                            {{#select (value '10' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '10' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '10' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '10' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.11'}}">
+                            {{#select (value '11' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '11' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '11' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '11' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.12'}}">
+                            {{#select (value '12' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '12' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '12' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '12' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.13'}}">
+                            {{#select (value '13' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '13' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '13' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '13' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.hpTracker.' @key '.14'}}">
+                            {{#select (value '0' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '14' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '14' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '14' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                    {{/each}}
+                </div> {{!-- /HP --}}
+                <div class="col"> {{!-- Fokus --}}
+                    <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.focusTracker'}}</h3>
+                    {{#each actor.data.data.fokusTracker}}
+                        <select name="{{concat 'data.fokusTracker.' @key '.0'}}">
+                            {{#select (value '0' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '0' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '0' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '0' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.1'}}">
+                            {{#select (value '1' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '1' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '1' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '1' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.2'}}">
+                            {{#select (value '2' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '2' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '2' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '2' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.3'}}">
+                            {{#select (value '3' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '3' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '3' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '3' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.4'}}">
+                            {{#select (value '4' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '4' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '4' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '4' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.5'}}">
+                            {{#select (value '5' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '5' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '5' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '5' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.6'}}">
+                            {{#select (value '6' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '6' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '6' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '6' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.7'}}">
+                            {{#select (value '7' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '7' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '7' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '7' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.8'}}">
+                            {{#select (value '8' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '8' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '8' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '8' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.9'}}">
+                            {{#select (value '9' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '9' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '9' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '9' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.10'}}">
+                            {{#select (value '10' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '10' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '10' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '10' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.11'}}">
+                            {{#select (value '11' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '11' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '11' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '11' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.12'}}">
+                            {{#select (value '12' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '12' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '12' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '12' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.13'}}">
+                            {{#select (value '13' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '13' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '13' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '13' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                        <select name="{{concat 'data.fokusTracker.' @key '.14'}}">
+                            {{#select (value '0' this)}}
+                                <option value="0"></option>
+                            {{/select}}
+                            {{#select (value '14' this)}}
+                                <option value="1">/</option>
+                            {{/select}}
+                            {{#select (value '14' this)}}
+                                <option value="2">X</option>
+                            {{/select}}
+                            {{#select (value '14' this)}}
+                                <option value="3">&#x2736;</option>
+                            {{/select}}
+                        </select>
+                    {{/each}}
+                </div> {{!-- /Fokus --}}
+            </div>
+
+            <div data-group="navigation" data-tab="attribute" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!-- Attribute & abgleitet --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.attributes'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col w-40 mw-40"> {{!-- Attribute --}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' 'data.attributes.ausstrahlung'
+                                        actor.data.data.attributes.ausstrahlung false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.beweglichkeit' 'data.attributes.beweglichkeit'
+                                        actor.data.data.attributes.beweglichkeit false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' 'data.attributes.intuition'
+                                        actor.data.data.attributes.intuition false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.konstitution' 'data.attributes.konstitution'
+                                        actor.data.data.attributes.konstitution false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' 'data.attributes.mystik'
+                                        actor.data.data.attributes.mystik false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.staerke' 'data.attributes.staerke'
+                                        actor.data.data.attributes.staerke false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' 'data.attributes.verstand'
+                                        actor.data.data.attributes.verstand false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.willenskraft' 'data.attributes.willenskraft'
+                                        actor.data.data.attributes.willenskraft false false 'mb-3'}}
+                            {{/formText}}
+                        </div> {{!-- /Attribute --}}
+                        <div class="col w-60 mw-60"> {{!-- Abgeleitet --}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.derivedAttributes.groessenklasse' 'data.derivedAttributes.groessenklasse'
+                                        actor.data.data.derivedAttributes.groessenklasse false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.derivedAttributes.geschwindigkeit' 'data.derivedAttributes.geschwindigkeit'
+                                        actor.data.data.derivedAttributes.geschwindigkeit false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.derivedAttributes.initiative' 'data.derivedAttributes.initiative'
+                                        actor.data.data.derivedAttributes.initiative false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.derivedAttributes.lebenspunkte' 'data.derivedAttributes.lebenspunkte'
+                                        actor.data.data.derivedAttributes.lebenspunkte false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.derivedAttributes.fokus' 'data.derivedAttributes.fokus'
+                                        actor.data.data.derivedAttributes.fokus false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.derivedAttributes.verteidigung' 'data.derivedAttributes.verteidigung'
+                                        actor.data.data.derivedAttributes.verteidigung false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.derivedAttributes.geistigerWiderstand' 'data.derivedAttributes.geistigerWiderstand'
+                                        actor.data.data.derivedAttributes.geistigerWiderstand false false 'mb-3'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.derivedAttributes.koerperlicherWiderstand' 'data.derivedAttributes.koerperlicherWiderstand'
+                                        actor.data.data.derivedAttributes.koerperlicherWiderstand false false 'mb-3'}}
+                            {{/formText}}
+                        </div> {{!-- /Abgeleitet --}}
+                    </div>
+                </div>
+            </div> {{!-- /Attribute & abgleitet --}}
+
+            <div data-group="navigation" data-tab="skills" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!-- Skills, Masteries, Resources --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.skills'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col"> {{!-- Skills --}}
+                        <div class="container m-0 p-0">
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.akrobatik' ''
+                                            (sum actor.data.data.skills.akrobatik actor.data.data.attributes.beweglichkeit actor.data.data.attributes.staerke) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.akrobatik'
+                                            actor.data.data.skills.akrobatik false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.beweglichkeit' ''
+                                            actor.data.data.attributes.beweglichkeit false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.staerke' ''
+                                            actor.data.data.attributes.staerke false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.alchemie' ''
+                                            (sum actor.data.data.skills.alchemie actor.data.data.attributes.mystik actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.alchemie'
+                                            actor.data.data.skills.alchemie false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                            actor.data.data.attributes.mystik false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.anfuehren' ''
+                                            (sum actor.data.data.skills.anfuehren actor.data.data.attributes.ausstrahlung actor.data.data.attributes.willenskraft) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.anfuehren'
+                                            actor.data.data.skills.anfuehren false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                            actor.data.data.attributes.ausstrahlung false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.willenskraft' ''
+                                            actor.data.data.attributes.willenskraft false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.arkaneKunde' ''
+                                            (sum actor.data.data.skills.arkaneKunde actor.data.data.attributes.mystik actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.arkaneKunde'
+                                            actor.data.data.skills.arkaneKunde false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                            actor.data.data.attributes.mystik false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.athletik' ''
+                                            (sum actor.data.data.skills.athletik actor.data.data.attributes.beweglichkeit actor.data.data.attributes.staerke) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.athletik'
+                                            actor.data.data.skills.athletik false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.beweglichkeit' ''
+                                            actor.data.data.attributes.beweglichkeit false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.staerke' ''
+                                            actor.data.data.attributes.staerke false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.darbietung' ''
+                                            (sum actor.data.data.skills.darbietung actor.data.data.attributes.ausstrahlung actor.data.data.attributes.willenskraft) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.darbietung'
+                                            actor.data.data.skills.darbietung false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                            actor.data.data.attributes.ausstrahlung false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.willenskraft' ''
+                                            actor.data.data.attributes.willenskraft false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.diplomatie' ''
+                                            (sum actor.data.data.skills.diplomatie actor.data.data.attributes.ausstrahlung actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.diplomatie'
+                                            actor.data.data.skills.diplomatie false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                            actor.data.data.attributes.ausstrahlung false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.edelhandwerk' ''
+                                            (sum actor.data.data.skills.edelhandwerk actor.data.data.attributes.intuition actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.edelhandwerk'
+                                            actor.data.data.skills.edelhandwerk false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.empathie' ''
+                                            (sum actor.data.data.skills.empathie actor.data.data.attributes.intuition actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.empathie'
+                                            actor.data.data.skills.empathie false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.entschlossenheit' ''
+                                            (sum actor.data.data.skills.entschlossenheit actor.data.data.attributes.ausstrahlung actor.data.data.attributes.willenskraft) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.entschlossenheit'
+                                            actor.data.data.skills.entschlossenheit false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                            actor.data.data.attributes.ausstrahlung false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.willenskraft' ''
+                                            actor.data.data.attributes.willenskraft false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.fingerfertigkeit' ''
+                                            (sum actor.data.data.skills.fingerfertigkeit actor.data.data.attributes.ausstrahlung actor.data.data.attributes.beweglichkeit) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.fingerfertigkeit'
+                                            actor.data.data.skills.fingerfertigkeit false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                            actor.data.data.attributes.ausstrahlung false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.beweglichkeit' ''
+                                            actor.data.data.attributes.beweglichkeit false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.geschichteUndMythen' ''
+                                            (sum actor.data.data.skills.geschichteUndMythen actor.data.data.attributes.mystik actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.geschichteUndMythen'
+                                            actor.data.data.skills.geschichteUndMythen false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                            actor.data.data.attributes.mystik false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.handwerk' ''
+                                            (sum actor.data.data.skills.handwerk actor.data.data.attributes.konstitution actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.handwerk'
+                                            actor.data.data.skills.handwerk false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.konstitution' ''
+                                            actor.data.data.attributes.konstitution false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.heilkunde' ''
+                                            (sum actor.data.data.skills.heilkunde actor.data.data.attributes.intuition actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.heilkunde'
+                                            actor.data.data.skills.heilkunde false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.heimlichkeit' ''
+                                            (sum actor.data.data.skills.heimlichkeit actor.data.data.attributes.beweglichkeit actor.data.data.attributes.intuition) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.heimlichkeit'
+                                            actor.data.data.skills.heimlichkeit false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.beweglichkeit' ''
+                                            actor.data.data.attributes.beweglichkeit false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.jagdkunst' ''
+                                            (sum actor.data.data.skills.jagdkunst actor.data.data.attributes.konstitution actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.jagdkunst'
+                                            actor.data.data.skills.jagdkunst false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.konstitution' ''
+                                            actor.data.data.attributes.konstitution false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.laenderkunde' ''
+                                            (sum actor.data.data.skills.laenderkunde actor.data.data.attributes.intuition actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.laenderkunde'
+                                            actor.data.data.skills.laenderkunde false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.naturkunde' ''
+                                            (sum actor.data.data.skills.naturkunde actor.data.data.attributes.intuition actor.data.data.attributes.verstand) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.naturkunde'
+                                            actor.data.data.skills.naturkunde false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                            actor.data.data.attributes.verstand false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.redegewandheit' ''
+                                            (sum actor.data.data.skills.redegewandheit actor.data.data.attributes.ausstrahlung actor.data.data.attributes.willenskraft) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.redegewandheit'
+                                            actor.data.data.skills.redegewandheit false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                            actor.data.data.attributes.ausstrahlung false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.willenskraft' ''
+                                            actor.data.data.attributes.willenskraft false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.schloesserUndFallen' ''
+                                            (sum actor.data.data.skills.schloesserUndFallen actor.data.data.attributes.intuition actor.data.data.attributes.beweglichkeit) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.schloesserUndFallen'
+                                            actor.data.data.skills.schloesserUndFallen false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.beweglichkeit' ''
+                                            actor.data.data.attributes.beweglichkeit false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.schwimmen' ''
+                                            (sum actor.data.data.skills.schwimmen actor.data.data.attributes.staerke actor.data.data.attributes.konstitution) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.schwimmen'
+                                            actor.data.data.skills.schwimmen false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.staerke' ''
+                                            actor.data.data.attributes.staerke false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.konstitution' ''
+                                            actor.data.data.attributes.konstitution false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.seefahrt' ''
+                                            (sum actor.data.data.skills.seefahrt actor.data.data.attributes.beweglichkeit actor.data.data.attributes.konstitution) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.seefahrt'
+                                            actor.data.data.skills.seefahrt false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.beweglichkeit' ''
+                                            actor.data.data.attributes.beweglichkeit false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.konstitution' ''
+                                            actor.data.data.attributes.konstitution false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.strassenkunde' ''
+                                            (sum actor.data.data.skills.strassenkunde actor.data.data.attributes.ausstrahlung actor.data.data.attributes.intuition) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.strassenkunde'
+                                            actor.data.data.skills.strassenkunde false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                            actor.data.data.attributes.ausstrahlung false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.tierfuehrung' ''
+                                            (sum actor.data.data.skills.tierfuehrung actor.data.data.attributes.ausstrahlung actor.data.data.attributes.beweglichkeit) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.tierfuehrung'
+                                            actor.data.data.skills.tierfuehrung false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                            actor.data.data.attributes.ausstrahlung false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.beweglichkeit' ''
+                                            actor.data.data.attributes.beweglichkeit false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.ueberleben' ''
+                                            (sum actor.data.data.skills.ueberleben actor.data.data.attributes.intuition actor.data.data.attributes.konstitution) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.ueberleben'
+                                            actor.data.data.skills.ueberleben false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.konstitution' ''
+                                            actor.data.data.attributes.konstitution false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.wahrnehmung' ''
+                                            (sum actor.data.data.skills.wahrnehmung actor.data.data.attributes.intuition actor.data.data.attributes.willenskraft) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.wahrnehmung'
+                                            actor.data.data.skills.wahrnehmung false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.willenskraft' ''
+                                            actor.data.data.attributes.willenskraft false true 'col'}}
+                                {{/formText}}
+                            </div>
+
+                            <div class="row mb-3">
+                                {{#formText 'Splittermond.Model.SpliMoActor.skills.zaehigkeit' ''
+                                            (sum actor.data.data.skills.zaehigkeit actor.data.data.attributes.konstitution actor.data.data.attributes.willenskraft) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.skills.zaehigkeit'
+                                            actor.data.data.skills.zaehigkeit false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.konstitution' ''
+                                            actor.data.data.attributes.konstitution false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.willenskraft' ''
+                                            actor.data.data.attributes.willenskraft false true 'col'}}
+                                {{/formText}}
+                            </div>
+                        </div>
+                </div> {{!-- /Skills --}}
+                    </div>
+                </div>
+            </div> {{!-- Skills --}}
+
+            <div data-group="navigation" data-tab="magicSkills" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!-- Magic Skills --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.magicSkills'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col"> {{!-- Skills --}}
+                    <div class="container m-0 p-0">
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.bann' ''
+                                        (sum actor.data.data.magicSkills.bann actor.data.data.attributes.mystik actor.data.data.attributes.willenskraft) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.bann'
+                                        actor.data.data.magicSkills.bann false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.willenskraft' ''
+                                        actor.data.data.attributes.willenskraft false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.beherrschung' ''
+                                        (sum actor.data.data.magicSkills.beherrschung actor.data.data.attributes.mystik actor.data.data.attributes.willenskraft) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.beherrschung'
+                                        actor.data.data.magicSkills.beherrschung false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.willenskraft' ''
+                                        actor.data.data.attributes.willenskraft false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.bewegung' ''
+                                        (sum actor.data.data.magicSkills.bewegung actor.data.data.attributes.mystik actor.data.data.attributes.beweglichkeit) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.bewegung'
+                                        actor.data.data.magicSkills.bewegung false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.beweglichkeit' ''
+                                        actor.data.data.attributes.beweglichkeit false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.erkenntnis' ''
+                                        (sum actor.data.data.magicSkills.erkenntnis actor.data.data.attributes.mystik actor.data.data.attributes.verstand) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.erkenntnis'
+                                        actor.data.data.magicSkills.erkenntnis false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                        actor.data.data.attributes.verstand false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.fels' ''
+                                        (sum actor.data.data.magicSkills.fels actor.data.data.attributes.mystik actor.data.data.attributes.konstitution) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.fels'
+                                        actor.data.data.magicSkills.fels false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.konstitution' ''
+                                        actor.data.data.attributes.konstitution false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.feuer' ''
+                                        (sum actor.data.data.magicSkills.feuer actor.data.data.attributes.mystik actor.data.data.attributes.ausstrahlung) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.feuer'
+                                        actor.data.data.magicSkills.feuer false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                        actor.data.data.attributes.ausstrahlung false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.heilung' ''
+                                        (sum actor.data.data.magicSkills.heilung actor.data.data.attributes.mystik actor.data.data.attributes.ausstrahlung) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.heilung'
+                                        actor.data.data.magicSkills.heilung false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                        actor.data.data.attributes.ausstrahlung false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.illusion' ''
+                                        (sum actor.data.data.magicSkills.illusion actor.data.data.attributes.mystik actor.data.data.attributes.ausstrahlung) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.illusion'
+                                        actor.data.data.magicSkills.illusion false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                        actor.data.data.attributes.ausstrahlung false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.kampf' ''
+                                        (sum actor.data.data.magicSkills.kampf actor.data.data.attributes.mystik actor.data.data.attributes.staerke) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.kampf'
+                                        actor.data.data.magicSkills.kampf false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.staerke' ''
+                                        actor.data.data.attributes.staerke false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.licht' ''
+                                        (sum actor.data.data.magicSkills.licht actor.data.data.attributes.mystik actor.data.data.attributes.ausstrahlung) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.licht'
+                                        actor.data.data.magicSkills.licht false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                        actor.data.data.attributes.ausstrahlung false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.natur' ''
+                                        (sum actor.data.data.magicSkills.natur actor.data.data.attributes.mystik actor.data.data.attributes.ausstrahlung) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.natur'
+                                        actor.data.data.magicSkills.natur false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                        actor.data.data.attributes.ausstrahlung false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.schatten' ''
+                                        (sum actor.data.data.magicSkills.schatten actor.data.data.attributes.mystik actor.data.data.attributes.intuition) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.schatten'
+                                        actor.data.data.magicSkills.schatten false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                        actor.data.data.attributes.intuition false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.schicksal' ''
+                                        (sum actor.data.data.magicSkills.schicksal actor.data.data.attributes.mystik actor.data.data.attributes.ausstrahlung) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.schicksal'
+                                        actor.data.data.magicSkills.schicksal false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                        actor.data.data.attributes.ausstrahlung false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.schutz' ''
+                                        (sum actor.data.data.magicSkills.schutz actor.data.data.attributes.mystik actor.data.data.attributes.ausstrahlung) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.schutz'
+                                        actor.data.data.magicSkills.schutz false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.ausstrahlung' ''
+                                        actor.data.data.attributes.ausstrahlung false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.staerkung' ''
+                                        (sum actor.data.data.magicSkills.staerkung actor.data.data.attributes.mystik actor.data.data.attributes.staerke) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.staerkung'
+                                        actor.data.data.magicSkills.staerkung false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.staerke' ''
+                                        actor.data.data.attributes.staerke false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.tod' ''
+                                        (sum actor.data.data.magicSkills.tod actor.data.data.attributes.mystik actor.data.data.attributes.verstand) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.tod'
+                                        actor.data.data.magicSkills.tod false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.verstand' ''
+                                        actor.data.data.attributes.verstand false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.verwandlung' ''
+                                        (sum actor.data.data.magicSkills.verwandlung actor.data.data.attributes.mystik actor.data.data.attributes.konstitution) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.verwandlung'
+                                        actor.data.data.magicSkills.verwandlung false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.konstitution' ''
+                                        actor.data.data.attributes.konstitution false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.wasser' ''
+                                        (sum actor.data.data.magicSkills.wasser actor.data.data.attributes.mystik actor.data.data.attributes.intuition) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.wasser'
+                                        actor.data.data.magicSkills.wasser false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                        actor.data.data.attributes.intuition false true 'col'}}
+                            {{/formText}}
+                        </div>
+
+                        <div class="row mb-3">
+                            {{#formText 'Splittermond.Model.SpliMoActor.magicSkills.wind' ''
+                                        (sum actor.data.data.magicSkills.wind actor.data.data.attributes.mystik actor.data.data.attributes.verstand) true true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.View.PlayerCharacterSheet.skillRanks' 'data.magicSkills.wind'
+                                        actor.data.data.magicSkills.wind false false 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.mystik' ''
+                                        actor.data.data.attributes.mystik false true 'col'}}
+                            {{/formText}}
+                            {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                        actor.data.data.attributes.verstand false true 'col'}}
+                            {{/formText}}
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div> {{!-- /Magic Skills --}}
+
+            <div data-group="navigation" data-tab="combatSkills" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!-- Combat Skills --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.combatSkills'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col"> {{!-- Combat Skills --}}
+                            {{#each actor.data.data.combatSkills}}
+                                {{#formText (concat  'Splittermond.Model.SpliMoActor.combatSkills.' @key) (concat 'data.combatSkills.' @key) this false false 'mb-3'}}{{/formText}}
+                            {{/each}}
+                        </div> {{!-- /Combat Skills --}}
+                    </div>
+                </div>
+            </div> {{!-- Combat Skills --}}
+
+            <div data-group="navigation" data-tab="masteries" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!--Masteries --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.masteries'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                    {{#each actor.data.data.masteries}}
+                        <div class="container mb-3">
+                            <div class="row">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.name' (concat 'data.masteries.' @key '.name')
+                                            name false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.masteries.level' (concat 'data.masteries.' @key '.schwelle')
+                                            schwelle false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.masteries.skillName' (concat 'data.masteries.' @key '.skill')
+                                            skill false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.masteries.effect' (concat 'data.masteries.' @key '.effekt')
+                                            effekt false false 'col'}}
+                                {{/formText}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                    </div>
+                </div>
+            </div> {{!-- /masteries --}}
+
+            <div data-group="navigation" data-tab="resources" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!--Resources --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.resources'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                    {{#each actor.data.data.resourcen}}
+                        <div class="container mb-3">
+                            <div class="row">
+                                {{#formText (concat 'Splittermond.Model.SpliMoPlayerActor.resourcen.' @key) (concat 'data.resourcen.' @key '.wert')
+                                            wert false false 'col'}}
+                                {{/formText}}
+                                {{#formText (concat 'Splittermond.Model.SpliMoPlayerActor.resourcen.bedeutung') (concat 'data.resourcen.' @key '.bedeutung')
+                                            bedeutung false false 'col'}}
+                                {{/formText}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                    </div>
+                </div>
+            </div> {{!-- /Resources --}}
+
+            <div data-group="navigation" data-tab="staerken" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!--Staerken --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.staerken'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                    {{#each actor.data.data.staerkenDetailed}}
+                        <div class="container mb-3">
+                            <div class="row">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.name' (concat 'data.staerkenDetailed.' @key '.name')
+                                            name false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.masteries.effect' (concat 'data.staerkenDetailed.' @key '.effekt')
+                                            effekt false false 'col'}}
+                                {{/formText}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                    </div>
+                </div>
+            </div> {{!-- /staerken --}}
+
+            <div data-group="navigation" data-tab="ausruestung" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!--Ausruestung --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.ausruestung'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                    {{#each actor.data.data.ausruestung}}
+                        <div class="container mb-3">
+                            <div class="row">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.name' (concat 'data.ausruestung.' @key '.name')
+                                            name false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.ausruestung.last' (concat 'data.ausruestung.' @key '.last')
+                                            effekt false false 'col'}}
+                                {{/formText}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                    </div>
+                </div>
+            </div> {{!-- /Ausruestung --}}
+
+            <div data-group="navigation" data-tab="waffen" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!--Waffen --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.waffen'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                    {{#each actor.data.data.waffen}}
+                        <div class="container mb-3">
+                            <div class="row mb-1">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.name' (concat 'data.waffen.' @key '.name')
+                                            name false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.wert'
+                                            (concat 'data.waffen.' @key '.wert')
+                                            (sum
+                                                    (value (concat 'data.combatSkills.' (value (concat 'data.waffen.' @key '.skill') @root.actor.data)) @root.actor.data)
+                                                    (value (concat 'data.attributes.' (value (concat 'data.waffen.' @key '.primaryAttribute') @root.actor.data)) @root.actor.data)
+                                                    (value (concat 'data.attributes.' (value (concat 'data.waffen.' @key '.secondaryAttribute') @root.actor.data)) @root.actor.data)
+                                            ) true true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.skill' (concat 'data.waffen.' @key '.skill')
+                                            skill false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.wgs' (concat 'data.waffen.' @key '.wgs')
+                                            wgs false false 'col'}}
+                                {{/formText}}
+                            </div>
+                            <div class="row mb-1 pb-1 border-bottom border-primary">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.primaryAttribute' (concat 'data.waffen.' @key '.primaryAttribute')
+                                            primaryAttribute false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.secondaryAttribute' (concat 'data.waffen.' @key '.secondaryAttribute')
+                                            secondaryAttribute false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.dmg' (concat 'data.waffen.' @key '.dmg')
+                                            dmg false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.merkmale' (concat 'data.waffen.' @key '.merkmale')
+                                            merkmale false false 'col'}}
+                                {{/formText}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                    </div>
+                </div>
+            </div> {{!-- /Waffen --}}
+
+            <div data-group="navigation" data-tab="schilde" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!--Schilde --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.schilde'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                    {{#each actor.data.data.schilde}}
+                        <div class="container mb-3">
+                            <div class="row">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.name' (concat 'data.schilde.' @key '.name')
+                                            name false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.skill' (concat 'data.schilde.' @key '.skill')
+                                            skill false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.intuition' ''
+                                            @root.actor.data.data.attributes.intuition false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.Model.SpliMoActor.attributes.staerke' ''
+                                            @root.actor.data.data.attributes.staerke false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.schilde.vtd' (concat 'data.schilde.' @key '.vtd')
+                                            vtd false true 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.schilde.merkmale' (concat 'data.schilde.' @key '.merkmale')
+                                            merkmale false true 'col'}}
+                                {{/formText}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                    </div>
+                </div>
+            </div> {{!-- /Schilde --}}
+
+            <div data-group="navigation" data-tab="ruestungen" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!--Ruestungen --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.ruestungen'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                    {{#each actor.data.data.ruestungen}}
+                        <div class="container mb-3">
+                            <div class="row">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.name' (concat 'data.ruestungen.' @key '.name')
+                                            name false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.schilde.vtd' (concat 'data.ruestungen.' @key '.vtd')
+                                            vtd false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.ruestungen.sr' (concat 'data.ruestungen.' @key '.sr')
+                                            sr false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.ruestungen.beh' (concat 'data.ruestungen.' @key '.beh')
+                                            beh false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.ruestungen.tick' (concat 'data.ruestungen.' @key '.tick')
+                                            tick false false 'col'}}
+                                {{/formText}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                    </div>
+                </div>
+            </div> {{!-- /Ruestungen --}}
+
+            <div data-group="navigation" data-tab="zauber" class="nav-tab--invisible row border border-primary rounded p-3 mt-5"> {{!-- Zauber --}}
+                <div class="container">
+                    <div class="row">
+                        <h3>{{localize 'Splittermond.View.PlayerCharacterSheet.nav.zauber'}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                    {{#each actor.data.data.zauber}}
+                        <div class="container mb-3">
+                            <div class="row mb-1">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.waffen.name' (concat 'data.zauber.' @key '.name')
+                                            name false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.schule' (concat 'data.zauber.' @key '.schule')
+                                            schule false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.grad' (concat 'data.zauber.' @key '.grad')
+                                            grad false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.schwierigkeit' (concat 'data.zauber.' @key '.schwierigkeit')
+                                            schwierigkeit false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.fokus' (concat 'data.zauber.' @key '.fokus')
+                                            fokus false false 'col'}}
+                                {{/formText}}
+                            </div>
+                            <div class="row mb-1">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.zauberdauer' (concat 'data.zauber.' @key '.zauberdauer')
+                                            zauberdauer false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.reichweite' (concat 'data.zauber.' @key '.reichweite')
+                                            reichweite false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.wirkungsdauer' (concat 'data.zauber.' @key '.wirkungsdauer')
+                                            wirkungsdauer false false 'wirkungsdauer'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.verstaerkung' (concat 'data.zauber.' @key '.verstaerkung')
+                                            verstaerkung false false 'col'}}
+                                {{/formText}}
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.quelle' (concat 'data.zauber.' @key '.quelle')
+                                            quelle false false 'col'}}
+                                {{/formText}}
+                            </div>
+                            <div class="row mb-1 pb-1 border-bottom border-primary">
+                                {{#formText 'Splittermond.View.PlayerCharacterSheet.zauber.effekt' (concat 'data.zauber.' @key '.effekt')
+                                            effekt false false 'col'}}
+                                {{/formText}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                    </div>
+                </div>
+            </div>  {{!-- /Zauber --}}
+
+        </div>
+    </div> {{!-- /Sheet --}}
 </form>
