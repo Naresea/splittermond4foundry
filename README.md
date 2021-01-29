@@ -11,6 +11,7 @@
 - Copy the contents of the ".env.example" file to a ".env" file
 - In this new ".env" file, make sure the exported foundry path is correct (you will most likely have to replace the __MY_USER_NAME__ part of the foundry path)
 - Run "npm i" (or "yarn install" if you're using yarn)
+- Make sure to run the scripts included from a bash-like shell (e.g. git bash under windows)
 
 ## Compiling
 The package.json comes with a lot of targets. If you only want to compile your TS code to JS, run "npm run build".
