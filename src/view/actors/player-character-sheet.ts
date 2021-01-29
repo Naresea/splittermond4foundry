@@ -28,7 +28,7 @@ export class PlayerCharacterSheet extends AbstractActorSheet<SpliMoPlayerActor, 
         return Promise.resolve(formData);
     }
 
-    public static get defaultOptions(): FormApplicationOptions {
+    public static get defaultOptions(): FormApplication.Options {
         return mergeObject(super.defaultOptions, {
             classes: [],
             template: `systems/${getSystemName()}/templates/player-character-sheet/sheet.hbs`,

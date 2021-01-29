@@ -14,7 +14,7 @@ export abstract class AbstractItemSheet<ItemDataType, ViewData extends ItemDataT
     }
 
     /** @override */
-    public getData(): ItemSheetData<ItemDataType> {
+    public getData(): ItemSheet.Data<ItemDataType> {
         const itemSheetData = super.getData();
         itemSheetData.data.data = this.getViewData(this.item);
         return itemSheetData;

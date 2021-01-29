@@ -17,9 +17,9 @@ export abstract class AbstractActorSheet<ActorDataType, ViewData extends ActorDa
     }
 
     /** @override */
-    public getData(): ActorSheetData<ActorDataType> {
+    public getData(): ActorSheet.Data<ActorDataType> {
         const actorSheetData = super.getData();
-        actorSheetData.data.data = this.getViewData(this.actor);
+        (actorSheetData.data as any).data = this.getViewData(this.actor);
         return actorSheetData;
     }
 
@@ -53,7 +53,7 @@ export abstract class AbstractActorSheet<ActorDataType, ViewData extends ActorDa
                     console.log('Roll result: ', rollResult);
                     console.log('ActiveRoll: ', activeRoll);
 
-                    const diceResults: Array<number> = rollResult.dice[0].results ?? [];
+                    const diceResults: Array<number> = rollResult.dice[0].results.map((r) => (r as any).result) ?? [];
                     const diceAsc = diceResults.sort((a, b) => a - b);
                     const diceDesc = diceResults.sort((a, b) => b - a);
                     const isFail = diceAsc[0] + diceAsc[1] <= 3;

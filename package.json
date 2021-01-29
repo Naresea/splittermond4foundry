@@ -21,7 +21,7 @@
     "build:html": "node \"tools/copy.js\" \"./templates\" \"./dist/templates\"",
     "build:langs": "node \"tools/copy.js\" \"./lang\" \"./dist/lang\"",
     "build:assets": "node \"tools/copy.js\" \"./assets\" \"./dist/assets\" ",
-    "build:prod": "npm run clean && npm run lint:fix && npm run build && npm run build:langs && npm run build:sass && npm run build:packs && npm run build:html && npm run build:json-schema && npm run build:template.json && npm run clean:json-schema && npm run build:system.json",
+    "build:prod": "npm run clean && npm run build && npm run build:langs && npm run build:sass && npm run build:packs && npm run build:html && npm run build:json-schema && npm run build:template.json && npm run clean:json-schema && npm run build:system.json",
     "build:release": "npm run build:prod && node \"tools/generateRelease.js\" ",
     "build:deploy": "npm run build:prod && node \"tools/deploy.js\" "
   },

@@ -16,7 +16,7 @@ export class NonPlayerCharacterSheet extends AbstractActorSheet<SpliMoNonPlayerA
         return Promise.resolve(formData);
     }
 
-    public static get defaultOptions(): FormApplicationOptions {
+    public static get defaultOptions(): FormApplication.Options {
         return mergeObject(super.defaultOptions, {
             classes: [],
             template: `systems/${getSystemName()}/templates/non-player-character-sheet/sheet.hbs`,
