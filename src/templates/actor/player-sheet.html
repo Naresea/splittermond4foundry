@@ -1,26 +1,65 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<form class="sheet p-small" autocomplete="off">
+        {{!-- Sheet Header --}}
+        <header class="d-flex flex-row flex-no-grow header">
+            {{!-- Header stuff goes here --}}
+            <div class="portrait">
+                <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="200"/>
+                <div class="portrait__frame"></div>
+            </div>
+            <div class="d-flex flex-row border-bottom-fancy header-container">
+                <div class="d-flex flex-col">
+                    <h1 class="charname flex-grow" style="padding-left: 90px; border: none"><input name="name" type="text" value="{{actor.name}}"/></h1>
+                    <div class="d-flex flex-col flex-grow" style="padding-bottom: 20px; padding-left: 90px;">
+                        <table style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <td>AUS</td>
+                                    <td>BEW</td>
+                                    <td>BEW</td>
+                                    <td>BEW</td>
+                                    <td>BEW</td>
+                                    <td>BEW</td>
+                                    <td>BEW</td>
+                                    <td>BEW</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input name="data.data.AUS" value="{{data.data.AUS}}" type="text" placeholder="AUS" style="margin-left: 0.5rem; margin-right: 0.5rem;"/></td>
+                                    <td><input name="data.data.AUS" value="{{data.data.AUS}}" type="text" placeholder="AUS" style="margin-left: 0.5rem; margin-right: 0.5rem;"/></td>
+                                    <td><input name="data.data.AUS" value="{{data.data.AUS}}" type="text" placeholder="AUS" style="margin-left: 0.5rem; margin-right: 0.5rem;"/></td>
+                                    <td><input name="data.data.AUS" value="{{data.data.AUS}}" type="text" placeholder="AUS" style="margin-left: 0.5rem; margin-right: 0.5rem;"/></td>
+                                    <td><input name="data.data.AUS" value="{{data.data.AUS}}" type="text" placeholder="AUS" style="margin-left: 0.5rem; margin-right: 0.5rem;"/></td>
+                                    <td><input name="data.data.AUS" value="{{data.data.AUS}}" type="text" placeholder="AUS" style="margin-left: 0.5rem; margin-right: 0.5rem;"/></td>
+                                    <td><input name="data.data.AUS" value="{{data.data.AUS}}" type="text" placeholder="AUS" style="margin-left: 0.5rem; margin-right: 0.5rem;"/></td>
+                                    <td><input name="data.data.AUS" value="{{data.data.AUS}}" type="text" placeholder="AUS" style="margin-left: 0.5rem; margin-right: 0.5rem;"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+                <div class="d-flex flex-col" style="min-width: 100px">
 
-    <h5>This is a custom sheet!</h5>
+                </div>
+                <div class="d-flex flex-col" style="min-width: 100px">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
-        {{!-- Header stuff goes here --}}
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-            <div class="resources grid grid-2col">{{!-- resources here --}}</div>
-            <div class="abilities grid grid-3col">{{!-- abilities here --}}</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="d-flex flex-row flex-grow">
+            <div class="d-flex flex-col navbar sheet-tabs tabs" data-group="primary">
+                <a class="item control-height" data-tab="description">Description</a>
+                <a class="item control-height" data-tab="items">Items</a>
+            </div>
+            {{!-- Sheet Body --}}
+            <section class="sheet-body p-big">
+                {{!-- Tab content goes here --}}
+                <div class="tab" data-group="primary" data-tab="items">
+                    <h2>ITEMS!</h2>
+                </div>
+                <div class="tab" data-group="primary" data-tab="description">
+                    <h2>DESCRIPTION!</h2>
+                </div>
+            </section>
         </div>
-    </header>
-
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="items">Items</a>
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-        {{!-- Tab content goes here --}}
-    </section>
 </form>

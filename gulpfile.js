@@ -151,7 +151,7 @@ function buildLess() {
  */
 function buildSASS() {
 	return gulp
-		.src('src/*.scss')
+		.src('src/styles/splittermond.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest('dist'));
 }

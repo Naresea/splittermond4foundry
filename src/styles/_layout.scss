@@ -1,0 +1,56 @@
+.d-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-col-reverse {
+  flex-direction: column-reverse;
+}
+
+.flex-grow {
+  flex: 1 1 0;
+}
+
+.flex-no-grow {
+  flex: 0 0 0;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-items-center {
+  justify-content: center;
+  text-align: center;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.p-small {
+  padding: 0.25rem;
+}
+
+.p-big {
+  padding: 0.5rem;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.m-small {
+  margin: 0.25rem;
+}
+
+.m-big {
+  margin: 0.5rem;
+}

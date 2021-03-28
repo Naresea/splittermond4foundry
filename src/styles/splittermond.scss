@@ -1,0 +1,14 @@
+.splittermond {
+    --bg-color: cyan;
+    --color-primary: black;
+    --color-highlight: darkblue;
+    --control-size: 40px;
+
+    @import 'layout';
+    @import 'sheet';
+
+    .window-content {
+        padding: 0;
+        margin: 0;
+    }
+}
