@@ -1,0 +1,30 @@
+{
+  "name": "splittermond",
+  "title": "splittermond",
+  "description": "",
+  "version": "0.1.0",
+  "author": "Naresea",
+  "authors": [
+    {
+      "name": "",
+      "email": "",
+      "url": ""
+    }
+  ],
+  "scripts": [],
+  "esmodules": ["splittermond.js"],
+  "styles": ["splittermond.css"],
+  "packs": [],
+  "languages": [],
+  "gridDistance": 1,
+  "gridUnits": "",
+  "minimumCoreVersion": "0.5.0",
+  "compatibleCoreVersion": "0.5.0",
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "license": "MIT",
+  "readme": "",
+  "bugs": "",
+  "changelog": ""
+}
