@@ -1,0 +1,32 @@
+.splimo-player-sheet {
+  .header-container {
+    flex: 1 1 0;
+  }
+
+  .portrait {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .profile-img {
+      clip-path: circle(97px at 97px 97px);
+    }
+  }
+
+  .navbar {
+    width: 200px;
+    height: 80%;
+    background-image: url('assets/custom/banner.webp');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-top: 20px;
+
+    .item {
+      min-height: var(--control-size);
+      max-height: var(--control-size);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

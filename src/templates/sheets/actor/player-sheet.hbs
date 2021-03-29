@@ -1,0 +1,27 @@
+{{#> systems/splittermond/templates/partials/layouts/layout-actor.hbs class="splimo-player-sheet"}}
+    {{#*inline "header-content"}}
+        <div class="d-flex flex-row border-bottom-fancy header-container">
+            <div class="d-flex flex-col">
+                <h1 class="charname flex-grow" style="padding-left: 90px; border: none"><input name="name" type="text" value="{{actor.name}}"/></h1>
+            </div>
+            <div class="d-flex flex-col" style="min-width: 100px">
+
+            </div>
+            <div class="d-flex flex-col" style="min-width: 100px">
+
+            </div>
+        </div>
+    {{/inline}}
+    {{#*inline "nav-tabs"}}
+        <a class="item control-height" data-tab="description">Description</a>
+        <a class="item control-height" data-tab="items">Items</a>
+    {{/inline}}
+    {{#*inline "nav-content"}}
+        <div class="tab" data-group="primary" data-tab="items">
+            <h2>ITEMS!</h2>
+        </div>
+        <div class="tab" data-group="primary" data-tab="description">
+            <h2>DESCRIPTION!</h2>
+        </div>
+    {{/inline}}
+{{/systems/splittermond/templates/partials/layouts/layout-actor.hbs}}

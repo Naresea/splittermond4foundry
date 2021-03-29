@@ -5,6 +5,9 @@ const chalk = require('chalk');
 const archiver = require('archiver');
 const stringify = require('json-stringify-pretty-compact');
 const typescript = require('typescript');
+const handlebars = require('gulp-compile-handlebars');
+const rename = require('gulp-rename');
+
 
 const ts = require('gulp-typescript');
 const less = require('gulp-less');
@@ -157,6 +160,21 @@ function buildSASS() {
 }
 
 /**
+ * Build templates
+ */
+function buildTemplates() {
+	return gulp.src('./src/templates/sheets/**/*.hbs')
+		.pipe(handlebars({}, {
+			ignorePartials: true,
+			batch: ['./src/templates/partials']
+		}))
+		.pipe(rename({
+			extname: '.html'
+		}))
+		.pipe(gulp.dest('./dist/templates'));
+}
+
+/**
  * Copy static files
  */
 async function copyFiles() {
@@ -294,7 +312,7 @@ async function linkUserData() {
 			console.log(
 				chalk.green(`Copying build to ${chalk.blueBright(linkDir)}`)
 			);
-			await fs.move(path.resolve('./dist'), linkDir);
+			await fs.createSymlinkSync(path.resolve('./dist'), linkDir);
 		}
 		return Promise.resolve();
 	} catch (err) {

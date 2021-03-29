@@ -6,7 +6,7 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ['splittermond'],
-            template: 'systems/splittermond/templates/actor/player-sheet.html',
+            template: 'systems/splittermond/templates/sheets/actor/player-sheet.hbs',
             width: 1024,
             height: 754,
             tabs: [
@@ -14,11 +14,4 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
             ]
         });
     }
-
-    /** @override */
-    public getData() {
-        const data = super.getData();
-        return data;
-    }
-
 }

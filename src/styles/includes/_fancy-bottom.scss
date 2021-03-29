@@ -1,0 +1,9 @@
+.border-bottom-fancy {
+  border-image-source: url('assets/custom/border.webp');
+  border-image-slice:0 100 236 100;
+  border-image-width: 0px 20px 20px 20px;
+  border-image-outset:0px 0px 0px 0px;
+  border-image-repeat:stretch stretch;
+  border-bottom-width: 25px;
+  border-bottom-style: solid;
+}

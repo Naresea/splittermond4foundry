@@ -1,0 +1,26 @@
+<form class="item-sheet sheet p-small {{class}}" autocomplete="off">
+    <div class="d-flex flex-col">
+        <div class="d-flex">
+            {{#if hasPortrait}}
+                {{#> systems/splittermond/templates/partials/includes/portrait.hbs}}
+                    {{#*inline "portrait-image"}}
+                        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" width="100"/>
+                    {{/inline}}
+                {{/systems/splittermond/templates/partials/includes/portrait.hbs}}
+            {{/if}}
+            {{#if hasPortrait}}
+                <div class="d-flex align-items-center" style="padding-left: 10px">
+                    {{#> item-header}}{{/item-header}}
+                </div>
+            {{else}}
+                {{#> item-header}}{{/item-header}}
+            {{/if}}
+        </div>
+        <div class="d-flex sheet-tabs tabs" style="margin-top: 20px" data-group="primary">
+            {{#> nav-tabs}}{{/nav-tabs}}
+        </div>
+        <section class="sheet-body p-big">
+            {{#> nav-content}}{{/nav-content}}
+        </section>
+    </div>
+</form>

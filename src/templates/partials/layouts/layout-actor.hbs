@@ -1,0 +1,22 @@
+<form class="splimo-actor-sheet sheet p-small {{class}}" autocomplete="off">
+    <div class="d-flex flex-col flex-no-grow">
+        <header class="d-flex flex-row flex-no-grow header">
+            {{#> systems/splittermond/templates/partials/includes/portrait.hbs}}
+                {{#*inline "portrait-image"}}
+                    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="200"/>
+                {{/inline}}
+            {{/systems/splittermond/templates/partials/includes/portrait.hbs}}
+            {{#> header-content}}{{/header-content}}
+        </header>
+    </div>
+
+    <div class="d-flex flex-row flex-grow">
+        <div class="d-flex flex-col navbar sheet-tabs tabs" data-group="primary">
+            {{#> nav-tabs}}{{/nav-tabs}}
+        </div>
+        {{!-- Sheet Body --}}
+        <section class="sheet-body p-big">
+            {{#> nav-content}}{{/nav-content}}
+        </section>
+    </div>
+</form>

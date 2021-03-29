@@ -1,0 +1,25 @@
+.portrait {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  width: 286px;
+  filter: drop-shadow(2px 4px 4px black);
+
+  .profile-img {
+    margin-left: 5%;
+    clip-path: circle(97px at 97px 97px);
+  }
+
+  &__frame {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('assets/custom/portrait-frame.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+  }
+}

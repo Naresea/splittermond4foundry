@@ -5,7 +5,12 @@
     --control-size: 40px;
 
     @import 'layout';
-    @import 'sheet';
+    @import 'includes/portrait';
+    @import 'includes/fancy-bottom';
+    @import 'sheets/actor/actor-sheet';
+    @import 'sheets/actor/player-sheet';
+    @import 'sheets/item/item-sheet';
+    @import "sheets/item/rasse-sheet";
 
     .window-content {
         padding: 0;
