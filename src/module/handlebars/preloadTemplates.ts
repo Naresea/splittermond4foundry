@@ -3,6 +3,9 @@ export const preloadTemplates = async function() {
 		'systems/splittermond/templates/partials/layouts/layout-actor.hbs',
 		'systems/splittermond/templates/partials/layouts/layout-item.hbs',
 		'systems/splittermond/templates/partials/includes/portrait.hbs',
+		'systems/splittermond/templates/partials/includes/item-list.hbs',
+		'systems/splittermond/templates/partials/includes/item-list-item.hbs',
+		'systems/splittermond/templates/partials/includes/editor.hbs',
 	];
 
 	const templatePaths = [

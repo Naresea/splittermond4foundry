@@ -16,11 +16,16 @@
                 {{#> item-header}}{{/item-header}}
             {{/if}}
         </div>
-        <div class="d-flex sheet-tabs tabs" style="margin-top: 20px" data-group="primary">
-            {{#> nav-tabs}}{{/nav-tabs}}
-        </div>
-        <section class="sheet-body p-big">
-            {{#> nav-content}}{{/nav-content}}
-        </section>
+        {{#unless noNav}}
+            <div class="d-flex sheet-tabs tabs" style="margin-top: 20px" data-group="primary">
+                {{#> nav-tabs}}{{/nav-tabs}}
+            </div>
+            <section class="sheet-body flex-grow p-big">
+                {{#> nav-content}}{{/nav-content}}
+            </section>
+        {{/unless}}
+        {{#if noNav}}
+            {{#> nonav-content}}{{/nonav-content}}
+        {{/if}}
     </div>
 </form>

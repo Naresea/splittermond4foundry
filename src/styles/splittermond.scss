@@ -3,10 +3,16 @@
     --color-primary: black;
     --color-highlight: darkblue;
     --control-size: 40px;
+    --list-item-height: 25px;
+
+    @import '~@fortawesome/fontawesome-free/css/all.min.css';
 
     @import 'layout';
+    @import "helpers";
     @import 'includes/portrait';
     @import 'includes/fancy-bottom';
+    @import 'includes/item-list';
+    @import 'includes/editor';
     @import 'sheets/actor/actor-sheet';
     @import 'sheets/actor/player-sheet';
     @import 'sheets/item/item-sheet';

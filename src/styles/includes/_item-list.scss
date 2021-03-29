@@ -1,0 +1,25 @@
+.item-list {
+  .item-list__item {
+    width: 100%;
+    min-height: var(--list-item-height);
+    max-height: var(--list-item-height);
+
+    &:nth-child(even) {
+      background-color: lightblue;
+    }
+
+    &:nth-child(odd) {
+      background-color: lightgrey;
+    }
+  }
+
+  .item-list__header {
+    font-weight: bold;
+    border-bottom: 3px solid black;
+    background: none !important;
+  }
+
+  .list-item__element {
+    margin: 0 5px;
+  }
+}

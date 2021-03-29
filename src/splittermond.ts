@@ -23,6 +23,7 @@ import {SplimoNpcSheet} from './module/actor/sheets/splimo-npc-sheet';
 import {registerActorSheets} from './module/actor/register-actor-sheets';
 import {registerItemSheets} from './module/item/register-item-sheets';
 import {registerCombat} from './module/combat/register-combat';
+import {registerHelpers} from './module/handlebars/registerHelpers';
 
 /* ------------------------------------ */
 /* Initialize system					*/
@@ -32,6 +33,7 @@ Hooks.once('init', async function() {
 
 	registerSettings();
 
+	registerHelpers();
 	await preloadTemplates();
 
 	registerCombat();
