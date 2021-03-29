@@ -1,6 +1,6 @@
 export interface Fokus {
-    focus: number;
-    focusErschoepft: number;
-    focusVerzehrt: number;
-    focusKanalisiert: number;
+    fokus: number;
+    fokusErschoepft: number;
+    fokusVerzehrt: number;
+    fokusKanalisiert: number;
 }

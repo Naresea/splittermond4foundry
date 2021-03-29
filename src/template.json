@@ -8,101 +8,101 @@
           "max": 1000,
           "value": 1000
         },
-        "healthErschoepft": "number",
-        "healthVerzehrt": "number",
-        "healthKanalisiert": "number",
+        "healthErschoepft": 0,
+        "healthVerzehrt": 0,
+        "healthKanalisiert": 0,
         "woundLevel": {
           "min": 0,
           "max": 5,
           "value": 5
         },
-        "woundModifier": "number"
+        "woundModifier": 0
       },
-      "focus": {
-        "focus": {
+      "fokus": {
+        "fokus": {
           "min": 0,
           "max": 1000,
           "value": 1000
         },
-        "focusErschoepft": "number",
-        "focusVerzehrt": "number",
-        "focusKanalisiert": "number"
+        "fokusErschoepft": 0,
+        "fokusVerzehrt": 0,
+        "fokusKanalisiert": 0
       },
       "splittertraeger": {
-        "mondzeichen": "string",
+        "mondzeichen": "",
         "splitterpunkte": {
           "min": 0,
           "max": 1000,
           "value": 1000
         },
-        "mondzeichenLevel": "number"
+        "mondzeichenLevel": 0
       },
       "attributes": {
-        "AUS": "number",
-        "BEW": "number",
-        "INT": "number",
-        "KON": "number",
-        "MYS": "number",
-        "STR": "number",
-        "VER": "number",
-        "WIL": "number",
-        "GK": "number"
+        "AUS": 0,
+        "BEW": 0,
+        "INT": 0,
+        "KON": 0,
+        "MYS": 0,
+        "STR": 0,
+        "VER": 0,
+        "WIL": 0,
+        "GK": 0
       },
       "attributesStartValue": {
-        "startAUS": "number",
-        "startBEW": "number",
-        "startINT": "number",
-        "startKON": "number",
-        "startMYS": "number",
-        "startSTR": "number",
-        "startVER": "number",
-        "startWIL": "number",
-        "startGK": "number"
+        "startAUS": 0,
+        "startBEW": 0,
+        "startINT": 0,
+        "startKON": 0,
+        "startMYS": 0,
+        "startSTR": 0,
+        "startVER": 0,
+        "startWIL": 0,
+        "startGK": 0
       },
       "derivedAttributes": {
-        "GSW": "number",
-        "INI": "number",
-        "LP": "number",
-        "FO": "number",
-        "VTD": "number",
-        "GW": "number",
-        "KW": "number"
+        "GSW": 0,
+        "INI": 0,
+        "LP": 0,
+        "FO": 0,
+        "VTD": 0,
+        "GW": 0,
+        "KW": 0
       },
       "biography": {
-        "name": "string",
-        "ausbildung": "string",
-        "kultur": "string",
-        "rasse": "string",
-        "haarfarbe": "string",
-        "augenfarbe": "string",
-        "hautfarbe": "string",
-        "abstammung": "string",
-        "geschlecht": "string",
-        "koerpergroesse": "string",
-        "gewicht": "string",
-        "geburtsort": "string"
+        "name": "",
+        "ausbildung": "",
+        "kultur": "",
+        "rasse": "",
+        "haarfarbe": "",
+        "augenfarbe": "",
+        "hautfarbe": "",
+        "abstammung": "",
+        "geschlecht": "",
+        "koerpergroesse": "",
+        "gewicht": "",
+        "geburtsort": ""
       },
       "vermoegen": {
-        "solare": "number",
-        "lunare": "number",
-        "tellare": "number"
+        "solare": 0,
+        "lunare": 0,
+        "tellare": 0
       }
     },
     "PlayerCharacter": {
-      "templates": ["hp", "focus", "splittertraeger", "attributes", "derivedAttributes", "biography", "vermoegen"],
-      "heldengrad": "number",
-      "erfahrungGesamt": "number",
-      "erfahrungEingesetzt": "number",
-      "erfahrungNaechsterHeldengrad": "number",
+      "templates": ["hp", "fokus", "splittertraeger", "attributes", "derivedAttributes", "biography", "vermoegen"],
+      "heldengrad": 0,
+      "erfahrungGesamt": 0,
+      "erfahrungEingesetzt": 0,
+      "erfahrungNaechsterHeldengrad": 0,
       "atemholenBenutzt": "boolean"
     },
     "NonPlayerCharacter": {
-      "templates": ["hp", "focus", "splittertraeger", "attributes", "derivedAttributes"],
-      "monstergrad": "number",
-      "kampfweise": "string",
-      "lore": "string",
-      "beute": "string",
-      "typus": "string"
+      "templates": ["hp", "fokus", "splittertraeger", "attributes", "derivedAttributes"],
+      "monstergrad": 0,
+      "kampfweise": "",
+      "lore": "",
+      "beute": "",
+      "typus": ""
     }
   },
   "Item": {
@@ -128,22 +128,22 @@
     ],
     "templates": {
       "info": {
-        "name": "string",
-        "beschreibung": "string"
+        "name": "",
+        "beschreibung": ""
       },
       "quelle": {
-        "regelwerk": "string",
-        "seite": "number"
+        "regelwerk": "",
+        "seite": 0
       },
       "action": {
-        "ticks": "number"
+        "ticks": 0
       }
     },
     "mondzeichen": {
       "templates": ["info", "quelle"],
       "effekt": [{
-        "grad": "number",
-        "beschreibung": "string"
+        "grad": 0,
+        "beschreibung": ""
       }]
     },
     "merkmal": {
@@ -154,8 +154,8 @@
     },
     "gegenstand": {
       "templates": ["info", "quelle"],
-      "wertInTellaren": "number",
-      "gewicht": "number"
+      "wertInTellaren": 0,
+      "gewicht": 0
     },
     "benutzbar": {
       "templates": ["gegenstand", "action"],
@@ -163,53 +163,49 @@
     },
     "waffe": {
       "templates": ["benutzbar"],
-      "attribute": "string",
-      "attributeSecondary": "string",
-      "mod": "number",
-      "schaden": "number"
+      "attribute": "",
+      "attributeSecondary": "",
+      "mod": 0,
+      "schaden": 0
     },
     "schild": {
       "templates": ["gegenstand"],
-      "mod": "number",
-      "VTD": "number"
+      "mod": 0,
+      "VTD": 0
     },
     "ruestung": {
       "templates": ["gegenstand"],
-      "VTD": "number",
-      "SR": "number",
-      "BEH": "number",
-      "tickPlus": "number"
+      "VTD": 0,
+      "SR": 0,
+      "BEH": 0,
+      "tickPlus": 0
     },
     "zauber": {
       "templates": ["info", "action", "quelle"],
-      "grad": "number",
-      "schwierigkeit": "number",
-      "fokusErschoepft": "number",
-      "fokusVerzehrt": "number",
-      "fokusKanalisiert": "number",
-      "zauberDauerMinuten": "number",
-      "reichweite": "number",
-      "wirkungsdauer": "number",
-      "verstaerkung": "string"
+      "grad": 0,
+      "schwierigkeit": 0,
+      "fokusErschoepft": 0,
+      "fokusVerzehrt": 0,
+      "fokusKanalisiert": 0,
+      "zauberDauerMinuten": 0,
+      "reichweite": 0,
+      "wirkungsdauer": 0,
+      "verstaerkung": ""
     },
     "abstammung": {
       "templates": ["info", "quelle"]
     },
     "kultur": {
       "templates": ["info", "quelle"],
-      "sprache": "string",
-      "kulturkunde": "string"
+      "sprache": "",
+      "kulturkunde": ""
     },
     "ausbildung": {
       "templates": ["info", "quelle"]
     },
     "rasse": {
       "templates": ["info", "quelle"],
-      "groessenklasse": "number",
-      "attributeMod": [{
-        "attribute": "string",
-        "value": "number"
-      }]
+      "attributeMod": []
     },
     "staerke": {
       "templates": ["info", "quelle"]
@@ -222,14 +218,14 @@
     },
     "resource": {
       "templates": ["info", "quelle"],
-      "punkte": "number"
+      "punkte": 0
     },
     "fertigkeit": {
       "templates": ["info", "quelle"],
-      "attributEins": "string",
-      "attributZwei": "string",
-      "punkte": "number",
-      "mod": "number"
+      "attributEins": "",
+      "attributZwei": "",
+      "punkte": 0,
+      "mod": 0
     }
   }
 }
