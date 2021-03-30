@@ -1,3 +1,19 @@
 .clickable {
   cursor: pointer;
 }
+
+.textbox {
+  background-image: url('assets/custom/bg-item.webp');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 5% 2%;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.overflow-hidden {
+  max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}

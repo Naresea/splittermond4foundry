@@ -80,7 +80,8 @@
         "geschlecht": "",
         "koerpergroesse": "",
         "gewicht": "",
-        "geburtsort": ""
+        "geburtsort": "",
+        "backstory": ""
       },
       "vermoegen": {
         "solare": 0,

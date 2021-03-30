@@ -10,12 +10,12 @@
         </header>
     </div>
 
-    <div class="d-flex flex-row flex-grow">
+    <div class="d-flex flex-row flex-grow overflow-hidden">
         <div class="d-flex flex-col navbar sheet-tabs tabs" data-group="primary">
             {{#> nav-tabs}}{{/nav-tabs}}
         </div>
         {{!-- Sheet Body --}}
-        <section class="sheet-body p-big">
+        <section class="sheet-body p-big overflow-hidden" style="width: 100%; height: 100%; padding-bottom: 7%; padding-right: 7%;">
             {{#> nav-content}}{{/nav-content}}
         </section>
     </div>

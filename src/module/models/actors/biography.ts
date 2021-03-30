@@ -10,5 +10,6 @@ export interface Biography {
     geschlecht: string;
     koerpergroesse: string;
     gewicht: string;
-    geburtsort: string
+    geburtsort: string;
+    backstory: string;
 }

@@ -21,11 +21,12 @@
         <a class="item control-height" data-tab="items">Items</a>
     {{/inline}}
     {{#*inline "nav-content"}}
-        <div class="tab" data-group="primary" data-tab="items">
-            <h2>ITEMS!</h2>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="description">
+            {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/biography.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/biography.hbs}}
         </div>
-        <div class="tab" data-group="primary" data-tab="description">
-            <h2>DESCRIPTION!</h2>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="items">
+            <h2>ITEMS!</h2>
         </div>
     {{/inline}}
 {{/systems/splittermond/templates/partials/layouts/layout-actor.hbs}}

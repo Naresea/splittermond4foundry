@@ -1,0 +1,53 @@
+<div class="biography d-flex flex-row flex-grow overflow-hidden">
+    <div class="d-flex flex-col flex-grow p-small overflow-hidden">
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4">Name:</label>
+            <div class="col-6">{{actor.name}}</div>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4">Abstammung:</label>
+            <div class="col-6">{{data.abstammung}}</div>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4">Kultur:</label>
+            <div class="col-6">{{data.kultur}}</div>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4">Ausbildung:</label>
+            <div class="col-6">{{data.ausbildung}}</div>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.geschlecht">Geschlecht:</label>
+            <input class="col-6" type="text" name="data.geschlecht" value="{{data.geschlecht}}"/>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.haarfarbe">Haarfarbe:</label>
+            <input class="col-6" type="text" name="data.haarfarbe" value="{{data.haarfarbe}}"/>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.koerpergroesse">Körpergröße:</label>
+            <input class="col-6" type="text" name="data.koerpergroesse" value="{{data.koerpergroesse}}"/>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.augenfarbe">Augenfarbe:</label>
+            <input class="col-6" type="text" name="data.augenfarbe" value="{{data.augenfarbe}}"/>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.gewicht">Gewicht:</label>
+            <input class="col-6" type="text" name="data.gewicht" value="{{data.gewicht}}"/>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.hautfarbe">Hautfarbe:</label>
+            <input class="col-6" type="text" name="data.hautfarbe" value="{{data.hautfarbe}}"/>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.geburtsort">Geburtsort:</label>
+            <input class="col-6" type="text" name="data.geburtsort" value="{{data.geburtsort}}"/>
+        </div>
+    </div>
+    <div class="d-flex flex-col flex-grow p-small textbox">
+        {{#> systems/splittermond/templates/partials/includes/editor.hbs target="data.backstory" content=data.backstory}}
+        {{/systems/splittermond/templates/partials/includes/editor.hbs}}
+    </div>
+
+</div>

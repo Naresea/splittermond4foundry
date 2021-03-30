@@ -1,5 +1,5 @@
 .d-flex {
-  display: flex;
+  display: flex !important;
 }
 
 .flex-row {
@@ -53,4 +53,54 @@
 
 .m-big {
   margin: 0.5rem;
+}
+
+.col-1 {
+  min-width: 10%;
+  max-width: 10%;
+}
+
+.col-2 {
+  min-width: 20%;
+  max-width: 20%;
+}
+
+.col-3 {
+  min-width: 30%;
+  max-width: 30%;
+}
+
+.col-4 {
+  min-width: 40%;
+  max-width: 40%;
+}
+
+.col-5 {
+  min-width: 50%;
+  max-width: 50%;
+}
+
+.col-6 {
+  min-width: 60%;
+  max-width: 60%;
+}
+
+.col-7 {
+  min-width: 70%;
+  max-width: 70%;
+}
+
+.col-8 {
+  min-width: 80%;
+  max-width: 80%;
+}
+
+.col-9 {
+  min-width: 90%;
+  max-width: 90%;
+}
+
+.col-10 {
+  min-width: 100%;
+  max-width: 100%;
 }
