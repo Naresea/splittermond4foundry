@@ -46,18 +46,15 @@
         "STR": 0,
         "VER": 0,
         "WIL": 0,
-        "GK": 0
-      },
-      "attributesStartValue": {
-        "startAUS": 0,
-        "startBEW": 0,
-        "startINT": 0,
-        "startKON": 0,
-        "startMYS": 0,
-        "startSTR": 0,
-        "startVER": 0,
-        "startWIL": 0,
-        "startGK": 0
+        "GK": 0,
+        "incAUS": 0,
+        "incBEW": 0,
+        "incINT": 0,
+        "incKON": 0,
+        "incMYS": 0,
+        "incSTR": 0,
+        "incVER": 0,
+        "incWIL": 0
       },
       "derivedAttributes": {
         "GSW": 0,

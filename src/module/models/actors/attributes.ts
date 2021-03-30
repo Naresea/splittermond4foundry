@@ -10,6 +10,17 @@ export interface Attributes {
     GK: number;
 }
 
+export interface IncAttributes {
+    incAUS: number;
+    incBEW: number;
+    incINT: number;
+    incKON: number;
+    incMYS: number;
+    incSTR: number;
+    incVER: number;
+    incWIL: number;
+}
+
 export interface AttributesStartValue {
     startAUS: number;
     startBEW: number;
@@ -21,3 +32,15 @@ export interface AttributesStartValue {
     startWIL: number;
     startGK: number;
 }
+
+export const ATTRIBUTES: Array<keyof Attributes> = [
+    'AUS',
+    'BEW',
+    'INT',
+    'KON',
+    'MYS',
+    'STR',
+    'VER',
+    'WIL',
+    'GK',
+];

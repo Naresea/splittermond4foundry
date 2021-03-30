@@ -41,3 +41,46 @@ export function registerItemSheets(): void {
     Items.registerSheet('splittermond', MerkmalSheet, { types: [ItemType.Merkmal], makeDefault: true });
     Items.registerSheet('splittermond', ZustandSheet, { types: [ItemType.Zustand], makeDefault: true });
 }
+
+export function getSheetClass(type: ItemType): typeof ItemSheet | undefined {
+    switch (type) {
+        case ItemType.Abstammung:
+            return AbstammungSheet as any;
+        case ItemType.Ausbildung:
+            return AusbildungSheet as any;
+        case ItemType.Kultur:
+            return KulturSheet as any;
+        case ItemType.Rasse:
+            return RasseSheet as any;
+        case ItemType.Mondzeichen:
+            return MondzeichenSheet as any;
+        case ItemType.Staerke:
+            return StaerkeSheet as any;
+        case ItemType.Schwaeche:
+            return SchwaecheSheet as any;
+        case ItemType.Fertigkeit:
+            return FertigkeitSheet as any;
+        case ItemType.Meisterschaft:
+            return MeisterschaftSheet as any;
+        case ItemType.Resource:
+            return ResourceSheet as any;
+        case ItemType.Zauber:
+            return ZauberSheet as any;
+        case ItemType.Waffe:
+            return WaffeSheet as any;
+        case ItemType.Ruestung:
+            return RuestungSheet as any;
+        case ItemType.Schild:
+            return SchildSheet as any;
+        case ItemType.Gegenstand:
+            return GegenstandSheet as any;
+        case ItemType.Benutzbar:
+            return BenutzbarSheet as any;
+        case ItemType.Merkmal:
+            return MerkmalSheet as any;
+        case ItemType.Zustand:
+            return ZustandSheet as any;
+        default:
+            return undefined;
+    }
+}

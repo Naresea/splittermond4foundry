@@ -2,27 +2,36 @@ import {SplimoActorSheet} from '../splimo-actor-sheet';
 import {PlayerCharacter} from '../../models/actors/player-character';
 import {ItemType} from '../../models/item-type';
 import {Rasse} from '../../models/items/rasse';
+import {ATTRIBUTES} from '../../models/actors/attributes';
+import {Modifier} from '../../models/items/modifier';
+import {ModifierItemSheet} from '../../item/sheets/modifier-item-sheet';
+import {SplimoItem} from '../../item/splimo-item';
+import {getSheetClass} from '../../item/register-item-sheets';
+
+type PlayerSheetPayload =  PlayerCharacter & {
+    attributes?: Record<string, number>;
+    attributeModifiers?: Record<string, number>;
+    derivedAttributes?: Record<string, number>;
+    derivedAttributeModifiers?: Record<string, number>;
+    healthData?: {
+        max: number,
+        current: number,
+        erschoepft: number,
+        kanalisiert: number,
+        verzehrt: number
+    },
+    fokusData?: {
+        max: number,
+        current: number,
+        erschoepft: number,
+        kanalisiert: number,
+        verzehrt: number
+    },
+    race?: string
+};
 
 interface PlayerSheetData extends ActorSheet.Data<PlayerCharacter> {
-    data: PlayerCharacter & {
-        attributes?: Record<string, number>;
-        derivedAttributes?: Record<string, number>;
-        healthData?: {
-            max: number,
-            current: number,
-            erschoepft: number,
-            kanalisiert: number,
-            verzehrt: number
-        },
-        fokusData?: {
-            max: number,
-            current: number,
-            erschoepft: number,
-            kanalisiert: number,
-            verzehrt: number
-        },
-        race?: string
-    }
+    data: PlayerSheetPayload;
 }
 
 
@@ -38,6 +47,52 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
                 { navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'description' }
             ]
         });
+    }
+
+    protected activateListeners(html: JQuery<HTMLElement> | HTMLElement): void {
+        super.activateListeners(html);
+        if (html instanceof  HTMLElement) {
+            console.error('activateListeners: html is wrong element, should be JQuery but is HTMLElement');
+            return;
+        }
+        this.registerClick(html);
+    }
+
+    private registerClick(html: JQuery<HTMLElement>): void {
+        html.find(`.clickable`).on('click', (evt) => {
+            const target = evt?.target;
+            const operation = target?.dataset?.operation;
+            const type = target?.dataset?.type;
+            const id = target?.dataset['click-id'];
+            if (operation === 'add' && type != null) {
+                this.createItem(type as ItemType);
+            }
+            if (operation === 'edit' && type != null) {
+                this.editItem(type as ItemType, id)
+            }
+            if (operation === 'delete' && type != null) {
+                this.deleteItem(type as ItemType, id)
+            }
+        });
+    }
+
+    private createItem(type: ItemType): void {
+        this.actor.createOwnedItem({ type, name: `New ${type}` }, { renderSheet: true });
+    }
+
+    private editItem(type: ItemType, id?: string): void {
+        const item = this.actor.items.find(item => item.type === type && (id == null || item.id === id));
+        const sheet = getSheetClass(type);
+        if (item && sheet) {
+            new sheet(item).render(true);
+        }
+    }
+
+    private deleteItem(type: ItemType, id?: string): void {
+        const item = this.actor.items.find(item => item.type === type && (id == null || item.id === id));
+        if (item) {
+            this.actor.deleteOwnedItem(item.id);
+        }
     }
 
     getData(): PlayerSheetData {
@@ -118,56 +173,63 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
     }
 
     private applyAttributeMods(data:  PlayerSheetData):  PlayerSheetData {
-        let attributes = this.prepareAttributes(data);
-        attributes = this.applyAttributeModsRacial(attributes);
-
+        const attributes = this.prepareAttributes(data);
+        const racialModifiers = this.applyAttributeModsRacial(attributes);
+        data.data.attributeModifiers = racialModifiers;
         data.data.attributes = attributes;
+        console.log('Returning data: ', {racialModifiers, data});
         return data;
     }
 
     private prepareAttributes(data: PlayerSheetData): Record<string, number> {
         return {
-            AUS: this.actor.data.data.AUS,
-            BEW: this.actor.data.data.BEW,
-            INT: this.actor.data.data.INT,
-            KON: this.actor.data.data.KON,
-            MYS: this.actor.data.data.MYS,
-            STR: this.actor.data.data.STR,
-            VER: this.actor.data.data.VER,
-            WIL: this.actor.data.data.WIL,
-            GK: this.actor.data.data.AUS,
+            AUS: this.actor.data.data.AUS + this.actor.data.data.incAUS,
+            BEW: this.actor.data.data.BEW + this.actor.data.data.incBEW,
+            INT: this.actor.data.data.INT + this.actor.data.data.incINT,
+            KON: this.actor.data.data.KON + this.actor.data.data.incKON,
+            MYS: this.actor.data.data.MYS + this.actor.data.data.incMYS,
+            STR: this.actor.data.data.STR + this.actor.data.data.incSTR,
+            VER: this.actor.data.data.VER + this.actor.data.data.incVER,
+            WIL: this.actor.data.data.WIL + this.actor.data.data.incWIL,
+            GK: this.actor.data.data.GK
         }
     }
 
     private applyAttributeModsRacial(attributes:  Record<string, number>):  Record<string, number> {
         const race = this.actor.items.find((item) => item.type === ItemType.Rasse);
         if (!race) {
-            return attributes;
+            return {};
         }
         const raceData = race?.data?.data as Rasse | undefined;
         const getMod = (attrName: string) => {
             return raceData?.attributeMod?.find(mod => mod.target === attrName)?.value
         };
 
-        return {
-            AUS: attributes['AUS'] + (getMod('AUS') ?? 0),
-            BEW: attributes['BEW'] + (getMod('BEW') ?? 0),
-            INT: attributes['INT'] + (getMod('INT') ?? 0),
-            KON: attributes['KON'] + (getMod('KON') ?? 0),
-            MYS: attributes['MYS'] + (getMod('MYS') ?? 0),
-            STR: attributes['STR'] + (getMod('STR') ?? 0),
-            VER: attributes['VER'] + (getMod('VER') ?? 0),
-            WIL: attributes['WIL'] + (getMod('WIL') ?? 0),
-            GK: attributes['GK'] + (getMod('GK') ?? 0),
-        };
+        ATTRIBUTES.forEach(attr => {
+            attributes[attr] = (attributes[attr] ?? 0) + (getMod(attr) ?? 0)
+        });
 
+        attributes.GK = (getMod('GK') ?? 0);
+
+        return ATTRIBUTES.reduce((accu, curr) => {
+            accu[curr] = (getMod(curr) ?? 0);
+            return accu;
+        }, {
+            GK: (getMod('GK') ?? 0)
+        });
     }
 
     private addBioInfo(data: PlayerSheetData): PlayerSheetData {
         const race = this.actor.items.find((item) => item.type === ItemType.Rasse);
-        if (race) {
-            data.data.race = race.name;
-        }
+        const kultur = this.actor.items.find((item) => item.type === ItemType.Kultur);
+        const abstammung = this.actor.items.find((item) => item.type === ItemType.Abstammung);
+        const ausbildung = this.actor.items.find((item) => item.type === ItemType.Ausbildung);
+
+        data.data.race = race?.name;
+        data.data.kultur = kultur?.name;
+        data.data.abstammung = abstammung?.name;
+        data.data.ausbildung = ausbildung?.name;
+
         return data;
     }
 }

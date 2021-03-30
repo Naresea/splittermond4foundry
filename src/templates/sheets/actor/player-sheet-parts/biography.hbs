@@ -5,16 +5,56 @@
             <div class="col-6">{{actor.name}}</div>
         </div>
         <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4">Rasse:</label>
+            <div class="col-5">{{data.race}}</div>
+            <div class="col-1 d-flex align-items-center" style="justify-content: flex-end">
+                {{#if data.race}}
+                    <i class="fas fa-edit clickable" data-operation="edit" data-type="rasse" style="margin-right: 5px"></i>
+                    <i class="fas fa-trash delete-race clickable" data-operation="delete" data-type="rasse"></i>
+                {{/if}}
+                {{#unless data.race}}
+                    <i class="fas fa-plus add-race clickable" data-operation="add" data-type="rasse"></i>
+                {{/unless}}
+            </div>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
             <label class="col-4">Abstammung:</label>
-            <div class="col-6">{{data.abstammung}}</div>
+            <div class="col-5">{{data.abstammung}}</div>
+            <div class="col-1 d-flex align-items-center" style="justify-content: flex-end">
+                {{#if data.abstammung}}
+                    <i class="fas fa-edit clickable"  data-operation="edit" data-type="abstammung" style="margin-right: 5px"></i>
+                    <i class="fas fa-trash clickable"  data-operation="delete" data-type="abstammung"></i>
+                {{/if}}
+                {{#unless data.abstammung}}
+                    <i class="fas fa-plus clickable"  data-operation="add" data-type="abstammung"></i>
+                {{/unless}}
+            </div>
         </div>
         <div class="d-flex flex-row align-items-center m-small">
             <label class="col-4">Kultur:</label>
-            <div class="col-6">{{data.kultur}}</div>
+            <div class="col-5">{{data.kultur}}</div>
+            <div class="col-1 d-flex align-items-center" style="justify-content: flex-end">
+                {{#if data.kultur}}
+                    <i class="fas fa-edit clickable" data-operation="edit" data-type="kultur"  style="margin-right: 5px"></i>
+                    <i class="fas fa-trash clickable" data-operation="delete" data-type="kultur" ></i>
+                {{/if}}
+                {{#unless data.kultur}}
+                    <i class="fas fa-plus clickable" data-operation="add" data-type="kultur" ></i>
+                {{/unless}}
+            </div>
         </div>
         <div class="d-flex flex-row align-items-center m-small">
             <label class="col-4">Ausbildung:</label>
-            <div class="col-6">{{data.ausbildung}}</div>
+            <div class="col-5">{{data.ausbildung}}</div>
+            <div class="col-1 d-flex align-items-center" style="justify-content: flex-end">
+                {{#if data.ausbildung}}
+                    <i class="fas fa-edit clickable" data-operation="edit" data-type="ausbildung"  style="margin-right: 5px"></i>
+                    <i class="fas fa-trash clickable" data-operation="delete" data-type="ausbildung" ></i>
+                {{/if}}
+                {{#unless data.ausbildung}}
+                    <i class="fas fa-plus clickable" data-operation="add" data-type="ausbildung" ></i>
+                {{/unless}}
+            </div>
         </div>
         <div class="d-flex flex-row align-items-center m-small">
             <label class="col-4" for="data.geschlecht">Geschlecht:</label>
