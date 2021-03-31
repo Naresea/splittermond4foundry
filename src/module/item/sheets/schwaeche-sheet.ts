@@ -1,5 +1,5 @@
 import {SplimoItemSheet} from '../splimo-item-sheet';
-import {Modifier} from '../../models/items/modifier';
+import {Modifier, ModifierType} from '../../models/items/modifier';
 import {ModifierItemSheet} from './modifier-item-sheet';
 import {Schwaeche} from '../../models/items/schwaeche';
 
@@ -44,7 +44,7 @@ export class SchwaecheSheet extends SplimoItemSheet<Schwaeche> {
             const modifier: Modifier = {
                 value: 2,
                 target: 'AUS',
-                type: 'attribute'
+                type: ModifierType.Attribute
             };
 
             this.item.data.data.modifier.push(modifier);

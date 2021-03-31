@@ -1,6 +1,6 @@
 import {SplimoItemSheet} from '../splimo-item-sheet';
 import {Merkmal} from '../../models/items/merkmal';
-import {Modifier} from '../../models/items/modifier';
+import {Modifier, ModifierType} from '../../models/items/modifier';
 import {ModifierItemSheet} from './modifier-item-sheet';
 
 export class MerkmalSheet extends SplimoItemSheet<Merkmal> {
@@ -44,7 +44,7 @@ export class MerkmalSheet extends SplimoItemSheet<Merkmal> {
             const modifier: Modifier = {
                 value: 2,
                 target: 'AUS',
-                type: 'attribute'
+                type: ModifierType.Attribute
             };
 
             this.item.data.data.modifier.push(modifier);

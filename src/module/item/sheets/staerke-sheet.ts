@@ -1,6 +1,6 @@
 import {SplimoItemSheet} from '../splimo-item-sheet';
 import {Staerke} from '../../models/items/staerke';
-import {Modifier} from '../../models/items/modifier';
+import {Modifier, ModifierType} from '../../models/items/modifier';
 import {ModifierItemSheet} from './modifier-item-sheet';
 
 export class StaerkeSheet extends SplimoItemSheet<Staerke> {
@@ -44,7 +44,7 @@ export class StaerkeSheet extends SplimoItemSheet<Staerke> {
             const modifier: Modifier = {
                 value: 2,
                 target: 'AUS',
-                type: 'attribute'
+                type: ModifierType.Attribute
             };
 
             this.item.data.data.modifier.push(modifier);

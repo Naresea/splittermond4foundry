@@ -11,6 +11,7 @@ import {Ruestung} from '../../models/items/ruestung';
 import {Benutzbar} from '../../models/items/benutzbar';
 import {Gegenstand} from '../../models/items/gegenstand';
 import {buildFokusString, Zauber} from '../../models/items/zauber';
+import {PlayerDataService} from '../../services/player-data-service';
 
 type PlayerSheetPayload =  PlayerCharacter & {
     attributes?: Record<string, number>;
@@ -115,6 +116,8 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
     }
 
     getData(): PlayerSheetData {
+        const calcData = PlayerDataService.getPlayerData(this.actor);
+
         let data = super.getData() as PlayerSheetData;
         data = this.applyAttributeMods(data);
         data = this.calculateDerivedAttributes(data);
@@ -124,6 +127,8 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         data = this.addFertigkeitenInfo(data);
         data = this.addInventarInfo(data);
         data = this.addZauberInfo(data);
+
+        console.log('Calculated data: ', {calcData, data});
         return data;
     }
 

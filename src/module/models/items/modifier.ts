@@ -1,5 +1,10 @@
+export enum ModifierType {
+    Attribute = 'attribute',
+    Fertigkeit = 'fertigkeit'
+}
+
 export interface Modifier {
-    type: string;
+    type: ModifierType;
     target: string;
     value: number;
 }

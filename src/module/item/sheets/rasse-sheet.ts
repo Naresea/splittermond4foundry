@@ -1,6 +1,6 @@
 import {SplimoItemSheet} from '../splimo-item-sheet';
 import {Rasse} from '../../models/items/rasse';
-import {Modifier} from '../../models/items/modifier';
+import {Modifier, ModifierType} from '../../models/items/modifier';
 import {ModifierItemSheet} from './modifier-item-sheet';
 
 export class RasseSheet extends SplimoItemSheet<Rasse> {
@@ -45,7 +45,7 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
             const modifier: Modifier = {
                 value: 2,
                 target: 'AUS',
-                type: 'attribute'
+                type: ModifierType.Attribute
             };
 
             this.item.data.data.attributeMod.push(modifier);

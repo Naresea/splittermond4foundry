@@ -1,6 +1,6 @@
 import {SplimoItemSheet} from '../splimo-item-sheet';
 import {Ausbildung} from '../../models/items/ausbildung';
-import {Modifier} from '../../models/items/modifier';
+import {Modifier, ModifierType} from '../../models/items/modifier';
 import {ModifierItemSheet} from './modifier-item-sheet';
 
 export class AusbildungSheet extends SplimoItemSheet<Ausbildung> {
@@ -44,7 +44,7 @@ export class AusbildungSheet extends SplimoItemSheet<Ausbildung> {
             const modifier: Modifier = {
                 value: 2,
                 target: 'AUS',
-                type: 'attribute'
+                type: ModifierType.Attribute
             };
 
             this.item.data.data.modifier.push(modifier);
