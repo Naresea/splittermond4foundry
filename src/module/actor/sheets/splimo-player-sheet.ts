@@ -180,7 +180,7 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         }
         const raceData = race?.data?.data as Rasse | undefined;
         const getMod = (attrName: string) => {
-            return raceData?.attributeMod?.find(mod => mod.target === attrName)?.value
+            return raceData?.attributeMod?.find(mod => mod.type === 'attribute' && mod.target === attrName)?.value
         };
 
         return {
@@ -223,7 +223,7 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         }
         const raceData = race?.data?.data as Rasse | undefined;
         const getMod = (attrName: string) => {
-            return raceData?.attributeMod?.find(mod => mod.target === attrName)?.value
+            return raceData?.attributeMod?.find(mod => mod.type === 'attribute' && mod.target === attrName)?.value
         };
 
         ATTRIBUTES.forEach(attr => {

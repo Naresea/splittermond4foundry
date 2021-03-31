@@ -148,7 +148,8 @@
       "templates": ["info", "quelle"]
     },
     "zustand": {
-      "templates": ["info", "quelle"]
+      "templates": ["info", "quelle"],
+      "modifier": []
     },
     "gegenstand": {
       "templates": ["info", "quelle"],
@@ -214,13 +215,17 @@
       "attributeMod": []
     },
     "staerke": {
-      "templates": ["info", "quelle"]
+      "templates": ["info", "quelle"],
+      "modifier": []
     },
     "schwaeche": {
-      "templates": ["info", "quelle"]
+      "templates": ["info", "quelle"],
+      "modifier": []
     },
     "meisterschaft": {
-      "templates": ["info", "quelle"]
+      "templates": ["info", "quelle"],
+      "fertigkeit": "",
+      "modifier": []
     },
     "resource": {
       "templates": ["info", "quelle"],
