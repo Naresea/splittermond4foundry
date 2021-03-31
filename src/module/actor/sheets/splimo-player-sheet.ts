@@ -3,10 +3,8 @@ import {PlayerCharacter} from '../../models/actors/player-character';
 import {ItemType} from '../../models/item-type';
 import {Rasse} from '../../models/items/rasse';
 import {ATTRIBUTES} from '../../models/actors/attributes';
-import {Modifier} from '../../models/items/modifier';
-import {ModifierItemSheet} from '../../item/sheets/modifier-item-sheet';
-import {SplimoItem} from '../../item/splimo-item';
 import {getSheetClass} from '../../item/register-item-sheets';
+import {Fertigkeit} from '../../models/items/fertigkeit';
 
 type PlayerSheetPayload =  PlayerCharacter & {
     attributes?: Record<string, number>;
@@ -27,7 +25,9 @@ type PlayerSheetPayload =  PlayerCharacter & {
         kanalisiert: number,
         verzehrt: number
     },
-    race?: string
+    race?: string,
+    fertigkeiten?: Array<{fields: Array<string>, id: string}>,
+    fertigkeitenFields?: Array<string>
 };
 
 interface PlayerSheetData extends ActorSheet.Data<PlayerCharacter> {
@@ -63,7 +63,8 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
             const target = evt?.target;
             const operation = target?.dataset?.operation;
             const type = target?.dataset?.type;
-            const id = target?.dataset['click-id'];
+            const id = target?.dataset['clickId'];
+            console.log('Found dataset: ', target?.dataset);
             if (operation === 'add' && type != null) {
                 this.createItem(type as ItemType);
             }
@@ -102,6 +103,7 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         data = this.applyMerkmale(data);
         data = this.calculateHpAndFokus(data);
         data = this.addBioInfo(data);
+        data = this.addFertigkeitenInfo(data);
         return data;
     }
 
@@ -177,7 +179,6 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         const racialModifiers = this.applyAttributeModsRacial(attributes);
         data.data.attributeModifiers = racialModifiers;
         data.data.attributes = attributes;
-        console.log('Returning data: ', {racialModifiers, data});
         return data;
     }
 
@@ -230,6 +231,24 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         data.data.abstammung = abstammung?.name;
         data.data.ausbildung = ausbildung?.name;
 
+        return data;
+    }
+
+    private addFertigkeitenInfo(data: PlayerSheetData): PlayerSheetData {
+        const fertigkeiten = this.actor.items.filter(item => item.type === ItemType.Fertigkeit);
+        data.data.fertigkeiten = fertigkeiten.map((fertigkeit: Item<Fertigkeit>) => {
+            const attr1 = data.data.attributes[fertigkeit.data.data.attributEins] ?? 0;
+            const attr2 = data.data.attributes[fertigkeit.data.data.attributZwei] ?? 0;
+            const punkte = fertigkeit.data.data.punkte ?? 0;
+            const mod = fertigkeit.data.data.mod ?? 0;
+            const total = punkte + mod + attr1 + attr2;
+            const name = fertigkeit.name;
+            return {
+                fields: [`${name}`,`${total}`, `${punkte}`,`${fertigkeit.data.data.attributEins}: ${attr1}`, `${fertigkeit.data.data.attributZwei}: ${attr2}`, `${mod}`],
+                id: fertigkeit.id
+            };
+        });
+        data.data.fertigkeitenFields = ['Name', 'Wert', 'Punkte', 'Attribut 1', 'Attribut 2', 'Mod'];
         return data;
     }
 }

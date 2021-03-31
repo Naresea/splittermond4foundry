@@ -5,7 +5,9 @@
         </div>
     {{/each}}
     <div class="d-flex flex-grow list-item__element align-items-center" style="justify-content: flex-end">
-        <i class="fas fa-edit edit-item clickable" data-index="{{index}}"></i>
-        <i class="fas fa-trash delete-item clickable" data-index="{{index}}"></i>
+        {{#>icons-end}}
+            <i class="fas fa-edit edit-item clickable" data-index="{{index}}"></i>
+            <i class="fas fa-trash delete-item clickable" data-index="{{index}}"></i>
+        {{/icons-end}}
     </div>
 </div>

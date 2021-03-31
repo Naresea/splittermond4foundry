@@ -13,14 +13,6 @@
         </div>
         <div class="tab" data-group="primary" data-tab="details">
             {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="rasse-modifier" dynamic=true item=data.modifier fields=(asList "Art" "Ziel" "Wert")}}
-                {{#*inline "list-content"}}
-                    {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=(asList "Attribut" "AUS" "+5")}}
-                    {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                    {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=(asList "Attribut" "VER" "-2")}}
-                    {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                    {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=(asList "Fertigkeit" "Jagdkunte" "+2")}}
-                    {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                {{/inline}}
             {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
         </div>
     {{/inline}}
