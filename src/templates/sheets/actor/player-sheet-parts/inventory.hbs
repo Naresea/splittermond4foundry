@@ -3,7 +3,7 @@
         {{!-- left side --}}
         <div class="d-flex flex-col flex-grow">
             {{!-- Waffen --}}
-            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Waffen</h3>
+            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.waffen.header"}}</h3>
             <div style="min-height: 25%; max-height: 25%; overflow: hidden">
                 {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="waffen-list" dynamic=true item=data.waffen.tableData fields=data.waffen.tableFields}}
                     {{#*inline "icons-end"}}
@@ -21,7 +21,7 @@
             </div>
 
             {{!-- Rüstungen --}}
-            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Rüstungen</h3>
+            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.ruestungen.header"}}</h3>
             <div style="min-height: 25%; max-height: 25%; overflow: hidden">
                 {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="ruestung-list" dynamic=true item=data.ruestungen.tableData fields=data.ruestungen.tableFields}}
                     {{#*inline "icons-end"}}
@@ -38,7 +38,7 @@
                 {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
             </div>
             {{!-- Schilde --}}
-            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Schilde</h3>
+            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.schilde.header"}}</h3>
             <div style="min-height: 25%; max-height: 25%; overflow: hidden">
                 {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="schild-list" dynamic=true item=data.schilde.tableData fields=data.schilde.tableFields}}
                     {{#*inline "icons-end"}}
@@ -63,7 +63,7 @@
         {{!--right side --}}
         <div class="d-flex flex-col flex-grow">
             {{!-- Consumable / Benutzbar --}}
-            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Verwendbare Gegenstände</h3>
+            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.benutzbares.header"}}</h3>
             <div style="min-height: 33%; max-height: 33%; overflow: hidden">
                 {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="consumable-list" dynamic=true item=data.benutzbares.tableData fields=data.benutzbares.tableFields}}
                     {{#*inline "icons-end"}}
@@ -80,7 +80,7 @@
                 {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
             </div>
             {{!-- Sonstige Gegenstaende --}}
-            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Sonstiges</h3>
+            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.sonstiges.header"}}</h3>
             <div style="min-height: 57%; max-height: 57%; overflow: hidden">
                 {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="items-list" dynamic=true item=data.sonstiges.tableData fields=data.sonstiges.tableFields}}
                     {{#*inline "icons-end"}}

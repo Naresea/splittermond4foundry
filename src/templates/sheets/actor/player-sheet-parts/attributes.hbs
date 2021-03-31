@@ -1,15 +1,15 @@
 <div class="attributes d-flex flex-row flex-grow overflow-hidden">
     <div class="d-flex flex-col flex-grow p-small overflow-hidden">
         <div class="d-flex flex-row align-items-center m-small">
-            <div class="col-4 p-small">Attribut</div>
-            <div class="col-2" style="text-align: center; margin-right: 5px">Wert</div>
-            <div class="col-1" style="text-align: center; margin-right: 5px">Start</div>
-            <div class="col-1" style="text-align: center; margin-right: 5px">Erhöht</div>
-            <div class="col-2" style="text-align: center;">Modifier</div>
+            <div class="col-4 p-small">{{localize "splittermond.attributes.header.attribute"}}</div>
+            <div class="col-2" style="text-align: center; margin-right: 5px">{{localize "splittermond.attributes.header.wert"}}</div>
+            <div class="col-1" style="text-align: center; margin-right: 5px">{{localize "splittermond.attributes.header.start"}}</div>
+            <div class="col-1" style="text-align: center; margin-right: 5px">{{localize "splittermond.attributes.header.increase"}}</div>
+            <div class="col-2" style="text-align: center;">{{localize "splittermond.attributes.header.mod"}}</div>
         </div>
         {{#each (attrNames base=true)}}
             <div class="d-flex flex-row align-items-center m-small">
-                <label class="col-4" for="data.{{this}}">{{localize (concat "attribute." this)}}</label>
+                <label class="col-4" for="data.{{this}}">{{localize (concat "splittermond.attribute." this)}}</label>
                 <div class="col-2" style="text-align: center; margin-right: 5px;">{{getByKey (getByKey../data.attributes this) "total"}}</div>
                 <input class="col-1" style="text-align: center; margin-right: 5px" type="number" name="data.{{this}}" value="{{getByKey ../data this}}"/>
                 <input class="col-1" style="text-align: center; margin-right: 5px" type="number" name="data.inc{{this}}" value="{{getByKey ../data (concat "inc" this)}}"/>
@@ -21,13 +21,13 @@
     {{/systems/splittermond/templates/partials/includes/separator-vertical.hbs}}
     <div class="d-flex flex-col flex-grow p-small overflow-hidden">
         <div class="d-flex flex-row align-items-center m-small">
-            <div class="col-4 p-small">Abg. Attribut</div>
-            <div class="col-2 p-small" style="text-align: center">Modifier</div>
-            <div class="col-2 p-small" style="text-align: center">Wert</div>
+            <div class="col-4 p-small">{{localize "splittermond.attributes.header.derivedAttribute"}}</div>
+            <div class="col-2 p-small" style="text-align: center">{{localize "splittermond.attributes.header.wert"}}</div>
+            <div class="col-2 p-small" style="text-align: center">{{localize "splittermond.attributes.header.mod"}}</div>
         </div>
         {{#each (attrNames base=false derived=true)}}
             <div class="d-flex flex-row align-items-center m-small">
-                <label class="col-4 p-small" for="data.{{this}}">{{localize (concat "attribute." this)}}</label>
+                <label class="col-4 p-small" for="data.{{this}}">{{localize (concat "splittermond.attribute." this)}}</label>
                 <div class="col-2 p-small" style="text-align: center">{{getByKey (getByKey ../data.derivedAttributes this) "total"}}</div>
                 <div class="col-2 p-small" style="text-align: center">{{getByKey (getByKey ../data.derivedAttributes this) "modifier"}}</div>
             </div>

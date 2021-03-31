@@ -4,8 +4,6 @@
             <div class="d-flex flex-col">
                 <h1 class="charname flex-grow" style="padding-left: 90px; border: none"><input name="name" type="text" value="{{actor.name}}"/></h1>
                 <div class="d-flex">
-                    <span style="margin: 0 20px">Rasse: {{data.race}}</span>
-                    <span style="margin: 0 20px">GK: {{data.attributes.GK}}</span>
                 </div>
             </div>
             <div class="d-flex flex-col" style="min-width: 100px">
@@ -17,11 +15,11 @@
         </div>
     {{/inline}}
     {{#*inline "nav-tabs"}}
-        <a class="item control-height" data-tab="description">Biografie</a>
-        <a class="item control-height" data-tab="attributes">Attribute</a>
-        <a class="item control-height" data-tab="fertigkeiten">Fertigkeiten</a>
-        <a class="item control-height" data-tab="inventory">Inventar</a>
-        <a class="item control-height" data-tab="zauber">Zauber</a>
+        <a class="item control-height" data-tab="description">{{localize "splittermond.pc.nav.bio"}}</a>
+        <a class="item control-height" data-tab="attributes">{{localize "splittermond.pc.nav.attributes"}}</a>
+        <a class="item control-height" data-tab="fertigkeiten">{{localize "splittermond.pc.nav.fertigkeiten"}}</a>
+        <a class="item control-height" data-tab="inventory">{{localize "splittermond.pc.nav.inventar"}}</a>
+        <a class="item control-height" data-tab="zauber">{{localize "splittermond.pc.nav.zauber"}}</a>
     {{/inline}}
     {{#*inline "nav-content"}}
         <div class="tab overflow-hidden" data-group="primary" data-tab="description">
