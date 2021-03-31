@@ -20,6 +20,7 @@
         <a class="item control-height" data-tab="description">Biografie</a>
         <a class="item control-height" data-tab="attributes">Attribute</a>
         <a class="item control-height" data-tab="fertigkeiten">Fertigkeiten</a>
+        <a class="item control-height" data-tab="inventory">Inventar</a>
     {{/inline}}
     {{#*inline "nav-content"}}
         <div class="tab overflow-hidden" data-group="primary" data-tab="description">
@@ -33,6 +34,10 @@
         <div class="tab overflow-hidden" data-group="primary" data-tab="fertigkeiten">
             {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/fertigkeiten.hbs}}
             {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/fertigkeiten.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="inventory">
+            {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/inventory.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/inventory.hbs}}
         </div>
     {{/inline}}
 {{/systems/splittermond/templates/partials/layouts/layout-actor.hbs}}

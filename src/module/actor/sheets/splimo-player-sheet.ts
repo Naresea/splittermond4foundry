@@ -5,6 +5,11 @@ import {Rasse} from '../../models/items/rasse';
 import {ATTRIBUTES} from '../../models/actors/attributes';
 import {getSheetClass} from '../../item/register-item-sheets';
 import {Fertigkeit} from '../../models/items/fertigkeit';
+import {Waffe} from '../../models/items/waffe';
+import {Schild} from '../../models/items/schild';
+import {Ruestung} from '../../models/items/ruestung';
+import {Benutzbar} from '../../models/items/benutzbar';
+import {Gegenstand} from '../../models/items/gegenstand';
 
 type PlayerSheetPayload =  PlayerCharacter & {
     attributes?: Record<string, number>;
@@ -27,7 +32,17 @@ type PlayerSheetPayload =  PlayerCharacter & {
     },
     race?: string,
     fertigkeiten?: Array<{fields: Array<string>, id: string}>,
-    fertigkeitenFields?: Array<string>
+    fertigkeitenFields?: Array<string>,
+    waffen?: Array<{fields: Array<string>, id: string}>,
+    waffenFields?: Array<string>,
+    schilde?: Array<{fields: Array<string>, id: string}>,
+    schildFields?: Array<string>,
+    ruestungen?: Array<{fields: Array<string>, id: string}>,
+    ruestungFields?: Array<string>,
+    benutzbar?: Array<{fields: Array<string>, id: string}>,
+    benutzbarFields?: Array<string>,
+    gegenstaende?: Array<{fields: Array<string>, id: string}>,
+    gegenstandFields?: Array<string>
 };
 
 interface PlayerSheetData extends ActorSheet.Data<PlayerCharacter> {
@@ -104,6 +119,7 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         data = this.calculateHpAndFokus(data);
         data = this.addBioInfo(data);
         data = this.addFertigkeitenInfo(data);
+        data = this.addInventarInfo(data);
         return data;
     }
 
@@ -249,6 +265,47 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
             };
         });
         data.data.fertigkeitenFields = ['Name', 'Wert', 'Punkte', 'Attribut 1', 'Attribut 2', 'Mod'];
+        return data;
+    }
+
+    private addInventarInfo(data: PlayerSheetData): PlayerSheetData {
+        const waffen: Array<Item<Waffe>> = this.actor.items.filter(i => i.type === ItemType.Waffe) as Array<Item<Waffe>>;
+        const schilde: Array<Item<Schild>> = this.actor.items.filter(i => i.type === ItemType.Schild) as Array<Item<Schild>>;
+        const ruestungen: Array<Item<Ruestung>> = this.actor.items.filter(i => i.type === ItemType.Ruestung) as Array<Item<Ruestung>>;
+        const benutzbar: Array<Item<Benutzbar>> = this.actor.items.filter(i => i.type === ItemType.Benutzbar) as Array<Item<Benutzbar>>;
+        const sonstiges: Array<Item<Gegenstand>> = this.actor.items.filter(i => i.type === ItemType.Gegenstand) as Array<Item<Gegenstand>>;
+
+        data.data.waffenFields = ['Name', 'Fertigkeit', 'WGS', 'Schaden', 'Merkmale'];
+        data.data.schildFields = ['Name', 'Fertigkeit', 'VTD+', 'Merkmale'];
+        data.data.ruestungFields = ['Name', 'VTD+', 'SR', 'BEH', 'Tick+'];
+        data.data.benutzbarFields = ['Name', 'Ticks', 'Begrenzt', 'Anzahl'];
+        data.data.gegenstandFields = ['Name', 'Wert', 'Gewicht', 'Anzahl'];
+
+        data.data.waffen = waffen.map(waffe => ({
+            fields: [`${waffe.name}`, `${waffe.data.data.fertigkeit}`, `${waffe.data.data.ticks}`, `${waffe.data.data.schaden}`, ''],
+            id: waffe.id
+        }));
+
+        data.data.schilde = schilde.map(schild => ({
+            fields: [`${schild.name}`, `${schild.data.data.fertigkeit}`, `${schild.data.data.VTD}`, ``],
+            id: schild.id
+        }));
+
+        data.data.ruestungen = ruestungen.map(ruestung => ({
+            fields: [`${ruestung.name}`, `${ruestung.data.data.VTD}`, `${ruestung.data.data.SR}`, `${ruestung.data.data.BEH}`, `${ruestung.data.data.tickPlus}`],
+            id: ruestung.id
+        }));
+
+        data.data.benutzbar = benutzbar.map(benutzbar => ({
+            fields: [`${benutzbar.name}`, `${benutzbar.data.data.ticks}`, `${benutzbar.data.data.wirdVerbraucht}`, `${benutzbar.data.data.anzahl}`],
+            id: benutzbar.id
+        }));
+
+        data.data.gegenstaende = sonstiges.map(gegenstand => ({
+            fields: [`${gegenstand.name}`, `${gegenstand.data.data.wertInTellaren}`, `${gegenstand.data.data.gewicht}`, `${gegenstand.data.data.anzahl}`],
+            id: gegenstand.id
+        }));
+
         return data;
     }
 }

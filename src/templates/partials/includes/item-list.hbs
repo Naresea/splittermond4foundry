@@ -1,4 +1,4 @@
-<div class="d-flex flex-col item-list {{class}}">
+<div class="d-flex flex-col item-list {{class}}" style="max-height: 100%; overflow: hidden">
     <div class="d-flex align-items-center item-list__item item-list__header">
         {{#each fields}}
             <div class="list-item__element flex-grow">
@@ -11,15 +11,17 @@
             {{/icons-end}}
         </div>
     </div>
-    {{#if dynamic}}
-        {{#each item}}
-            {{#> item-template item=item}}
-                {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-            {{/item-template}}
-        {{/each}}
-    {{/if}}
-    {{#unless dynamic}}
-        {{#> list-content}}{{/list-content}}
-    {{/unless}}
+    <div class="d-flex flex-col" style="max-height: 100%; overflow: auto">
+        {{#if dynamic}}
+            {{#each item}}
+                {{#> item-template item=item}}
+                    {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
+                    {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+                {{/item-template}}
+            {{/each}}
+        {{/if}}
+        {{#unless dynamic}}
+            {{#> list-content}}{{/list-content}}
+        {{/unless}}
+    </div>
 </div>
