@@ -115,20 +115,11 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         }
     }
 
-    getData(): PlayerSheetData {
+    getData(): ActorSheet.Data<PlayerCharacter> {
         const calcData = PlayerDataService.getPlayerData(this.actor);
-
-        let data = super.getData() as PlayerSheetData;
-        data = this.applyAttributeMods(data);
-        data = this.calculateDerivedAttributes(data);
-        data = this.applyMerkmale(data);
-        data = this.calculateHpAndFokus(data);
-        data = this.addBioInfo(data);
-        data = this.addFertigkeitenInfo(data);
-        data = this.addInventarInfo(data);
-        data = this.addZauberInfo(data);
-
-        console.log('Calculated data: ', {calcData, data});
+        const data = super.getData() as PlayerSheetData;
+        (data as any).data = calcData;
+        console.log('Calcdata = ', calcData);
         return data;
     }
 

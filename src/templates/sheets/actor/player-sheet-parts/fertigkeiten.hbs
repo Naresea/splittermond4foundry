@@ -1,5 +1,5 @@
 <div class="fertigkeiten d-flex flex-col flex-grow overflow-hidden">
-    {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="fertigkeiten-list" dynamic=true item=data.fertigkeiten fields=data.fertigkeitenFields}}
+    {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="fertigkeiten-list" dynamic=true item=data.fertigkeiten.tableData fields=data.fertigkeiten.tableFields}}
         {{#*inline "icons-end"}}
             <i class="fas fa-plus clickable" data-operation="add" data-type="fertigkeit"></i>
         {{/inline}}

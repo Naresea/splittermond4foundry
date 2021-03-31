@@ -5,7 +5,7 @@
             {{!-- Waffen --}}
             <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Waffen</h3>
             <div style="min-height: 25%; max-height: 25%; overflow: hidden">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="waffen-list" dynamic=true item=data.waffen fields=data.waffenFields}}
+                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="waffen-list" dynamic=true item=data.waffen.tableData fields=data.waffen.tableFields}}
                     {{#*inline "icons-end"}}
                         <i class="fas fa-plus clickable" data-operation="add" data-type="waffe"></i>
                     {{/inline}}
@@ -23,7 +23,7 @@
             {{!-- Rüstungen --}}
             <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Rüstungen</h3>
             <div style="min-height: 25%; max-height: 25%; overflow: hidden">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="ruestung-list" dynamic=true item=data.ruestungen fields=data.ruestungFields}}
+                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="ruestung-list" dynamic=true item=data.ruestungen.tableData fields=data.ruestungen.tableFields}}
                     {{#*inline "icons-end"}}
                         <i class="fas fa-plus clickable" data-operation="add" data-type="ruestung"></i>
                     {{/inline}}
@@ -40,7 +40,7 @@
             {{!-- Schilde --}}
             <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Schilde</h3>
             <div style="min-height: 25%; max-height: 25%; overflow: hidden">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="schild-list" dynamic=true item=data.schilde fields=data.schildFields}}
+                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="schild-list" dynamic=true item=data.schilde.tableData fields=data.schilde.tableFields}}
                     {{#*inline "icons-end"}}
                         <i class="fas fa-plus clickable" data-operation="add" data-type="schild"></i>
                     {{/inline}}
@@ -65,7 +65,7 @@
             {{!-- Consumable / Benutzbar --}}
             <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Verwendbare Gegenstände</h3>
             <div style="min-height: 33%; max-height: 33%; overflow: hidden">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="consumable-list" dynamic=true item=data.benutzbar fields=data.benutzbarFields}}
+                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="consumable-list" dynamic=true item=data.benutzbares.tableData fields=data.benutzbares.tableFields}}
                     {{#*inline "icons-end"}}
                         <i class="fas fa-plus clickable" data-operation="add" data-type="benutzbar"></i>
                     {{/inline}}
@@ -82,7 +82,7 @@
             {{!-- Sonstige Gegenstaende --}}
             <h3 class="m-0" style="font-weight: bold; margin-top: 10px">Sonstiges</h3>
             <div style="min-height: 57%; max-height: 57%; overflow: hidden">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="items-list" dynamic=true item=data.gegenstaende fields=data.gegenstandFields}}
+                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="items-list" dynamic=true item=data.sonstiges.tableData fields=data.sonstiges.tableFields}}
                     {{#*inline "icons-end"}}
                         <i class="fas fa-plus clickable" data-operation="add" data-type="gegenstand"></i>
                     {{/inline}}

@@ -34,10 +34,10 @@ export class ZauberSheet extends SplimoItemSheet<Zauber> {
 
         formData['data.schwierigkeit'] = Number.isNumeric(schwierigkeit) ? +schwierigkeit : -1;
         formData['data.ticks'] = Number.isNumeric(zauberdauer) ? +zauberdauer : -1;
-        formData['data.reichweite'] = Number.isNumeric(reichweite.replace(/\s*m$/, ''))
-            ? +reichweite.replace(/\s*m$/, '') : -1;
-        formData['data.bereich'] = Number.isNumeric(bereich.replace(/\s*m$/, ''))
-            ? +bereich.replace(/\s*m$/, '') : -1;
+        formData['data.reichweite'] = Number.isNumeric(reichweite?.replace(/\s*m$/, ''))
+            ? +reichweite?.replace(/\s*m$/, '') : -1;
+        formData['data.bereich'] = Number.isNumeric(bereich?.replace(/\s*m$/, ''))
+            ? +bereich?.replace(/\s*m$/, '') : -1;
         formData['data.wirkungsdauer'] = Number.isNumeric(wirkungsdauer) ? +wirkungsdauer : -1;
 
         if (fokus) {

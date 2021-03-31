@@ -56,8 +56,8 @@ export class PlayerDataService {
     public static getPlayerData<T>(actor: Actor<T>): PlayerData {
         const modifiers = ModifierService.getModifiers(actor);
         const biography = PlayerDataService.getBiography(actor);
-        const attributes = PlayerDataService.getAttributes(actor, modifiers, ATTRIBUTES);
-        const derivedAttributes = PlayerDataService.getAttributes(actor, modifiers, DERIVED_ATTRIBUTES);
+        const attributes = PlayerDataService.getAttributes(actor, modifiers);
+        const derivedAttributes = PlayerDataService.getDerivedAttributes(actor, modifiers, attributes);
         const fertigkeiten = PlayerDataService.getFertigkeiten(actor, modifiers);
         const waffen = PlayerDataService.getWaffen(actor, modifiers);
         const ruestungen = PlayerDataService.getRuestungen(actor, modifiers);
@@ -95,8 +95,8 @@ export class PlayerDataService {
         };
     }
 
-    private static getAttributes<T extends keyof Attributes | keyof DerivedAttributes>(actor: Actor, mods: Modifiers, arr: Array<T>):  Record<T, AttributeVal> {
-        return arr.reduce((accu: Record<T, AttributeVal>, attr: T) => {
+    private static getAttributes(actor: Actor, mods: Modifiers):  Record<keyof Attributes, AttributeVal> {
+        return ATTRIBUTES.reduce((accu: Record<keyof Attributes, AttributeVal>, attr: keyof Attributes) => {
             const modifier = ModifierService.totalMod(mods, attr, {modType: ModifierType.Attribute});
             const start =  actor.data.data[attr as any] ?? 0;
             const increased = actor.data.data['inc' + attr as any] ?? 0;
@@ -109,7 +109,33 @@ export class PlayerDataService {
                 modifier
             };
             return accu;
-        }, {} as Record<T, AttributeVal>);
+        }, {} as Record<keyof Attributes, AttributeVal>);
+    }
+
+    private static getDerivedAttributes(actor: Actor, mods: Modifiers, attributes: Record<keyof Attributes, AttributeVal>):  Record<keyof DerivedAttributes, AttributeVal> {
+        const baseValues =  {
+            GSW: attributes.GK.total + attributes.BEW.total,
+            INI: 10 - attributes.INT.total,
+            LP: attributes.GK.total + attributes.KON.total,
+            FO: 2 * (attributes.MYS.total + attributes.WIL.total),
+            VTD: 12 + attributes.BEW.total + attributes.STR.total,
+            GW: 12 + attributes.VER.total + attributes.WIL.total,
+            KW: 12 + attributes.KON.total + attributes.WIL.total,
+        };
+
+        return Object.keys(baseValues).reduce((accu: Record<keyof DerivedAttributes, AttributeVal>, attr: keyof DerivedAttributes) => {
+            const modifier = ModifierService.totalMod(mods, attr, {modType: ModifierType.Attribute});
+            const start =  baseValues[attr] ?? 0;
+            const total = start + modifier;
+            accu[attr] = {
+                name: `attribute.${attr}`,
+                start,
+                increased: 0,
+                total,
+                modifier
+            };
+            return accu;
+        }, {} as Record<keyof DerivedAttributes, AttributeVal>);
     }
 
     private static getFertigkeiten(actor: Actor, mods: Modifiers): TableData {
@@ -184,10 +210,10 @@ export class PlayerDataService {
 
     private static getBenutzbares(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
-            'inventar.benutzbar.name',
-            'inventar.benutzbar.ticks',
-            'inventar.benutzbar.begrenzt',
-            'inventar.benutzbar.anzahl',
+            'inventar.benutzbares.name',
+            'inventar.benutzbares.ticks',
+            'inventar.benutzbares.begrenzt',
+            'inventar.benutzbares.anzahl',
         ];
         return PlayerDataService.getTableData(actor, mods, ItemType.Benutzbar, tableFields, (benutzbar: Item<Benutzbar>) => ([
             `${benutzbar.name}`,
@@ -215,15 +241,15 @@ export class PlayerDataService {
     private static getZauber(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'zauber.name',
-            'inventar.schule',
-            'inventar.wert',
-            'inventar.schwierigkeit',
-            'inventar.fokus',
-            'inventar.zauberdauer',
-            'inventar.reichweite',
-            'inventar.wirkungsdauer',
-            'inventar.bereich',
-            'inventar.verstaerkung',
+            'zauber.schule',
+            'zauber.wert',
+            'zauber.schwierigkeit',
+            'zauber.fokus',
+            'zauber.zauberdauer',
+            'zauber.reichweite',
+            'zauber.wirkungsdauer',
+            'zauber.bereich',
+            'zauber.verstaerkung',
         ];
         return PlayerDataService.getTableData(actor, mods, ItemType.Zauber, tableFields, (zauber: Item<Zauber>) => ([
             `${zauber.name}`,
