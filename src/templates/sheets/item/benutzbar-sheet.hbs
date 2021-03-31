@@ -1,0 +1,19 @@
+{{#> systems/splittermond/templates/partials/includes/gegenstand.hbs}}
+    {{#*inline "extra-tabs"}}
+        <a class="item control-height" data-tab="usable">Benutzbar</a>
+    {{/inline}}
+    {{#*inline "extra-tabs-content"}}
+        <div class="tab" data-group="primary" data-tab="usable">
+            <div class="d-flex flex-col flex-grow">
+                <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.ticks">Dauer (Ticks):</label>
+                    <input class="col-6" type="number" name="data.ticks" value="{{data.ticks}}"/>
+                </div>
+                <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.wirdVerbraucht">Wird verbraucht:</label>
+                    <input class="col-6" type="checkbox" name="data.wirdVerbraucht" {{checked data.wirdVerbraucht}}/>
+                </div>
+            </div>
+        </div>
+    {{/inline}}
+{{/systems/splittermond/templates/partials/includes/gegenstand.hbs}}

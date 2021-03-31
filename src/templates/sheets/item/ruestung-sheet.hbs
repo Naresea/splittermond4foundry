@@ -1,0 +1,27 @@
+{{#> systems/splittermond/templates/partials/includes/gegenstand.hbs}}
+    {{#*inline "extra-tabs"}}
+        <a class="item control-height" data-tab="armor">Rüstung</a>
+    {{/inline}}
+    {{#*inline "extra-tabs-content"}}
+        <div class="tab" data-group="primary" data-tab="armor">
+            <div class="d-flex flex-col flex-grow">
+                <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.VTD">VTD+:</label>
+                    <input class="col-6" type="number" name="data.VTD" value="{{data.VTD}}"/>
+                </div>
+                <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.SR">SR:</label>
+                    <input class="col-6" type="number" name="data.SR" value="{{data.SR}}"/>
+                </div>
+                <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.BEH">BEH:</label>
+                    <input class="col-6" type="number" name="data.BEH" value="{{data.BEH}}"/>
+                </div>
+                <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.tickPlus">Tick+:</label>
+                    <input class="col-6" type="number" name="data.tickPlus" value="{{data.tickPlus}}"/>
+                </div>
+            </div>
+        </div>
+    {{/inline}}
+{{/systems/splittermond/templates/partials/includes/gegenstand.hbs}}
