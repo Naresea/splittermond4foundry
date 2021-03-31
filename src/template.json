@@ -186,12 +186,15 @@
     "zauber": {
       "templates": ["info", "action", "quelle"],
       "grad": 0,
+      "fertigkeit": "",
       "schwierigkeit": 0,
+      "schwierigkeitString": "",
       "fokusErschoepft": 0,
       "fokusVerzehrt": 0,
       "fokusKanalisiert": 0,
-      "zauberDauerMinuten": 0,
+      "zauberDauerString": 0,
       "reichweite": 0,
+      "reichweiteString": "",
       "wirkungsdauer": 0,
       "verstaerkung": ""
     },
