@@ -10,9 +10,19 @@ export interface Zauber extends Info, Quelle, Action {
     fokusErschoepft: number;
     fokusVerzehrt: number;
     fokusKanalisiert: number;
-    zauberDauerString: string;
+    zauberdauerString: string;
     reichweite: number;
     reichweiteString: string;
     wirkungsdauer: number;
+    wirkungsdauerString: string;
+    bereich: number;
+    bereichString: string;
     verstaerkung: string;
+}
+
+export function buildFokusString(zauber: Zauber): string {
+    const erschoepft = zauber.fokusErschoepft;
+    const kanalisiert = zauber.fokusKanalisiert;
+    const verzehrt = zauber.fokusVerzehrt;
+    return `${erschoepft ? erschoepft : ''}${kanalisiert ? `K${kanalisiert}` : ''}${verzehrt ? `V${verzehrt}` : ''}`;
 }

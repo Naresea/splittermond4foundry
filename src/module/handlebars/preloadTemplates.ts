@@ -13,6 +13,7 @@ export const preloadTemplates = async function() {
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/attributes.hbs',
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/fertigkeiten.hbs',
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/inventory.hbs',
+		'systems/splittermond/templates/sheets/actor/player-sheet-parts/zauber.hbs',
 	];
 
 	const templatePaths = [

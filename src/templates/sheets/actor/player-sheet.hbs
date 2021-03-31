@@ -21,6 +21,7 @@
         <a class="item control-height" data-tab="attributes">Attribute</a>
         <a class="item control-height" data-tab="fertigkeiten">Fertigkeiten</a>
         <a class="item control-height" data-tab="inventory">Inventar</a>
+        <a class="item control-height" data-tab="zauber">Zauber</a>
     {{/inline}}
     {{#*inline "nav-content"}}
         <div class="tab overflow-hidden" data-group="primary" data-tab="description">
@@ -38,6 +39,10 @@
         <div class="tab overflow-hidden" data-group="primary" data-tab="inventory">
             {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/inventory.hbs}}
             {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/inventory.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="zauber">
+            {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/zauber.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/zauber.hbs}}
         </div>
     {{/inline}}
 {{/systems/splittermond/templates/partials/layouts/layout-actor.hbs}}

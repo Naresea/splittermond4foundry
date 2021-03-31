@@ -10,6 +10,7 @@ import {Schild} from '../../models/items/schild';
 import {Ruestung} from '../../models/items/ruestung';
 import {Benutzbar} from '../../models/items/benutzbar';
 import {Gegenstand} from '../../models/items/gegenstand';
+import {buildFokusString, Zauber} from '../../models/items/zauber';
 
 type PlayerSheetPayload =  PlayerCharacter & {
     attributes?: Record<string, number>;
@@ -42,7 +43,9 @@ type PlayerSheetPayload =  PlayerCharacter & {
     benutzbar?: Array<{fields: Array<string>, id: string}>,
     benutzbarFields?: Array<string>,
     gegenstaende?: Array<{fields: Array<string>, id: string}>,
-    gegenstandFields?: Array<string>
+    gegenstandFields?: Array<string>,
+    zauber?: Array<{fields: Array<string>, id: string}>,
+    zauberFields?: Array<string>
 };
 
 interface PlayerSheetData extends ActorSheet.Data<PlayerCharacter> {
@@ -120,6 +123,7 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         data = this.addBioInfo(data);
         data = this.addFertigkeitenInfo(data);
         data = this.addInventarInfo(data);
+        data = this.addZauberInfo(data);
         return data;
     }
 
@@ -307,5 +311,38 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         }));
 
         return data;
+    }
+
+    private addZauberInfo(data: PlayerSheetData): PlayerSheetData {
+        data.data.zauberFields = ['Name', 'Schule', 'Wert', 'Schw.', 'Fokus', 'ZD', 'RW', 'WD', 'Verstärken'];
+        data.data.zauber = this.actor.items.filter(i => i.type === ItemType.Zauber).map((zauber: Item<Zauber>) => ({
+          fields: [
+              zauber.name,
+              zauber.data.data.fertigkeit,
+              `${this.getZauberSkill(data, zauber.data.data)}`,
+              zauber.data.data.schwierigkeitString,
+              buildFokusString(zauber.data.data),
+              zauber.data.data.zauberdauerString,
+              zauber.data.data.reichweiteString,
+              zauber.data.data.wirkungsdauerString,
+              zauber.data.data.verstaerkung
+          ],
+          id: zauber.id
+        }));
+        return data;
+    }
+
+    private getZauberSkill(data: PlayerSheetData, zauber: Zauber): number {
+        const fertigkeit = zauber.fertigkeit;
+        const fertigkeitItem: Item<Fertigkeit> | undefined
+            = this.actor.items.find(i => i.type === ItemType.Fertigkeit && i.name === fertigkeit) as  Item<Fertigkeit> | undefined;
+
+        if (fertigkeitItem) {
+            return data.data.attributes[fertigkeitItem.data.data.attributEins]
+            + data.data.attributes[fertigkeitItem.data.data.attributZwei]
+            + fertigkeitItem.data.data.punkte
+            + fertigkeitItem.data.data.mod;
+        }
+        return 0;
     }
 }

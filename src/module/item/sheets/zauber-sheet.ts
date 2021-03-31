@@ -1,5 +1,5 @@
 import {SplimoItemSheet} from '../splimo-item-sheet';
-import {Zauber} from '../../models/items/zauber';
+import {buildFokusString, Zauber} from '../../models/items/zauber';
 
 export class ZauberSheet extends SplimoItemSheet<Zauber> {
     static get defaultOptions() {
@@ -16,33 +16,29 @@ export class ZauberSheet extends SplimoItemSheet<Zauber> {
 
     getData(): ItemSheet.Data<Zauber> {
         const data = super.getData();
-        const erschoepft = this.item.data.data.fokusErschoepft;
-        const kanalisiert = this.item.data.data.fokusKanalisiert;
-        const verzehrt = this.item.data.data.fokusVerzehrt;
 
         (data.data as any).parsed = {
-            reichweite: this.item.data.data.reichweiteString,
-            zauberdauer: this.item.data.data.zauberDauerString,
-            fokus: `${erschoepft ? erschoepft : ''}${kanalisiert ? `K${kanalisiert}` : ''}${verzehrt ? `V${verzehrt}` : ''}`,
-            schwierigkeit: this.item.data.data.schwierigkeitString
+            fokus: buildFokusString(this.item.data.data)
         };
 
         return data;
     }
 
     protected _updateObject(event: Event | JQuery.Event, formData: any): Promise<any> {
-        const schwierigkeit = formData['data.schwierigkeit'];
-        const zauberdauer = formData['data.zauberdauer'];
+        const schwierigkeit = formData['data.schwierigkeitString'];
+        const zauberdauer = formData['data.zauberdauerString'];
         const fokus = formData['data.fokus'];
-        const reichweite = formData['data.reichweite'];
+        const reichweite = formData['data.reichweiteString'];
+        const bereich = formData['data.bereichString'];
+        const wirkungsdauer = formData['data.wirkungsdauerString'];
 
-        formData['data.schwierigkeitString'] = schwierigkeit;
         formData['data.schwierigkeit'] = Number.isNumeric(schwierigkeit) ? +schwierigkeit : -1;
-        formData['data.zauberDauerString'] = zauberdauer;
         formData['data.ticks'] = Number.isNumeric(zauberdauer) ? +zauberdauer : -1;
-        formData['data.reichweiteString'] = reichweite;
         formData['data.reichweite'] = Number.isNumeric(reichweite.replace(/\s*m$/, ''))
             ? +reichweite.replace(/\s*m$/, '') : -1;
+        formData['data.bereich'] = Number.isNumeric(bereich.replace(/\s*m$/, ''))
+            ? +bereich.replace(/\s*m$/, '') : -1;
+        formData['data.wirkungsdauer'] = Number.isNumeric(wirkungsdauer) ? +wirkungsdauer : -1;
 
         if (fokus) {
             const kanalisiertMatch = fokus.match(/[Kk]\d+/);
@@ -60,7 +56,6 @@ export class ZauberSheet extends SplimoItemSheet<Zauber> {
         }
 
         delete formData['data.fokus'];
-        delete formData['data.zauberdauer'];
         return super._updateObject(event, formData);
     }
 }
