@@ -7,7 +7,7 @@
             <div class="col-1" style="text-align: center; margin-right: 5px">Erhöht</div>
             <div class="col-2" style="text-align: center;">Modifier</div>
         </div>
-        {{#each (asList "AUS" "BEW" "INT" "KON" "MYS" "STR" "VER" "WIL")}}
+        {{#each (attrNames base=true)}}
             <div class="d-flex flex-row align-items-center m-small">
                 <label class="col-4" for="data.{{this}}">{{localize (concat "attributes." this)}}</label>
                 <div class="col-2" style="text-align: center; margin-right: 5px;">{{getByKey ../data.attributes this}}</div>
@@ -25,7 +25,7 @@
             <div class="col-2 p-small" style="text-align: center">Modifier</div>
             <div class="col-2 p-small" style="text-align: center">Wert</div>
         </div>
-        {{#each (asList "GSW" "INI" "LP" "FO" "VTD" "GW" "KW")}}
+        {{#each (attrNames base=false derived=true)}}
             <div class="d-flex flex-row align-items-center m-small">
                 <label class="col-4 p-small" for="data.{{this}}">{{localize (concat "attributes." this)}}</label>
                 <div class="col-2 p-small" style="text-align: center">{{getByKey ../data.derivedAttributes this}}</div>

@@ -41,32 +41,22 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
     }
 
     private registerCreateModifierClick(html: JQuery<HTMLElement>): void {
-        html.find('.rasse-modifier .add-item').on('click', () => {
+        html.find('.rasse-modifier .add-item').on('click', async () => {
             const modifier: Modifier = {
                 value: 2,
                 target: 'AUS',
                 type: 'attribute'
             };
 
-            new ModifierItemSheet(
-                modifier,
-                {
-                    editable: true,
-                    submitOnClose: true,
-                    closeOnSubmit: false
-                },
-                (evt, formData) => {
-                    modifier.value = formData.value;
-                    modifier.type = formData.type;
-                    modifier.target = formData.target;
-                    return this.item.update({
-                        _id: this.item.id,
-                        data: {
-                            attributeMod: [...this.item.data.data.attributeMod, modifier]
-                        }
-                    });
+            this.item.data.data.attributeMod.push(modifier);
+            const index = this.item.data.data.attributeMod.length - 1;
+            await this.item.update({
+                _id: this.item.id,
+                data: {
+                    attributeMod: [...this.item.data.data.attributeMod]
                 }
-            ).render(true);
+            });
+            this.renderModifierSheet(modifier, index);
         });
     }
 
@@ -74,33 +64,40 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
         html.find('.rasse-modifier .edit-item').on('click', (evt) => {
             const index = +evt.target.dataset.index;
             const modifier: Modifier = this.item.data.data.attributeMod[index];
-
-            new ModifierItemSheet(
-                modifier,
-                {
-                    editable: true,
-                    submitOnClose: true,
-                    closeOnSubmit: false
-                },
-                (evt, formData) => {
-                    modifier.value = formData.value;
-                    modifier.type = formData.type;
-                    modifier.target = formData.target;
-                    return this.item.update({
-                        _id: this.item.id,
-                        data: {
-                            attributeMod: [...this.item.data.data.attributeMod]
-                        }
-                    });
+            this.item.update({
+                _id: this.item.id,
+                data: {
+                    attributeMod: [...this.item.data.data.attributeMod]
                 }
-            ).render(true);
+            });
+
+            this.renderModifierSheet(modifier, index);
         });
+    }
+
+    private renderModifierSheet(modifier: Modifier, index: number): void {
+        new ModifierItemSheet(
+            modifier,
+            {},
+            (evt, formData) => {
+                const item: Modifier = this.item.data.data.attributeMod[index];
+                item.target = formData.target;
+                item.type = formData.type;
+                item.value = formData.value;
+                return this.item.update({
+                    _id: this.item.id,
+                    data: {
+                        attributeMod: [...this.item.data.data.attributeMod]
+                    }
+                });
+            }
+        ).render(true);
     }
 
     private registerDeleteModifierClick(html: JQuery<HTMLElement>): void {
         html.find('.rasse-modifier .delete-item').on('click', (evt) => {
             const index = +evt.target.dataset.index;
-            this.item.data.data.attributeMod.splice(index, 1)
+            this.item.data.data.attributeMod.splice(index, 1);
             this.item.update({
                         _id: this.item.id,
                         data: {

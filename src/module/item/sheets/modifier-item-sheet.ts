@@ -10,7 +10,11 @@ export class ModifierItemSheet extends FormApplication<Modifier> {
             height: 766,
             tabs: [
                 { navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'description' }
-            ]
+            ],
+            submitOnChange: true,
+            submitOnClose: true,
+            closeOnSubmit: false,
+            editable: true
         });
     }
 
@@ -25,7 +29,11 @@ export class ModifierItemSheet extends FormApplication<Modifier> {
         return this.object;
     }
 
-    protected _updateObject(event: Event | JQuery.Event, formData: object): Promise<any> {
+    protected _updateObject(event: Event | JQuery.Event, formData: any): Promise<any> {
+        this.object.target = formData.target ?? this.object.target;
+        this.object.value = formData.value ?? this.object.value;
+        this.object.type = formData.type ?? this.object.type;
+        this.render();
         return this.update ? this.update(event, formData as any) : Promise.reject('No update defined.');
     }
 }

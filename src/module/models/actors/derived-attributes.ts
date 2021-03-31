@@ -7,3 +7,13 @@ export interface DerivedAttributes {
     GW: number;
     KW: number;
 }
+
+export const DERIVED_ATTRIBUTES: Array<keyof DerivedAttributes> = [
+    'GSW',
+    'INI',
+    'LP',
+    'FO',
+    'VTD',
+    'GW',
+    'KW',
+]

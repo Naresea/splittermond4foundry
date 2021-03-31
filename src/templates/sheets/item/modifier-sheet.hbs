@@ -1,21 +1,38 @@
-{{#> systems/splittermond/templates/partials/layouts/layout-item.hbs class="modifier-sheet" hasPortrait=false noNav=true}}
+{{#> systems/splittermond/templates/partials/layouts/layout-item.hbs class="modifier-sheet" hasPortrait=false
+                                                                     noNav=true}}
     {{#*inline "nonav-content"}}
         <div class="d-flex flex-col flex-grow">
-            <div class="d-flex align-items-center">
-                <label for="type">Type</label>
-                <input type="text" name="type" value="{{type}}"/>
-            </div>
-            <div class="d-flex">
-                <div class="d-flex align-items-center">
-                    <label for="target">Target</label>
-                    <input type="text" name="target" value="{{target}}"/>
+            <div class="d-flex align-items-center m-small">
+                <label for="type" class="col-4">Type</label>
+                <div class="d-flex col-6">
+                    {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
+                            name="type"
+                            selected=type
+                            labels=(asList "dropdown.attribute" "dropdown.fertigkeit")
+                            values=(asList "attribute" "fertigkeit")
+                    }}
+                    {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}
                 </div>
             </div>
-            <div class="d-flex">
-                <div class="d-flex align-items-center">
-                    <label for="value">Value</label>
-                    <input type="number" name="value" value="{{value}}"/>
+            <div class="d-flex align-items-center m-small">
+                <label for="target" class="col-4">Target</label>
+                <div class="d-flex col-6">
+                    {{#if (eq type "attribute")}}
+                        {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
+                                name="target"
+                                selected=target
+                                labels=(prefix "attribute." (attrNames base=true derived=true includeGK=true))
+                                values=(attrNames base=true derived=true includeGK=true)
+                        }}
+                        {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}
+                    {{else}}
+                        <input type="text" name="target" value="{{target}}"/>
+                    {{/if}}
                 </div>
+            </div>
+            <div class="d-flex align-items-center m-small">
+                <label for="value" class="col-4">Value</label>
+                <input type="number" class="col-6" name="value" value="{{value}}"/>
             </div>
         </div>
     {{/inline}}

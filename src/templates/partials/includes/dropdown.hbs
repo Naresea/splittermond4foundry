@@ -1,0 +1,10 @@
+<select style="width: 100%;" name="{{name}}">
+    {{#each labels}}
+        {{#unless (eq ../selected (getByKey ../values @index))}}
+            <option value="{{getByKey ../values @index}}">{{localize this}}</option>
+        {{/unless}}
+        {{#if (eq ../selected (getByKey ../values @index))}}
+            <option selected value="{{getByKey ../values @index}}">{{localize this}}</option>
+        {{/if}}
+    {{/each}}
+</select>
