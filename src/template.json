@@ -145,7 +145,8 @@
       }]
     },
     "merkmal": {
-      "templates": ["info", "quelle"]
+      "templates": ["info", "quelle"],
+      "modifier": []
     },
     "zustand": {
       "templates": ["info", "quelle"],
@@ -200,15 +201,18 @@
       "verstaerkung": ""
     },
     "abstammung": {
-      "templates": ["info", "quelle"]
+      "templates": ["info", "quelle"],
+      "modifier": []
     },
     "kultur": {
       "templates": ["info", "quelle"],
       "sprache": "",
-      "kulturkunde": ""
+      "kulturkunde": "",
+      "modifier": []
     },
     "ausbildung": {
-      "templates": ["info", "quelle"]
+      "templates": ["info", "quelle"],
+      "modifier": []
     },
     "rasse": {
       "templates": ["info", "quelle"],
