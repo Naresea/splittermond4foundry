@@ -21,18 +21,6 @@ export interface IncAttributes {
     incWIL: number;
 }
 
-export interface AttributesStartValue {
-    startAUS: number;
-    startBEW: number;
-    startINT: number;
-    startKON: number;
-    startMYS: number;
-    startSTR: number;
-    startVER: number;
-    startWIL: number;
-    startGK: number;
-}
-
 export const ATTRIBUTES: Array<keyof Attributes> = [
     'AUS',
     'BEW',

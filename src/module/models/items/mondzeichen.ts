@@ -2,8 +2,10 @@ import {Info} from './info';
 import {Quelle} from './quelle';
 
 export interface Mondzeichen extends Info, Quelle {
-    effekt: Array<{
-        grad: number;
-        beschreibung: string;
-    }>
+    grad: number;
+    effektEins: string;
+    effektZwei: string;
+    effektDrei: string;
+    effektVier: string;
+
 }

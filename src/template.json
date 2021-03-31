@@ -139,10 +139,11 @@
     },
     "mondzeichen": {
       "templates": ["info", "quelle"],
-      "effekt": [{
-        "grad": 0,
-        "beschreibung": ""
-      }]
+      "grad": 1,
+      "effektEins": "",
+      "effektZwei": "",
+      "effektDrei": "",
+      "effektVier": ""
     },
     "merkmal": {
       "templates": ["info", "quelle"],
