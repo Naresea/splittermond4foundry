@@ -1,24 +1,24 @@
 {{#> systems/splittermond/templates/partials/includes/gegenstand.hbs}}
     {{#*inline "extra-tabs"}}
-        <a class="item control-height" data-tab="armor">Rüstung</a>
+        <a class="item control-height" data-tab="armor">{{localize "splittermond.item.nav.ruestung"}}</a>
     {{/inline}}
     {{#*inline "extra-tabs-content"}}
         <div class="tab" data-group="primary" data-tab="armor">
             <div class="d-flex flex-col flex-grow">
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.VTD">VTD+:</label>
+                    <label class="col-4" for="data.VTD">{{localize "splittermond.ruestung.vtd"}}</label>
                     <input class="col-6" type="number" name="data.VTD" value="{{data.VTD}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.SR">SR:</label>
+                    <label class="col-4" for="data.SR">{{localize "splittermond.ruestung.sr"}}</label>
                     <input class="col-6" type="number" name="data.SR" value="{{data.SR}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.BEH">BEH:</label>
+                    <label class="col-4" for="data.BEH">{{localize "splittermond.ruestung.beh"}}</label>
                     <input class="col-6" type="number" name="data.BEH" value="{{data.BEH}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.tickPlus">Tick+:</label>
+                    <label class="col-4" for="data.tickPlus">{{localize "splittermond.ruestung.tickPlus"}}</label>
                     <input class="col-6" type="number" name="data.tickPlus" value="{{data.tickPlus}}"/>
                 </div>
             </div>

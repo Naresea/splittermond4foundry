@@ -3,8 +3,8 @@
         <h1 class="charname flex-grow" style="border: none;"><input name="name" type="text" value="{{item.name}}"/></h1>
     {{/inline}}
     {{#*inline "nav-tabs"}}
-        <a class="item control-height" data-tab="description">Beschreibung</a>
-        <a class="item control-height" data-tab="details">Details</a>
+        <a class="item control-height" data-tab="description">{{localize "splittermond.item.nav.description"}}</a>
+        <a class="item control-height" data-tab="details">{{localize "splittermond.item.nav.details"}}</a>
     {{/inline}}
     {{#*inline "nav-content"}}
         <div class="tab" style="height: 100%;" data-group="primary" data-tab="description">
@@ -14,10 +14,10 @@
         <div class="tab" data-group="primary" data-tab="details">
             <div class="d-flex flex-col flex-grow">
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.fertigkeit">Fertigkeit:</label>
+                    <label class="col-4" for="data.fertigkeit">{{localize "splittermond.meisterschaft.fertigkeit"}}</label>
                     <input class="col-6" type="text" name="data.fertigkeit" value="{{data.fertigkeit}}"/>
                 </div>
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="meisterschaft-modifier" dynamic=true item=data.modifier fields=(asList "Art" "Ziel" "Wert")}}
+                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="meisterschaft-modifier" dynamic=true item=data.modifier fields=(modifierTableHeaders)}}
                 {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
             </div>
         </div>

@@ -1,24 +1,24 @@
 {{#> systems/splittermond/templates/partials/includes/gegenstand.hbs}}
     {{#*inline "extra-tabs"}}
-        <a class="item control-height" data-tab="shield">Schild</a>
+        <a class="item control-height" data-tab="shield">{{localize "splittermond.item.nav.schild"}}</a>
     {{/inline}}
     {{#*inline "extra-tabs-content"}}
         <div class="tab" data-group="primary" data-tab="shield">
             <div class="d-flex flex-col flex-grow">
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.VTD">VTD+:</label>
+                    <label class="col-4" for="data.VTD">{{localize "splittermond.schild.vtd"}}</label>
                     <input class="col-6" type="number" name="data.VTD" value="{{data.VTD}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.fertigkeit">Fertigkeit:</label>
+                    <label class="col-4" for="data.fertigkeit">{{localize "splittermond.schild.fertigkeit"}}</label>
                     <input class="col-6" type="text" name="data.fertigkeit" value="{{data.fertigkeit}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.mod">Mod:</label>
+                    <label class="col-4" for="data.mod">{{localize "splittermond.schild.mod"}}</label>
                     <input class="col-6" type="number" name="data.mod" value="{{data.mod}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.attribute">Attribut 1:</label>
+                    <label class="col-4" for="data.attribute">{{localize "splittermond.schild.attributEins"}}</label>
                     <div class="d-flex col-6">
                         {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
                                 name="data.attribute"
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.attributeSecondary">Attribut 2:</label>
+                    <label class="col-4" for="data.attributeSecondary">{{localize "splittermond.schild.attributZwei"}}</label>
                     <div class="d-flex col-6">
                         {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
                                 name="data.attributeSecondary"

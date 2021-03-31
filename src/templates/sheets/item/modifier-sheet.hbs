@@ -3,25 +3,25 @@
     {{#*inline "nonav-content"}}
         <div class="d-flex flex-col flex-grow">
             <div class="d-flex align-items-center m-small">
-                <label for="type" class="col-4">Type</label>
+                <label for="type" class="col-4">{{localize "splittermond.modifier.type"}}</label>
                 <div class="d-flex col-6">
                     {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
                             name="type"
                             selected=type
-                            labels=(asList "dropdown.attribute" "dropdown.fertigkeit")
+                            labels=(asList "splittermond.dropdown.attribute" "splittermond.dropdown.fertigkeit")
                             values=(asList "attribute" "fertigkeit")
                     }}
                     {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}
                 </div>
             </div>
             <div class="d-flex align-items-center m-small">
-                <label for="target" class="col-4">Target</label>
+                <label for="target" class="col-4">{{localize "splittermond.modifier.target"}}</label>
                 <div class="d-flex col-6">
                     {{#if (eq type "attribute")}}
                         {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
                                 name="target"
                                 selected=target
-                                labels=(prefix "attribute." (attrNames base=true derived=true includeGK=true))
+                                labels=(prefix "splittermond.attribute." (attrNames base=true derived=true includeGK=true))
                                 values=(attrNames base=true derived=true includeGK=true)
                         }}
                         {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="d-flex align-items-center m-small">
-                <label for="value" class="col-4">Value</label>
+                <label for="value" class="col-4">{{localize "splittermond.modifier.value"}}</label>
                 <input type="number" class="col-6" name="value" value="{{value}}"/>
             </div>
         </div>

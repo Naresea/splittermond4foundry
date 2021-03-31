@@ -1,45 +1,45 @@
 {{#> systems/splittermond/templates/partials/includes/gegenstand.hbs}}
     {{#*inline "extra-tabs"}}
-        <a class="item control-height" data-tab="weapon">Waffe</a>
+        <a class="item control-height" data-tab="weapon">{{localize "splittermond.item.nav.waffe"}}</a>
     {{/inline}}
     {{#*inline "extra-tabs-content"}}
         <div class="tab" data-group="primary" data-tab="weapon">
             <div class="d-flex flex-col flex-grow">
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.schaden">Schaden:</label>
+                    <label class="col-4" for="data.schaden">{{localize "splittermond.waffe.schaden"}}</label>
                     <input class="col-6" type="text" name="data.schaden" value="{{data.schaden}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.ticks">WGS:</label>
+                    <label class="col-4" for="data.ticks">{{localize "splittermond.waffe.wgs"}}</label>
                     <input class="col-6" type="number" name="data.ticks" value="{{data.ticks}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.fertigkeit">Fertigkeit:</label>
+                    <label class="col-4" for="data.fertigkeit">{{localize "splittermond.waffe.fertigkeit"}}</label>
                     <input class="col-6" type="text" name="data.fertigkeit" value="{{data.fertigkeit}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.mod">Mod:</label>
+                    <label class="col-4" for="data.mod">{{localize "splittermond.waffe.mod"}}</label>
                     <input class="col-6" type="number" name="data.mod" value="{{data.mod}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.attribute">Attribut 1:</label>
+                    <label class="col-4" for="data.attribute">{{localize "splittermond.waffe.attributEins"}}</label>
                     <div class="d-flex col-6">
                         {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
                                 name="data.attribute"
                                 selected=data.attribute
-                                labels=(prefix "attribute." (attrNames base=true derived=true includeGK=true))
+                                labels=(prefix "splittermond.attribute." (attrNames base=true derived=true includeGK=true))
                                 values=(attrNames base=true derived=true includeGK=true)
                         }}
                         {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}
                     </div>
                 </div>
                 <div class="d-flex align-items-center m-small">
-                    <label class="col-4" for="data.attributeSecondary">Attribut 2:</label>
+                    <label class="col-4" for="data.attributeSecondary">{{localize "splittermond.waffe.attributZwei"}}</label>
                     <div class="d-flex col-6">
                         {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
                                 name="data.attributeSecondary"
                                 selected=data.attributeSecondary
-                                labels=(prefix "attribute." (attrNames base=true derived=true includeGK=true))
+                                labels=(prefix "splittermond.attribute." (attrNames base=true derived=true includeGK=true))
                                 values=(attrNames base=true derived=true includeGK=true)
                         }}
                         {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}

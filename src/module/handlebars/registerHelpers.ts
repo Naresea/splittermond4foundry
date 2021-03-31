@@ -38,4 +38,8 @@ export function registerHelpers(): void {
         }
         return base;
     });
+
+    Handlebars.registerHelper('modifierTableHeaders', (): Array<string> => {
+        return ['splittermond.modifier.type', 'splittermond.modifier.target', 'splittermond.modifier.value'];
+    })
 }
