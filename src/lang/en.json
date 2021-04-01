@@ -128,5 +128,9 @@
     "splittermond.waffe.attributZwei": "Attribut 2",
     "splittermond.zauber.grad": "Grad",
     "splittermond.zauber.fertigkeit": "Fertigkeit",
-    "splittermond.item.nav.benutzbar": "Benutzbar"
+    "splittermond.item.nav.benutzbar": "Benutzbar",
+    "splittermond.indicator.vtd": "VTD",
+    "splittermond.indicator.kw": "KW",
+    "splittermond.indicator.gw": "GW",
+    "splittermond.indicator.splitterpunkte": "Splitterpunkte"
 }

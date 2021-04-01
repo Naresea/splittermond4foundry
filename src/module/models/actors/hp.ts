@@ -1,5 +1,9 @@
 export interface Hp {
-    health: number;
+    health: {
+        min: number;
+        max: number;
+        value: number;
+    };
     healthErschoepft: number;
     healthVerzehrt: number;
     healthKanalisiert: number;

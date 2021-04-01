@@ -1,5 +1,9 @@
 export interface Fokus {
-    fokus: number;
+    fokus: {
+        min: number;
+        max: number;
+        value: number;
+    };
     fokusErschoepft: number;
     fokusVerzehrt: number;
     fokusKanalisiert: number;

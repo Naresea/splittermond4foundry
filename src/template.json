@@ -5,8 +5,8 @@
       "hp": {
         "health": {
           "min": 0,
-          "max": 1000,
-          "value": 1000
+          "max": 0,
+          "value": 0
         },
         "healthErschoepft": 0,
         "healthVerzehrt": 0,
@@ -21,8 +21,8 @@
       "fokus": {
         "fokus": {
           "min": 0,
-          "max": 1000,
-          "value": 1000
+          "max": 0,
+          "value": 0
         },
         "fokusErschoepft": 0,
         "fokusVerzehrt": 0,
@@ -33,7 +33,7 @@
         "splitterpunkte": {
           "min": 0,
           "max": 1000,
-          "value": 1000
+          "value": 0
         },
         "mondzeichenLevel": 0
       },

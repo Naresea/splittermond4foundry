@@ -57,5 +57,21 @@ export function registerHelpers(): void {
           -${width} 0px 0 ${shadowColor},
           ${width} ${width} 5px ${shadowColor};
         `;
-    })
+    });
+
+    Handlebars.registerHelper('repeatTimes', (times: number, ctx): Array<number> => {
+       const arr = [];
+       for (let i = 0; i < times; i++) {
+           arr[i] = i;
+       }
+       return arr;
+    });
+
+    Handlebars.registerHelper('subtractClamp', (numA: number, numB: number, ctx): number => {
+        return Math.max(0, numA - numB);
+    });
+
+    Handlebars.registerHelper('clampMax', (numA: number, numB: number, ctx): number => {
+        return Math.min(numA, numB);
+    });
 }

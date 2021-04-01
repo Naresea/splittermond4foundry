@@ -1,5 +1,9 @@
 export interface Splittertraeger {
     mondzeichen: string;
-    splitterpunkte: number;
+    splitterpunkte: {
+        min: number;
+        max: number;
+        value: number;
+    };
     mondzeichenLevel: number
 }

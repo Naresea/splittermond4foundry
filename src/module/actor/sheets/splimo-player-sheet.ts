@@ -43,6 +43,12 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
             if (operation === 'delete' && type != null) {
                 this.deleteItem(type as ItemType, id)
             }
+            if (operation === 'sp-add') {
+                this.addSplitterpunkt();
+            }
+            if (operation === 'sp-reduce') {
+                this.removeSplitterpunkt();
+            }
         });
     }
 
@@ -87,7 +93,9 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
             formData['data.healthVerzehrt'] = health.verzehrt;
             delete formData['data.view.health.asString'];
             if (viewMaxHealth != null) {
-                formData['data.health'] = viewMaxHealth - health.erschoepft - health.kanalisiert - health.verzehrt;
+                formData['data.health.value'] = viewMaxHealth - health.erschoepft - health.kanalisiert - health.verzehrt;
+                formData['data.health.max'] = viewMaxHealth;
+                formData['data.health.min'] = 0;
                 delete formData['data.view.health.max'];
             }
         }
@@ -99,11 +107,35 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
             formData['data.fokusVerzehrt'] = fokus.verzehrt;
             delete formData['data.view.fokus.asString'];
             if (viewMaxFokus != null) {
-                formData['data.fokus'] = viewMaxFokus - fokus.erschoepft - fokus.kanalisiert - fokus.verzehrt;
+                formData['data.fokus.value'] = viewMaxFokus - fokus.erschoepft - fokus.kanalisiert - fokus.verzehrt;
+                formData['data.fokus.max'] = viewMaxFokus;
+                formData['data.fokus.min'] = 0;
                 delete formData['data.view.fokus.max'];
             }
         }
 
         return super._updateObject(event, formData);
+    }
+
+    private addSplitterpunkt(): void {
+        this.actor.update({
+            id: this.actor.id,
+            data: {
+                splitterpunkte: {
+                    value: Math.min(15, this.actor.data.data.splitterpunkte.value + 1)
+                }
+            }
+        }).then(() => this.render());
+    }
+
+    private removeSplitterpunkt() {
+        this.actor.update({
+            id: this.actor.id,
+            data: {
+                splitterpunkte: {
+                    value: Math.max(0, this.actor.data.data.splitterpunkte.value - 1)
+                }
+            }
+        }).then(() => this.render());
     }
 }
