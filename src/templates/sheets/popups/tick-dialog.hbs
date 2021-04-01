@@ -1,0 +1,17 @@
+<form class="item-sheet sheet p-small {{class}}" autocomplete="off">
+    <div class="d-flex flex-col flex-grow" style="max-width: 100%; max-height: 100%; overflow: hidden;">
+        <h1>{{localize "splittermond.tickdialog.title"}}</h1>
+        <div class="d-flex align-items-center">
+            <label class="col-4" for="data.ticks">{{localize "splittermond.tickdialog.modifier"}}</label>
+            <input class="col-6" name="data.ticks" type="number" value="{{ticks}}"/>
+        </div>
+        <div class="d-flex align-items-center" style="height: var(--control-size);">
+            <label class="col-4">{{localize "splittermond.tickdialog.armorModifier"}}</label>
+            <div class="col-6"> {{tickPlus}}</div>
+        </div>
+        <div class="d-flex align-items-center">
+            <button class="flex-grow clickable" data-ticks-submit="cancel">{{localize "splittermond.tickdialog.cancel"}}</button>
+            <button class="flex-grow clickable" data-ticks-submit="ok">{{localize "splittermond.diceroll.ok"}}</button>
+        </div>
+    </div>
+</form>

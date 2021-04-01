@@ -185,5 +185,10 @@
     "splittermond.biography.erfahrungEingesetzt": "Eing.",
     "splittermond.biography.erfahrungGesamt": "XP",
     "splittermond.biography.heldengrad": "HG",
-    "splittermond.biography.backstory": "Hintergrundgeschichte"
+    "splittermond.biography.backstory": "Hintergrundgeschichte",
+    "splittermond.tickdialog.title": "Ticks ändern",
+    "splittermond.tickdialog.modifier": "Ticks",
+    "splittermond.tickdialog.armorModifier": "Rüstungsmalus",
+    "splittermond.tickdialog.cancel": "Abbrechen",
+    "splittermond.diceroll.ok": "Ok"
 }

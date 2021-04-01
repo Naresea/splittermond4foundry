@@ -1,3 +1,7 @@
+import {TickDialog} from '../popups/tick-dialog';
+import {ModifierService} from '../services/modifier-service';
+import {ModifierType} from '../models/items/modifier';
+
 export class SplimoCombat extends Combat {
 
     _sortCombatants(a: any, b: any): any {
@@ -22,7 +26,7 @@ export class SplimoCombat extends Combat {
     }
 
     async nextRound(): Promise<void> {
-        return;
+        return this.changeIni();
     }
 
     async nextTurn(): Promise<void> {
@@ -35,6 +39,27 @@ export class SplimoCombat extends Combat {
 
     async previousTurn(): Promise<void> {
         return;
+    }
+
+    private async changeIni(): Promise<void> {
+        const combatant = this.combatants.sort((a, b) => this._sortCombatants(a, b))[0];
+        if (!combatant) {
+            console.warn('Next round requested, but no combatants exist!');
+            return;
+        }
+        const mods = ModifierService.getModifiers(combatant.actor);
+        const tickPlus = ModifierService.totalMod(mods, null, {modType: ModifierType.TickPlus});
+        return new Promise((resolve) => {
+            new TickDialog({
+                tickPlus: tickPlus ?? 0,
+                modifier: 0
+            }, {}, (data) => {
+                if (data != null) {
+                    this.setInitiative(combatant._id, combatant.initiative + data.modifier);
+                }
+                resolve();
+            }).render(true);
+        });
     }
 
 }
