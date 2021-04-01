@@ -10,7 +10,7 @@
         {{#each (attrNames base=true)}}
             <div class="d-flex flex-row align-items-center m-small">
                 <label class="col-4" for="data.{{this}}">{{localize (concat "splittermond.attribute." this)}}</label>
-                <div class="col-2" style="text-align: center; margin-right: 5px;">{{getByKey (getByKey../data.attributes this) "total"}}</div>
+                <div class="col-2" style="text-align: center; margin-right: 5px;">{{getByKey (getByKey ../data.attributes this) "total"}}</div>
                 <input class="col-1" style="text-align: center; margin-right: 5px" type="number" name="data.{{this}}" value="{{getByKey ../data this}}"/>
                 <input class="col-1" style="text-align: center; margin-right: 5px" type="number" name="data.inc{{this}}" value="{{getByKey ../data (concat "inc" this)}}"/>
                 <div class="col-2" style="text-align: center;">{{getByKey (getByKey ../data.attributes this) "modifier"}}</div>

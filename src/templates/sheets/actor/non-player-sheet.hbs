@@ -1,0 +1,119 @@
+{{#> systems/splittermond/templates/partials/layouts/layout-actor.hbs class="splimo-player-sheet"}}
+    {{#*inline "header-content"}}
+        <div class="d-flex flex-row border-bottom-fancy header-container" style="max-width: 100%; overflow: hidden;">
+            <div class="d-flex flex-col flex-grow" style="margin-right: 30px;">
+                <h1 class="charname flex-grow" style="padding-left: 90px; border: none"><input name="name" type="text" value="{{actor.name}}"/></h1>
+                <div class="d-flex flex-grow align-items-center" style="margin-left: 90px;">
+                    <div class="d-flex flex-grow" style="justify-content: flex-start">
+                        <i class="fas fa-shield-alt" style="margin-right: 5px;"></i>
+                        <span style="margin-right: 5px;">{{localize "splittermond.indicator.vtd"}}</span>
+                        <span>{{data.VTD}}</span>
+                    </div>
+
+                    <div class="d-flex flex-grow justify-items-center">
+                        <i class="fas fa-dumbbell" style="margin-right: 5px;"></i>
+                        <span style="margin-right: 5px;">{{localize "splittermond.indicator.kw"}}</span>
+                        <span>{{data.KW}}</span>
+                    </div>
+
+                    <div class="d-flex flex-grow" style="justify-content: flex-end">
+                        <i class="fas fa-brain" style="margin-right: 5px;"></i>
+                        <span style="margin-right: 5px;">{{localize "splittermond.indicator.gw"}}</span>
+                        <span>{{data.GW}}</span>
+                    </div>
+
+                    <div class="d-flex flex-grow" style="justify-content: flex-end">
+                        <i class="fas fa-dice-d20 clickable" style="margin-right: 5px;" data-operation="iniRoll" data-roll="{{sum data.INI (getByKey data.attributeModifier "INI")}}"></i>
+                        <span style="margin-right: 5px;">{{localize "splittermond.indicator.ini"}}</span>
+                        <span>{{sum data.INI (getByKey data.attributeModifier "INI")}}</span>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-grow" style="padding-left: 90px;">
+                    <div class="d-flex align-items-center m-small" style="margin-left: 0;">
+                        {{localize "splittermond.indicator.splitterpunkte"}}
+                    </div>
+                    <div class="d-flex align-items-center m-small flex-grow">
+                        <div class="d-flex flex-grow" style="justify-content: flex-end">
+                            <i class="fas fa-minus clickable" style="margin-right: 5px;" data-operation="sp-reduce"></i>
+                            {{#each (repeatTimes (clampMax data.splitterpunkte.value 15))}}
+                                <i class="fas fa-moon" style="margin-right: 3px"></i>
+                            {{/each}}
+                            {{#each (repeatTimes (subtractClamp 15 data.splitterpunkte.value))}}
+                                <i class="fas fa-moon" style="margin-right: 3px; color: lightgrey"></i>
+                            {{/each}}
+                            <i class="fas fa-plus clickable" style="margin-left: 5px;" data-operation="sp-add"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-col" style="min-width: 100px; max-width: 100px; margin-right: 30px;">
+                {{#> systems/splittermond/templates/partials/includes/indicator.hbs iconClasses="fas fa-heart" size=100 color="#d2f5fd"}}
+                    {{#*inline "mainText"}}
+                        <span style="font-size: 1rem; font-weight: bold; {{memeText "black" "lightgrey" "1px"}}">{{data.view.health.current}} / {{data.view.health.max}}</span>
+                    {{/inline}}
+                    {{#*inline "title"}}
+                        <span style="font-size: 1rem; font-weight: bold;">{{localize "splittermond.indicator.hp"}}</span>
+                    {{/inline}}
+                    {{#*inline "inputField"}}
+                        <input type="text" name="data.view.health.asString" value="{{data.view.health.asString}}"/>
+                        <input type="number" name="data.view.health.max" value="{{data.view.health.max}}" style="display: none;"/>
+                    {{/inline}}
+                {{/systems/splittermond/templates/partials/includes/indicator.hbs}}
+            </div>
+            <div class="d-flex flex-col" style="min-width: 100px; max-width: 100px;">
+                {{#> systems/splittermond/templates/partials/includes/indicator.hbs iconClasses="fas fa-bolt" size=100 color="#d2f5fd"}}
+                    {{#*inline "mainText"}}
+                        <span style="font-size: 1rem; font-weight: bold; {{memeText "black" "lightgrey" "1px"}}">{{data.view.fokus.current}} / {{data.view.fokus.max}}</span>
+                    {{/inline}}
+                    {{#*inline "title"}}
+                        <span style="font-size: 1rem; font-weight: bold;">{{localize "splittermond.indicator.fokus"}}</span>
+                    {{/inline}}
+                    {{#*inline "inputField"}}
+                        <input type="text" name="data.view.fokus.asString" value="{{data.view.fokus.asString}}"/>
+                        <input type="number" name="data.view.fokus.max" value="{{data.view.fokus.max}}" style="display: none;"/>
+                    {{/inline}}
+                {{/systems/splittermond/templates/partials/includes/indicator.hbs}}
+            </div>
+        </div>
+    {{/inline}}
+    {{#*inline "nav-tabs"}}
+        <a class="item control-height" data-tab="description">{{localize "splittermond.npc.nav.description"}}</a>
+        <a class="item control-height" data-tab="attributes">{{localize "splittermond.npc.nav.attributes"}}</a>
+        <a class="item control-height" data-tab="waffen">{{localize "splittermond.npc.nav.waffen"}}</a>
+        <a class="item control-height" data-tab="fertigkeiten">{{localize "splittermond.npc.nav.fertigkeiten"}}</a>
+        <a class="item control-height" data-tab="meisterschaften">{{localize "splittermond.npc.nav.meisterschaften"}}</a>
+        <a class="item control-height" data-tab="zauber">{{localize "splittermond.npc.nav.zauber"}}</a>
+        <a class="item control-height" data-tab="merkmale">{{localize "splittermond.npc.nav.merkmale"}}</a>
+    {{/inline}}
+    {{#*inline "nav-content"}}
+        <div class="tab overflow-hidden" data-group="primary" data-tab="description">
+            {{#> systems/splittermond/templates/sheets/actor/non-player-sheet-parts/description.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/non-player-sheet-parts/description.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="attributes">
+            {{#> systems/splittermond/templates/sheets/actor/non-player-sheet-parts/attributes.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/non-player-sheet-parts/attributes.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="waffen">
+            {{#> systems/splittermond/templates/sheets/actor/non-player-sheet-parts/waffen.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/non-player-sheet-parts/waffen.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="fertigkeiten">
+            {{#> systems/splittermond/templates/sheets/actor/non-player-sheet-parts/fertigkeiten.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/non-player-sheet-parts/fertigkeiten.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="meisterschaften">
+            {{#> systems/splittermond/templates/sheets/actor/non-player-sheet-parts/meisterschaften.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/non-player-sheet-parts/meisterschaften.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="zauber">
+            {{#> systems/splittermond/templates/sheets/actor/non-player-sheet-parts/zauber.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/non-player-sheet-parts/zauber.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="merkmale">
+            {{#> systems/splittermond/templates/sheets/actor/non-player-sheet-parts/merkmale.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/non-player-sheet-parts/merkmale.hbs}}
+        </div>
+    {{/inline}}
+{{/systems/splittermond/templates/partials/layouts/layout-actor.hbs}}

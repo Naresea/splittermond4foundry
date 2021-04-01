@@ -1,0 +1,34 @@
+<div class="description d-flex flex-row flex-grow overflow-hidden">
+    <div class="d-flex flex-col flex-grow p-small overflow-hidden">
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.monstergrad">{{localize "splittermond.npc.description.monstergrad"}}</label>
+            <input class="col-6" type="string" name="data.monstergrad" value="{{data.monstergrad}}"/>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.typus">{{localize "splittermond.npc.description.typus"}}</label>
+            <input class="col-6" type="text" name="data.typus" value="{{data.typus}}"/>
+        </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.beute">{{localize "splittermond.npc.description.beute"}}</label>
+            <input class="col-6" type="text" name="data.beute" value="{{data.beute}}"/>
+        </div>
+        {{#if actor.img}}
+            <div class="d-flex; flex-grow; align-items-center; justify-items-center">
+                <img src="{{actor.img}}" width="300" height="300"/>
+            </div>
+        {{/if}}
+    </div>
+    <div class="d-flex flex-col flex-grow p-small">
+        <h4>{{localize "splittermond.npc.description.kampfweise"}}</h4>
+        <div class="d-flex flex-grow flex-col textbox">
+            {{#> systems/splittermond/templates/partials/includes/editor.hbs target="data.kampfweise" content=data.kampfweise}}
+            {{/systems/splittermond/templates/partials/includes/editor.hbs}}
+        </div>
+        <h4>{{localize "splittermond.npc.description.lore"}}</h4>
+        <div class="d-flex flex-grow flex-col textbox">
+            {{#> systems/splittermond/templates/partials/includes/editor.hbs target="data.lore" content=data.lore}}
+            {{/systems/splittermond/templates/partials/includes/editor.hbs}}
+        </div>
+    </div>
+
+</div>

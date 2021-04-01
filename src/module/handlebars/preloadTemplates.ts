@@ -21,6 +21,13 @@ export const preloadTemplates = async function() {
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/resourcen.hbs',
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/mondzeichen.hbs',
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/ausruestung.hbs',
+		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/attributes.hbs',
+		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/description.hbs',
+		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/merkmale.hbs',
+		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/waffen.hbs',
+		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/meisterschaften.hbs',
+		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/fertigkeiten.hbs',
+		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/zauber.hbs',
 	];
 
 	const templatePaths = [
@@ -28,7 +35,6 @@ export const preloadTemplates = async function() {
 		...partialsPaths,
 		'systems/splittermond/templates/sheets/actor/player-sheet.hbs',
 		'systems/splittermond/templates/sheets/actor/non-player-sheet.hbs',
-		'systems/splittermond/templates/sheets/item/rasse-sheet.hbs',
 	];
 
 	return loadTemplates(templatePaths);

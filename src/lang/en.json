@@ -158,5 +158,17 @@
     "splittermond.fertigkeit.type.allgemein": "Allgemein",
     "splittermond.fertigkeit.type.kampf": "Kampf",
     "splittermond.fertigkeit.type.magie": "Magie",
-    "splittermond.indicator.ini": "INI"
+    "splittermond.indicator.ini": "INI",
+    "splittermond.npc.description.monstergrad": "Monstergrad",
+    "splittermond.npc.description.typus": "Typus",
+    "splittermond.npc.description.beute": "Beute",
+    "splittermond.npc.description.kampfweise": "Kampfweise",
+    "splittermond.npc.description.lore": "Beschreibung",
+    "splittermond.npc.nav.description": "Beschreibung",
+    "splittermond.npc.nav.attributes": "Attribute",
+    "splittermond.npc.nav.waffen": "Waffen",
+    "splittermond.npc.nav.fertigkeiten": "Fertigkeiten",
+    "splittermond.npc.nav.meisterschaften": "Meisterschaften",
+    "splittermond.npc.nav.zauber": "Zauber",
+    "splittermond.npc.nav.merkmale": "Merkmale & Zustände"
 }

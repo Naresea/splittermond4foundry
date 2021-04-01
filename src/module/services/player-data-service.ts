@@ -183,7 +183,7 @@ export class PlayerDataService {
         }, {} as Record<keyof DerivedAttributes, AttributeVal>);
     }
 
-    private static getFertigkeiten(actor: Actor, mods: Modifiers): TableData {
+    public static getFertigkeiten(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.fertigkeiten.name',
             'splittermond.fertigkeiten.wert',
@@ -212,7 +212,7 @@ export class PlayerDataService {
         return PlayerDataService.getTableData(actor, mods, ItemType.Fertigkeit, tableFields, getFields);
     }
 
-    private static getWaffen(actor: Actor, mods: Modifiers): TableData {
+    public static getWaffen(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.inventar.waffen.name',
             'splittermond.inventar.waffen.fertigkeit',
@@ -330,7 +330,7 @@ export class PlayerDataService {
         return PlayerDataService.getTableData(actor, mods, ItemType.Gegenstand, tableFields, getFields);
     }
 
-    private static getZauber(actor: Actor, mods: Modifiers): TableData {
+    public static getZauber(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.zauber.name',
             'splittermond.zauber.schule',
@@ -365,7 +365,7 @@ export class PlayerDataService {
         return PlayerDataService.getTableData(actor, mods, ItemType.Zauber, tableFields, getFields);
     }
 
-    private static getMeisterschaften(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
+    public static getMeisterschaften(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.meisterschaft.name',
             'splittermond.meisterschaft.fertigkeit'
@@ -412,7 +412,7 @@ export class PlayerDataService {
         return PlayerDataService.getTableData(actor, mods, ItemType.Schwaeche, tableFields, getFields);
     }
 
-    private static getZustaende(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
+    public static getZustaende(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.zustand.name',
         ];
@@ -427,7 +427,7 @@ export class PlayerDataService {
         return PlayerDataService.getTableData(actor, mods, ItemType.Zustand, tableFields, getFields);
     }
 
-    private static getMerkmale(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
+    public static getMerkmale(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.merkmal.name',
         ];
@@ -490,7 +490,7 @@ export class PlayerDataService {
         attributes: Record<keyof Attributes, AttributeVal>,
         derivedAttributes: Record<keyof DerivedAttributes, AttributeVal>
     ): ViewSpecificData {
-        const woundLevelModifier = ModifierService.totalMod(modifiers, '', {modType: ModifierType.WoundLevels});
+        const woundLevelModifier = ModifierService.totalMod(modifiers, null, {modType: ModifierType.WoundLevels});
         const maxHealth = derivedAttributes.LP.total * (5 + woundLevelModifier);
         const health = {
             current: maxHealth - actor.data.data.healthErschoepft - actor.data.data.healthKanalisiert - actor.data.data.healthVerzehrt,

@@ -71,6 +71,10 @@ export function registerHelpers(): void {
         return Math.max(0, numA - numB);
     });
 
+    Handlebars.registerHelper('sum', (numA: number, numB: number, ctx) => {
+        return numA + numB;
+    });
+
     Handlebars.registerHelper('clampMax', (numA: number, numB: number, ctx): number => {
         return Math.min(numA, numB);
     });

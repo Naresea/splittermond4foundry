@@ -46,8 +46,12 @@ export class ModifierService {
         return result;
     }
 
-    public static totalMod(mods: Modifiers, target: string, opts?: { itemType?: ItemType, modType?: ModifierType }): number {
-        let modifiers = mods.byTarget.get(target) ?? [];
+    public static totalMod(mods: Modifiers, target?: string, opts?: { itemType?: ItemType, modType?: ModifierType }): number {
+        let modifiers = target
+            ? mods.byTarget.get(target) ?? []
+            : opts?.modType ? mods.byType.get(opts.modType) ?? []
+            : opts?.itemType ? mods.byItemType.get(opts.itemType) ?? []
+            : [];
         if (opts) {
             modifiers = modifiers.filter(mod => {
                 return (opts?.itemType == null || opts?.itemType === mod.source.type)

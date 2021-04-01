@@ -1,0 +1,36 @@
+<div class="d-flex flex-row flex-grow overflow-hidden">
+    <div class="d-flex flex-col flex-grow p-small overflow-hidden">
+        <div class="d-flex flex-row align-items-center m-small">
+            <h4 class="col-4 p-small">{{localize "splittermond.attributes.header.attribute"}}</h4>
+            <h4 class="col-4" style="text-align: center; margin-right: 5px">{{localize
+                    "splittermond.attributes.header.wert"}}</h4>
+            <div class="col-2" style="text-align: center;">{{localize "splittermond.attributes.header.mod"}}</div>
+        </div>
+        {{#each (attrNames base=true)}}
+            <div class="d-flex flex-row align-items-center m-small">
+                <label class="col-4" for="data.{{this}}">{{localize (concat "splittermond.attribute." this)}}</label>
+                <input class="col-4" style="text-align: center; margin-right: 5px" type="number" name="data.{{this}}"
+                       value="{{getByKey ../data this}}"/>
+                <div class="col-2" style="text-align: center;">{{getByKey ../data.attributeModifier this}}</div>
+            </div>
+        {{/each}}
+    </div>
+    {{#> systems/splittermond/templates/partials/includes/separator-vertical.hbs}}
+    {{/systems/splittermond/templates/partials/includes/separator-vertical.hbs}}
+    <div class="d-flex flex-col flex-grow p-small overflow-hidden">
+        <div class="d-flex flex-row align-items-center m-small">
+            <h4 class="col-4 p-small">{{localize "splittermond.attributes.header.derivedAttribute"}}</h4>
+            <h4 class="col-4" style="text-align: center; margin-right: 5px">{{localize
+                    "splittermond.attributes.header.wert"}}</h4>
+            <div class="col-2" style="text-align: center;">{{localize "splittermond.attributes.header.mod"}}</div>
+        </div>
+        {{#each (attrNames base=false derived=true)}}
+            <div class="d-flex flex-row align-items-center m-small">
+                <label class="col-4" for="data.{{this}}">{{localize (concat "splittermond.attribute." this)}}</label>
+                <input class="col-4" style="text-align: center; margin-right: 5px" type="number" name="data.{{this}}"
+                       value="{{getByKey ../data this}}"/>
+                <div class="col-2" style="text-align: center;">{{getByKey ../data.attributeModifier this}}</div>
+            </div>
+        {{/each}}
+    </div>
+</div>

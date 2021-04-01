@@ -18,7 +18,9 @@ export class CalculationService {
             const data = PlayerDataService.getPlayerData(actor as Actor<PlayerCharacter>);
             return data.derivedAttributes.INI.total;
         } else {
-            return (actor as Actor<NonPlayerCharacter>).data.data.INI ?? 0;
+            const modifiers = ModifierService.getModifiers(actor);
+            const iniMod = ModifierService.totalMod(modifiers, 'INI', {modType: ModifierType.Attribute});
+            return ((actor as Actor<NonPlayerCharacter>).data.data.INI ?? 0) + iniMod;
         }
     }
 

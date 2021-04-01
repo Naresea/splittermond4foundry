@@ -90,7 +90,7 @@
     },
     "NonPlayerCharacter": {
       "templates": ["hp", "fokus", "splittertraeger", "attributes", "derivedAttributes"],
-      "monstergrad": 0,
+      "monstergrad": "0",
       "kampfweise": "",
       "lore": "",
       "beute": "",

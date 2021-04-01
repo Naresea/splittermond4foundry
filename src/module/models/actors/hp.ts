@@ -7,6 +7,10 @@ export interface Hp {
     healthErschoepft: number;
     healthVerzehrt: number;
     healthKanalisiert: number;
-    woundLevel: number;
+    woundLevel: {
+        min: number;
+        max: number;
+        value: number;
+    };
     woundModifier: number;
 }

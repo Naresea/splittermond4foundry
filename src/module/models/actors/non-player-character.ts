@@ -5,7 +5,7 @@ import {Attributes} from './attributes';
 import {DerivedAttributes} from './derived-attributes';
 
 export interface NonPlayerCharacter extends Hp, Fokus, Splittertraeger, Attributes, DerivedAttributes {
-    monstergrad: number;
+    monstergrad: string;
     kampfweise: string;
     lore: string;
     beute: string;
