@@ -1,6 +1,8 @@
 export enum ModifierType {
     Attribute = 'attribute',
-    Fertigkeit = 'fertigkeit'
+    Fertigkeit = 'fertigkeit',
+    TickPlus = 'tickPlus',
+    WoundLevels = 'woundLevel'
 }
 
 export interface Modifier {

@@ -3,5 +3,5 @@ import {Info} from './info';
 import {Modifier} from './modifier';
 
 export interface Rasse extends Info, Quelle {
-    attributeMod: Array<Modifier>;
+    modifier: Array<Modifier>;
 }

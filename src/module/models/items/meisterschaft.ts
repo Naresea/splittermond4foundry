@@ -4,5 +4,6 @@ import {Modifier} from './modifier';
 
 export interface Meisterschaft extends Info, Quelle {
     modifier: Array<Modifier>;
+    schwelle: number;
     fertigkeit: string;
 }

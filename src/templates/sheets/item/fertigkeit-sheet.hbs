@@ -14,6 +14,18 @@
         <div class="tab" data-group="primary" data-tab="details">
             <div class="d-flex flex-col flex-grow">
                 <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.attributEins">{{localize "splittermond.fertigkeit.type.label"}}</label>
+                    <div class="d-flex col-6">
+                        {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
+                                name="data.type"
+                                selected=data.attributEins
+                                labels=(prefix "splittermond.fertigkeit.type." (asList "allgemein" "kampf" "magie"))
+                                values=(asList "allgemein" "kampf" "magie")
+                        }}
+                        {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}
+                    </div>
+                </div>
+                <div class="d-flex align-items-center m-small">
                     <label class="col-4" for="data.punkte">{{localize "splittermond.fertigkeit.punkte"}}</label>
                     <input class="col-6" type="number" name="data.punkte" value="{{data.punkte}}"/>
                 </div>

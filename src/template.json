@@ -29,13 +29,11 @@
         "fokusKanalisiert": 0
       },
       "splittertraeger": {
-        "mondzeichen": "",
         "splitterpunkte": {
           "min": 0,
-          "max": 1000,
+          "max": 15,
           "value": 0
-        },
-        "mondzeichenLevel": 0
+        }
       },
       "attributes": {
         "AUS": 0,
@@ -66,10 +64,6 @@
         "KW": 0
       },
       "biography": {
-        "name": "",
-        "ausbildung": "",
-        "kultur": "",
-        "rasse": "",
         "haarfarbe": "",
         "augenfarbe": "",
         "hautfarbe": "",
@@ -92,7 +86,7 @@
       "erfahrungGesamt": 0,
       "erfahrungEingesetzt": 0,
       "erfahrungNaechsterHeldengrad": 0,
-      "atemholenBenutzt": "boolean"
+      "atemholenBenutzt": false
     },
     "NonPlayerCharacter": {
       "templates": ["hp", "fokus", "splittertraeger", "attributes", "derivedAttributes"],
@@ -126,7 +120,6 @@
     ],
     "templates": {
       "info": {
-        "name": "",
         "beschreibung": ""
       },
       "quelle": {
@@ -139,11 +132,7 @@
     },
     "mondzeichen": {
       "templates": ["info", "quelle"],
-      "grad": 1,
-      "effektEins": "",
-      "effektZwei": "",
-      "effektDrei": "",
-      "effektVier": ""
+      "grad": 1
     },
     "merkmal": {
       "templates": ["info", "quelle"],
@@ -169,7 +158,7 @@
       "attributeSecondary": "",
       "fertigkeit": "",
       "mod": 0,
-      "schaden": 0
+      "schaden": "1d6"
     },
     "schild": {
       "templates": ["gegenstand"],
@@ -217,7 +206,7 @@
     },
     "rasse": {
       "templates": ["info", "quelle"],
-      "attributeMod": []
+      "modifier": []
     },
     "staerke": {
       "templates": ["info", "quelle"],
@@ -230,6 +219,7 @@
     "meisterschaft": {
       "templates": ["info", "quelle"],
       "fertigkeit": "",
+      "schwelle": 0,
       "modifier": []
     },
     "resource": {
@@ -241,7 +231,8 @@
       "attributEins": "",
       "attributZwei": "",
       "punkte": 0,
-      "mod": 0
+      "mod": 0,
+      "type": "allgemein"
     }
   }
 }

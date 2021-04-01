@@ -8,6 +8,9 @@ import {Merkmal} from '../models/items/merkmal';
 import {Schwaeche} from '../models/items/schwaeche';
 import {Staerke} from '../models/items/staerke';
 import {Zustand} from '../models/items/zustand';
+import {Ruestung} from '../models/items/ruestung';
+import {Schild} from '../models/items/schild';
+import {Fertigkeit, FertigkeitType} from '../models/items/fertigkeit';
 
 export interface DecoratedModifier {
     modifier: Modifier;
@@ -29,7 +32,7 @@ export class ModifierService {
             byItemType: new Map<ItemType, Array<DecoratedModifier>>()
         };
         const sorted = ModifierService.sortItems(actor.items);
-        ModifierService.addMods(result, ItemType.Rasse, sorted, (v: Rasse) => v.attributeMod);
+        ModifierService.addMods(result, ItemType.Rasse, sorted, (v: Rasse) => v.modifier);
         ModifierService.addMods(result, ItemType.Abstammung, sorted, (v: Abstammung) => v.modifier);
         ModifierService.addMods(result, ItemType.Kultur, sorted, (v: Kultur) => v.modifier);
         ModifierService.addMods(result, ItemType.Meisterschaft, sorted, (v: Meisterschaft) => v.modifier);
@@ -37,6 +40,8 @@ export class ModifierService {
         ModifierService.addMods(result, ItemType.Schwaeche, sorted, (v: Schwaeche) => v.modifier);
         ModifierService.addMods(result, ItemType.Staerke, sorted, (v: Staerke) => v.modifier);
         ModifierService.addMods(result, ItemType.Zustand, sorted, (v: Zustand) => v.modifier);
+        ModifierService.addMods(result, ItemType.Ruestung, sorted, (v: Ruestung) => ModifierService.getRuestungModifier(v, sorted));
+        ModifierService.addMods(result, ItemType.Schild, sorted, (v: Schild) => ModifierService.getSchildModifier(v));
 
         return result;
     }
@@ -96,5 +101,49 @@ export class ModifierService {
             accu.push(...curr);
             return accu;
         }, []);
+    }
+
+    private static getRuestungModifier(v: Ruestung, sorted: Map<ItemType, Array<Item>>): Array<Modifier> {
+        const tickPlus = {
+            type: ModifierType.TickPlus,
+            target: ModifierType.TickPlus,
+            value: v.tickPlus
+        };
+        const bewSkills = (sorted.get(ItemType.Fertigkeit) ?? [])
+            .filter((f: Item<Fertigkeit>) =>
+                [f.data.data.attributEins, f.data.data.attributZwei].includes('BEW')
+                && f.data.data.type === FertigkeitType.Allgemein
+            );
+        const behModifiers = bewSkills.map(skill => ({
+            type: ModifierType.Fertigkeit,
+            target: skill.name,
+            value: v.BEH
+        }));
+        const behGswModifier = {
+            type: ModifierType.Attribute,
+            target: 'GSW',
+            value: Math.round(v.BEH / 2)
+        };
+        const vtdModifier = {
+            type: ModifierType.Attribute,
+            target: 'VTD',
+            value: v.VTD
+        };
+
+        return [
+            tickPlus, ...behModifiers, behGswModifier, vtdModifier
+        ];
+    }
+
+    private static getSchildModifier(v: Schild): Array<Modifier> {
+        const vtdModifier = {
+            type: ModifierType.Attribute,
+            target: 'VTD',
+            value: v.VTD
+        };
+
+        return [
+            vtdModifier
+        ];
     }
 }

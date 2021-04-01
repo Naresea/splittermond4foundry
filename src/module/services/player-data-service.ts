@@ -75,7 +75,7 @@ export type PlayerData = Record<string, unknown> & {
     resourcen: TableData;
     merkmale: TableData;
     zustaende: TableData;
-    mondzeichen: Partial<Mondzeichen> & {img?: string};
+    mondzeichen: Partial<Mondzeichen> & {img?: string; name?: string};
     view: ViewSpecificData
 }
 
@@ -459,7 +459,7 @@ export class PlayerDataService {
         return PlayerDataService.getTableData(actor, mods, ItemType.Resource, tableFields, getFields);
     }
 
-    private static getMondzeichen(actor: Actor<PlayerCharacter>, mods: Modifiers): Partial<Mondzeichen> & {img?: string} {
+    private static getMondzeichen(actor: Actor<PlayerCharacter>, mods: Modifiers): Partial<Mondzeichen> & {img?: string; name?: string} {
         const mondzeichen = actor.items.find(i => i.type === ItemType.Mondzeichen);
         return {
             ...(mondzeichen?.data.data ?? {}),
@@ -490,7 +490,8 @@ export class PlayerDataService {
         attributes: Record<keyof Attributes, AttributeVal>,
         derivedAttributes: Record<keyof DerivedAttributes, AttributeVal>
     ): ViewSpecificData {
-        const maxHealth = derivedAttributes.LP.total * 5;
+        const woundLevelModifier = ModifierService.totalMod(modifiers, '', {modType: ModifierType.WoundLevels});
+        const maxHealth = derivedAttributes.LP.total * (5 + woundLevelModifier);
         const health = {
             current: maxHealth - actor.data.data.healthErschoepft - actor.data.data.healthKanalisiert - actor.data.data.healthVerzehrt,
             max: maxHealth,

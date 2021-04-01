@@ -1,8 +1,4 @@
 export interface Biography {
-    name: string;
-    ausbildung: string;
-    kultur: string;
-    rasse: string;
     haarfarbe: string;
     augenfarbe: string;
     hautfarbe: string;

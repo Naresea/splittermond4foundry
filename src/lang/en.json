@@ -150,5 +150,12 @@
     "splittermond.staerke.name": "Name",
     "splittermond.schwaeche.name": "Name",
     "splittermond.resource.name": "Name",
-    "splittermond.mondzeichen-sheet.mondzeichen": "Mondzeichen"
+    "splittermond.mondzeichen-sheet.mondzeichen": "Mondzeichen",
+    "splittermond.dropdown.tickPlus": "Tick+",
+    "splittermond.pc.nav.ausruestung": "Ausrüstung",
+    "splittermond.dropdown.woundLevel":  "Max. Wundstufen",
+    "splittermond.fertigkeit.type.label": "Fertigkeitsart",
+    "splittermond.fertigkeit.type.allgemein": "Allgemein",
+    "splittermond.fertigkeit.type.kampf": "Kampf",
+    "splittermond.fertigkeit.type.magie": "Magie"
 }

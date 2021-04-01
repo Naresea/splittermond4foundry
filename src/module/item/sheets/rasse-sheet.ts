@@ -19,7 +19,7 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
 
     getData(): ItemSheet.Data<Rasse> {
         const data = super.getData();
-        const modifier = this.item.data.data.attributeMod
+        const modifier = this.item.data.data.modifier
             .map((mod) => {
                 return {
                     fields: [
@@ -48,12 +48,12 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
                 type: ModifierType.Attribute
             };
 
-            this.item.data.data.attributeMod.push(modifier);
-            const index = this.item.data.data.attributeMod.length - 1;
+            this.item.data.data.modifier.push(modifier);
+            const index = this.item.data.data.modifier.length - 1;
             await this.item.update({
                 _id: this.item.id,
                 data: {
-                    attributeMod: [...this.item.data.data.attributeMod]
+                    modifier: [...this.item.data.data.modifier]
                 }
             });
             this.renderModifierSheet(modifier, index);
@@ -63,11 +63,11 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
     private registerEditModifierClick(html: JQuery<HTMLElement>): void {
         html.find('.rasse-modifier .edit-item').on('click', (evt) => {
             const index = +evt.target.dataset.index;
-            const modifier: Modifier = this.item.data.data.attributeMod[index];
+            const modifier: Modifier = this.item.data.data.modifier[index];
             this.item.update({
                 _id: this.item.id,
                 data: {
-                    attributeMod: [...this.item.data.data.attributeMod]
+                    modifier: [...this.item.data.data.modifier]
                 }
             });
 
@@ -80,14 +80,14 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
             modifier,
             {},
             (evt, formData) => {
-                const item: Modifier = this.item.data.data.attributeMod[index];
+                const item: Modifier = this.item.data.data.modifier[index];
                 item.target = formData.target;
                 item.type = formData.type;
                 item.value = formData.value;
                 return this.item.update({
                     _id: this.item.id,
                     data: {
-                        attributeMod: [...this.item.data.data.attributeMod]
+                        modifier: [...this.item.data.data.modifier]
                     }
                 });
             }
@@ -97,11 +97,11 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
     private registerDeleteModifierClick(html: JQuery<HTMLElement>): void {
         html.find('.rasse-modifier .delete-item').on('click', (evt) => {
             const index = +evt.target.dataset.index;
-            this.item.data.data.attributeMod.splice(index, 1);
+            this.item.data.data.modifier.splice(index, 1);
             this.item.update({
                         _id: this.item.id,
                         data: {
-                            attributeMod: this.item.data.data.attributeMod
+                            modifier: this.item.data.data.modifier
                         }
                     });
                 }
