@@ -41,5 +41,21 @@ export function registerHelpers(): void {
 
     Handlebars.registerHelper('modifierTableHeaders', (): Array<string> => {
         return ['splittermond.modifier.type', 'splittermond.modifier.target', 'splittermond.modifier.value'];
+    });
+
+    Handlebars.registerHelper("memeText", (color: string, shadowColor: string, width: string, ctx) => {
+        return `
+        letter-spacing: 1px;
+        color: ${color};
+        text-shadow: ${width} ${width} 0 ${shadowColor},
+          -${width} -${width} 0 ${shadowColor},
+          ${width} -${width} 0 ${shadowColor},
+          -${width} ${width} 0 ${shadowColor},
+          0px ${width} 0 ${shadowColor},
+          ${width} 0px 0 ${shadowColor},
+          0px -${width} 0 ${shadowColor},
+          -${width} 0px 0 ${shadowColor},
+          ${width} ${width} 5px ${shadowColor};
+        `;
     })
 }

@@ -1,0 +1,12 @@
+<div class="indicator">
+    <i style="font-size: calc({{size}}px - var(--list-item-height) - var(--list-item-height)); color: {{color}};" class="background {{iconClasses}}"></i>
+    <div style="position: absolute; left: 0; top: 0; bottom: 0; right: 0;" class="d-flex flex-col p-small">
+        <div class="d-flex flex-row flex-grow align-items-center justify-items-center main-text">
+            {{#> mainText}}{{/mainText}}
+        </div>
+        <div class="d-flex flex-col align-items-center" style="min-height: calc(2 * var(--list-item-height)); max-height: calc(2 * var(--list-item-height));">
+            {{#> title}}{{/title}}
+            {{#> inputField}}{{/inputField}}
+        </div>
+    </div>
+</div>

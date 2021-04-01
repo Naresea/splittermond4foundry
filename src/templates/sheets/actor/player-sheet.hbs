@@ -1,16 +1,38 @@
 {{#> systems/splittermond/templates/partials/layouts/layout-actor.hbs class="splimo-player-sheet"}}
     {{#*inline "header-content"}}
         <div class="d-flex flex-row border-bottom-fancy header-container">
-            <div class="d-flex flex-col">
+            <div class="d-flex flex-col flex-grow">
                 <h1 class="charname flex-grow" style="padding-left: 90px; border: none"><input name="name" type="text" value="{{actor.name}}"/></h1>
                 <div class="d-flex">
                 </div>
             </div>
-            <div class="d-flex flex-col" style="min-width: 100px">
-
+            <div class="d-flex flex-col" style="min-width: 100px; max-width: 100px;">
+                {{#> systems/splittermond/templates/partials/includes/indicator.hbs iconClasses="fas fa-heart" size=100 color="#d2f5fd"}}
+                    {{#*inline "mainText"}}
+                        <span style="font-size: 1rem; font-weight: bold; {{memeText "black" "lightgrey" "1px"}}">{{data.view.health.current}} / {{data.view.health.max}}</span>
+                    {{/inline}}
+                    {{#*inline "title"}}
+                        <span style="font-size: 1rem; font-weight: bold;">Lebenspunkte</span>
+                    {{/inline}}
+                    {{#*inline "inputField"}}
+                        <input type="text" name="data.view.health.asString" value="{{data.view.health.asString}}"/>
+                        <input type="number" name="data.view.health.max" value="{{data.view.health.max}}" style="display: none;"/>
+                    {{/inline}}
+                {{/systems/splittermond/templates/partials/includes/indicator.hbs}}
             </div>
-            <div class="d-flex flex-col" style="min-width: 100px">
-
+            <div class="d-flex flex-col" style="min-width: 100px; max-width: 100px;">
+                {{#> systems/splittermond/templates/partials/includes/indicator.hbs iconClasses="fas fa-bolt" size=100 color="#d2f5fd"}}
+                    {{#*inline "mainText"}}
+                        <span style="font-size: 1rem; font-weight: bold; {{memeText "black" "lightgrey" "1px"}}">{{data.view.fokus.current}} / {{data.view.fokus.max}}</span>
+                    {{/inline}}
+                    {{#*inline "title"}}
+                        <span style="font-size: 1rem; font-weight: bold;">Fokus</span>
+                    {{/inline}}
+                    {{#*inline "inputField"}}
+                        <input type="text" name="data.view.fokus.asString" value="{{data.view.fokus.asString}}"/>
+                        <input type="number" name="data.view.fokus.max" value="{{data.view.fokus.max}}" style="display: none;"/>
+                    {{/inline}}
+                {{/systems/splittermond/templates/partials/includes/indicator.hbs}}
             </div>
         </div>
     {{/inline}}

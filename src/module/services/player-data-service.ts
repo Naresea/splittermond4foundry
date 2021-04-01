@@ -37,6 +37,19 @@ interface AttributeVal {
     modifier: number;
 }
 
+interface ViewSpecificData {
+    health: {
+        current: number;
+        max: number;
+        asString: string;
+    };
+    fokus: {
+        current: number;
+        max: number;
+        asString: string;
+    };
+}
+
 export type PlayerData = Record<string, unknown> & {
     biography: Biography;
     attributes: Record<keyof Attributes,AttributeVal>;
@@ -53,7 +66,7 @@ export type PlayerData = Record<string, unknown> & {
 
 export class PlayerDataService {
 
-    public static getPlayerData<T>(actor: Actor<T>): PlayerData {
+    public static getPlayerData(actor: Actor<PlayerCharacter>): PlayerData {
         const modifiers = ModifierService.getModifiers(actor);
         const biography = PlayerDataService.getBiography(actor);
         const attributes = PlayerDataService.getAttributes(actor, modifiers);
@@ -65,6 +78,7 @@ export class PlayerDataService {
         const benutzbares = PlayerDataService.getBenutzbares(actor, modifiers);
         const sonstiges = PlayerDataService.getSonstiges(actor, modifiers);
         const zauber = PlayerDataService.getZauber(actor, modifiers);
+        const view = PlayerDataService.getViewSpecificData(actor, modifiers, attributes, derivedAttributes);
 
         return {
             ...actor.data.data,
@@ -77,7 +91,8 @@ export class PlayerDataService {
             schilde,
             benutzbares,
             sonstiges,
-            zauber
+            zauber,
+            view
         }
     }
 
@@ -273,6 +288,31 @@ export class PlayerDataService {
         return {
             tableFields,
             tableData
+        };
+    }
+
+    private static getViewSpecificData(
+        actor: Actor<PlayerCharacter>,
+        modifiers: Modifiers,
+        attributes: Record<keyof Attributes, AttributeVal>,
+        derivedAttributes: Record<keyof DerivedAttributes, AttributeVal>
+    ): ViewSpecificData {
+        const maxHealth = derivedAttributes.LP.total * 5;
+        const health = {
+            current: maxHealth - actor.data.data.healthErschoepft - actor.data.data.healthKanalisiert - actor.data.data.healthVerzehrt,
+            max: maxHealth,
+            asString: CalculationService.toEKVString(actor.data.data.healthErschoepft, actor.data.data.healthKanalisiert, actor.data.data.healthVerzehrt)
+        };
+
+        const maxFokus = derivedAttributes.FO.total;
+        const fokus = {
+            current: maxFokus - actor.data.data.fokusErschoepft - actor.data.data.fokusKanalisiert - actor.data.data.fokusVerzehrt,
+            max: derivedAttributes.FO.total,
+            asString: CalculationService.toEKVString(actor.data.data.fokusErschoepft, actor.data.data.fokusKanalisiert, actor.data.data.fokusVerzehrt)
+        };
+        return {
+            health,
+            fokus
         };
     }
 }

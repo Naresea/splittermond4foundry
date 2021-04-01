@@ -7,6 +7,7 @@ export const preloadTemplates = async function() {
 		'systems/splittermond/templates/partials/includes/item-list-item.hbs',
 		'systems/splittermond/templates/partials/includes/editor.hbs',
 		'systems/splittermond/templates/partials/includes/gegenstand.hbs',
+		'systems/splittermond/templates/partials/includes/indicator.hbs',
 		'systems/splittermond/templates/partials/layouts/layout-actor.hbs',
 		'systems/splittermond/templates/partials/layouts/layout-item.hbs',
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/biography.hbs',

@@ -1,6 +1,7 @@
 import {Info} from './info';
 import {Quelle} from './quelle';
 import {Action} from './action';
+import {CalculationService} from '../../services/calculation-service';
 
 export interface Zauber extends Info, Quelle, Action {
     grad: number;
@@ -24,5 +25,5 @@ export function buildFokusString(zauber: Zauber): string {
     const erschoepft = zauber.fokusErschoepft;
     const kanalisiert = zauber.fokusKanalisiert;
     const verzehrt = zauber.fokusVerzehrt;
-    return `${erschoepft ? erschoepft : ''}${kanalisiert ? `K${kanalisiert}` : ''}${verzehrt ? `V${verzehrt}` : ''}`;
+    return CalculationService.toEKVString(erschoepft, kanalisiert, verzehrt);
 }

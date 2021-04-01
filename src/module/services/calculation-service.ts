@@ -48,4 +48,23 @@ export class CalculationService {
         return attrEins + attrZwei + waffe.mod + fertigkeitVal + fertigkeitMod;
     }
 
+    public static fromEKVString(ekvString: string): { erschoepft: number; kanalisiert: number; verzehrt: number } {
+        const kanalisiertMatch = ekvString.match(/[Kk]\d+/);
+        const kanalisiert = kanalisiertMatch ? +(kanalisiertMatch[0].replace(/[Kk]/, '')) : 0;
+
+        const verzehrtMatch = ekvString.match(/[Vv]\d+/);
+        const verzehrt = verzehrtMatch ? +(verzehrtMatch[0].replace(/[Vv]/, '')) : 0;
+
+        const erschoepftMatch = ekvString.match(/\d+/);
+        const erschoepft = erschoepftMatch ? +(erschoepftMatch[0]) : 0;
+        return {
+            erschoepft,
+            kanalisiert,
+            verzehrt
+        };
+    }
+
+    public static toEKVString(erschoepft: number, kanalisiert: number, verzehrt: number): string {
+        return `${erschoepft}K${kanalisiert}V${verzehrt}`;
+    }
 }

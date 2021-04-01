@@ -3,6 +3,7 @@ import {PlayerCharacter} from '../../models/actors/player-character';
 import {ItemType} from '../../models/item-type';
 import {getSheetClass} from '../../item/register-item-sheets';
 import {PlayerDataService} from '../../services/player-data-service';
+import {CalculationService} from '../../services/calculation-service';
 
 export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
 
@@ -70,5 +71,39 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
         (data as any).data = calcData;
         console.log('Sheet data = ', data);
         return data;
+    }
+
+    protected _updateObject(event: Event | JQuery.Event, formData: any): Promise<any> {
+        const viewHealth = formData['data.view.health.asString'];
+        const viewMaxHealth = formData['data.view.health.max'];
+
+        const viewFokus = formData['data.view.fokus.asString'];
+        const viewMaxFokus = formData['data.view.fokus.max'];
+
+        if (viewHealth) {
+            const health = CalculationService.fromEKVString(viewHealth);
+            formData['data.healthErschoepft'] = health.erschoepft;
+            formData['data.healthKanalisiert'] = health.kanalisiert;
+            formData['data.healthVerzehrt'] = health.verzehrt;
+            delete formData['data.view.health.asString'];
+            if (viewMaxHealth != null) {
+                formData['data.health'] = viewMaxHealth - health.erschoepft - health.kanalisiert - health.verzehrt;
+                delete formData['data.view.health.max'];
+            }
+        }
+
+        if (viewFokus) {
+            const fokus = CalculationService.fromEKVString(viewFokus);
+            formData['data.fokusErschoepft'] = fokus.erschoepft;
+            formData['data.fokusKanalisiert'] = fokus.kanalisiert;
+            formData['data.fokusVerzehrt'] = fokus.verzehrt;
+            delete formData['data.view.fokus.asString'];
+            if (viewMaxFokus != null) {
+                formData['data.fokus'] = viewMaxFokus - fokus.erschoepft - fokus.kanalisiert - fokus.verzehrt;
+                delete formData['data.view.fokus.max'];
+            }
+        }
+
+        return super._updateObject(event, formData);
     }
 }
