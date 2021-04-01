@@ -1,3 +1,5 @@
+import {DiceRollDialog} from '../popups/dice-roll-dialog';
+
 export class RollService {
 
     public static roll(evt: Event, actor: Actor): void {
@@ -11,15 +13,30 @@ export class RollService {
         if (rollModifier == null || !Number.isNumeric(rollModifier)) {
             return;
         }
-        const formula = shiftKey
+
+        if (!altKey) {
+            new DiceRollDialog({rollType: 'sicherheit', modifier: 0}, {}, (data) => {
+                const isSicherheit = data.rollType === 'sicherheit';
+                const isRisiko = data.rollType === 'risiko';
+                const extraMod = data.modifier ?? 0;
+                RollService.doRoll(isRisiko, isSicherheit, +rollModifier + extraMod, actor);
+                return Promise.resolve();
+            }).render(true);
+        } else {
+            RollService.doRoll(shiftKey, ctrlKey, +rollModifier, actor);
+        }
+    }
+
+    private static doRoll(isRisiko: boolean, isSicherheit: boolean, rollModifier: number, actor: Actor): void {
+        const formula = isRisiko
             ? RollService.riskRoll(+rollModifier)
-            : ctrlKey
+            : isSicherheit
                 ? RollService.safeRoll(+rollModifier)
                 : RollService.standardRoll(+rollModifier);
 
         const roll = new Roll(formula, actor.data.data);
         const result = roll.evaluate();
-        RollService.evaluateResult(result, ctrlKey, actor);
+        RollService.evaluateResult(result, isSicherheit, actor);
     }
 
     public static rollInitiative(evt: Event, actor: Actor): void {

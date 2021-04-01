@@ -170,5 +170,11 @@
     "splittermond.npc.nav.fertigkeiten": "Fertigkeiten",
     "splittermond.npc.nav.meisterschaften": "Meisterschaften",
     "splittermond.npc.nav.zauber": "Zauber",
-    "splittermond.npc.nav.merkmale": "Merkmale & Zustände"
+    "splittermond.npc.nav.merkmale": "Merkmale & Zustände",
+    "splittermond.diceroll.title": "Wurfoptionen",
+    "splittermond.diceroll.modifier": "Bonus / Malus",
+    "splittermond.diceroll.shortcuts": "Tipp: bei gedrückter [ALT] Taste kommt dieser Dialog nicht.<br>[ALT + SHIFT] = Risikowurf,<br>[ALT + CTRL] = Sicherheitswurf.",
+    "splittermond.diceroll.sicherheitswurf": "Sicherheit",
+    "splittermond.diceroll.standard": "Standard",
+    "splittermond.diceroll.risiko": "Risiko"
 }

@@ -35,6 +35,7 @@ export const preloadTemplates = async function() {
 		...partialsPaths,
 		'systems/splittermond/templates/sheets/actor/player-sheet.hbs',
 		'systems/splittermond/templates/sheets/actor/non-player-sheet.hbs',
+		'systems/splittermond/templates/sheets/popups/dice-roll-dialog.hbs',
 	];
 
 	return loadTemplates(templatePaths);
