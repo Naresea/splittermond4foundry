@@ -25,6 +25,7 @@ interface TableData {
     tableData: Array<{
         fields: Array<string>;
         id: string;
+        roll?: number;
     }>
 }
 
@@ -191,14 +192,24 @@ export class PlayerDataService {
             'splittermond.fertigkeiten.attributZwei',
             'splittermond.fertigkeiten.modifier',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Fertigkeit, tableFields, (fertigkeit: Item<Fertigkeit>) => ([
-            fertigkeit.name,
-            `${CalculationService.getFertigkeitsValue(actor, fertigkeit.name, mods)}`,
-            `${fertigkeit.data.data.punkte}`,
-            fertigkeit.data.data.attributEins,
-            fertigkeit.data.data.attributZwei,
-            `${fertigkeit.data.data.mod}`
-        ]));
+
+        const getFields = (fertigkeit: Item<Fertigkeit>) => {
+            const roll = CalculationService.getFertigkeitsValue(actor, fertigkeit.name, mods);
+            const fields = [
+                fertigkeit.name,
+                `${roll}`,
+                `${fertigkeit.data.data.punkte}`,
+                fertigkeit.data.data.attributEins,
+                fertigkeit.data.data.attributZwei,
+                `${fertigkeit.data.data.mod}`
+            ];
+            return {
+                fields,
+                roll
+            };
+        };
+
+        return PlayerDataService.getTableData(actor, mods, ItemType.Fertigkeit, tableFields, getFields);
     }
 
     private static getWaffen(actor: Actor, mods: Modifiers): TableData {
@@ -209,13 +220,23 @@ export class PlayerDataService {
             'splittermond.inventar.waffen.schaden',
             'splittermond.inventar.waffen.merkmale',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Waffe, tableFields, (waffe: Item<Waffe>) => ([
-            `${waffe.name}`,
-            `${waffe.data.data.fertigkeit}`,
-            `${waffe.data.data.ticks}`,
-            `${waffe.data.data.schaden}`,
-            ``
-        ]));
+
+        const getFields = (waffe: Item<Waffe>) => {
+            const roll = CalculationService.getWaffeOrSchildValue(actor, waffe.data.data, mods);
+            const fields = [
+                `${waffe.name}`,
+                `${waffe.data.data.fertigkeit}`,
+                `${waffe.data.data.ticks}`,
+                `${waffe.data.data.schaden}`,
+                ``
+            ];
+            return {
+                fields,
+                roll
+            };
+        };
+
+        return PlayerDataService.getTableData(actor, mods, ItemType.Waffe, tableFields, getFields);
     }
 
     private static getSchilde(actor: Actor, mods: Modifiers): TableData {
@@ -225,12 +246,21 @@ export class PlayerDataService {
             'splittermond.inventar.schilde.vtd',
             'splittermond.inventar.schilde.merkmale',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Schild, tableFields, (schild: Item<Schild>) => ([
-            `${schild.name}`,
-            `${schild.data.data.fertigkeit}`,
-            `${schild.data.data.VTD}`,
-            ``,
-        ]));
+        const getFields = (schild: Item<Schild>) => {
+            const roll = CalculationService.getWaffeOrSchildValue(actor, schild.data.data, mods);
+            const fields = [
+                `${schild.name}`,
+                `${schild.data.data.fertigkeit}`,
+                `${schild.data.data.VTD}`,
+                ``,
+            ];
+            return {
+                fields,
+                roll
+            };
+        };
+
+        return PlayerDataService.getTableData(actor, mods, ItemType.Schild, tableFields, getFields);
     }
 
     private static getRuestungen(actor: Actor, mods: Modifiers): TableData {
@@ -242,14 +272,20 @@ export class PlayerDataService {
             'splittermond.inventar.ruestungen.tick',
             'splittermond.inventar.ruestungen.merkmale',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Ruestung, tableFields, (ruestung: Item<Ruestung>) => ([
-            `${ruestung.name}`,
-            `${ruestung.data.data.VTD}`,
-            `${ruestung.data.data.SR}`,
-            `${ruestung.data.data.BEH}`,
-            `${ruestung.data.data.tickPlus}`,
-            ``
-        ]));
+        const getFields = (ruestung: Item<Ruestung>) => {
+            const fields = [
+                `${ruestung.name}`,
+                `${ruestung.data.data.VTD}`,
+                `${ruestung.data.data.SR}`,
+                `${ruestung.data.data.BEH}`,
+                `${ruestung.data.data.tickPlus}`,
+                ``
+            ];
+            return {
+                fields
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Ruestung, tableFields, getFields);
     }
 
     private static getBenutzbares(actor: Actor, mods: Modifiers): TableData {
@@ -259,12 +295,18 @@ export class PlayerDataService {
             'splittermond.inventar.benutzbares.begrenzt',
             'splittermond.inventar.benutzbares.anzahl',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Benutzbar, tableFields, (benutzbar: Item<Benutzbar>) => ([
-            `${benutzbar.name}`,
-            `${benutzbar.data.data.ticks}`,
-            `${benutzbar.data.data.wirdVerbraucht}`,
-            `${benutzbar.data.data.anzahl}`
-        ]));
+        const getFields = (benutzbar: Item<Benutzbar>) => {
+            const fields = [
+                `${benutzbar.name}`,
+                `${benutzbar.data.data.ticks}`,
+                `${benutzbar.data.data.wirdVerbraucht}`,
+                `${benutzbar.data.data.anzahl}`
+            ];
+            return {
+                fields
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Benutzbar, tableFields, getFields);
     }
 
     private static getSonstiges(actor: Actor, mods: Modifiers): TableData {
@@ -274,12 +316,18 @@ export class PlayerDataService {
             'splittermond.inventar.sonstiges.gewicht',
             'splittermond.inventar.sonstiges.anzahl',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Gegenstand, tableFields, (gegenstand: Item<Gegenstand>) => ([
-            `${gegenstand.name}`,
-            `${gegenstand.data.data.wertInTellaren}`,
-            `${gegenstand.data.data.gewicht}`,
-            `${gegenstand.data.data.anzahl}`
-        ]));
+        const getFields = (gegenstand: Item<Gegenstand>) => {
+            const fields = [
+                `${gegenstand.name}`,
+                `${gegenstand.data.data.wertInTellaren}`,
+                `${gegenstand.data.data.gewicht}`,
+                `${gegenstand.data.data.anzahl}`
+            ];
+            return {
+                fields
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Gegenstand, tableFields, getFields);
     }
 
     private static getZauber(actor: Actor, mods: Modifiers): TableData {
@@ -295,18 +343,26 @@ export class PlayerDataService {
             'splittermond.zauber.bereich',
             'splittermond.zauber.verstaerkung',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Zauber, tableFields, (zauber: Item<Zauber>) => ([
-            `${zauber.name}`,
-            `${zauber.data.data.fertigkeit}`,
-            `${CalculationService.getFertigkeitsValue(actor, zauber.data.data.fertigkeit, mods)}`,
-            `${zauber.data.data.schwierigkeitString}`,
-            `${buildFokusString(zauber.data.data)}`,
-            `${zauber.data.data.zauberdauerString}`,
-            `${zauber.data.data.reichweiteString}`,
-            `${zauber.data.data.wirkungsdauerString}`,
-            `${zauber.data.data.bereichString}`,
-            `${zauber.data.data.verstaerkung}`
-        ]));
+        const getFields = (zauber: Item<Zauber>) => {
+            const roll = CalculationService.getFertigkeitsValue(actor, zauber.data.data.fertigkeit, mods);
+            const fields = [
+                `${zauber.name}`,
+                `${zauber.data.data.fertigkeit}`,
+                `${roll}`,
+                `${zauber.data.data.schwierigkeitString}`,
+                `${buildFokusString(zauber.data.data)}`,
+                `${zauber.data.data.zauberdauerString}`,
+                `${zauber.data.data.reichweiteString}`,
+                `${zauber.data.data.wirkungsdauerString}`,
+                `${zauber.data.data.bereichString}`,
+                `${zauber.data.data.verstaerkung}`
+            ];
+            return {
+                fields,
+                roll
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Zauber, tableFields, getFields);
     }
 
     private static getMeisterschaften(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
@@ -314,46 +370,76 @@ export class PlayerDataService {
             'splittermond.meisterschaft.name',
             'splittermond.meisterschaft.fertigkeit'
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Meisterschaft, tableFields, (ms: Item<Meisterschaft>) => ([
-            ms.name,
-            ms.data.data.fertigkeit
-        ]));
+        const getFields = (ms: Item<Meisterschaft>) => {
+            const fields = [
+                ms.name,
+                ms.data.data.fertigkeit
+            ];
+            return {
+                fields
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Meisterschaft, tableFields, getFields);
     }
 
     private static getStaerken(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.staerke.name',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Staerke, tableFields, (ms: Item<Staerke>) => ([
-            ms.name
-        ]));
+        const getFields = (ms: Item<Staerke>) => {
+            const fields = [
+                ms.name
+            ];
+            return {
+                fields
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Staerke, tableFields, getFields);
     }
 
     private static getSchwaechen(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.schwaeche.name',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Schwaeche, tableFields, (ms: Item<Schwaeche>) => ([
-            ms.name,
-        ]));
+        const getFields = (ms: Item<Schwaeche>) => {
+            const fields = [
+                ms.name
+            ];
+            return {
+                fields
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Schwaeche, tableFields, getFields);
     }
 
     private static getZustaende(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.zustand.name',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Zustand, tableFields, (ms: Item<Zustand>) => ([
-            ms.name
-        ]));
+        const getFields = (ms: Item<Zustand>) => {
+            const fields = [
+                ms.name
+            ];
+            return {
+                fields
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Zustand, tableFields, getFields);
     }
 
     private static getMerkmale(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.merkmal.name',
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Merkmal, tableFields, (ms: Item<Merkmal>) => ([
-            ms.name,
-        ]));
+        const getFields = (ms: Item<Merkmal>) => {
+            const fields = [
+                ms.name
+            ];
+            return {
+                fields
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Merkmal, tableFields, getFields);
     }
 
     private static getResourcen(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
@@ -361,10 +447,16 @@ export class PlayerDataService {
             'splittermond.resource.name',
             'splittermond.resource.punkte'
         ];
-        return PlayerDataService.getTableData(actor, mods, ItemType.Resource, tableFields, (ms: Item<Resource>) => ([
-            ms.name,
-            `${ms.data.data.punkte}`
-        ]));
+        const getFields = (ms: Item<Resource>) => {
+            const fields = [
+                ms.name,
+                `${ms.data.data.punkte}`
+            ];
+            return {
+                fields
+            };
+        };
+        return PlayerDataService.getTableData(actor, mods, ItemType.Resource, tableFields, getFields);
     }
 
     private static getMondzeichen(actor: Actor<PlayerCharacter>, mods: Modifiers): Partial<Mondzeichen> & {img?: string} {
@@ -376,10 +468,15 @@ export class PlayerDataService {
         };
     }
 
-    private static getTableData(actor: Actor, modifiers: Modifiers, type: ItemType, tableFields: Array<string>, getFields: (item: Item<any>) => Array<string>): TableData {
+    private static getTableData(
+        actor: Actor,
+        modifiers: Modifiers,
+        type: ItemType,
+        tableFields: Array<string>, getFields: (item: Item<any>) => { fields: Array<string>, roll?: number }
+    ): TableData {
         const tableData = actor.items.filter(i => i.type === type).map((item: Item<Fertigkeit>) => ({
             id: item.id,
-            fields: getFields(item)
+            ...getFields(item)
         }));
         return {
             tableFields,

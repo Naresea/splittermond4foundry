@@ -4,6 +4,7 @@ import {ItemType} from '../../models/item-type';
 import {getSheetClass} from '../../item/register-item-sheets';
 import {PlayerDataService} from '../../services/player-data-service';
 import {CalculationService} from '../../services/calculation-service';
+import {RollService} from '../../services/roll-service';
 
 export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
 
@@ -48,6 +49,9 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
             }
             if (operation === 'sp-reduce') {
                 this.removeSplitterpunkt();
+            }
+            if (operation === 'roll') {
+                RollService.roll(evt as unknown as Event, this.actor);
             }
         });
     }
