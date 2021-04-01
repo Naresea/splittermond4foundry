@@ -57,7 +57,7 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
     }
 
     protected _updateObject(event: Event | JQuery.Event, formData: any): Promise<any> {
-        formData = this.updateViewHealthAndFokus(formData);
+        formData = this.updateViewSpecificData(formData);
         return super._updateObject(event, formData);
     }
 

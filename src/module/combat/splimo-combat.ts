@@ -1,12 +1,4 @@
-import {CalculationService} from '../services/calculation-service';
-
 export class SplimoCombat extends Combat {
-
-    // actually overrides a method in the Combat class.
-    public _getInitiativeFormula(c: any): string {
-        const ini = CalculationService.getInitiative(c.actor);
-        return `${ini} - 1d6`;
-    }
 
     _sortCombatants(a: any, b: any): any {
         const ia = Number.isNumeric(a.initiative) ? a.initiative : -9999;

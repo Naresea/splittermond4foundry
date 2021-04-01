@@ -2,6 +2,10 @@ import {SplimoCombat} from './splimo-combat';
 
 export function registerCombat(): void {
     CONFIG.Combat.entityClass = SplimoCombat;
+    (CONFIG.Combat as any).initiative = {
+        formula: `@initiativeTotal - 1d6`,
+        decimals: 2
+    };
 
     Hooks.on('renderCombatTracker', async (app, html, options) => {
         const elems = [

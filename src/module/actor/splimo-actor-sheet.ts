@@ -97,12 +97,14 @@ export abstract class SplimoActorSheet<T extends AnySplimoActor> extends ActorSh
         }).then(() => this.render());
     }
 
-    protected updateViewHealthAndFokus(formData: any): any {
+    protected updateViewSpecificData(formData: any): any {
         const viewHealth = formData['data.view.health.asString'];
         const viewMaxHealth = formData['data.view.health.max'];
 
         const viewFokus = formData['data.view.fokus.asString'];
         const viewMaxFokus = formData['data.view.fokus.max'];
+
+        const viewInitiative = formData['data.view.initiative'];
 
         if (viewHealth) {
             const health = CalculationService.fromEKVString(viewHealth);
@@ -131,6 +133,12 @@ export abstract class SplimoActorSheet<T extends AnySplimoActor> extends ActorSh
                 delete formData['data.view.fokus.max'];
             }
         }
+
+        if (viewInitiative != null) {
+            formData['data.initiativeTotal'] = viewInitiative;
+            delete formData['data.view.initiative'];
+        }
+
         return formData;
     }
 }

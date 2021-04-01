@@ -25,7 +25,7 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
     }
 
     protected _updateObject(event: Event | JQuery.Event, formData: any): Promise<any> {
-        formData = this.updateViewHealthAndFokus(formData);
+        formData = this.updateViewSpecificData(formData);
 
         if (formData['data.mondzeichen.beschreibung']) {
             delete formData['data.mondzeichen.beschreibung'];

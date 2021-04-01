@@ -6,6 +6,7 @@ export interface DerivedAttributes {
     VTD: number;
     GW: number;
     KW: number;
+    initiativeTotal: number;
 }
 
 export const DERIVED_ATTRIBUTES: Array<keyof DerivedAttributes> = [

@@ -26,6 +26,7 @@
                         <i class="fas fa-dice-d20 clickable" style="margin-right: 5px;" data-operation="iniRoll" data-roll="{{sum data.INI (getByKey data.attributeModifier "INI")}}"></i>
                         <span style="margin-right: 5px;">{{localize "splittermond.indicator.ini"}}</span>
                         <span>{{sum data.INI (getByKey data.attributeModifier "INI")}}</span>
+                        <input type="number" style="display: none" name="data.initiativeTotal" value="{{sum data.INI (getByKey data.attributeModifier "INI")}}"/>
                     </div>
                 </div>
 
