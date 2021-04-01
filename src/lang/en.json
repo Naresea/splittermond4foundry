@@ -176,5 +176,14 @@
     "splittermond.diceroll.shortcuts": "Tipp: bei gedrückter [ALT] Taste kommt dieser Dialog nicht.<br>[ALT + SHIFT] = Risikowurf,<br>[ALT + CTRL] = Sicherheitswurf.",
     "splittermond.diceroll.sicherheitswurf": "Sicherheit",
     "splittermond.diceroll.standard": "Standard",
-    "splittermond.diceroll.risiko": "Risiko"
+    "splittermond.diceroll.risiko": "Risiko",
+    "splittermond.inventar.vermoegen.header": "Vermögen",
+    "splittermond.inventar.vermoegen.solare": "Solare",
+    "splittermond.inventar.vermoegen.lunare": "Lunare",
+    "splittermond.inventar.vermoegen.tellare": "Tellare",
+    "splittermond.biography.erfahrungNaechsterHeldengrad": "N. HG",
+    "splittermond.biography.erfahrungEingesetzt": "Eing.",
+    "splittermond.biography.erfahrungGesamt": "XP",
+    "splittermond.biography.heldengrad": "HG",
+    "splittermond.biography.backstory": "Hintergrundgeschichte"
 }

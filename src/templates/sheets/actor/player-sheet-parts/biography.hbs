@@ -84,10 +84,31 @@
             <label class="col-4" for="data.geburtsort">{{localize "splittermond.biography.geburtsort"}}</label>
             <input class="col-6" type="text" name="data.geburtsort" value="{{data.geburtsort}}"/>
         </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <div class="d-flex flex-col flex-grow">
+                <label class="col-4" for="data.heldengrad">{{localize "splittermond.biography.heldengrad"}}</label>
+                <input class="col-6" type="number" name="data.heldengrad" value="{{data.heldengrad}}"/>
+            </div>
+            <div class="d-flex flex-col flex-grow">
+                <label class="col-4" for="data.erfahrungGesamt">{{localize "splittermond.biography.erfahrungGesamt"}}</label>
+                <input class="col-6" type="number" name="data.erfahrungGesamt" value="{{data.erfahrungGesamt}}"/>
+            </div>
+            <div class="d-flex flex-col flex-grow">
+                <label class="col-4" for="data.erfahrungEingesetzt">{{localize "splittermond.biography.erfahrungEingesetzt"}}</label>
+                <input class="col-6" type="number" name="data.erfahrungEingesetzt" value="{{data.erfahrungEingesetzt}}"/>
+            </div>
+            <div class="d-flex flex-col flex-grow">
+                <label class="col-4" for="data.erfahrungNaechsterHeldengrad" style="white-space: nowrap">{{localize "splittermond.biography.erfahrungNaechsterHeldengrad"}}</label>
+                <input class="col-6" type="number" name="data.erfahrungNaechsterHeldengrad" value="{{data.erfahrungNaechsterHeldengrad}}"/>
+            </div>
+        </div>
     </div>
-    <div class="d-flex flex-col flex-grow p-small textbox">
-        {{#> systems/splittermond/templates/partials/includes/editor.hbs target="data.backstory" content=data.backstory}}
-        {{/systems/splittermond/templates/partials/includes/editor.hbs}}
+    <div class="d-flex flex-col flex-grow p-small">
+        <h4>{{localize "splittermond.biography.backstory"}}</h4>
+            <div class="d-flex flex-grow flex-col textbox">
+            {{#> systems/splittermond/templates/partials/includes/editor.hbs target="data.backstory" content=data.backstory}}
+            {{/systems/splittermond/templates/partials/includes/editor.hbs}}
+        </div>
     </div>
 
 </div>

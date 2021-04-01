@@ -1,9 +1,25 @@
 <div class="inventar d-flex flex-col flex-grow overflow-hidden">
     <div class="d-flex flex-grow" style="max-height: 100%; overflow: hidden;">
         <div class="d-flex flex-col flex-grow">
+            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.vermoegen.header"}}</h3>
+            <div class="d-flex align-items-center">
+                <div class="d-flex flex-col flex-grow">
+                    <label for="data.solare">{{localize "splittermond.inventar.vermoegen.solare"}}</label>
+                    <input type="number" name="data.solare" value="{{data.solare}}"/>
+                </div>
+                <div class="d-flex flex-col flex-grow">
+                    <label for="data.lunare">{{localize "splittermond.inventar.vermoegen.lunare"}}</label>
+                    <input type="number" name="data.lunare" value="{{data.lunare}}"/>
+                </div>
+                <div class="d-flex flex-col flex-grow">
+                    <label for="data.tellare">{{localize "splittermond.inventar.vermoegen.tellare"}}</label>
+                    <input type="number" name="data.tellare" value="{{data.tellare}}"/>
+                </div>
+            </div>
+
             {{!-- Consumable / Benutzbar --}}
             <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.benutzbares.header"}}</h3>
-            <div style="min-height: 33%; max-height: 33%; overflow: hidden">
+            <div style="min-height: 30%; max-height: 30%; overflow: hidden">
                 {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="consumable-list" dynamic=true item=data.benutzbares.tableData fields=data.benutzbares.tableFields}}
                     {{#*inline "icons-end"}}
                         <i class="fas fa-plus clickable" data-operation="add" data-type="benutzbar"></i>
@@ -20,7 +36,7 @@
             </div>
             {{!-- Sonstige Gegenstaende --}}
             <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.sonstiges.header"}}</h3>
-            <div style="min-height: 57%; max-height: 57%; overflow: hidden">
+            <div style="min-height: 30%; max-height: 30%; overflow: hidden">
                 {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="items-list" dynamic=true item=data.sonstiges.tableData fields=data.sonstiges.tableFields}}
                     {{#*inline "icons-end"}}
                         <i class="fas fa-plus clickable" data-operation="add" data-type="gegenstand"></i>
