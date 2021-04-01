@@ -24,6 +24,7 @@ import {registerActorSheets} from './module/actor/register-actor-sheets';
 import {registerItemSheets} from './module/item/register-item-sheets';
 import {registerCombat} from './module/combat/register-combat';
 import {registerHelpers} from './module/handlebars/registerHelpers';
+import {setupMacroHelpers} from './module/macros/setup-macro-helpers';
 
 /* ------------------------------------ */
 /* Initialize system					*/
@@ -39,6 +40,7 @@ Hooks.once('init', async function() {
 	registerCombat();
 	registerActorSheets();
 	registerItemSheets();
+	setupMacroHelpers();
 });
 
 /* ------------------------------------ */
