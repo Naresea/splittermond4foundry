@@ -21,6 +21,12 @@
                         <span style="margin-right: 5px;">{{localize "splittermond.indicator.gw"}}</span>
                         <span>{{data.derivedAttributes.GW.total}}</span>
                     </div>
+
+                    <div class="d-flex flex-grow" style="justify-content: flex-end">
+                        <i class="fas fa-dice-d20 clickable" style="margin-right: 5px;" data-operation="iniRoll" data-roll="{{data.derivedAttributes.INI.total}}"></i>
+                        <span style="margin-right: 5px;">{{localize "splittermond.indicator.ini"}}</span>
+                        <span>{{data.derivedAttributes.INI.total}}</span>
+                    </div>
                 </div>
 
                 <div class="d-flex flex-grow" style="padding-left: 90px;">

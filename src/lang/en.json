@@ -157,5 +157,6 @@
     "splittermond.fertigkeit.type.label": "Fertigkeitsart",
     "splittermond.fertigkeit.type.allgemein": "Allgemein",
     "splittermond.fertigkeit.type.kampf": "Kampf",
-    "splittermond.fertigkeit.type.magie": "Magie"
+    "splittermond.fertigkeit.type.magie": "Magie",
+    "splittermond.indicator.ini": "INI"
 }

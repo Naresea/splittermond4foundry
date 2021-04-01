@@ -53,6 +53,9 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
             if (operation === 'roll') {
                 RollService.roll(evt as unknown as Event, this.actor);
             }
+            if (operation === 'iniRoll') {
+                RollService.rollInitiative(evt as unknown as Event, this.actor);
+            }
         });
     }
 

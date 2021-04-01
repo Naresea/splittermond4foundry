@@ -6,8 +6,21 @@ import {ItemType} from '../models/item-type';
 import {Fertigkeit} from '../models/items/fertigkeit';
 import {Waffe} from '../models/items/waffe';
 import {Schild} from '../models/items/schild';
+import {PlayerDataService} from './player-data-service';
+import {ActorType} from '../models/actor-type';
+import {PlayerCharacter} from '../models/actors/player-character';
+import {NonPlayerCharacter} from '../models/actors/non-player-character';
 
 export class CalculationService {
+
+    public static getInitiative(actor: Actor): number {
+        if (actor.data.type === ActorType.PlayerCharacter) {
+            const data = PlayerDataService.getPlayerData(actor as Actor<PlayerCharacter>);
+            return data.derivedAttributes.INI.total;
+        } else {
+            return (actor as Actor<NonPlayerCharacter>).data.data.INI ?? 0;
+        }
+    }
 
     public static getAttributeValue(actor: Actor, attribute: keyof Attributes | keyof DerivedAttributes, mods: Modifiers): number {
         const startValue = actor.data.data[attribute] ?? 0;

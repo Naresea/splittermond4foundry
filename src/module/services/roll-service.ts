@@ -22,6 +22,21 @@ export class RollService {
         RollService.evaluateResult(result, ctrlKey, actor);
     }
 
+    public static rollInitiative(evt: Event, actor: Actor): void {
+        const target = evt?.currentTarget;
+        const dataset = (target as HTMLElement | undefined)?.dataset;
+        const rollModifier = dataset?.roll;
+
+        if (rollModifier == null || !Number.isNumeric(rollModifier)) {
+            return;
+        }
+        const formula = `${rollModifier} - 1d6`;
+
+        const roll = new Roll(formula, actor.data.data);
+        const result = roll.evaluate();
+        RollService.result(result, actor);
+    }
+
     private static riskRoll(mod: number): string {
         return `4d10kh2 + ${mod}`;
     }
