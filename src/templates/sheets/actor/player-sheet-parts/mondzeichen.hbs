@@ -1,0 +1,30 @@
+<div class="biography d-flex flex-row flex-grow overflow-hidden">
+    <div class="d-flex flex-col flex-grow p-small overflow-hidden">
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4">{{localize "splittermond.mondzeichen-sheet.mondzeichen"}}</label>
+            <div class="col-5">{{data.mondzeichen.name}}</div>
+            <div class="col-1 d-flex align-items-center" style="justify-content: flex-end">
+                {{#if data.mondzeichen.name}}
+                    <i class="fas fa-edit clickable" data-operation="edit" data-type="mondzeichen" style="margin-right: 5px"></i>
+                    <i class="fas fa-trash clickable" data-operation="delete" data-type="mondzeichen"></i>
+                {{/if}}
+                {{#unless data.mondzeichen.name}}
+                    <i class="fas fa-plus  clickable" data-operation="add" data-type="mondzeichen"></i>
+                {{/unless}}
+            </div>
+        </div>
+        {{#if data.mondzeichen.img}}
+            <div class="d-flex; flex-grow; align-items-center; justify-items-center">
+                <img src="{{data.mondzeichen.img}}" style="width: 100%; height: 100%;"/>
+            </div>
+        {{/if}}
+    </div>
+    <div class="d-flex flex-col flex-grow p-small textbox">
+        <div class="d-flex flex-col" style="min-height: 100%; max-height: 100%; overflow-y: auto; overflow-x: hidden;">
+            {{#if data.mondzeichen.beschreibung}}
+                {{#print content=data.mondzeichen.beschreibung}}
+                {{/print}}
+            {{/if}}
+        </div>
+    </div>
+</div>

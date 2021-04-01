@@ -15,6 +15,11 @@ export const preloadTemplates = async function() {
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/fertigkeiten.hbs',
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/inventory.hbs',
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/zauber.hbs',
+		'systems/splittermond/templates/sheets/actor/player-sheet-parts/meisterschaften.hbs',
+		'systems/splittermond/templates/sheets/actor/player-sheet-parts/merkmale-zustaende.hbs',
+		'systems/splittermond/templates/sheets/actor/player-sheet-parts/staerken-schwaechen.hbs',
+		'systems/splittermond/templates/sheets/actor/player-sheet-parts/resourcen.hbs',
+		'systems/splittermond/templates/sheets/actor/player-sheet-parts/mondzeichen.hbs',
 	];
 
 	const templatePaths = [

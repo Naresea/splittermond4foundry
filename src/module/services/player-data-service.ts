@@ -1,6 +1,6 @@
 import {PlayerCharacter} from '../models/actors/player-character';
 import {ATTRIBUTES, Attributes} from '../models/actors/attributes';
-import {DERIVED_ATTRIBUTES, DerivedAttributes} from '../models/actors/derived-attributes';
+import {DerivedAttributes} from '../models/actors/derived-attributes';
 import {Modifiers, ModifierService} from './modifier-service';
 import {ItemType} from '../models/item-type';
 import {ModifierType} from '../models/items/modifier';
@@ -12,6 +12,13 @@ import {Ruestung} from '../models/items/ruestung';
 import {Benutzbar} from '../models/items/benutzbar';
 import {Gegenstand} from '../models/items/gegenstand';
 import {buildFokusString, Zauber} from '../models/items/zauber';
+import {Meisterschaft} from '../models/items/meisterschaft';
+import {Mondzeichen} from '../models/items/mondzeichen';
+import {Staerke} from '../models/items/staerke';
+import {Schwaeche} from '../models/items/schwaeche';
+import {Zustand} from '../models/items/zustand';
+import {Merkmal} from '../models/items/merkmal';
+import {Resource} from '../models/items/resource';
 
 interface TableData {
     tableFields: Array<string>;
@@ -61,6 +68,14 @@ export type PlayerData = Record<string, unknown> & {
     benutzbares: TableData;
     sonstiges: TableData;
     zauber: TableData;
+    meisterschaften: TableData;
+    staerken: TableData;
+    schwaechen: TableData;
+    resourcen: TableData;
+    merkmale: TableData;
+    zustaende: TableData;
+    mondzeichen: Partial<Mondzeichen> & {img?: string};
+    view: ViewSpecificData
 }
 
 
@@ -79,6 +94,13 @@ export class PlayerDataService {
         const sonstiges = PlayerDataService.getSonstiges(actor, modifiers);
         const zauber = PlayerDataService.getZauber(actor, modifiers);
         const view = PlayerDataService.getViewSpecificData(actor, modifiers, attributes, derivedAttributes);
+        const meisterschaften = PlayerDataService.getMeisterschaften(actor, modifiers);
+        const staerken = PlayerDataService.getStaerken(actor, modifiers);
+        const schwaechen = PlayerDataService.getSchwaechen(actor, modifiers);
+        const zustaende = PlayerDataService.getZustaende(actor, modifiers);
+        const merkmale = PlayerDataService.getMerkmale(actor, modifiers);
+        const resourcen = PlayerDataService.getResourcen(actor, modifiers);
+        const mondzeichen = PlayerDataService.getMondzeichen(actor, modifiers);
 
         return {
             ...actor.data.data,
@@ -92,7 +114,14 @@ export class PlayerDataService {
             benutzbares,
             sonstiges,
             zauber,
-            view
+            view,
+            meisterschaften,
+            staerken,
+            schwaechen,
+            merkmale,
+            zustaende,
+            resourcen,
+            mondzeichen
         }
     }
 
@@ -280,6 +309,73 @@ export class PlayerDataService {
         ]));
     }
 
+    private static getMeisterschaften(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
+        const tableFields = [
+            'splittermond.meisterschaft.name',
+            'splittermond.meisterschaft.fertigkeit'
+        ];
+        return PlayerDataService.getTableData(actor, mods, ItemType.Meisterschaft, tableFields, (ms: Item<Meisterschaft>) => ([
+            ms.name,
+            ms.data.data.fertigkeit
+        ]));
+    }
+
+    private static getStaerken(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
+        const tableFields = [
+            'splittermond.staerke.name',
+        ];
+        return PlayerDataService.getTableData(actor, mods, ItemType.Staerke, tableFields, (ms: Item<Staerke>) => ([
+            ms.name
+        ]));
+    }
+
+    private static getSchwaechen(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
+        const tableFields = [
+            'splittermond.schwaeche.name',
+        ];
+        return PlayerDataService.getTableData(actor, mods, ItemType.Schwaeche, tableFields, (ms: Item<Schwaeche>) => ([
+            ms.name,
+        ]));
+    }
+
+    private static getZustaende(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
+        const tableFields = [
+            'splittermond.zustand.name',
+        ];
+        return PlayerDataService.getTableData(actor, mods, ItemType.Zustand, tableFields, (ms: Item<Zustand>) => ([
+            ms.name
+        ]));
+    }
+
+    private static getMerkmale(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
+        const tableFields = [
+            'splittermond.merkmal.name',
+        ];
+        return PlayerDataService.getTableData(actor, mods, ItemType.Merkmal, tableFields, (ms: Item<Merkmal>) => ([
+            ms.name,
+        ]));
+    }
+
+    private static getResourcen(actor: Actor<PlayerCharacter>, mods: Modifiers): TableData {
+        const tableFields = [
+            'splittermond.resource.name',
+            'splittermond.resource.punkte'
+        ];
+        return PlayerDataService.getTableData(actor, mods, ItemType.Resource, tableFields, (ms: Item<Resource>) => ([
+            ms.name,
+            `${ms.data.data.punkte}`
+        ]));
+    }
+
+    private static getMondzeichen(actor: Actor<PlayerCharacter>, mods: Modifiers): Partial<Mondzeichen> & {img?: string} {
+        const mondzeichen = actor.items.find(i => i.type === ItemType.Mondzeichen);
+        return {
+            ...(mondzeichen?.data.data ?? {}),
+            name: mondzeichen?.name,
+            img: mondzeichen?.img
+        };
+    }
+
     private static getTableData(actor: Actor, modifiers: Modifiers, type: ItemType, tableFields: Array<string>, getFields: (item: Item<any>) => Array<string>): TableData {
         const tableData = actor.items.filter(i => i.type === type).map((item: Item<Fertigkeit>) => ({
             id: item.id,
@@ -315,4 +411,5 @@ export class PlayerDataService {
             fokus
         };
     }
+
 }

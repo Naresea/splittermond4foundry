@@ -1,0 +1,36 @@
+<div class="merkmale d-flex flex-col flex-grow overflow-hidden">
+    <h3>{{localize "splittermond.header.merkmale"}}</h3>
+    {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="merkmale-list" dynamic=true item=data.merkmale.tableData fields=data.merkmale.tableFields}}
+        {{#*inline "icons-end"}}
+            <i class="fas fa-plus clickable" data-operation="add" data-type="merkmal"></i>
+        {{/inline}}
+        {{#*inline "item-template"}}
+            {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
+                {{#*inline "icons-end"}}
+                    <i class="fas fa-edit clickable" data-operation="edit" data-type="merkmal" data-click-id="{{id}}"></i>
+                    <i class="fas fa-trash clickable" data-operation="delete" data-type="merkmal" data-click-id="{{id}}"></i>
+                {{/inline}}
+            {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+        {{/inline}}
+    {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
+</div>
+
+{{#> systems/splittermond/templates/partials/includes/separator-vertical.hbs}}
+{{/systems/splittermond/templates/partials/includes/separator-vertical.hbs}}
+
+<div class="zustaende d-flex flex-col flex-grow overflow-hidden">
+    <h3>{{localize "splittermond.header.zustaende"}}</h3>
+    {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="zustaende-list" dynamic=true item=data.zustaende.tableData fields=data.zustaende.tableFields}}
+        {{#*inline "icons-end"}}
+            <i class="fas fa-plus clickable" data-operation="add" data-type="zustand"></i>
+        {{/inline}}
+        {{#*inline "item-template"}}
+            {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
+                {{#*inline "icons-end"}}
+                    <i class="fas fa-edit clickable" data-operation="edit" data-type="zustand" data-click-id="{{id}}"></i>
+                    <i class="fas fa-trash clickable" data-operation="delete" data-type="zustand" data-click-id="{{id}}"></i>
+                {{/inline}}
+            {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+        {{/inline}}
+    {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
+</div>

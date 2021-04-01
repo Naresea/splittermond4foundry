@@ -47,7 +47,7 @@
                         <span style="font-size: 1rem; font-weight: bold; {{memeText "black" "lightgrey" "1px"}}">{{data.view.health.current}} / {{data.view.health.max}}</span>
                     {{/inline}}
                     {{#*inline "title"}}
-                        <span style="font-size: 1rem; font-weight: bold;">Lebenspunkte</span>
+                        <span style="font-size: 1rem; font-weight: bold;">{{localize "splittermond.indicator.hp"}}</span>
                     {{/inline}}
                     {{#*inline "inputField"}}
                         <input type="text" name="data.view.health.asString" value="{{data.view.health.asString}}"/>
@@ -61,7 +61,7 @@
                         <span style="font-size: 1rem; font-weight: bold; {{memeText "black" "lightgrey" "1px"}}">{{data.view.fokus.current}} / {{data.view.fokus.max}}</span>
                     {{/inline}}
                     {{#*inline "title"}}
-                        <span style="font-size: 1rem; font-weight: bold;">Fokus</span>
+                        <span style="font-size: 1rem; font-weight: bold;">{{localize "splittermond.indicator.fokus"}}</span>
                     {{/inline}}
                     {{#*inline "inputField"}}
                         <input type="text" name="data.view.fokus.asString" value="{{data.view.fokus.asString}}"/>
@@ -77,6 +77,11 @@
         <a class="item control-height" data-tab="fertigkeiten">{{localize "splittermond.pc.nav.fertigkeiten"}}</a>
         <a class="item control-height" data-tab="inventory">{{localize "splittermond.pc.nav.inventar"}}</a>
         <a class="item control-height" data-tab="zauber">{{localize "splittermond.pc.nav.zauber"}}</a>
+        <a class="item control-height" data-tab="meisterschaften">{{localize "splittermond.pc.nav.meisterschaften"}}</a>
+        <a class="item control-height" data-tab="merkmale">{{localize "splittermond.pc.nav.merkmale"}}</a>
+        <a class="item control-height" data-tab="staerken">{{localize "splittermond.pc.nav.staerken"}}</a>
+        <a class="item control-height" data-tab="resourcen">{{localize "splittermond.pc.nav.resourcen"}}</a>
+        <a class="item control-height" data-tab="mondzeichen">{{localize "splittermond.pc.nav.mondzeichen"}}</a>
     {{/inline}}
     {{#*inline "nav-content"}}
         <div class="tab overflow-hidden" data-group="primary" data-tab="description">
@@ -98,6 +103,26 @@
         <div class="tab overflow-hidden" data-group="primary" data-tab="zauber">
             {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/zauber.hbs}}
             {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/zauber.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="meisterschaften">
+            {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/meisterschaften.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/meisterschaften.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="merkmale">
+            {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/merkmale-zustaende.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/merkmale-zustaende.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="staerken">
+            {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/staerken-schwaechen.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/staerken-schwaechen.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="resourcen">
+            {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/resourcen.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/resourcen.hbs}}
+        </div>
+        <div class="tab overflow-hidden" data-group="primary" data-tab="mondzeichen">
+            {{#> systems/splittermond/templates/sheets/actor/player-sheet-parts/mondzeichen.hbs}}
+            {{/systems/splittermond/templates/sheets/actor/player-sheet-parts/mondzeichen.hbs}}
         </div>
     {{/inline}}
 {{/systems/splittermond/templates/partials/layouts/layout-actor.hbs}}

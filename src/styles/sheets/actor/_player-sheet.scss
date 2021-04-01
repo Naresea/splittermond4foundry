@@ -14,12 +14,24 @@
   }
 
   .navbar {
-    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
     height: 80%;
     background-image: url('assets/custom/banner.webp');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding-top: 20px;
+    padding-bottom: 20px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+
+    .navbar-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
 
     .item {
       min-height: var(--control-size);

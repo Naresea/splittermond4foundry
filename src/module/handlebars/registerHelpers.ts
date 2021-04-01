@@ -74,4 +74,12 @@ export function registerHelpers(): void {
     Handlebars.registerHelper('clampMax', (numA: number, numB: number, ctx): number => {
         return Math.min(numA, numB);
     });
+
+    Handlebars.registerHelper('print', (options): any => {
+        return new Handlebars.SafeString(options.hash['content']);
+    });
+
+    Handlebars.registerHelper('isNotNull', (val: unknown) => {
+        return val !== null && val !== undefined;
+    });
 }

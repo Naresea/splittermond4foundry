@@ -114,6 +114,10 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
             }
         }
 
+        if (formData['data.mondzeichen.beschreibung']) {
+            delete formData['data.mondzeichen.beschreibung'];
+        }
+
         return super._updateObject(event, formData);
     }
 
