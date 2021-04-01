@@ -1,66 +1,5 @@
 <div class="inventar d-flex flex-col flex-grow overflow-hidden">
     <div class="d-flex flex-grow" style="max-height: 100%; overflow: hidden;">
-        {{!-- left side --}}
-        <div class="d-flex flex-col flex-grow">
-            {{!-- Waffen --}}
-            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.waffen.header"}}</h3>
-            <div style="min-height: 25%; max-height: 25%; overflow: hidden">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="waffen-list" dynamic=true item=data.waffen.tableData fields=data.waffen.tableFields}}
-                    {{#*inline "icons-end"}}
-                        <i class="fas fa-plus clickable" data-operation="add" data-type="waffe"></i>
-                    {{/inline}}
-                    {{#*inline "item-template"}}
-                        {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                            {{#*inline "icons-end"}}
-                                <i class="fas fa-edit clickable" data-operation="edit" data-type="waffe" data-click-id="{{id}}"></i>
-                                <i class="fas fa-trash clickable" data-operation="delete" data-type="waffe" data-click-id="{{id}}"></i>
-                            {{/inline}}
-                        {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                    {{/inline}}
-                {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-            </div>
-
-            {{!-- Rüstungen --}}
-            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.ruestungen.header"}}</h3>
-            <div style="min-height: 25%; max-height: 25%; overflow: hidden">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="ruestung-list" dynamic=true item=data.ruestungen.tableData fields=data.ruestungen.tableFields}}
-                    {{#*inline "icons-end"}}
-                        <i class="fas fa-plus clickable" data-operation="add" data-type="ruestung"></i>
-                    {{/inline}}
-                    {{#*inline "item-template"}}
-                        {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                            {{#*inline "icons-end"}}
-                                <i class="fas fa-edit clickable" data-operation="edit" data-type="ruestung" data-click-id="{{id}}"></i>
-                                <i class="fas fa-trash clickable" data-operation="delete" data-type="ruestung" data-click-id="{{id}}"></i>
-                            {{/inline}}
-                        {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                    {{/inline}}
-                {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-            </div>
-            {{!-- Schilde --}}
-            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.schilde.header"}}</h3>
-            <div style="min-height: 25%; max-height: 25%; overflow: hidden">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="schild-list" dynamic=true item=data.schilde.tableData fields=data.schilde.tableFields}}
-                    {{#*inline "icons-end"}}
-                        <i class="fas fa-plus clickable" data-operation="add" data-type="schild"></i>
-                    {{/inline}}
-                    {{#*inline "item-template"}}
-                        {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                            {{#*inline "icons-end"}}
-                                <i class="fas fa-edit clickable" data-operation="edit" data-type="schild" data-click-id="{{id}}"></i>
-                                <i class="fas fa-trash clickable" data-operation="delete" data-type="schild" data-click-id="{{id}}"></i>
-                            {{/inline}}
-                        {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                    {{/inline}}
-                {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-            </div>
-        </div>
-        {{!-- end left side --}}
-
-        {{#> systems/splittermond/templates/partials/includes/separator-vertical.hbs}}
-        {{/systems/splittermond/templates/partials/includes/separator-vertical.hbs}}
-
-        {{!--right side --}}
         <div class="d-flex flex-col flex-grow">
             {{!-- Consumable / Benutzbar --}}
             <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.benutzbares.header"}}</h3>
@@ -97,6 +36,5 @@
                 {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
             </div>
         </div>
-        {{!-- end right side --}}
     </div>
 </div>

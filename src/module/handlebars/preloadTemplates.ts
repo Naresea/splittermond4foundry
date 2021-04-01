@@ -20,6 +20,7 @@ export const preloadTemplates = async function() {
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/staerken-schwaechen.hbs',
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/resourcen.hbs',
 		'systems/splittermond/templates/sheets/actor/player-sheet-parts/mondzeichen.hbs',
+		'systems/splittermond/templates/sheets/actor/player-sheet-parts/ausruestung.hbs',
 	];
 
 	const templatePaths = [

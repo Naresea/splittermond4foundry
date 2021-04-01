@@ -5,8 +5,7 @@
     --control-size: 40px;
     --list-item-height: 25px;
 
-    @import '~@fortawesome/fontawesome-free/css/all.min.css';
-
+    @import 'scrollbar';
     @import 'layout';
     @import "helpers";
     @import 'includes/portrait';
