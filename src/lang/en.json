@@ -190,5 +190,12 @@
     "splittermond.tickdialog.modifier": "Ticks",
     "splittermond.tickdialog.armorModifier": "Rüstungsmalus",
     "splittermond.tickdialog.cancel": "Abbrechen",
-    "splittermond.diceroll.ok": "Ok"
+    "splittermond.diceroll.ok": "Ok",
+    "splittermond.equipment.isEquipped": "Ausgerüstet",
+    "splittermond.meisterschaft.isManeuver": "Manöver?",
+    "splittermond.meisterschaft.egCost": "Erfolgsgrade",
+    "splittermond.meisterschaft.maneuverEffekt": "Effekt",
+    "splittermond.equipment.merkmale": "Merkmale",
+    "splittermond.inventar.schilde.wert": "Wert",
+    "splittermond.inventar.waffen.wert": "Wert"
 }

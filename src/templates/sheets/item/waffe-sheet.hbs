@@ -6,6 +6,10 @@
         <div class="tab" data-group="primary" data-tab="weapon">
             <div class="d-flex flex-col flex-grow">
                 <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.isEquipped">{{localize "splittermond.equipment.isEquipped"}}</label>
+                    <input class="col-6" type="checkbox" name="data.isEquipped" {{checked data.isEquipped}}/>
+                </div>
+                <div class="d-flex align-items-center m-small">
                     <label class="col-4" for="data.schaden">{{localize "splittermond.waffe.schaden"}}</label>
                     <input class="col-6" type="text" name="data.schaden" value="{{data.schaden}}"/>
                 </div>
@@ -20,6 +24,10 @@
                 <div class="d-flex align-items-center m-small">
                     <label class="col-4" for="data.mod">{{localize "splittermond.waffe.mod"}}</label>
                     <input class="col-6" type="number" name="data.mod" value="{{data.mod}}"/>
+                </div>
+                <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.merkmale">{{localize "splittermond.equipment.merkmale"}}</label>
+                    <input class="col-6" type="text" name="data.merkmale" value="{{data.merkmale}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
                     <label class="col-4" for="data.attribute">{{localize "splittermond.waffe.attributEins"}}</label>

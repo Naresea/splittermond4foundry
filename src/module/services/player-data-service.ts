@@ -20,12 +20,25 @@ import {Zustand} from '../models/items/zustand';
 import {Merkmal} from '../models/items/merkmal';
 import {Resource} from '../models/items/resource';
 
+interface RollInfo {
+    explanation?: string;
+    ticks?: number;
+    ticksExplanation?: string;
+    fokusCost?: number;
+    maneuver?: {
+        egCost?: number;
+        effekt?: number;
+    }
+}
+
 interface TableData {
     tableFields: Array<string>;
     tableData: Array<{
         fields: Array<string>;
         id: string;
         roll?: number;
+        rollInfo?: RollInfo;
+        equipped?: boolean;
     }>
 }
 
@@ -215,6 +228,7 @@ export class PlayerDataService {
     public static getWaffen(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.inventar.waffen.name',
+            'splittermond.inventar.waffen.wert',
             'splittermond.inventar.waffen.fertigkeit',
             'splittermond.inventar.waffen.wgs',
             'splittermond.inventar.waffen.schaden',
@@ -223,16 +237,25 @@ export class PlayerDataService {
 
         const getFields = (waffe: Item<Waffe>) => {
             const roll = CalculationService.getWaffeOrSchildValue(actor, waffe.data.data, mods);
+            const tickPlus = ModifierService.totalMod(mods, null, {modType: ModifierType.TickPlus});
+
             const fields = [
                 `${waffe.name}`,
+                `${roll.total}`,
                 `${waffe.data.data.fertigkeit}`,
                 `${waffe.data.data.ticks}`,
                 `${waffe.data.data.schaden}`,
-                ``
+                `${waffe.data.data.merkmale}`
             ];
             return {
                 fields,
-                roll
+                roll: roll.total,
+                rollInfo: {
+                    explanation: roll.explanation,
+                    ticks: waffe.data.data.ticks + tickPlus,
+                    ticksExplanation: `WGS ${waffe.data.data.ticks} + Tick+ ${tickPlus}`
+                },
+                equipped: waffe.data.data.isEquipped
             };
         };
 
@@ -242,21 +265,25 @@ export class PlayerDataService {
     private static getSchilde(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.inventar.schilde.name',
+            'splittermond.inventar.schilde.wert',
             'splittermond.inventar.schilde.fertigkeit',
             'splittermond.inventar.schilde.vtd',
-            'splittermond.inventar.schilde.merkmale',
         ];
         const getFields = (schild: Item<Schild>) => {
             const roll = CalculationService.getWaffeOrSchildValue(actor, schild.data.data, mods);
             const fields = [
                 `${schild.name}`,
+                `${roll.total}`,
                 `${schild.data.data.fertigkeit}`,
                 `${schild.data.data.VTD}`,
-                ``,
             ];
             return {
                 fields,
-                roll
+                roll: roll.total,
+                rollInfo: {
+                    explanation: roll.explanation
+                },
+                equipped: schild.data.data.isEquipped
             };
         };
 
@@ -282,7 +309,8 @@ export class PlayerDataService {
                 ``
             ];
             return {
-                fields
+                fields,
+                equipped: ruestung.data.data.isEquipped
             };
         };
         return PlayerDataService.getTableData(actor, mods, ItemType.Ruestung, tableFields, getFields);

@@ -129,6 +129,10 @@
       },
       "action": {
         "ticks": 0
+      },
+      "equipment": {
+        "isEquipped": false,
+        "merkmale": ""
       }
     },
     "mondzeichen": {
@@ -154,7 +158,7 @@
       "wirdVerbraucht": true
     },
     "waffe": {
-      "templates": ["benutzbar"],
+      "templates": ["benutzbar", "equipment"],
       "attribute": "",
       "attributeSecondary": "",
       "fertigkeit": "",
@@ -162,7 +166,7 @@
       "schaden": "1d6"
     },
     "schild": {
-      "templates": ["gegenstand"],
+      "templates": ["gegenstand", "equipment"],
       "mod": 0,
       "VTD": 0,
       "fertigkeit": "",
@@ -170,7 +174,7 @@
       "attributeSecondary": "STR"
     },
     "ruestung": {
-      "templates": ["gegenstand"],
+      "templates": ["gegenstand", "equipment"],
       "VTD": 0,
       "SR": 0,
       "BEH": 0,
@@ -221,6 +225,9 @@
       "templates": ["info", "quelle"],
       "fertigkeit": "",
       "schwelle": 0,
+      "isManeuver": false,
+      "egCost": 0,
+      "maneuverEffekt": "",
       "modifier": []
     },
     "resource": {

@@ -108,6 +108,9 @@ export class ModifierService {
     }
 
     private static getRuestungModifier(v: Ruestung, sorted: Map<ItemType, Array<Item>>): Array<Modifier> {
+        if (!v.isEquipped) {
+            return [];
+        }
         const tickPlus = {
             type: ModifierType.TickPlus,
             target: ModifierType.TickPlus,
@@ -140,6 +143,9 @@ export class ModifierService {
     }
 
     private static getSchildModifier(v: Schild): Array<Modifier> {
+        if (!v.isEquipped) {
+            return [];
+        }
         const vtdModifier = {
             type: ModifierType.Attribute,
             target: 'VTD',

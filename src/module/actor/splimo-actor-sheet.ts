@@ -30,6 +30,12 @@ export abstract class SplimoActorSheet<T extends AnySplimoActor> extends ActorSh
             if (operation === 'delete' && type != null) {
                 this.deleteItem(type as ItemType, id)
             }
+            if (operation === 'equip') {
+                this.equipItem(type as ItemType, id);
+            }
+            if (operation === 'unequip') {
+                this.unequipItem(type as ItemType, id);
+            }
             if (operation === 'sp-add') {
                 this.addSplitterpunkt();
             }
@@ -140,5 +146,38 @@ export abstract class SplimoActorSheet<T extends AnySplimoActor> extends ActorSh
         }
 
         return formData;
+    }
+
+    private equipItem(type: ItemType, id: string): void {
+        const item = this.actor.items.find(item => item.type === type && (id == null || item.id === id));
+        if (item) {
+            const toUnequip = this.actor.items.filter(i => i.type === type && i._id !== item._id).map(i => ({
+                _id: i._id,
+                data: {
+                    isEquipped: false
+                }
+            }));
+            this.actor.updateOwnedItem([
+                ...toUnequip,
+                {
+                    _id: item.id,
+                    data: {
+                        isEquipped: true
+                    }
+                }
+            ]);
+        }
+    }
+
+    private unequipItem(type: ItemType, id: string): void {
+        const item = this.actor.items.find(item => item.type === type && (id == null || item.id === id));
+        if (item) {
+            this.actor.updateOwnedItem({
+                _id: item.id,
+                data: {
+                    isEquipped: false
+                }
+            });
+        }
     }
 }

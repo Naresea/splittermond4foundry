@@ -11,6 +11,11 @@ import {ActorType} from '../models/actor-type';
 import {PlayerCharacter} from '../models/actors/player-character';
 import {NonPlayerCharacter} from '../models/actors/non-player-character';
 
+export interface CalculationResult {
+    total: number;
+    explanation: string;
+}
+
 export class CalculationService {
 
     public static getInitiative(actor: Actor): number {
@@ -46,21 +51,33 @@ export class CalculationService {
         return attrEins + attrZwei + mod + fertigkeitItem.data.data.punkte + fertigkeitItem.data.data.mod;
     }
 
-    public static getWaffeOrSchildValue(actor: Actor, waffe: Waffe | Schild, mods: Modifiers): number {
+    public static getWaffeOrSchildValue(actor: Actor, waffe: Waffe | Schild, mods: Modifiers): CalculationResult {
         const fertigkeitItem: Item<Fertigkeit> | undefined =
             actor.items.find(item => item.type === ItemType.Fertigkeit && item.name === waffe.fertigkeit) as Item<Fertigkeit> | undefined;
 
         const attrEins = CalculationService.getAttributeValue(actor, waffe.attribute as keyof Attributes, mods);
         const attrZwei = CalculationService.getAttributeValue(actor, waffe.attributeSecondary as keyof Attributes, mods);
 
+        let total = attrEins + attrZwei + waffe.mod;
+        let explanation = `Waffe ${waffe.mod} + ${waffe.attribute} ${attrEins} + ${waffe.attributeSecondary} + ${attrZwei}`;
+
         if (!fertigkeitItem) {
-            return attrEins + attrZwei + waffe.mod;
+            return {
+                total,
+                explanation
+            }
         }
 
         const fertigkeitVal = fertigkeitItem.data.data.punkte + fertigkeitItem.data.data.mod;
         const fertigkeitMod = ModifierService.totalMod(mods, fertigkeitItem.name, {modType: ModifierType.Fertigkeit});
 
-        return attrEins + attrZwei + waffe.mod + fertigkeitVal + fertigkeitMod;
+        explanation += ` + ${waffe.fertigkeit} ${fertigkeitVal + fertigkeitMod}`;
+        total += fertigkeitVal + fertigkeitMod;
+
+        return {
+            total,
+            explanation
+        };
     }
 
     public static fromEKVString(ekvString: string): { erschoepft: number; kanalisiert: number; verzehrt: number } {
