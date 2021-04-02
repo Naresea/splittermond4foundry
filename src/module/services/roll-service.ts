@@ -15,7 +15,7 @@ export class RollService {
         const target = evt?.currentTarget;
         const dataset = (target as HTMLElement | undefined)?.dataset;
         const rollModifier = dataset?.roll;
-        const rollInfo: RollInfoExtended = JSON.parse(dataset.rollInfo ?? '{}');
+        const rollInfo: RollInfoExtended = dataset.rollInfo ? JSON.parse(dataset.rollInfo) : undefined;
 
         const altKey = (evt as MouseEvent | undefined)?.altKey;
         const shiftKey = (evt as MouseEvent | undefined)?.shiftKey;
@@ -38,14 +38,16 @@ export class RollService {
         }
     }
 
-    private static doRoll(isRisiko: boolean, isSicherheit: boolean, rollModifier: number, actor: Actor, rollInfo: RollInfoExtended): void {
+    private static doRoll(isRisiko: boolean, isSicherheit: boolean, rollModifier: number, actor: Actor, rollInfo?: RollInfoExtended): void {
         const formula = isRisiko
             ? RollService.riskRoll(+rollModifier)
             : isSicherheit
                 ? RollService.safeRoll(+rollModifier)
                 : RollService.standardRoll(+rollModifier);
 
-        rollInfo.rollType = isSicherheit ? 'sicherheit' : isRisiko ? 'risiko' : 'standard';
+        if (rollInfo) {
+            rollInfo.rollType = isSicherheit ? 'sicherheit' : isRisiko ? 'risiko' : 'standard';
+        }
 
         const roll = new Roll(formula, actor.data.data);
         const result = roll.evaluate();
@@ -79,7 +81,7 @@ export class RollService {
         return `2d10 + ${mod}`;
     }
 
-    private static evaluateResult(roll: Roll, safe: boolean, actor: Actor, rollInfo: RollInfoExtended): void {
+    private static evaluateResult(roll: Roll, safe: boolean, actor: Actor, rollInfo?: RollInfoExtended): void {
         const dice = roll.dice;
         const values = dice[0].results.map(r => r.result).sort((a, b) => a - b);
 
@@ -153,11 +155,9 @@ export class RollService {
     }
 
     static chatMessageRendered(message: ChatMessage, html: JQuery<HTMLElement>, messageData: any): void {
-        console.log('RENDERED: ', {
-            message,
-            html,
-            messageData
-        });
+
+        console.log('RENDERED; adding event listeners: ', {message, html});
+
         html.find('.tick-button').on('click', (evt) => {
             const ticks = (evt.currentTarget as HTMLElement).dataset['splimoBtnData'];
             const actorId = (evt.currentTarget as HTMLElement).dataset['splimoActorId'];

@@ -3,6 +3,9 @@ import {SplimoCombat} from '../combat/splimo-combat';
 export function changeInitiative(iniModifier?: number, tokenId?: string, actorId?: string): void {
     let combatants: Array<any> = [];
     const combat = game.combats.active;
+    if (!combat) {
+        return;
+    }
     if (tokenId) {
         combatants = combat.combatants.filter(c => c.tokenId === tokenId);
     } else if (actorId) {

@@ -44,7 +44,7 @@ Hooks.once('init', async function() {
 	setupMacroHelpers();
 });
 
-Hooks.once('renderChatMessage', (message: ChatMessage, html: JQuery<HTMLElement>, messageData: any) => {
+Hooks.on('renderChatMessage', (message: ChatMessage, html: JQuery<HTMLElement>, messageData: any) => {
 	RollService.chatMessageRendered(message, html, messageData);
 });
 

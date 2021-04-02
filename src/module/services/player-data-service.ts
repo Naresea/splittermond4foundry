@@ -393,11 +393,11 @@ export class PlayerDataService {
             return {
                 fields,
                 roll,
-                rollInfo: {
+                rollInfo: JSON.stringify({
                     ticks: zauber.data.data.ticks,
                     fokusCost: buildFokusString(zauber.data.data),
                     name: zauber.name
-                }
+                })
             };
         };
         return PlayerDataService.getTableData(actor, mods, ItemType.Zauber, tableFields, getFields);

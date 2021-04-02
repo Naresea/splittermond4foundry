@@ -7,7 +7,7 @@
             {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
                 {{#*inline "icons-end"}}
                     {{#if (isNotNull roll)}}
-                        <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}" data-click-id="{{id}}"></i>
+                        <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}" data-roll-info="{{rollInfo}}" data-click-id="{{id}}"></i>
                     {{/if}}
                     <i class="fas fa-edit clickable" data-operation="edit" data-type="zauber" data-click-id="{{id}}"></i>
                     <i class="fas fa-trash clickable" data-operation="delete" data-type="zauber" data-click-id="{{id}}"></i>
