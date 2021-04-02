@@ -155,9 +155,6 @@ export class RollService {
     }
 
     static chatMessageRendered(message: ChatMessage, html: JQuery<HTMLElement>, messageData: any): void {
-
-        console.log('RENDERED; adding event listeners: ', {message, html});
-
         html.find('.tick-button').on('click', (evt) => {
             const ticks = (evt.currentTarget as HTMLElement).dataset['splimoBtnData'];
             const actorId = (evt.currentTarget as HTMLElement).dataset['splimoActorId'];

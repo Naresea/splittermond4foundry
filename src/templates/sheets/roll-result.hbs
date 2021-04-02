@@ -3,6 +3,16 @@
         <div class="align-items-center" style="min-height: var(--control-size); max-height: var(--control-size); font-weight: bold;">
             {{name}}
         </div>
+        {{#if critSuccess}}
+            <div class="align-items-center" style="min-height: var(--control-size); max-height: var(--control-size); font-weight: bold; color: green">
+                {{localize "splittermond.rollresult.critsuccess"}}
+            </div>
+        {{/if}}
+        {{#if critFail}}
+            <div class="align-items-center" style="min-height: var(--control-size); max-height: var(--control-size); font-weight: bold; color: red">
+                {{localize "splittermond.rollresult.critfail"}}
+            </div>
+        {{/if}}
         {{{roll}}}
         {{#if explanation}}
             <div class="d-flex flex-col">

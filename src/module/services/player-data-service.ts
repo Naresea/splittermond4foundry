@@ -242,7 +242,7 @@ export class PlayerDataService {
         ];
 
         const getFields = (waffe: Item<Waffe>) => {
-            const roll = CalculationService.getWaffeOrSchildValue(actor, waffe.data.data, mods);
+            const roll = CalculationService.getWaffeOrSchildValue(actor, waffe.data.data, mods, waffe.name);
             const tickPlus = ModifierService.totalMod(mods, null, {modType: ModifierType.TickPlus});
 
             const fields = [
@@ -279,7 +279,7 @@ export class PlayerDataService {
             'splittermond.inventar.schilde.merkmale',
         ];
         const getFields = (schild: Item<Schild>) => {
-            const roll = CalculationService.getWaffeOrSchildValue(actor, schild.data.data, mods);
+            const roll = CalculationService.getWaffeOrSchildValue(actor, schild.data.data, mods, schild.name);
             const fields = [
                 `${schild.name}`,
                 `${roll.total}`,
@@ -431,7 +431,19 @@ export class PlayerDataService {
                 ms.data.data.maneuverEffekt
             ];
             const isManeuver = ms.data.data.isManeuver;
-            const roll = !isManeuver ? undefined : CalculationService.getFertigkeitsValue(actor, ms.data.data.fertigkeit, mods);
+
+            let roll = undefined;
+            if (isManeuver) {
+                const weapon: Item<Waffe> | undefined = ms.data.data.useActiveWeapon
+                    ? actor.items.find(i => i.type === ItemType.Waffe && (i as Item<Waffe>).data.data.isEquipped) as Item<Waffe> | undefined
+                    : undefined;
+                roll = !ms.data.data.useActiveWeapon
+                    ? CalculationService.getFertigkeitsValue(actor, ms.data.data.fertigkeit, mods)
+                    : weapon
+                        ? CalculationService.getWaffeOrSchildValue(actor, weapon.data.data, mods, weapon.name)
+                        : {total: 0, explanation: 'Keine ausgerüstete Waffe.'};
+            }
+
             return {
                 fields,
                 roll: roll ? roll.total : undefined,

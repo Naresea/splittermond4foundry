@@ -9,4 +9,5 @@ export interface Meisterschaft extends Info, Quelle {
     isManeuver: boolean;
     egCost: boolean;
     maneuverEffekt: string;
+    useActiveWeapon: boolean;
 }

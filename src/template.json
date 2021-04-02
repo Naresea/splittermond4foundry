@@ -229,6 +229,7 @@
       "isManeuver": false,
       "egCost": 0,
       "maneuverEffekt": "",
+      "useActiveWeapon": false,
       "modifier": []
     },
     "resource": {

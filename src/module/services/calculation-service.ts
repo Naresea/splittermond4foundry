@@ -62,7 +62,7 @@ export class CalculationService {
         }
     }
 
-    public static getWaffeOrSchildValue(actor: Actor, waffe: Waffe | Schild, mods: Modifiers): CalculationResult {
+    public static getWaffeOrSchildValue(actor: Actor, waffe: Waffe | Schild, mods: Modifiers, name?: string): CalculationResult {
         const fertigkeitItem: Item<Fertigkeit> | undefined =
             actor.items.find(item => item.type === ItemType.Fertigkeit && item.name === waffe.fertigkeit) as Item<Fertigkeit> | undefined;
 
@@ -70,7 +70,7 @@ export class CalculationService {
         const attrZwei = CalculationService.getAttributeValue(actor, waffe.attributeSecondary as keyof Attributes, mods).total;
 
         let total = attrEins + attrZwei + waffe.mod;
-        let explanation = `Waffe ${waffe.mod} + ${waffe.attribute} ${attrEins} + ${waffe.attributeSecondary} + ${attrZwei}`;
+        let explanation = `Waffe ${name ? `(${name})` : ''} ${waffe.mod} + ${waffe.attribute} ${attrEins} + ${waffe.attributeSecondary} ${attrZwei}`;
 
         if (!fertigkeitItem) {
             return {

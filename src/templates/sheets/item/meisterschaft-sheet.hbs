@@ -30,6 +30,10 @@
                         <label class="col-4" for="data.maneuverEffekt">{{localize "splittermond.meisterschaft.maneuverEffekt"}}</label>
                         <input class="col-6" type="text" name="data.maneuverEffekt" value="{{data.maneuverEffekt}}"/>
                     </div>
+                    <div class="d-flex align-items-center m-small">
+                        <label class="col-4" for="data.useActiveWeapon">{{localize "splittermond.meisterschaft.useActiveWeapon"}}</label>
+                        <input class="col-6" type="checkbox" name="data.useActiveWeapon" {{checked data.useActiveWeapon}}/>
+                    </div>
                 {{/if}}
                 {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="meisterschaft-modifier" dynamic=true item=data.modifier fields=(modifierTableHeaders)}}
                 {{/systems/splittermond/templates/partials/includes/item-list.hbs}}

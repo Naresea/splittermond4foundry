@@ -86,4 +86,10 @@ export function registerHelpers(): void {
     Handlebars.registerHelper('isNotNull', (val: unknown) => {
         return val !== null && val !== undefined;
     });
+
+    Handlebars.registerHelper('simpleRollInfo', (name: string) => {
+        return JSON.stringify({
+            name
+        });
+    });
 }

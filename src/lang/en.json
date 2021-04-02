@@ -200,10 +200,12 @@
     "splittermond.inventar.waffen.wert": "Wert",
     "splittermond.meisterschaft.maneuver": "Manöver",
     "splittermond.rollresult.maneuverEg": "Nötige EG",
-    "splittermond.rollresult.explain": "Erklärung Wurf",
+    "splittermond.rollresult.explain": "Erklärung für Wurf zeigen",
     "splittermond.rollresult.damage": "Schaden",
-    "splittermond.rollresult.ticksExplanation": "Erklärung Ticks",
+    "splittermond.rollresult.ticksExplanation": "Erklärung für Ticks zeigen",
     "splittermond.rollresult.addTicks": "Ticks+",
     "splittermond.rollresult.fokusCost": "Fokus zahlen",
-    "splittermond.zauber.schaden": "Schaden"
+    "splittermond.zauber.schaden": "Schaden",
+    "splittermond.rollresult.critfail": "Patzer!",
+    "splittermond.rollresult.critsuccess": "Kritischer Erfolg!"
 }
