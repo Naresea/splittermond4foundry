@@ -1,10 +1,10 @@
-import {Benutzbar} from './benutzbar';
-import {Equipment} from './equipment';
+import { Benutzbar } from "./benutzbar";
+import { Equipment } from "./equipment";
 
 export interface Waffe extends Benutzbar, Equipment {
-    attribute: string,
-    attributeSecondary: string;
-    fertigkeit: string;
-    mod: number;
-    schaden: string;
+  attribute: string;
+  attributeSecondary: string;
+  fertigkeit: string;
+  mod: number;
+  schaden: string;
 }

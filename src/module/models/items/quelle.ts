@@ -1,4 +1,4 @@
 export interface Quelle {
-    regelwerk: string;
-    seite: number;
+  regelwerk: string;
+  seite: number;
 }

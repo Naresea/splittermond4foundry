@@ -1,8 +1,8 @@
-import {Info} from './info';
-import {Quelle} from './quelle';
+import { Info } from "./info";
+import { Quelle } from "./quelle";
 
 export interface Gegenstand extends Info, Quelle {
-    wertInTellaren: number;
-    gewicht: number;
-    anzahl: number;
+  wertInTellaren: number;
+  gewicht: number;
+  anzahl: number;
 }

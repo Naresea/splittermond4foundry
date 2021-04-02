@@ -207,5 +207,6 @@
     "splittermond.rollresult.fokusCost": "Fokus zahlen",
     "splittermond.zauber.schaden": "Schaden",
     "splittermond.rollresult.critfail": "Patzer!",
-    "splittermond.rollresult.critsuccess": "Kritischer Erfolg!"
+    "splittermond.rollresult.critsuccess": "Kritischer Erfolg!",
+    "splittermond.meisterschaft.useActiveWeapon": "Aktive Waffe verwenden?"
 }

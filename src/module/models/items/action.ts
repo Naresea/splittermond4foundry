@@ -1,3 +1,3 @@
 export interface Action {
-    ticks: number;
+  ticks: number;
 }

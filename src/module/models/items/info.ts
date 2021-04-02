@@ -1,3 +1,3 @@
 export interface Info {
-    beschreibung: string;
+  beschreibung: string;
 }

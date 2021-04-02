@@ -1,11 +1,9 @@
-import {PlayerCharacter} from './actors/player-character';
-import {NonPlayerCharacter} from './actors/non-player-character';
+import { PlayerCharacter } from "./actors/player-character";
+import { NonPlayerCharacter } from "./actors/non-player-character";
 
 export const enum ActorType {
-    PlayerCharacter = 'PlayerCharacter',
-    NonPlayerCharacter = 'NonPlayerCharacter'
+  PlayerCharacter = "PlayerCharacter",
+  NonPlayerCharacter = "NonPlayerCharacter",
 }
 
-export type AnySplimoActor =
-    | PlayerCharacter
-    | NonPlayerCharacter;
+export type AnySplimoActor = PlayerCharacter | NonPlayerCharacter;

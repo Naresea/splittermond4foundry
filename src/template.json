@@ -154,47 +154,62 @@
       "anzahl": 0
     },
     "benutzbar": {
-      "templates": ["gegenstand", "action"],
-      "wirdVerbraucht": true
+      "templates": ["info", "quelle", "action"],
+      "wirdVerbraucht": true,
+      "wertInTellaren": 0,
+      "gewicht": 0,
+      "anzahl": 0
     },
     "waffe": {
-      "templates": ["benutzbar", "equipment"],
+      "templates": ["info", "quelle", "action", "equipment"],
       "attribute": "",
       "attributeSecondary": "",
       "fertigkeit": "",
       "mod": 0,
-      "schaden": "1d6"
+      "schaden": "1d6",
+      "wirdVerbraucht": false,
+      "wertInTellaren": 0,
+      "gewicht": 0,
+      "anzahl": 0
     },
     "schild": {
-      "templates": ["gegenstand", "equipment"],
+      "templates": ["info", "quelle", "equipment"],
       "mod": 0,
       "VTD": 0,
       "fertigkeit": "",
       "attribute": "INT",
-      "attributeSecondary": "STR"
+      "attributeSecondary": "STR",
+      "wertInTellaren": 0,
+      "gewicht": 0,
+      "anzahl": 0
     },
     "ruestung": {
-      "templates": ["gegenstand", "equipment"],
+      "templates": ["info", "quelle", "equipment"],
       "VTD": 0,
       "SR": 0,
       "BEH": 0,
-      "tickPlus": 0
+      "tickPlus": 0,
+      "wertInTellaren": 0,
+      "gewicht": 0,
+      "anzahl": 0
     },
     "zauber": {
       "templates": ["info", "action", "quelle"],
       "grad": 0,
       "fertigkeit": "",
       "schwierigkeit": 0,
-      "schwierigkeitString": "",
+      "schwierigkeitString": "0",
       "fokusErschoepft": 0,
       "fokusVerzehrt": 0,
       "fokusKanalisiert": 0,
-      "zauberDauerString": 0,
       "reichweite": 0,
-      "reichweiteString": "",
+      "reichweiteString": "0",
       "wirkungsdauer": 0,
-      "verstaerkung": "",
-      "schaden": ""
+      "verstaerkung": "0",
+      "bereichString": "0",
+      "wirkungsdauerString": "0",
+      "zauberdauerString": "0",
+      "schaden": "1d6"
     },
     "abstammung": {
       "templates": ["info", "quelle"],

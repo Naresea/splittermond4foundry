@@ -1,5 +1,5 @@
 export interface Vermoegen {
-    solare: number;
-    lunare: number;
-    tellare: number;
+  solare: number;
+  lunare: number;
+  tellare: number;
 }

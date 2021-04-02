@@ -1,7 +1,7 @@
 export interface Splittertraeger {
-    splitterpunkte: {
-        min: number;
-        max: number;
-        value: number;
-    };
+  splitterpunkte: {
+    min: number;
+    max: number;
+    value: number;
+  };
 }

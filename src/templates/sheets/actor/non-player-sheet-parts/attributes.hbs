@@ -32,5 +32,11 @@
                 <div class="col-2" style="text-align: center;">{{getByKey ../data.attributeModifier this}}</div>
             </div>
         {{/each}}
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.{{this}}">{{localize (concat "splittermond.attribute.GK")}}</label>
+            <input class="col-4" style="text-align: center; margin-right: 5px" type="number" name="data.GK"
+                   value="{{data.GK}}"/>
+            <div class="col-2" style="text-align: center;">{{data.attributeModifier.GK}}</div>
+        </div>
     </div>
 </div>

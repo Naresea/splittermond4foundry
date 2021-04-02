@@ -1,6 +1,6 @@
-import {Gegenstand} from './gegenstand';
-import {Action} from './action';
+import { Gegenstand } from "./gegenstand";
+import { Action } from "./action";
 
 export interface Benutzbar extends Gegenstand, Action {
-    wirdVerbraucht: boolean;
+  wirdVerbraucht: boolean;
 }
