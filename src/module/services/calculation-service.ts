@@ -29,34 +29,45 @@ export class CalculationService {
         }
     }
 
-    public static getAttributeValue(actor: Actor, attribute: keyof Attributes | keyof DerivedAttributes, mods: Modifiers): number {
+    public static getAttributeValue(actor: Actor, attribute: keyof Attributes | keyof DerivedAttributes, mods: Modifiers): CalculationResult {
         const startValue = actor.data.data[attribute] ?? 0;
         const increasedValue = actor.data.data['inc' + attribute] ?? 0;
         const modifierValue = ModifierService.totalMod(mods, attribute, {modType: ModifierType.Attribute}) ?? 0;
-        return startValue + increasedValue + modifierValue;
+        const total = startValue + increasedValue + modifierValue;
+        return {
+            total,
+            explanation: `Start ${startValue} + Erhöht ${increasedValue} + Mod ${modifierValue}`
+        };
     }
 
-    public static getFertigkeitsValue(actor: Actor, fertigkeit: string, mods: Modifiers): number {
+    public static getFertigkeitsValue(actor: Actor, fertigkeit: string, mods: Modifiers): CalculationResult {
         const fertigkeitItem: Item<Fertigkeit> | undefined =
             actor.items.find(item => item.type === ItemType.Fertigkeit && item.name === fertigkeit) as Item<Fertigkeit> | undefined;
 
         if (!fertigkeitItem) {
-            return 0;
+            return {
+                total: 0,
+                explanation: 'Keine Fertigkeit'
+            };
         }
 
-        const attrEins = CalculationService.getAttributeValue(actor, fertigkeitItem.data.data.attributEins as keyof Attributes, mods);
-        const attrZwei = CalculationService.getAttributeValue(actor, fertigkeitItem.data.data.attributZwei as keyof Attributes, mods);
+        const attrEins = CalculationService.getAttributeValue(actor, fertigkeitItem.data.data.attributEins as keyof Attributes, mods).total;
+        const attrZwei = CalculationService.getAttributeValue(actor, fertigkeitItem.data.data.attributZwei as keyof Attributes, mods).total;
         const mod = ModifierService.totalMod(mods, fertigkeit, {modType: ModifierType.Fertigkeit});
 
-        return attrEins + attrZwei + mod + fertigkeitItem.data.data.punkte + fertigkeitItem.data.data.mod;
+        const total = attrEins + attrZwei + mod + fertigkeitItem.data.data.punkte + fertigkeitItem.data.data.mod;
+        return {
+            total,
+            explanation: `${fertigkeitItem.data.data.attributEins} ${attrEins} + ${fertigkeitItem.data.data.attributZwei} ${attrZwei} + ${fertigkeitItem.name} ${fertigkeitItem.data.data.punkte} + Mod ${fertigkeitItem.data.data.mod}`
+        }
     }
 
     public static getWaffeOrSchildValue(actor: Actor, waffe: Waffe | Schild, mods: Modifiers): CalculationResult {
         const fertigkeitItem: Item<Fertigkeit> | undefined =
             actor.items.find(item => item.type === ItemType.Fertigkeit && item.name === waffe.fertigkeit) as Item<Fertigkeit> | undefined;
 
-        const attrEins = CalculationService.getAttributeValue(actor, waffe.attribute as keyof Attributes, mods);
-        const attrZwei = CalculationService.getAttributeValue(actor, waffe.attributeSecondary as keyof Attributes, mods);
+        const attrEins = CalculationService.getAttributeValue(actor, waffe.attribute as keyof Attributes, mods).total;
+        const attrZwei = CalculationService.getAttributeValue(actor, waffe.attributeSecondary as keyof Attributes, mods).total;
 
         let total = attrEins + attrZwei + waffe.mod;
         let explanation = `Waffe ${waffe.mod} + ${waffe.attribute} ${attrEins} + ${waffe.attributeSecondary} + ${attrZwei}`;

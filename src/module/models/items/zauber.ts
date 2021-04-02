@@ -19,6 +19,7 @@ export interface Zauber extends Info, Quelle, Action {
     bereich: number;
     bereichString: string;
     verstaerkung: string;
+    schaden: string;
 }
 
 export function buildFokusString(zauber: Zauber): string {

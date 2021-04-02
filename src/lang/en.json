@@ -53,7 +53,7 @@
     "splittermond.zauber.reichweite": "RW",
     "splittermond.zauber.wirkungsdauer": "WD",
     "splittermond.zauber.bereich": "Bereich",
-    "splittermond.zauber.verstaerkung": "Verstärken,",
+    "splittermond.zauber.verstaerkung": "Verstärken",
     "splittermond.attributes.header.attribute": "Attribut",
     "splittermond.attributes.header.wert": "Wert",
     "splittermond.attributes.header.start": "Start",
@@ -197,5 +197,13 @@
     "splittermond.meisterschaft.maneuverEffekt": "Effekt",
     "splittermond.equipment.merkmale": "Merkmale",
     "splittermond.inventar.schilde.wert": "Wert",
-    "splittermond.inventar.waffen.wert": "Wert"
+    "splittermond.inventar.waffen.wert": "Wert",
+    "splittermond.meisterschaft.maneuver": "Manöver",
+    "splittermond.rollresult.maneuverEg": "Nötige EG",
+    "splittermond.rollresult.explain": "Erklärung Wurf",
+    "splittermond.rollresult.damage": "Schaden",
+    "splittermond.rollresult.ticksExplanation": "Erklärung Ticks",
+    "splittermond.rollresult.addTicks": "Ticks+",
+    "splittermond.rollresult.fokusCost": "Fokus zahlen",
+    "splittermond.zauber.schaden": "Schaden"
 }

@@ -212,7 +212,7 @@ export class PlayerDataService {
             const roll = CalculationService.getFertigkeitsValue(actor, fertigkeit.name, mods);
             const fields = [
                 fertigkeit.name,
-                `${roll}`,
+                `${roll.total}`,
                 `${fertigkeit.data.data.punkte}`,
                 fertigkeit.data.data.attributEins,
                 fertigkeit.data.data.attributZwei,
@@ -220,7 +220,11 @@ export class PlayerDataService {
             ];
             return {
                 fields,
-                roll
+                roll: roll.total,
+                rollInfo: JSON.stringify({
+                    name: fertigkeit.name,
+                    explanation: roll.explanation
+                })
             };
         };
 
@@ -234,6 +238,7 @@ export class PlayerDataService {
             'splittermond.inventar.waffen.fertigkeit',
             'splittermond.inventar.waffen.wgs',
             'splittermond.inventar.waffen.schaden',
+            'splittermond.inventar.waffen.merkmale',
         ];
 
         const getFields = (waffe: Item<Waffe>) => {
@@ -245,7 +250,8 @@ export class PlayerDataService {
                 `${roll.total}`,
                 `${waffe.data.data.fertigkeit}`,
                 `${waffe.data.data.ticks}`,
-                `${waffe.data.data.schaden}`
+                `${waffe.data.data.schaden}`,
+                `${waffe.data.data.merkmale}`
             ];
             return {
                 fields,
@@ -270,6 +276,7 @@ export class PlayerDataService {
             'splittermond.inventar.schilde.wert',
             'splittermond.inventar.schilde.fertigkeit',
             'splittermond.inventar.schilde.vtd',
+            'splittermond.inventar.schilde.merkmale',
         ];
         const getFields = (schild: Item<Schild>) => {
             const roll = CalculationService.getWaffeOrSchildValue(actor, schild.data.data, mods);
@@ -278,6 +285,7 @@ export class PlayerDataService {
                 `${roll.total}`,
                 `${schild.data.data.fertigkeit}`,
                 `${schild.data.data.VTD}`,
+                `${schild.data.data.merkmale}`,
             ];
             return {
                 fields,
@@ -300,6 +308,7 @@ export class PlayerDataService {
             'splittermond.inventar.ruestungen.sr',
             'splittermond.inventar.ruestungen.beh',
             'splittermond.inventar.ruestungen.tick',
+            'splittermond.inventar.ruestungen.merkmale',
         ];
         const getFields = (ruestung: Item<Ruestung>) => {
             const fields = [
@@ -307,7 +316,8 @@ export class PlayerDataService {
                 `${ruestung.data.data.VTD}`,
                 `${ruestung.data.data.SR}`,
                 `${ruestung.data.data.BEH}`,
-                `${ruestung.data.data.tickPlus}`
+                `${ruestung.data.data.tickPlus}`,
+                `${ruestung.data.data.merkmale}`
             ];
             return {
                 fields,
@@ -368,6 +378,7 @@ export class PlayerDataService {
             'splittermond.zauber.name',
             'splittermond.zauber.schule',
             'splittermond.zauber.wert',
+            'splittermond.zauber.schaden',
             'splittermond.zauber.schwierigkeit',
             'splittermond.zauber.fokus',
             'splittermond.zauber.zauberdauer',
@@ -381,7 +392,8 @@ export class PlayerDataService {
             const fields = [
                 `${zauber.name}`,
                 `${zauber.data.data.fertigkeit}`,
-                `${roll}`,
+                `${roll.total}`,
+                `${zauber.data.data.schaden}`,
                 `${zauber.data.data.schwierigkeitString}`,
                 `${buildFokusString(zauber.data.data)}`,
                 `${zauber.data.data.zauberdauerString}`,
@@ -392,11 +404,13 @@ export class PlayerDataService {
             ];
             return {
                 fields,
-                roll,
+                roll: roll.total,
                 rollInfo: JSON.stringify({
                     ticks: zauber.data.data.ticks,
                     fokusCost: buildFokusString(zauber.data.data),
-                    name: zauber.name
+                    name: zauber.name,
+                    explanation: roll.explanation,
+                    damage: zauber.data.data.schaden
                 })
             };
         };
@@ -406,15 +420,29 @@ export class PlayerDataService {
     public static getMeisterschaften(actor: Actor, mods: Modifiers): TableData {
         const tableFields = [
             'splittermond.meisterschaft.name',
-            'splittermond.meisterschaft.fertigkeit'
+            'splittermond.meisterschaft.fertigkeit',
+            'splittermond.meisterschaft.maneuver'
         ];
+
         const getFields = (ms: Item<Meisterschaft>) => {
             const fields = [
                 ms.name,
-                ms.data.data.fertigkeit
+                ms.data.data.fertigkeit,
+                ms.data.data.maneuverEffekt
             ];
+            const isManeuver = ms.data.data.isManeuver;
+            const roll = !isManeuver ? undefined : CalculationService.getFertigkeitsValue(actor, ms.data.data.fertigkeit, mods);
             return {
-                fields
+                fields,
+                roll: roll ? roll.total : undefined,
+                rollInfo: roll ? JSON.stringify({
+                    name: ms.name,
+                    explanation: roll.explanation,
+                    maneuver: {
+                        egCost: ms.data.data.egCost,
+                        effekt: ms.data.data.maneuverEffekt
+                    }
+                }) : undefined
             };
         };
         return PlayerDataService.getTableData(actor, mods, ItemType.Meisterschaft, tableFields, getFields);

@@ -193,7 +193,8 @@
       "reichweite": 0,
       "reichweiteString": "",
       "wirkungsdauer": 0,
-      "verstaerkung": ""
+      "verstaerkung": "",
+      "schaden": ""
     },
     "abstammung": {
       "templates": ["info", "quelle"],
