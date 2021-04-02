@@ -23,9 +23,9 @@
     }
   ],
   "gridDistance": 1,
-  "gridUnits": "",
-  "minimumCoreVersion": "0.5.0",
-  "compatibleCoreVersion": "0.5.0",
+  "gridUnits": "Meter",
+  "minimumCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.7.9",
   "url": "",
   "manifest": "",
   "download": "",

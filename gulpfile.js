@@ -5,8 +5,6 @@ const chalk = require('chalk');
 const archiver = require('archiver');
 const stringify = require('json-stringify-pretty-compact');
 const typescript = require('typescript');
-const handlebars = require('gulp-compile-handlebars');
-const rename = require('gulp-rename');
 
 
 const ts = require('gulp-typescript');
@@ -157,21 +155,6 @@ function buildSASS() {
 		.src('src/styles/splittermond.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest('dist'));
-}
-
-/**
- * Build templates
- */
-function buildTemplates() {
-	return gulp.src('./src/templates/sheets/**/*.hbs')
-		.pipe(handlebars({}, {
-			ignorePartials: true,
-			batch: ['./src/templates/partials']
-		}))
-		.pipe(rename({
-			extname: '.html'
-		}))
-		.pipe(gulp.dest('./dist/templates'));
 }
 
 /**
