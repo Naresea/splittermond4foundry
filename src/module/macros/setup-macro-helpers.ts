@@ -1,9 +1,20 @@
 import {SplimoCombat} from '../combat/splimo-combat';
 
-export function changeInitiative(iniModifier?: number): void {
-    const tokenIds = Object.keys(canvas.tokens._controlled);
+export function changeInitiative(iniModifier?: number, tokenId?: string, actorId?: string): void {
+    let combatants: Array<any> = [];
     const combat = game.combats.active;
-    const combatants = combat.combatants.filter(c => tokenIds.includes(c.tokenId));
+    if (tokenId) {
+        combatants = combat.combatants.filter(c => c.tokenId === tokenId);
+    } else if (actorId) {
+        combatants = combat.combatants.filter(c => c.actor._id === actorId);
+    } else {
+        const tokenIds = Object.keys(canvas.tokens._controlled);
+        combatants = combat.combatants.filter(c => tokenIds.includes(c.tokenId));
+    }
+
+    if (combatants.length < 0) {
+        return;
+    }
 
     if (combatants.length < 1) {
         if ((combat as SplimoCombat).changeIniForCombatant != null) {

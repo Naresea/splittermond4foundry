@@ -28,6 +28,7 @@ export const preloadTemplates = async function() {
 		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/meisterschaften.hbs',
 		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/fertigkeiten.hbs',
 		'systems/splittermond/templates/sheets/actor/non-player-sheet-parts/zauber.hbs',
+		'systems/splittermond/templates/sheets/roll-result.hbs',
 	];
 
 	const templatePaths = [

@@ -20,7 +20,9 @@ import {Zustand} from '../models/items/zustand';
 import {Merkmal} from '../models/items/merkmal';
 import {Resource} from '../models/items/resource';
 
-interface RollInfo {
+export interface RollInfo {
+    name?: string;
+    damage?: string;
     explanation?: string;
     ticks?: number;
     ticksExplanation?: string;
@@ -37,7 +39,7 @@ interface TableData {
         fields: Array<string>;
         id: string;
         roll?: number;
-        rollInfo?: RollInfo;
+        rollInfo?: string;
         equipped?: boolean;
     }>
 }
@@ -232,7 +234,6 @@ export class PlayerDataService {
             'splittermond.inventar.waffen.fertigkeit',
             'splittermond.inventar.waffen.wgs',
             'splittermond.inventar.waffen.schaden',
-            'splittermond.inventar.waffen.merkmale',
         ];
 
         const getFields = (waffe: Item<Waffe>) => {
@@ -244,17 +245,18 @@ export class PlayerDataService {
                 `${roll.total}`,
                 `${waffe.data.data.fertigkeit}`,
                 `${waffe.data.data.ticks}`,
-                `${waffe.data.data.schaden}`,
-                `${waffe.data.data.merkmale}`
+                `${waffe.data.data.schaden}`
             ];
             return {
                 fields,
                 roll: roll.total,
-                rollInfo: {
+                rollInfo: JSON.stringify({
                     explanation: roll.explanation,
                     ticks: waffe.data.data.ticks + tickPlus,
-                    ticksExplanation: `WGS ${waffe.data.data.ticks} + Tick+ ${tickPlus}`
-                },
+                    ticksExplanation: `WGS ${waffe.data.data.ticks} + Tick+ ${tickPlus}`,
+                    name: waffe.name,
+                    damage: waffe.data.data.schaden
+                }),
                 equipped: waffe.data.data.isEquipped
             };
         };
@@ -280,9 +282,10 @@ export class PlayerDataService {
             return {
                 fields,
                 roll: roll.total,
-                rollInfo: {
-                    explanation: roll.explanation
-                },
+                rollInfo: JSON.stringify({
+                    explanation: roll.explanation,
+                    name: schild.name
+                }),
                 equipped: schild.data.data.isEquipped
             };
         };
@@ -297,7 +300,6 @@ export class PlayerDataService {
             'splittermond.inventar.ruestungen.sr',
             'splittermond.inventar.ruestungen.beh',
             'splittermond.inventar.ruestungen.tick',
-            'splittermond.inventar.ruestungen.merkmale',
         ];
         const getFields = (ruestung: Item<Ruestung>) => {
             const fields = [
@@ -305,8 +307,7 @@ export class PlayerDataService {
                 `${ruestung.data.data.VTD}`,
                 `${ruestung.data.data.SR}`,
                 `${ruestung.data.data.BEH}`,
-                `${ruestung.data.data.tickPlus}`,
-                ``
+                `${ruestung.data.data.tickPlus}`
             ];
             return {
                 fields,
@@ -331,7 +332,11 @@ export class PlayerDataService {
                 `${benutzbar.data.data.anzahl}`
             ];
             return {
-                fields
+                fields,
+                rollInfo: JSON.stringify({
+                    ticks: benutzbar.data.data.ticks,
+                    name: benutzbar.name
+                })
             };
         };
         return PlayerDataService.getTableData(actor, mods, ItemType.Benutzbar, tableFields, getFields);
@@ -387,7 +392,12 @@ export class PlayerDataService {
             ];
             return {
                 fields,
-                roll
+                roll,
+                rollInfo: {
+                    ticks: zauber.data.data.ticks,
+                    fokusCost: buildFokusString(zauber.data.data),
+                    name: zauber.name
+                }
             };
         };
         return PlayerDataService.getTableData(actor, mods, ItemType.Zauber, tableFields, getFields);

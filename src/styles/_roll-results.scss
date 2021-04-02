@@ -1,0 +1,17 @@
+.explanation-text {
+  display: none;
+  height: var(--control-size) !important;
+}
+
+.explanation-text--active {
+  display: block;
+}
+
+.tick-explanation-text {
+  display: none;
+  height: var(--control-size) !important;
+}
+
+.tick-explanation-text--active {
+  display: block;
+}

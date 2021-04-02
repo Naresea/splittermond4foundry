@@ -25,6 +25,7 @@ import {registerItemSheets} from './module/item/register-item-sheets';
 import {registerCombat} from './module/combat/register-combat';
 import {registerHelpers} from './module/handlebars/registerHelpers';
 import {setupMacroHelpers} from './module/macros/setup-macro-helpers';
+import {RollService} from './module/services/roll-service';
 
 /* ------------------------------------ */
 /* Initialize system					*/
@@ -41,6 +42,10 @@ Hooks.once('init', async function() {
 	registerActorSheets();
 	registerItemSheets();
 	setupMacroHelpers();
+});
+
+Hooks.once('renderChatMessage', (message: ChatMessage, html: JQuery<HTMLElement>, messageData: any) => {
+	RollService.chatMessageRendered(message, html, messageData);
 });
 
 /* ------------------------------------ */

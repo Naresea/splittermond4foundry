@@ -1,0 +1,43 @@
+<div class="splittermond">
+    <div class="d-flex flex-col flex-grow" style="width: 100%; height: 100%;">
+        <div class="align-items-center" style="min-height: var(--control-size); max-height: var(--control-size); font-weight: bold;">
+            {{name}}
+        </div>
+        {{{roll}}}
+        {{#if explanation}}
+            <div class="d-flex flex-col">
+                <label class="d-flex align-items-center clickable explanation-label" style="min-height: var(--control-size); max-height: var(--control-size);">{{localize "splittermond.rollresult.explain"}}</label>
+                <p class="explanation-text" style="border: 1px solid black; padding: 5px; border-radius: 5px;">{{explanation}}</p>
+            </div>
+        {{/if}}
+        {{#if ticksExplanation}}
+            <div class="d-flex flex-col">
+                <label class="d-flex align-items-center clickable tick-explanation-label" style="min-height: var(--control-size); max-height: var(--control-size);">{{localize "splittermond.rollresult.ticksExplanation"}}</label>
+                <p class="tick-explanation-text" style="border: 1px solid black; padding: 5px; border-radius: 5px;">{{ticksExplanation}}</p>
+            </div>
+        {{/if}}
+        <div class="d-flex align-items-center" style="min-height: var(--control-size); max-height: var(--control-size); justify-content: space-evenly">
+            {{#if ticks}}
+                <button class="flex-grow clickable tick-button" data-splimo-btn-data="{{ticks}}" data-splimo-actor-id="{{actor.data._id}}" style="background: lightgrey; min-width: 0;">
+                    <span style="display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
+                        {{localize "splittermond.rollresult.addTicks"}}
+                    </span>
+                </button>
+            {{/if}}
+            {{#if damage}}
+                <button class="flex-grow clickable damage-button" data-splimo-btn-data="{{damage}}" style="background: lightgrey; min-width: 0;">
+                    <span style="display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
+                        {{localize "splittermond.rollresult.damage"}}
+                    </span>
+                </button>
+            {{/if}}
+            {{#if fokusCost}}
+                <button class="flex-grow clickable fokus-button" data-splimo-btn-data="{{fokusCost}}" data-splimo-actor-id="{{actor.data._id}}" style="background: lightgrey; min-width: 0;">
+                    <span style="display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
+                        {{localize "splittermond.rollresult.fokusCost"}}
+                    </span>
+                </button>
+            {{/if}}
+        </div>
+    </div>
+</div>
