@@ -119,8 +119,8 @@ Some rolls also come with "Explanation"-Labels on which you can click and see de
 the system did.
 
 ![image](screenshots/pc_weapon_roll.PNG)
-![image](screenshots/pc_weapon_roll_ticks_before.PNG)
-![image](screenshots/pc_weapon_roll_ticks_after.PNG)
+![image](screenshots/weapon-roll-ticks-before.PNG)
+![image](screenshots/weapon-roll-ticks-after.PNG)
 ![image](screenshots/pc_roll_explanation.PNG)
 
 ## How to Build
