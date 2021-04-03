@@ -6,8 +6,8 @@ export class ChargenSheet {
     public static getChargenData(choices: Array<Choice<ChargenOption>>) {
         const choicesForTemplate = choices.map(choice => ({
             fields: [
-                `${choice.choiceType}`,
-                `${choice.options?.map(o => o.type)}`,
+                `splittermond.chargen.typelabels.${choice.choiceType}`,
+                `${choice.options?.map(o => game.i18n.localize(`splittermond.chargen-option-label.type.${o.type}`))}`,
                 `${choice.options?.map(o => o.name)}`,
             ]
         }));

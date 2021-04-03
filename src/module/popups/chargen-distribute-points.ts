@@ -8,7 +8,7 @@ export class ChargenDistributePoints extends FormApplication<DistributePointsCho
             template:
                 "systems/splittermond/templates/sheets/popups/chargen-distribute-points.hbs",
             width: 512,
-            height: 340,
+            height: 512,
             submitOnChange: true,
             submitOnClose: true,
             closeOnSubmit: false,
@@ -32,7 +32,7 @@ export class ChargenDistributePoints extends FormApplication<DistributePointsCho
 
         const options = this.object.options.map((opt, idx) => ({
             ...opt,
-            label:  `${opt.type} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`,
+            label:  `${game.i18n.localize(`splittermond.chargen-option-label.type.${opt.type}`)} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`,
             index: idx
         }));
 
@@ -53,13 +53,11 @@ export class ChargenDistributePoints extends FormApplication<DistributePointsCho
             return;
         }
         html.find(".btn-submit").on("click", (evt) => {
-            const select = html.find('select[name="selectedOption"]').get()[0];
             const selectedOptions = this.object.options.map((o, idx) => ({
                 ...o,
                 points: this.distributedPoints[idx]
             })).filter(o => o.points > 0);
             if (this.submitCallback) {
-                console.log('Calling submit callback with ', selectedOptions);
                 this.submitCallback(selectedOptions);
             }
             this.close();
@@ -75,7 +73,6 @@ export class ChargenDistributePoints extends FormApplication<DistributePointsCho
             const data = formData[`option.${i}`];
             this.distributedPoints[i] = data ?? 0;
         }
-        console.log('Distributed points: ', {formData, points: this.distributedPoints});
         this.render();
         return Promise.resolve();
     }

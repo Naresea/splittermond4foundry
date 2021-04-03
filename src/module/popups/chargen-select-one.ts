@@ -29,7 +29,7 @@ export class ChargenSelectOne extends FormApplication<SelectOneOfChoice<ChargenO
 
     getData(options?: object): any | Promise<any> {
         return {
-            labels: this.object.options.map(opt => `${opt.type} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`),
+            labels: this.object.options.map(opt => `${game.i18n.localize(`splittermond.chargen-option-label.type.${opt.type}`)} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`),
             values: this.object.options.map(opt => opt.name)
         };
     }
@@ -44,9 +44,7 @@ export class ChargenSelectOne extends FormApplication<SelectOneOfChoice<ChargenO
             const select = html.find('select[name="selectedOption"]').get()[0];
             const selectedIndex = +(select as HTMLSelectElement)?.selectedIndex ?? 0;
             const option = this.object.options[selectedIndex];
-            console.log('ChargenSelectOne: selected option=', option);
             if (this.submitCallback) {
-                console.log('Calling submit callback with ', option);
                 this.submitCallback(option);
             }
             this.close();

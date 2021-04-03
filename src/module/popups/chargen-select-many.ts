@@ -8,7 +8,7 @@ export class ChargenSelectMany extends FormApplication<SelectNOfChoice<ChargenOp
             template:
                 "systems/splittermond/templates/sheets/popups/chargen-select-many.hbs",
             width: 512,
-            height: 340,
+            height: 512,
             submitOnChange: true,
             submitOnClose: true,
             closeOnSubmit: false,
@@ -32,7 +32,7 @@ export class ChargenSelectMany extends FormApplication<SelectNOfChoice<ChargenOp
 
         const options = this.object.options.map((opt, idx) => ({
             ...opt,
-            label:  `${opt.type} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`,
+            label:  `${game.i18n.localize(`splittermond.chargen-option-label.type.${opt.type}`)} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`,
             index: idx
         }));
 

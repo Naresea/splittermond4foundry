@@ -7,7 +7,7 @@ export class ChargenMatchMultiple extends FormApplication<MatchMultipleChoice<Ch
             classes: ["splittermond"],
             template:
                 "systems/splittermond/templates/sheets/popups/chargen-match-multiple.hbs",
-            width: 512,
+            width: 700,
             height: 512,
             submitOnChange: false,
             submitOnClose: false,
@@ -34,7 +34,7 @@ export class ChargenMatchMultiple extends FormApplication<MatchMultipleChoice<Ch
         const options = this.object.options
             .map((opt, idx) => ({
                 option: opt,
-                label:  `${opt.type} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`,
+                label:  `${game.i18n.localize( `splittermond.chargen-option-label.type.${opt.type}`)} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`,
                 value: idx
             })).filter(opt => !this.confirmedMatches.includes(opt.option));
 
@@ -47,7 +47,7 @@ export class ChargenMatchMultiple extends FormApplication<MatchMultipleChoice<Ch
 
         const confirmed = this.confirmedMatches.map(cm => ({
             fields: [
-                `${cm.type}`,
+                `splittermond.chargen-option-label.type.${cm.type}`,
                 `${cm.name}`,
                 `${cm.points}`
             ]
@@ -79,7 +79,6 @@ export class ChargenMatchMultiple extends FormApplication<MatchMultipleChoice<Ch
             const selectedOptions = this.confirmedMatches.filter(o => o.points != null && o.points !== 0);
 
             if (this.submitCallback) {
-                console.log('Calling submit callback with ', selectedOptions);
                 this.submitCallback(selectedOptions);
             }
             this.close();
@@ -89,8 +88,6 @@ export class ChargenMatchMultiple extends FormApplication<MatchMultipleChoice<Ch
 
             const selectedKey = html.find('input[name="keys"]:checked').get()[0];
             const selectedPoints = html.find('input[name="points"]:checked').get()[0];
-
-            console.log('Found inputs: ', {selectedKey, selectedPoints});
 
             if (!selectedKey || !selectedPoints) {
                 return;
@@ -105,7 +102,6 @@ export class ChargenMatchMultiple extends FormApplication<MatchMultipleChoice<Ch
                 this.confirmedMatches.push(option);
                 this.confirmedPointsIndices.push(pointIndex);
             }
-            console.log('Applied ', {option, point});
             this.render();
         });
     }

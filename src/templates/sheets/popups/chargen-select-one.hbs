@@ -1,6 +1,6 @@
-<form class="item-sheet sheet p-small {{class}}" autocomplete="off">
+<form class="item-sheet sheet p-small {{class}}" style="overflow: auto" autocomplete="off">
     <div class="d-flex flex-col flex-grow" style="max-width: 100%; max-height: 100%; overflow: hidden;">
-        <h1>{{localize "splittermond.chargen-select-one.title"}}</h1>
+        <h1 class="m-big">{{localize "splittermond.chargen-select-one.title"}}</h1>
         {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
                 name="selectedOption"
                 selected=target
@@ -8,6 +8,7 @@
                 values=values
         }}
         {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}
-        <button class="btn-submit clickable">{{localize "splittermond.chargen-select-one.ok"}}</button>
+        <div class="flex-grow"></div>
+        <button class="btn-submit clickable m-big">{{localize "splittermond.chargen-select-one.ok"}}</button>
     </div>
 </form>

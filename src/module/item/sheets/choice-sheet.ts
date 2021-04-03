@@ -52,7 +52,7 @@ export class ChoiceSheet extends FormApplication<Choice<ChargenOption>> {
             pointOptions: ((this.object as MatchMultipleChoice<ChargenOption>).pointOptions ?? []).join(', '),
             optionsTable: this.object.options.map((op) => ({
                 fields: [
-                    `${op.type}`,
+                    `splittermond.chargen-option-label.type.${op.type}`,
                     `${op.name}`,
                     `${op.points ?? 0}`
                 ]
