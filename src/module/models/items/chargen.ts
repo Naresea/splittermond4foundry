@@ -45,7 +45,6 @@ export interface Chargen {
 
 export interface FixedValueChoice<T extends ChargenOption> extends Choice<T> {
     choiceType: ChoiceType.FixedValue;
-    options: [T];
 }
 
 export interface SelectNOfChoice<T extends ChargenOption> extends Choice<T> {
