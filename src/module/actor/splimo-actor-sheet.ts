@@ -3,7 +3,7 @@ import { ItemType } from "../models/item-type";
 import { RollService } from "../services/roll-service";
 import { getSheetClass } from "../item/register-item-sheets";
 import { CalculationService } from "../services/calculation-service";
-import {ChargenService} from '../services/chargen-service';
+import { ChargenService } from "../services/chargen-service";
 
 export abstract class SplimoActorSheet<
   T extends AnySplimoActor
@@ -20,12 +20,17 @@ export abstract class SplimoActorSheet<
   }
 
   protected _onDrop(event: Event | JQuery.Event): Promise<boolean | any> {
-    const dataTransfer =  (event as DragEvent)?.dataTransfer?.getData('text/plain');
+    const dataTransfer = (event as DragEvent)?.dataTransfer?.getData(
+      "text/plain"
+    );
     if (dataTransfer) {
-      const {type, id} = JSON.parse(dataTransfer);
-      if (type === 'Item') {
+      const { type, id } = JSON.parse(dataTransfer);
+      if (type === "Item") {
         const item = game.items.get(id);
-        if (item && ChargenService.CHARGEN_ITEM_TYPES.includes(item.type as any)) {
+        if (
+          item &&
+          ChargenService.CHARGEN_ITEM_TYPES.includes(item.type as any)
+        ) {
           ChargenService.applyChargenData(this.actor, item);
         }
       }

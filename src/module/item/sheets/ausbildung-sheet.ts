@@ -2,8 +2,8 @@ import { SplimoItemSheet } from "../splimo-item-sheet";
 import { Ausbildung } from "../../models/items/ausbildung";
 import { Modifier, ModifierType } from "../../models/items/modifier";
 import { ModifierItemSheet } from "./modifier-item-sheet";
-import {ChargenSheet} from './chargen-sheet';
-import {Abstammung} from '../../models/items/abstammung';
+import { ChargenSheet } from "./chargen-sheet";
+import { Abstammung } from "../../models/items/abstammung";
 
 export class AusbildungSheet extends SplimoItemSheet<Ausbildung> {
   static get defaultOptions() {
@@ -31,7 +31,9 @@ export class AusbildungSheet extends SplimoItemSheet<Ausbildung> {
       };
     });
     data.data.modifier = modifier;
-    data.data.chargen = ChargenSheet.getChargenData((this.object as Item<Ausbildung>).data.data.choices ?? []);
+    data.data.chargen = ChargenSheet.getChargenData(
+      (this.object as Item<Ausbildung>).data.data.choices ?? []
+    );
     return data;
   }
 
@@ -41,16 +43,16 @@ export class AusbildungSheet extends SplimoItemSheet<Ausbildung> {
     this.registerEditModifierClick(html);
     this.registerDeleteModifierClick(html);
     ChargenSheet.activateChargenListeners(
-        html,
-        (this.object as Item<Ausbildung>).data.data.choices ?? [],
-        (choices) => {
-          this.object.update({
-            _id: this.object._id,
-            data: {
-              choices: choices
-            }
-          })
-        }
+      html,
+      (this.object as Item<Ausbildung>).data.data.choices ?? [],
+      (choices) => {
+        this.object.update({
+          _id: this.object._id,
+          data: {
+            choices: choices,
+          },
+        });
+      }
     );
   }
 

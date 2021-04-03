@@ -127,10 +127,15 @@ export function registerHelpers(): void {
     });
   });
 
-  Handlebars.registerHelper('oneOf', (val: string | number, ...values: Array<unknown>) => {
+  Handlebars.registerHelper(
+    "oneOf",
+    (val: string | number, ...values: Array<unknown>) => {
       const options = Array.isArray(values[0])
-          ? values[0].filter(v => typeof v === 'string' || typeof v === 'number')
-          : values.filter(v => typeof v === 'string' || typeof v === 'number');
+        ? values[0].filter(
+            (v) => typeof v === "string" || typeof v === "number"
+          )
+        : values.filter((v) => typeof v === "string" || typeof v === "number");
       return options.includes(val);
-  });
+    }
+  );
 }
