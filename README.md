@@ -125,8 +125,11 @@ the system did.
 
 ### (Limited) Chargen Support
 It's now possible to define certain chargen options on abstammungen, kulturen, rassen and ausbildungen.
-The video showcases how this works:
+The video showcases how this works. Unfortunately my screencast tool failed to record the dropdown menus and the drag&drop from "Händler" onto the character.
+But the dropdowns display a nice list to choose from and drag & drop works. :)
 
+There's not yet a prebuilt version of this, but I'll try to add one next week.
+You can always build the system manually, though. :)
 
 
 https://user-images.githubusercontent.com/64911281/113486196-6d5b0e80-94a9-11eb-9bb6-b3ab7ba3ff1f.mp4
