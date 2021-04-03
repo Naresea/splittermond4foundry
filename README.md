@@ -123,6 +123,11 @@ the system did.
 ![image](screenshots/weapon-roll-ticks-after.PNG)
 ![image](screenshots/pc_roll_explanation.PNG)
 
+
+https://user-images.githubusercontent.com/64911281/113486896-e740c700-94ac-11eb-856e-67645762d5f8.mp4
+
+
+
 ### (Limited) Chargen Support
 It's now possible to define certain chargen options on abstammungen, kulturen, rassen and ausbildungen.
 The video showcases how this works. Unfortunately my screencast tool failed to record the dropdown menus and the drag&drop from "Händler" onto the character.
