@@ -24,6 +24,7 @@
                     <input type="number" class="col-6" name="points" value="{{points}}"/>
                 </div>
             {{/if}}
+            {{!-- Not currently evaluated
             {{#if (eq type "fertigkeit")}}
                 <div class="d-flex align-items-center m-small">
                     <label for="value" class="col-4">{{localize "splittermond.chargen-option.skillTypeFilter"}}</label>
@@ -39,7 +40,7 @@
                     <label for="value" class="col-4">{{localize "splittermond.chargen-option.masteryLevelFilter"}}</label>
                     <input type="text" class="col-6" name="masteryLevelFilter" value="{{masteryLevelFilter}}"/>
                 </div>
-            {{/if}}
+            {{/if}}--}}
         </div>
     {{/inline}}
 {{/systems/splittermond/templates/partials/layouts/layout-item.hbs}}
