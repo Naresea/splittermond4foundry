@@ -65,7 +65,6 @@ export class ChargenSheet {
     private static openChoiceSheet(choices, index: number, updateCallback: (choices: Array<Choice<ChargenOption>>) => void): void {
         const choice = choices[index];
         new ChoiceSheet(choice, {}, (data) => {
-            console.log('CHARGEN ChargenSheet: update called: ', {data, choices});
             updateCallback(choices);
         }).render(true);
     }

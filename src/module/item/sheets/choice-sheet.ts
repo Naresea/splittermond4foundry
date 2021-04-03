@@ -80,7 +80,6 @@ export class ChoiceSheet extends FormApplication<Choice<ChargenOption>> {
         event: Event | JQuery.Event,
         formData: any
     ): Promise<any> {
-        console.log('CHARGEN ChoiceSheet: updateObject');
         return this.doUpdate(formData);
     }
 
@@ -90,7 +89,6 @@ export class ChoiceSheet extends FormApplication<Choice<ChargenOption>> {
         (this.object as any).numPoints = formData.numPoints ?? (this.object as any).numPoints;
         (this.object as any).pointOptions = this.parsePointOptions(formData.pointOptions) ?? (this.object as any).pointOptions;
         this.render();
-        console.log('CHARGEN ChoiceSheet: calling update', {formData});
         return this.update
             ? this.update(formData as any)
             : Promise.reject("No update defined.");
@@ -138,7 +136,6 @@ export class ChoiceSheet extends FormApplication<Choice<ChargenOption>> {
     private openChargenOptionSheet(options: Array<ChargenOption>, index: number): void {
         const opt = options[index];
         new ChargenOptionsSheet(opt, {}, (data) => {
-            console.log('CHARGEN ChoiceSheet: doUpdate ', {data, options});
             this.doUpdate({
                 'options': [...options]
             });

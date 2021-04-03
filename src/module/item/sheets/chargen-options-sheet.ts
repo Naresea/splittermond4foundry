@@ -69,7 +69,6 @@ export class ChargenOptionsSheet extends FormApplication<ChargenOption> {
             ?? this.object.masteryLevelFilter;
 
         this.render();
-        console.log('CHARGEN ChargenOptionSheet: calling update ', {formData});
         return this.update
             ? this.update(formData as any)
             : Promise.reject("No update defined.");

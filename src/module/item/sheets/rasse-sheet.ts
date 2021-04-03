@@ -42,7 +42,6 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
         html,
         (this.object as Item<Rasse>).data.data.choices ?? [],
         (choices) => {
-          console.log('CHARGEN RasseSheet, persisting = ', choices);
           this.object.update({
             _id: this.object._id,
             data: {
