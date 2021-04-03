@@ -1,6 +1,6 @@
-import {ChargenOption, SelectOneOfChoice} from '../models/items/chargen';
+import {ChargenOption, MatchMultipleChoice} from '../models/items/chargen';
 
-export class ChargenMatchMultiple extends FormApplication<SelectOneOfChoice<ChargenOption>> {
+export class ChargenMatchMultiple extends FormApplication<MatchMultipleChoice<ChargenOption>> {
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -8,18 +8,20 @@ export class ChargenMatchMultiple extends FormApplication<SelectOneOfChoice<Char
             template:
                 "systems/splittermond/templates/sheets/popups/chargen-match-multiple.hbs",
             width: 512,
-            height: 340,
+            height: 512,
             submitOnChange: false,
             submitOnClose: false,
-            closeOnSubmit: true,
+            closeOnSubmit: false,
             editable: true,
         });
     }
 
     private readonly submitCallback;
+    private confirmedMatches: Array<ChargenOption> = [];
+    private confirmedPointsIndices: Array<number> = [];
 
     constructor(
-        object?: SelectOneOfChoice<ChargenOption>,
+        object?: MatchMultipleChoice<ChargenOption>,
         options?: FormApplication.Options,
         submit?: (formData: ChargenOption | undefined) => void
     ) {
@@ -27,29 +29,84 @@ export class ChargenMatchMultiple extends FormApplication<SelectOneOfChoice<Char
         this.submitCallback = submit;
     }
 
-    getData(options?: object): any | Promise<any> {
+    getData(opt?: object): any | Promise<any> {
+
+        const options = this.object.options
+            .map((opt, idx) => ({
+                option: opt,
+                label:  `${opt.type} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`,
+                value: idx
+            })).filter(opt => !this.confirmedMatches.includes(opt.option));
+
+        const pointOptions = this.object.pointOptions
+            .map((pt, idx) => ({
+                value: idx,
+                label: `${pt}`
+            }))
+            .filter(pt => !this.confirmedPointsIndices.includes(pt.value));
+
+        const confirmed = this.confirmedMatches.map(cm => ({
+            fields: [
+                `${cm.type}`,
+                `${cm.name}`,
+                `${cm.points}`
+            ]
+        }));
+        const confirmedHeaders = [
+            "splittermond.chargen-match-multiple.header-type",
+            "splittermond.chargen-match-multiple.header-name",
+            "splittermond.chargen-match-multiple.header-points",
+        ];
+
+        const canSubmit = this.confirmedMatches.length === Math.min(this.object.pointOptions.length, this.object.options.length);
+
         return {
-            labels: this.object.options.map(opt => `${opt.type} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`),
-            values: this.object.options.map(opt => opt.name)
+            canSubmit,
+            confirmed,
+            confirmedHeaders,
+            pointOptions,
+            options
         };
     }
 
     protected activateListeners(html: JQuery<HTMLElement> | HTMLElement): void {
         super.activateListeners(html);
         if (html instanceof HTMLElement) {
-            console.error("ChargenSelectOne: html is of wrong type.");
+            console.error("ChargenMatchMultiple: html is of wrong type.");
             return;
         }
         html.find(".btn-submit").on("click", (evt) => {
-            const select = html.find('select[name="selectedOption"]').get()[0];
-            const selectedIndex = +(select as HTMLSelectElement)?.selectedIndex ?? 0;
-            const option = this.object.options[selectedIndex];
-            console.log('ChargenSelectOne: selected option=', option);
+            const selectedOptions = this.confirmedMatches.filter(o => o.points != null && o.points !== 0);
+
             if (this.submitCallback) {
-                console.log('Calling submit callback with ', option);
-                this.submitCallback(option);
+                console.log('Calling submit callback with ', selectedOptions);
+                this.submitCallback(selectedOptions);
             }
             this.close();
+        });
+
+        html.find(".btn-match-multiple-match").on("click", (evt) => {
+
+            const selectedKey = html.find('input[name="keys"]:checked').get()[0];
+            const selectedPoints = html.find('input[name="points"]:checked').get()[0];
+
+            console.log('Found inputs: ', {selectedKey, selectedPoints});
+
+            if (!selectedKey || !selectedPoints) {
+                return;
+            }
+
+            const pointIndex = +(selectedPoints as HTMLInputElement).value;
+            const optionIndex = +(selectedKey as HTMLInputElement).value;
+            const option = this.object.options[optionIndex];
+            const point = this.object.pointOptions[pointIndex];
+            if (option && point) {
+                option.points = +point;
+                this.confirmedMatches.push(option);
+                this.confirmedPointsIndices.push(pointIndex);
+            }
+            console.log('Applied ', {option, point});
+            this.render();
         });
     }
 

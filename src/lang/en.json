@@ -234,5 +234,6 @@
     "splittermond.chargen-option.typelabels.resource": "Resource",
     "splittermond.chargen-option.typelabels.staerke": "Stärke",
     "splittermond.chargen-option.typelabels.schwaeche": "Schwäche",
-    "splittermond.chargen-option.typelabels.attribute": "Attribut"
+    "splittermond.chargen-option.typelabels.attribute": "Attribut",
+    "splittermond.chargen-match-multiple.match": "Verbinde"
 }
