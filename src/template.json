@@ -133,6 +133,9 @@
       "equipment": {
         "isEquipped": false,
         "merkmale": ""
+      },
+      "chargen": {
+        "choices": []
       }
     },
     "mondzeichen": {
@@ -212,21 +215,21 @@
       "schaden": "1d6"
     },
     "abstammung": {
-      "templates": ["info", "quelle"],
+      "templates": ["info", "quelle", "chargen"],
       "modifier": []
     },
     "kultur": {
-      "templates": ["info", "quelle"],
+      "templates": ["info", "quelle", "chargen"],
       "sprache": "",
       "kulturkunde": "",
       "modifier": []
     },
     "ausbildung": {
-      "templates": ["info", "quelle"],
+      "templates": ["info", "quelle", "chargen"],
       "modifier": []
     },
     "rasse": {
-      "templates": ["info", "quelle"],
+      "templates": ["info", "quelle", "chargen"],
       "modifier": []
     },
     "staerke": {

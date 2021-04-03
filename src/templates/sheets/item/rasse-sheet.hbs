@@ -5,6 +5,7 @@
     {{#*inline "nav-tabs"}}
         <a class="item control-height" data-tab="description">{{localize "splittermond.item.nav.description"}}</a>
         <a class="item control-height" data-tab="details">{{localize "splittermond.item.nav.modifier"}}</a>
+        <a class="item control-height" data-tab="chargen">{{localize "splittermond.item.nav.chargen"}}</a>
     {{/inline}}
     {{#*inline "nav-content"}}
         <div class="tab" style="height: 100%;" data-group="primary" data-tab="description">
@@ -14,6 +15,10 @@
         <div class="tab" data-group="primary" data-tab="details">
             {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="rasse-modifier" dynamic=true item=data.modifier fields=(modifierTableHeaders)}}
             {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="chargen">
+            {{#> systems/splittermond/templates/partials/includes/chargen.hbs data.chargen}}
+            {{/systems/splittermond/templates/partials/includes/chargen.hbs}}
         </div>
     {{/inline}}
 {{/systems/splittermond/templates/partials/layouts/layout-item.hbs}}

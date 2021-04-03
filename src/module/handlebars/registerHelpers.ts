@@ -126,4 +126,9 @@ export function registerHelpers(): void {
       name,
     });
   });
+
+  Handlebars.registerHelper('oneOf', (val: string, ...values: Array<unknown>) => {
+      const options = values.filter(v => typeof v === 'string');
+      return options.includes(val);
+  });
 }

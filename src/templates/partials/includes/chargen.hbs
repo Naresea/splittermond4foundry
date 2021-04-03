@@ -1,0 +1,13 @@
+{{#> systems/splittermond/templates/partials/includes/item-list.hbs class="chargen-options" dynamic=true item=choices fields=choicesFields}}
+    {{#*inline "icons-end"}}
+        <i class="fas fa-plus edit-item clickable chargen-item-edit" data-chargen-operation="add"></i>
+    {{/inline}}
+    {{#*inline "item-template"}}
+        {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
+            {{#*inline "icons-end"}}
+                <i class="fas fa-edit edit-item clickable chargen-item-edit" data-chargen-operation="edit" data-chargen-choice="{{index}}"></i>
+                <i class="fas fa-trash delete-item clickable chargen-item-edit" data-chargen-operation="delete" data-chargen-choice="{{index}}"></i>
+            {{/inline}}
+        {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+    {{/inline}}
+{{/systems/splittermond/templates/partials/includes/item-list.hbs}}
