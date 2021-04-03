@@ -13,6 +13,9 @@ import {DERIVED_ATTRIBUTES} from '../models/actors/derived-attributes';
 import {Resource} from '../models/items/resource';
 import {Fertigkeit} from '../models/items/fertigkeit';
 import {ChargenSelectOne} from '../popups/chargen-select-one';
+import {ChargenSelectMany} from '../popups/chargen-select-many';
+import {ChargenDistributePoints} from '../popups/chargen-distribute-points';
+import {ChargenMatchMultiple} from '../popups/chargen-match-multiple';
 
 export class ChargenService {
 
@@ -60,15 +63,30 @@ export class ChargenService {
     }
 
     private static async applySelectMany(actor: Actor, choices: Array<Choice<ChargenOption>>): Promise<void> {
-
+        await this.applyMultipleOptions(actor, choices, ChargenSelectMany);
     }
 
     private static async applyDistributePoints(actor: Actor, choices: Array<Choice<ChargenOption>>): Promise<void> {
-
+        await this.applyMultipleOptions(actor, choices, ChargenDistributePoints);
     }
 
     private static async applyMatchMultiple(actor: Actor, choices: Array<Choice<ChargenOption>>): Promise<void> {
+        await this.applyMultipleOptions(actor, choices, ChargenMatchMultiple);
+    }
 
+    // TODO: figure out what the correct type for "constructor of a FormApplication" is
+    private static async applyMultipleOptions(actor: Actor, choices: Array<Choice<ChargenOption>>, dialogClass: any): Promise<void> {
+        const selectedOptions = await Promise.all(choices.map(choice => {
+            return new Promise((resolve) => {
+                new dialogClass(choice, {}, (option) => resolve(option)).render(true)
+            });
+        })) as Array<Array<ChargenOption | undefined>>;
+        const flattened = selectedOptions.reduce((accu, curr) => {
+            accu.push(...curr);
+            return accu;
+        }, []);
+        console.log('Received selected options: ', flattened);
+        await this.applySelectedOptions(actor, flattened.filter(o => o != null));
     }
 
     private static async applySelectedOptions(actor: Actor, chargenOptions: Array<ChargenOption>): Promise<void> {

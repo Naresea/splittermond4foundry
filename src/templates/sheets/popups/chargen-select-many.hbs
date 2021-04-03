@@ -1,0 +1,18 @@
+<form class="item-sheet sheet p-small {{class}}" autocomplete="off">
+    <div class="d-flex flex-col flex-grow" style="max-width: 100%; max-height: 100%; overflow: hidden;">
+        <h1>{{localize "splittermond.chargen-select-many.title"}}</h1>
+        <div class="d-flex align-items-center">
+            {{localize "splittermond.chargen-select-many.remaining"}} {{remaining}} / {{numN}}
+        </div>
+        {{#each options}}
+            <div class="d-flex align-items-center">
+                <div class="col-6">{{label}}</div>
+                <input class="col-4" type="checkbox" name="option.{{@index}}" {{checked (oneOf @index ../selectedIndices)}}/>
+            </div>
+        {{/each}}
+
+        {{#if canSubmit}}
+            <button class="btn-submit clickable">{{localize "splittermond.chargen-select-many.ok"}}</button>
+        {{/if}}
+    </div>
+</form>

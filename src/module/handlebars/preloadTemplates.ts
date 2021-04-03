@@ -40,6 +40,9 @@ export const preloadTemplates = async function () {
     "systems/splittermond/templates/sheets/popups/dice-roll-dialog.hbs",
     "systems/splittermond/templates/sheets/popups/tick-dialog.hbs",
     "systems/splittermond/templates/sheets/popups/chargen-select-one.hbs",
+    "systems/splittermond/templates/sheets/popups/chargen-select-many.hbs",
+    "systems/splittermond/templates/sheets/popups/chargen-distribute-points.hbs",
+    "systems/splittermond/templates/sheets/popups/chargen-match-multiple.hbs",
   ];
 
   return loadTemplates(templatePaths);
