@@ -36,9 +36,7 @@ export class ChargenSelectMany extends FormApplication<SelectNOfChoice<ChargenOp
             index: idx
         }));
 
-        console.log('Selected indices in getData: ', this.selectedIndices);
         const remaining = this.object.numN - this.selectedIndices.length;
-        console.log('Remaining: ', remaining);
         return {
             options,
             selectedIndices: this.selectedIndices,
@@ -57,7 +55,6 @@ export class ChargenSelectMany extends FormApplication<SelectNOfChoice<ChargenOp
         html.find(".btn-submit").on("click", (evt) => {
             const select = html.find('select[name="selectedOption"]').get()[0];
             const selectedOptions = this.object.options.filter((o, idx) => this.selectedIndices.includes(idx));
-            console.log('ChargenSelectMany: selected s=', selectedOptions);
             if (this.submitCallback) {
                 console.log('Calling submit callback with ', selectedOptions);
                 this.submitCallback(selectedOptions);
@@ -73,12 +70,10 @@ export class ChargenSelectMany extends FormApplication<SelectNOfChoice<ChargenOp
         this.selectedIndices = [];
         for (let i = 0; i < this.object.options.length; i++) {
             const data = formData[`option.${i}`];
-            console.log('Found data: ', {data, formData});
             if (data === true) {
                 this.selectedIndices.push(i);
             }
         }
-        console.log('Selected Indices after update: ', this.selectedIndices);
         this.render();
         return Promise.resolve();
     }

@@ -1,6 +1,6 @@
-import {ChargenOption, SelectOneOfChoice} from '../models/items/chargen';
+import {ChargenOption, DistributePointsChoice, SelectNOfChoice} from '../models/items/chargen';
 
-export class ChargenDistributePoints extends FormApplication<SelectOneOfChoice<ChargenOption>> {
+export class ChargenDistributePoints extends FormApplication<DistributePointsChoice<ChargenOption>> {
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -9,17 +9,18 @@ export class ChargenDistributePoints extends FormApplication<SelectOneOfChoice<C
                 "systems/splittermond/templates/sheets/popups/chargen-distribute-points.hbs",
             width: 512,
             height: 340,
-            submitOnChange: false,
-            submitOnClose: false,
-            closeOnSubmit: true,
+            submitOnChange: true,
+            submitOnClose: true,
+            closeOnSubmit: false,
             editable: true,
         });
     }
 
     private readonly submitCallback;
+    private distributedPoints: Array<number> = [];
 
     constructor(
-        object?: SelectOneOfChoice<ChargenOption>,
+        object?: DistributePointsChoice<ChargenOption>,
         options?: FormApplication.Options,
         submit?: (formData: ChargenOption | undefined) => void
     ) {
@@ -27,27 +28,39 @@ export class ChargenDistributePoints extends FormApplication<SelectOneOfChoice<C
         this.submitCallback = submit;
     }
 
-    getData(options?: object): any | Promise<any> {
+    getData(opt?: object): any | Promise<any> {
+
+        const options = this.object.options.map((opt, idx) => ({
+            ...opt,
+            label:  `${opt.type} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`,
+            index: idx
+        }));
+
+        const remaining = this.object.numPoints - this.distributedPoints.reduce((accu, val) => accu + val, 0);
         return {
-            labels: this.object.options.map(opt => `${opt.type} ${opt.name}${opt.points ? ` (${opt.points})` : ''}`),
-            values: this.object.options.map(opt => opt.name)
+            options,
+            distributedPoints: this.distributedPoints,
+            numPoints: this.object.numPoints,
+            remaining: remaining,
+            canSubmit: remaining === 0
         };
     }
 
     protected activateListeners(html: JQuery<HTMLElement> | HTMLElement): void {
         super.activateListeners(html);
         if (html instanceof HTMLElement) {
-            console.error("ChargenSelectOne: html is of wrong type.");
+            console.error("ChargenDistributePoints: html is of wrong type.");
             return;
         }
         html.find(".btn-submit").on("click", (evt) => {
             const select = html.find('select[name="selectedOption"]').get()[0];
-            const selectedIndex = +(select as HTMLSelectElement)?.selectedIndex ?? 0;
-            const option = this.object.options[selectedIndex];
-            console.log('ChargenSelectOne: selected option=', option);
+            const selectedOptions = this.object.options.map((o, idx) => ({
+                ...o,
+                points: this.distributedPoints[idx]
+            })).filter(o => o.points > 0);
             if (this.submitCallback) {
-                console.log('Calling submit callback with ', option);
-                this.submitCallback(option);
+                console.log('Calling submit callback with ', selectedOptions);
+                this.submitCallback(selectedOptions);
             }
             this.close();
         });
@@ -57,6 +70,13 @@ export class ChargenDistributePoints extends FormApplication<SelectOneOfChoice<C
         event: Event | JQuery.Event,
         formData: object
     ): Promise<any> {
+        this.distributedPoints = [];
+        for (let i = 0; i < this.object.options.length; i++) {
+            const data = formData[`option.${i}`];
+            this.distributedPoints[i] = data ?? 0;
+        }
+        console.log('Distributed points: ', {formData, points: this.distributedPoints});
+        this.render();
         return Promise.resolve();
     }
 }

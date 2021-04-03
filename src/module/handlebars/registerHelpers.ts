@@ -131,7 +131,6 @@ export function registerHelpers(): void {
       const options = Array.isArray(values[0])
           ? values[0].filter(v => typeof v === 'string' || typeof v === 'number')
           : values.filter(v => typeof v === 'string' || typeof v === 'number');
-      console.log('ONE OF: ', {val, options, values});
       return options.includes(val);
   });
 }
