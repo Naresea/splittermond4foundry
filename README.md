@@ -123,6 +123,16 @@ the system did.
 ![image](screenshots/weapon-roll-ticks-after.PNG)
 ![image](screenshots/pc_roll_explanation.PNG)
 
+### (Limited) Chargen Support
+It's now possible to define certain chargen options on abstammungen, kulturen, rassen and ausbildungen.
+The video showcases how this works:
+
+
+
+https://user-images.githubusercontent.com/64911281/113486196-6d5b0e80-94a9-11eb-9bb6-b3ab7ba3ff1f.mp4
+
+
+
 ## How to Build
 Setup the following variables in a "foundryconfig.json" next to this Readme:
 ````

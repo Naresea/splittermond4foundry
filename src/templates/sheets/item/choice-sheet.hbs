@@ -1,0 +1,40 @@
+{{#> systems/splittermond/templates/partials/layouts/layout-item.hbs class="chargen-sheet" hasPortrait=false
+                                                                     noNav=true}}
+    {{#*inline "nonav-content"}}
+        <div class="d-flex flex-col flex-grow">
+            <div class="d-flex align-items-center m-small">
+                <label for="type" class="col-4">{{localize "splittermond.chargen.type"}}</label>
+                <div class="d-flex col-6">
+                    {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
+                            name="choiceType"
+                            selected=choiceType
+                            labels=typeLabels
+                            values=availableTypes
+                    }}
+                    {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}
+                </div>
+            </div>
+            {{#if (eq choiceType "SelectNOf")}}
+                <div class="d-flex align-items-center m-small">
+                    <label for="value" class="col-4">{{localize "splittermond.chargen.numberOfSelections"}}</label>
+                    <input type="number" class="col-6" name="numN" value="{{numN}}"/>
+                </div>
+            {{/if}}
+            {{#if (eq choiceType "DistributePoints")}}
+                <div class="d-flex align-items-center m-small">
+                    <label for="value" class="col-4">{{localize "splittermond.chargen.DistributePoints"}}</label>
+                    <input type="number" class="col-6" name="numPoints" value="{{numPoints}}"/>
+                </div>
+            {{/if}}
+            {{#if (eq choiceType "MatchMultiple")}}
+                <div class="d-flex align-items-center m-small">
+                    <label for="value" class="col-4">{{localize "splittermond.chargen.MatchMultiple"}}</label>
+                    <input type="text" class="col-6" name="pointOptions" value="{{pointOptions}}"/>
+                </div>
+            {{/if}}
+
+            {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="choice-options" dynamic=true item=optionsTable fields=optionFields}}
+            {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
+        </div>
+    {{/inline}}
+{{/systems/splittermond/templates/partials/layouts/layout-item.hbs}}

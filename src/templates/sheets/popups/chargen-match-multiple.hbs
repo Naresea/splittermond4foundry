@@ -1,0 +1,45 @@
+<form class="item-sheet sheet p-small {{class}}" style="overflow: auto" autocomplete="off">
+    <div class="d-flex flex-col flex-grow" style="max-width: 100%; max-height: 100%; overflow: hidden;">
+        <h1>{{localize "splittermond.chargen-match-multiple.title"}}</h1>
+
+        <div class="d-flex flex-grow" style="overflow-y: auto; overflow-x: hidden;">
+            <div class="d-flex flex-col flex-grow m-small">
+                {{#each options}}
+                    <div class="d-flex align-items-center" style="min-height: var(--control-size); max-height: var(--control-size)">
+                        <span class="col-6" style="white-space: nowrap; text-overflow: ellipsis">{{label}}</span>
+                        <input class="col-4" type="radio" id="option.{{@index}}" name="keys" value="{{value}}"/>
+                    </div>
+                {{/each}}
+            </div>
+            {{#unless canSubmit}}
+                <div class="d-flex align-items-center">
+                    <button class="btn-match-multiple-match">{{localize "splittermond.chargen-match-multiple.match"}}</button>
+                </div>
+            {{/unless}}
+            <div class="d-flex flex-col flex-grow">
+                <div class="d-flex flex-col flex-grow m-small">
+                    {{#each pointOptions}}
+                        <div class="d-flex align-items-center" style="min-height: var(--control-size); max-height: var(--control-size)">
+                            <input class="col-4" type="radio" id="pointOption.{{@index}}" name="points" value="{{value}}"/>
+                            <span class="col-6 d-flex" style="white-space: nowrap; text-overflow: ellipsis">{{label}}</span>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-col flex-grow">
+            {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="confirmed-matches" dynamic=true item=confirmed fields=confirmedHeaders}}
+                {{#*inline "icons-end"}}{{/inline}}
+                {{#*inline "item-template"}}
+                    {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
+                        {{#*inline "icons-end"}}{{/inline}}
+                    {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+                {{/inline}}
+            {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
+        </div>
+        {{#if canSubmit}}
+            <button class="btn-submit clickable">{{localize "splittermond.chargen-match-multiple.ok"}}</button>
+        {{/if}}
+    </div>
+</form>

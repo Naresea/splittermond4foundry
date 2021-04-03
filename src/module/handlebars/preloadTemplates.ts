@@ -8,6 +8,7 @@ export const preloadTemplates = async function () {
     "systems/splittermond/templates/partials/includes/editor.hbs",
     "systems/splittermond/templates/partials/includes/gegenstand.hbs",
     "systems/splittermond/templates/partials/includes/indicator.hbs",
+    "systems/splittermond/templates/partials/includes/chargen.hbs",
     "systems/splittermond/templates/partials/layouts/layout-actor.hbs",
     "systems/splittermond/templates/partials/layouts/layout-item.hbs",
     "systems/splittermond/templates/sheets/actor/player-sheet-parts/biography.hbs",
@@ -38,6 +39,10 @@ export const preloadTemplates = async function () {
     "systems/splittermond/templates/sheets/actor/non-player-sheet.hbs",
     "systems/splittermond/templates/sheets/popups/dice-roll-dialog.hbs",
     "systems/splittermond/templates/sheets/popups/tick-dialog.hbs",
+    "systems/splittermond/templates/sheets/popups/chargen-select-one.hbs",
+    "systems/splittermond/templates/sheets/popups/chargen-select-many.hbs",
+    "systems/splittermond/templates/sheets/popups/chargen-distribute-points.hbs",
+    "systems/splittermond/templates/sheets/popups/chargen-match-multiple.hbs",
   ];
 
   return loadTemplates(templatePaths);

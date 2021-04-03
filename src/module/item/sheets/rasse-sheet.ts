@@ -2,6 +2,7 @@ import { SplimoItemSheet } from "../splimo-item-sheet";
 import { Rasse } from "../../models/items/rasse";
 import { Modifier, ModifierType } from "../../models/items/modifier";
 import { ModifierItemSheet } from "./modifier-item-sheet";
+import { ChargenSheet } from "./chargen-sheet";
 
 export class RasseSheet extends SplimoItemSheet<Rasse> {
   static get defaultOptions() {
@@ -28,6 +29,9 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
       };
     });
     data.data.modifier = modifier;
+    data.data.chargen = ChargenSheet.getChargenData(
+      (this.object as Item<Rasse>).data.data.choices ?? []
+    );
     return data;
   }
 
@@ -36,6 +40,18 @@ export class RasseSheet extends SplimoItemSheet<Rasse> {
     this.registerCreateModifierClick(html);
     this.registerEditModifierClick(html);
     this.registerDeleteModifierClick(html);
+    ChargenSheet.activateChargenListeners(
+      html,
+      (this.object as Item<Rasse>).data.data.choices ?? [],
+      (choices) => {
+        this.object.update({
+          _id: this.object._id,
+          data: {
+            choices: choices,
+          },
+        });
+      }
+    );
   }
 
   private registerCreateModifierClick(html: JQuery<HTMLElement>): void {

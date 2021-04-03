@@ -1,0 +1,46 @@
+{{#> systems/splittermond/templates/partials/layouts/layout-item.hbs class="chargen-option-sheet" hasPortrait=false
+                                                                     noNav=true}}
+    {{#*inline "nonav-content"}}
+        <div class="d-flex flex-col flex-grow">
+            <div class="d-flex align-items-center m-small">
+                <label for="type" class="col-4">{{localize "splittermond.chargen-option.type"}}</label>
+                <div class="d-flex col-6">
+                    {{#> systems/splittermond/templates/partials/includes/dropdown.hbs
+                            name="type"
+                            selected=type
+                            labels=typeLabels
+                            values=availableTypes
+                    }}
+                    {{/systems/splittermond/templates/partials/includes/dropdown.hbs}}
+                </div>
+            </div>
+            <div class="d-flex align-items-center m-small">
+                <label for="value" class="col-4">{{localize "splittermond.chargen-option.name"}}</label>
+                <input type="text" class="col-6" name="name" value="{{name}}"/>
+            </div>
+            {{#if (oneOf type "fertigkeit" "resource" "attribute")}}
+                <div class="d-flex align-items-center m-small">
+                    <label for="value" class="col-4">{{localize "splittermond.chargen-option.points"}}</label>
+                    <input type="number" class="col-6" name="points" value="{{points}}"/>
+                </div>
+            {{/if}}
+            {{!-- Not currently evaluated
+            {{#if (eq type "fertigkeit")}}
+                <div class="d-flex align-items-center m-small">
+                    <label for="value" class="col-4">{{localize "splittermond.chargen-option.skillTypeFilter"}}</label>
+                    <input type="text" class="col-6" name="skillTypeFilter" value="{{skillTypeFilter}}"/>
+                </div>
+            {{/if}}
+            {{#if (eq type "meisterschaft")}}
+                <div class="d-flex align-items-center m-small">
+                    <label for="value" class="col-4">{{localize "splittermond.chargen-option.masterySkillFilter"}}</label>
+                    <input type="text" class="col-6" name="masterySkillFilter" value="{{masterySkillFilter}}"/>
+                </div>
+                <div class="d-flex align-items-center m-small">
+                    <label for="value" class="col-4">{{localize "splittermond.chargen-option.masteryLevelFilter"}}</label>
+                    <input type="text" class="col-6" name="masteryLevelFilter" value="{{masteryLevelFilter}}"/>
+                </div>
+            {{/if}}--}}
+        </div>
+    {{/inline}}
+{{/systems/splittermond/templates/partials/layouts/layout-item.hbs}}
