@@ -144,6 +144,9 @@ For example I didn't know that shields could have a BEH (handicap) value and an 
 I'll fix that with the next update. :)
 
 
+https://user-images.githubusercontent.com/64911281/113516764-ff2f4e00-9573-11eb-8d7b-a85a78610e6a.mp4
+
+
 
 ## How to Build
 Setup the following variables in a "foundryconfig.json" next to this Readme:
