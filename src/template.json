@@ -234,6 +234,7 @@
     },
     "staerke": {
       "templates": ["info", "quelle"],
+      "level": 0,
       "modifier": []
     },
     "schwaeche": {

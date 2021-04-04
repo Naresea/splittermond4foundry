@@ -1,0 +1,575 @@
+{
+  "definitions": {
+    "attributeShortname": {
+      "type": "string",
+      "enum": [
+        "AUS",
+        "BEW",
+        "INT",
+        "KON",
+        "MYS",
+        "STÄ",
+        "VER",
+        "WIL",
+        "SPL",
+        "GK",
+        "GSW",
+        "INI",
+        "LP",
+        "FO",
+        "VTD",
+        "SR",
+        "GW",
+        "KW"
+      ]
+    },
+    "attributeShortnameOptional": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/attributeShortname"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "itemBase": {
+      "type": "object",
+      "properties": {
+        "relic": {
+          "type": "boolean"
+        },
+        "personalized": {
+          "type": "boolean"
+        }
+      }
+    },
+    "itemFeature": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "level": {
+          "type": "number"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "page": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "weaponBase": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/itemBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "skill": {
+              "type": "string"
+            },
+            "attribute1": {
+              "$ref": "#/definitions/attributeShortname"
+            },
+            "attribute2": {
+              "$ref": "#/definitions/attributeShortname"
+            },
+            "attribute1Id": {
+              "type": "string"
+            },
+            "attribute2Id": {
+              "type": "string"
+            },
+            "value": {
+              "type": "number"
+            },
+            "damage": {
+              "type": "string"
+            },
+            "weaponSpeed": {
+              "type": "number"
+            },
+            "characterTickMalus": {
+              "type": "number"
+            },
+            "calculateSpeed": {
+              "type": "number"
+            },
+            "features": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/itemFeature"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "jsonExporterVersion": {
+      "type": "string"
+    },
+    "system": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "race": {
+      "type": "string"
+    },
+    "culture": {
+      "type": "string"
+    },
+    "background": {
+      "type": "string"
+    },
+    "birthplace": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "education": {
+      "type": "string"
+    },
+    "cultureLores": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "moonSign": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "freeExp": {
+      "type": "number"
+    },
+    "investedExp": {
+      "type": "number"
+    },
+    "hairColor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "eyeColor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "furColor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "size": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weight": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "deity": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "gender": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "weaknesses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "shortName": {
+            "$ref": "#/definitions/attributeShortname"
+          },
+          "startValue": {
+            "type": "number"
+          },
+          "value": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "attribute1": {
+            "$ref": "#/definitions/attributeShortnameOptional"
+          },
+          "attribute2": {
+            "$ref": "#/definitions/attributeShortnameOptional"
+          },
+          "value": {
+            "type": "number"
+          },
+          "points": {
+            "type": "number"
+          },
+          "modifier": {
+            "type": "number"
+          },
+          "masterships": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": "number"
+                },
+                "shortDescription": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "longDescription": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "page": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "powers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          },
+          "shortDescription": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "longDescription": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "page": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "spells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "school": {
+            "type": "string"
+          },
+          "schoolGrade": {
+            "type": "number"
+          },
+          "difficulty": {
+            "type": "string"
+          },
+          "focus": {
+            "type": "string"
+          },
+          "castDuration": {
+            "type": "string"
+          },
+          "castRange": {
+            "type": "string"
+          },
+          "spellDuration": {
+            "type": "string"
+          },
+          "enhancement": {
+            "type": "string"
+          },
+          "page": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "longDescription": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "enhancementDescription": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "enhancementOptions": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "armors": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/itemBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "defense": {
+                "type": "number"
+              },
+              "damageReduction": {
+                "type": "number"
+              },
+              "handicap": {
+                "type": "number"
+              },
+              "tickMalus": {
+                "type": "number"
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/itemFeature"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "shields": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/itemBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "activeDefenseValue": {
+                "type": "number"
+              },
+              "skill": {
+                "type": "string"
+              },
+              "attack": {
+                "type": "number"
+              },
+              "damage": {
+                "type": "string"
+              },
+              "defensePlus": {
+                "type": "number"
+              },
+              "handicap": {
+                "type": "number"
+              },
+              "tickMalus": {
+                "type": "number"
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/itemFeature"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "meleeWeapons": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/weaponBase"
+          }
+        ]
+      }
+    },
+    "longRangeWeapons": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/weaponBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "range": {
+                "type": "number"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/itemBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "count": {
+                "type": "number"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
