@@ -39,8 +39,7 @@ Bei Nutzung dieses Layouts bitte wenn möglich das endgültige Werk ebenfalls un
 
 ## Installation
 Install in Foundry using this link:
-https://raw.githubusercontent.com/Naresea/splittermond4foundry/naresea/splittermond-nx/package/system.json
-
+https://raw.githubusercontent.com/Naresea/splittermond4foundry/naresea/splittermond-nx/package/v011/system.json
 
 ## Screenshots and Features
 
@@ -132,12 +131,20 @@ https://user-images.githubusercontent.com/64911281/113490346-2d078a80-94c1-11eb-
 It's now possible to define certain chargen options on abstammungen, kulturen, rassen and ausbildungen.
 The video showcases how this works. Unfortunately my screencast
 tool didn't record dropdown contents and drag & drop, though.
-Also this feature is not available in the pre-compiled package yet,
-but I will try to add a precompiled version soon. :-)
-
-
 
 https://user-images.githubusercontent.com/64911281/113486196-6d5b0e80-94a9-11eb-9bb6-b3ab7ba3ff1f.mp4
+
+### Genesis Import
+The system now also supports importing player characters from Genesis.
+Just export the character from Genesis as JSON and right click on a newly created actor
+in Foundry.
+While I implemented this import today I realized that some fields are missing in my data model.
+For example I didn't know that shields could have a BEH (handicap) value and an Active Defense bonus.
+.... and while recording the video below I realized that I forgot about importing the moon signs.
+I'll fix that with the next update. :)
+
+
+https://user-images.githubusercontent.com/64911281/113516764-ff2f4e00-9573-11eb-8d7b-a85a78610e6a.mp4
 
 
 
