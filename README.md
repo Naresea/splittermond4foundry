@@ -130,7 +130,10 @@ https://user-images.githubusercontent.com/64911281/113490346-2d078a80-94c1-11eb-
 
 ### (Limited) Chargen Support
 It's now possible to define certain chargen options on abstammungen, kulturen, rassen and ausbildungen.
-The video showcases how this works:
+The video showcases how this works. Unfortunately my screencast
+tool didn't record dropdown contents and drag & drop, though.
+Also this feature is not available in the pre-compiled package yet,
+but I will try to add a precompiled version soon. :-)
 
 
 
