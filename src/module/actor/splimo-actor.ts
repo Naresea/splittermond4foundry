@@ -26,7 +26,6 @@ export class SplimoActor extends Actor<AnySplimoActor> {
   }
 
   importFromJSON(json: string): Promise<Entity> {
-    console.log('Importing: ', this);
     if (this.data.type === 'PlayerCharacter') {
       return GenesisImportService.importFromGenesis(this as Actor<PlayerCharacter>, json);
     } else {
@@ -35,11 +34,12 @@ export class SplimoActor extends Actor<AnySplimoActor> {
   }
 
   exportToJSON(): void {
-    if (this.data.type === 'PlayerCharacter') {
+    /* if (this.data.type === 'PlayerCharacter') {
       GenesisImportService.exportToGenesis(this as Actor<PlayerCharacter>);
     } else {
       super.exportToJSON();
-    }
+    }*/
+    super.exportToJSON();
   }
 
   private addDefaultFertigkeiten(): void {

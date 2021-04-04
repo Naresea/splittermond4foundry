@@ -36,6 +36,10 @@ export class GenesisImportService {
     }
 
     public static exportToGenesis(actor: Actor): void {
+        // TODO: implement
+        // const filename = `fvtt-${actor.entity}-${actor.name.replace(/\s/g, "_")}.json`;
+        // const data = GenesisImportService.mapToGenesisJson(actor);
+        // saveDataToFile(JSON.stringify(data), 'text/json', filename);
     }
 
     private static async importActorData(targetActor: TargetActor, genesisData: GenesisSchema): Promise<void> {
@@ -377,5 +381,10 @@ export class GenesisImportService {
                 isEquipped: idx === 0
             }
         }));
+    }
+
+    private static mapToGenesisJson(actor: TargetActor): GenesisSchema | undefined {
+        // TODO: implement
+        return undefined;
     }
 }
