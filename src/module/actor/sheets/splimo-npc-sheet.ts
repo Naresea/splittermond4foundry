@@ -1,12 +1,12 @@
-import {SplimoActorSheet} from '../splimo-actor-sheet';
-import {NonPlayerCharacter} from '../../models/actors/non-player-character';
-import {CalculationService} from '../../services/calculation-service';
-import {ModifierService} from '../../services/modifier-service';
-import {ModifierType} from '../../models/items/modifier';
-import {PlayerDataService} from '../../services/player-data-service';
-import {ATTRIBUTES} from '../../models/actors/attributes';
-import {DERIVED_ATTRIBUTES} from '../../models/actors/derived-attributes';
-import {FertigkeitType} from '../../models/items/fertigkeit';
+import { SplimoActorSheet } from "../splimo-actor-sheet";
+import { NonPlayerCharacter } from "../../models/actors/non-player-character";
+import { CalculationService } from "../../services/calculation-service";
+import { ModifierService } from "../../services/modifier-service";
+import { ModifierType } from "../../models/items/modifier";
+import { PlayerDataService } from "../../services/player-data-service";
+import { ATTRIBUTES } from "../../models/actors/attributes";
+import { DERIVED_ATTRIBUTES } from "../../models/actors/derived-attributes";
+import { FertigkeitType } from "../../models/items/fertigkeit";
 
 export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
   static get defaultOptions() {
@@ -103,15 +103,15 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
     );
 
     (data.data as any).kampfFertigkeiten = PlayerDataService.getFertigkeitenByType(
-        this.actor,
-        modifiers,
-        FertigkeitType.Kampf
+      this.actor,
+      modifiers,
+      FertigkeitType.Kampf
     );
 
     (data.data as any).magieFertigkeiten = PlayerDataService.getFertigkeitenByType(
-        this.actor,
-        modifiers,
-        FertigkeitType.Magie
+      this.actor,
+      modifiers,
+      FertigkeitType.Magie
     );
 
     (data.data as any).meisterschaften = PlayerDataService.getMeisterschaften(

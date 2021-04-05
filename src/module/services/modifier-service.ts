@@ -94,13 +94,14 @@ export class ModifierService {
     target?: string,
     opts?: { itemType?: ItemType; modType?: ModifierType }
   ): number {
-    let modifiers = (target != null && target.length > 0)
-      ? mods.byTarget.get(target) ?? []
-      : (opts?.modType != null && opts.modType.length > 0)
-      ? mods.byType.get(opts.modType) ?? []
-      : (opts?.itemType != null && opts.itemType.length > 0)
-      ? mods.byItemType.get(opts.itemType) ?? []
-      : [];
+    let modifiers =
+      target != null && target.length > 0
+        ? mods.byTarget.get(target) ?? []
+        : opts?.modType != null && opts.modType.length > 0
+        ? mods.byType.get(opts.modType) ?? []
+        : opts?.itemType != null && opts.itemType.length > 0
+        ? mods.byItemType.get(opts.itemType) ?? []
+        : [];
     if (opts) {
       modifiers = modifiers.filter((mod) => {
         return (
@@ -182,10 +183,17 @@ export class ModifierService {
       value: v.VTD,
     };
 
-    return [tickPlus, ...ModifierService.getBehModifiers(v.BEH, sorted), vtdModifier];
+    return [
+      tickPlus,
+      ...ModifierService.getBehModifiers(v.BEH, sorted),
+      vtdModifier,
+    ];
   }
 
-  private static getSchildModifier(v: Schild, sorted: Map<ItemType, Array<Item>>): Array<Modifier> {
+  private static getSchildModifier(
+    v: Schild,
+    sorted: Map<ItemType, Array<Item>>
+  ): Array<Modifier> {
     if (!v.isEquipped) {
       return [];
     }
@@ -198,11 +206,14 @@ export class ModifierService {
     return [vtdModifier, ...ModifierService.getBehModifiers(v.BEH, sorted)];
   }
 
-  private static getBehModifiers(beh: number, sorted: Map<ItemType, Array<Item>>): Array<Modifier> {
+  private static getBehModifiers(
+    beh: number,
+    sorted: Map<ItemType, Array<Item>>
+  ): Array<Modifier> {
     const bewSkills = (sorted.get(ItemType.Fertigkeit) ?? []).filter(
-        (f: Item<Fertigkeit>) =>
-            [f.data.data.attributEins, f.data.data.attributZwei].includes("BEW") &&
-            f.data.data.type === FertigkeitType.Allgemein
+      (f: Item<Fertigkeit>) =>
+        [f.data.data.attributEins, f.data.data.attributZwei].includes("BEW") &&
+        f.data.data.type === FertigkeitType.Allgemein
     );
     const behModifiers = bewSkills.map((skill) => ({
       type: ModifierType.Fertigkeit,

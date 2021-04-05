@@ -208,14 +208,17 @@ export class RollService {
     );
   }
 
-  static registerClickListeners(htmlElement: JQuery<HTMLElement> | HTMLElement): void {
-    const html = htmlElement instanceof HTMLElement ? $(htmlElement) : htmlElement;
+  static registerClickListeners(
+    htmlElement: JQuery<HTMLElement> | HTMLElement
+  ): void {
+    const html =
+      htmlElement instanceof HTMLElement ? $(htmlElement) : htmlElement;
 
     html.on("click", ".splittermond .tick-button", (evt) => {
       const ticks = (evt.currentTarget as HTMLElement).dataset["splimoBtnData"];
       const actorId = (evt.currentTarget as HTMLElement).dataset[
-          "splimoActorId"
-          ];
+        "splimoActorId"
+      ];
       if (Number.isNumeric(ticks) && actorId != null) {
         changeInitiative(+ticks, undefined, actorId);
       }
@@ -228,8 +231,8 @@ export class RollService {
     html.on("click", ".splittermond .fokus-button", (evt) => {
       const fokus = (evt.currentTarget as HTMLElement).dataset["splimoBtnData"];
       const actorId = (evt.currentTarget as HTMLElement).dataset[
-          "splimoActorId"
-          ];
+        "splimoActorId"
+      ];
       if (fokus && actorId) {
         const {
           erschoepft,
@@ -242,21 +245,24 @@ export class RollService {
             _id: actor.id,
             data: {
               fokusErschoepft:
-                  (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
-                      .fokusErschoepft + erschoepft,
+                (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
+                  .fokusErschoepft + erschoepft,
               fokusKanalisiert:
-                  (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
-                      .fokusKanalisiert + kanalisiert,
+                (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
+                  .fokusKanalisiert + kanalisiert,
               fokusVerzehrt:
-                  (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
-                      .fokusVerzehrt + verzehrt,
+                (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
+                  .fokusVerzehrt + verzehrt,
             },
           });
         }
       }
     });
     html.on("click", ".splittermond .tick-explanation-label", (evt) => {
-      const target = (evt.currentTarget instanceof HTMLElement) ? $(evt.currentTarget) : evt.currentTarget;
+      const target =
+        evt.currentTarget instanceof HTMLElement
+          ? $(evt.currentTarget)
+          : evt.currentTarget;
       const text = target.find(".tick-explanation-text");
       if (text.hasClass("tick-explanation-text--active")) {
         text.removeClass("tick-explanation-text--active");
@@ -265,8 +271,11 @@ export class RollService {
       }
     });
     html.on("click", ".splittermond .explanation-label", (evt) => {
-      const target = (evt.currentTarget instanceof HTMLElement) ? $(evt.currentTarget) : evt.currentTarget;
-      const text =  target.find(".explanation-text");
+      const target =
+        evt.currentTarget instanceof HTMLElement
+          ? $(evt.currentTarget)
+          : evt.currentTarget;
+      const text = target.find(".explanation-text");
       if (text.hasClass("explanation-text--active")) {
         text.removeClass("explanation-text--active");
       } else {

@@ -1,24 +1,24 @@
-import {PlayerCharacter} from '../models/actors/player-character';
-import {ATTRIBUTES, Attributes} from '../models/actors/attributes';
-import {DerivedAttributes} from '../models/actors/derived-attributes';
-import {Modifiers, ModifierService} from './modifier-service';
-import {ItemType} from '../models/item-type';
-import {ModifierType} from '../models/items/modifier';
-import {Fertigkeit, FertigkeitType} from '../models/items/fertigkeit';
-import {CalculationService} from './calculation-service';
-import {Waffe} from '../models/items/waffe';
-import {Schild} from '../models/items/schild';
-import {Ruestung} from '../models/items/ruestung';
-import {Benutzbar} from '../models/items/benutzbar';
-import {Gegenstand} from '../models/items/gegenstand';
-import {buildFokusString, Zauber} from '../models/items/zauber';
-import {Meisterschaft} from '../models/items/meisterschaft';
-import {Mondzeichen} from '../models/items/mondzeichen';
-import {Staerke} from '../models/items/staerke';
-import {Schwaeche} from '../models/items/schwaeche';
-import {Zustand} from '../models/items/zustand';
-import {Merkmal} from '../models/items/merkmal';
-import {Resource} from '../models/items/resource';
+import { PlayerCharacter } from "../models/actors/player-character";
+import { ATTRIBUTES, Attributes } from "../models/actors/attributes";
+import { DerivedAttributes } from "../models/actors/derived-attributes";
+import { Modifiers, ModifierService } from "./modifier-service";
+import { ItemType } from "../models/item-type";
+import { ModifierType } from "../models/items/modifier";
+import { Fertigkeit, FertigkeitType } from "../models/items/fertigkeit";
+import { CalculationService } from "./calculation-service";
+import { Waffe } from "../models/items/waffe";
+import { Schild } from "../models/items/schild";
+import { Ruestung } from "../models/items/ruestung";
+import { Benutzbar } from "../models/items/benutzbar";
+import { Gegenstand } from "../models/items/gegenstand";
+import { buildFokusString, Zauber } from "../models/items/zauber";
+import { Meisterschaft } from "../models/items/meisterschaft";
+import { Mondzeichen } from "../models/items/mondzeichen";
+import { Staerke } from "../models/items/staerke";
+import { Schwaeche } from "../models/items/schwaeche";
+import { Zustand } from "../models/items/zustand";
+import { Merkmal } from "../models/items/merkmal";
+import { Resource } from "../models/items/resource";
 
 export interface RollInfo {
   name?: string;
@@ -93,7 +93,7 @@ export type PlayerData = Record<string, unknown> & {
   merkmale: TableData;
   zustaende: TableData;
   mondzeichen: Partial<Mondzeichen> & { img?: string; name?: string };
-  view: ViewSpecificData
+  view: ViewSpecificData;
 };
 
 export class PlayerDataService {
@@ -106,9 +106,21 @@ export class PlayerDataService {
       modifiers,
       attributes
     );
-    const fertigkeiten = PlayerDataService.getFertigkeitenByType(actor, modifiers, FertigkeitType.Allgemein);
-    const kampfFertigkeiten = PlayerDataService.getFertigkeitenByType(actor, modifiers, FertigkeitType.Kampf);
-    const magieFertigkeiten = PlayerDataService.getFertigkeitenByType(actor, modifiers, FertigkeitType.Magie);
+    const fertigkeiten = PlayerDataService.getFertigkeitenByType(
+      actor,
+      modifiers,
+      FertigkeitType.Allgemein
+    );
+    const kampfFertigkeiten = PlayerDataService.getFertigkeitenByType(
+      actor,
+      modifiers,
+      FertigkeitType.Kampf
+    );
+    const magieFertigkeiten = PlayerDataService.getFertigkeitenByType(
+      actor,
+      modifiers,
+      FertigkeitType.Magie
+    );
     const waffen = PlayerDataService.getWaffen(actor, modifiers);
     const ruestungen = PlayerDataService.getRuestungen(actor, modifiers);
     const schilde = PlayerDataService.getSchilde(actor, modifiers);
@@ -153,7 +165,7 @@ export class PlayerDataService {
       merkmale,
       zustaende,
       resourcen,
-      mondzeichen
+      mondzeichen,
     };
   }
 
@@ -171,16 +183,19 @@ export class PlayerDataService {
     };
   }
 
-  public static getWoundModifier(actor: Actor): {name: string, modifier: number} | undefined {
-    const modifierItem: Item<Zustand> | undefined = actor.items
-        .find(i =>
-            i.type === ItemType.Zustand
-            && (i as Item<Zustand>).data.data.internalId === CalculationService.WOUND_MODIFIER_ID
-        ) as Item<Zustand> | undefined;
+  public static getWoundModifier(
+    actor: Actor
+  ): { name: string; modifier: number } | undefined {
+    const modifierItem: Item<Zustand> | undefined = actor.items.find(
+      (i) =>
+        i.type === ItemType.Zustand &&
+        (i as Item<Zustand>).data.data.internalId ===
+          CalculationService.WOUND_MODIFIER_ID
+    ) as Item<Zustand> | undefined;
 
     return {
       name: modifierItem?.data.data.beschreibung,
-      modifier: modifierItem?.data.data.modifier[0].value
+      modifier: modifierItem?.data.data.modifier[0].value,
     };
   }
 
@@ -250,7 +265,11 @@ export class PlayerDataService {
     );
   }
 
-  public static getFertigkeitenByType(actor: Actor, mods: Modifiers, ...fertigkeitType: Array<FertigkeitType>): TableData {
+  public static getFertigkeitenByType(
+    actor: Actor,
+    mods: Modifiers,
+    ...fertigkeitType: Array<FertigkeitType>
+  ): TableData {
     const tableFields = [
       "splittermond.fertigkeiten.name",
       "splittermond.fertigkeiten.wert",
@@ -288,8 +307,8 @@ export class PlayerDataService {
       actor,
       mods,
       (item) =>
-          item.type === ItemType.Fertigkeit
-          && fertigkeitType.includes((item as Item<Fertigkeit>).data.data.type),
+        item.type === ItemType.Fertigkeit &&
+        fertigkeitType.includes((item as Item<Fertigkeit>).data.data.type),
       tableFields,
       getFields
     );
@@ -710,7 +729,7 @@ export class PlayerDataService {
     getFields: (item: Item<any>) => { fields: Array<string>; roll?: number }
   ): TableData {
     const tableData = actor.items
-      .filter((i) => typeof type === 'string' ? i.type === type : type(i))
+      .filter((i) => (typeof type === "string" ? i.type === type : type(i)))
       .map((item: Item<Fertigkeit>) => ({
         id: item.id,
         ...getFields(item),

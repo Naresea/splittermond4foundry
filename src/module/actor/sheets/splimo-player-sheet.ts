@@ -1,7 +1,7 @@
 import { SplimoActorSheet } from "../splimo-actor-sheet";
 import { PlayerCharacter } from "../../models/actors/player-character";
 import { PlayerDataService } from "../../services/player-data-service";
-import {CalculationService} from '../../services/calculation-service';
+import { CalculationService } from "../../services/calculation-service";
 
 export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
   static get defaultOptions() {

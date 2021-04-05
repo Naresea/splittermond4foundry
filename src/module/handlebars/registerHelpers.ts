@@ -138,5 +138,4 @@ export function registerHelpers(): void {
       return options.includes(val);
     }
   );
-
 }

@@ -4,7 +4,7 @@ import { RollService } from "../services/roll-service";
 import { getSheetClass } from "../item/register-item-sheets";
 import { CalculationService } from "../services/calculation-service";
 import { ChargenService } from "../services/chargen-service";
-import {PlayerDataService} from '../services/player-data-service';
+import { PlayerDataService } from "../services/player-data-service";
 
 export abstract class SplimoActorSheet<
   T extends AnySplimoActor
@@ -22,7 +22,11 @@ export abstract class SplimoActorSheet<
 
   get title(): string {
     const woundModifier = PlayerDataService.getWoundModifier(this.actor);
-    return `${super.title}${woundModifier ? ` ( ${woundModifier.name}: ${woundModifier.modifier} )` : ''}`;
+    return `${super.title}${
+      woundModifier
+        ? ` ( ${woundModifier.name}: ${woundModifier.modifier} )`
+        : ""
+    }`;
   }
 
   protected _onDrop(event: Event | JQuery.Event): Promise<boolean | any> {
@@ -45,7 +49,7 @@ export abstract class SplimoActorSheet<
   }
 
   private registerClick(html: JQuery<HTMLElement>): void {
-    html.on('click', `.clickable`, (evt) => {
+    html.on("click", `.clickable`, (evt) => {
       const target = evt?.target;
       const operation = target?.dataset?.operation;
       const type = target?.dataset?.type;

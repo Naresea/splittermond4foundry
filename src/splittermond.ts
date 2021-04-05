@@ -44,7 +44,7 @@ Hooks.once("init", async function () {
   setupMacroHelpers();
 });
 
-Hooks.on('renderChatLog', (chatLog: SidebarTab) => {
+Hooks.on("renderChatLog", (chatLog: SidebarTab) => {
   RollService.registerClickListeners(chatLog.element);
 });
 
