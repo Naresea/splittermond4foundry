@@ -68,6 +68,16 @@ export class GenesisImportService {
     await GenesisImportService.importActorData(targetActor, genesisData);
     await GenesisImportService.importItemData(targetActor, genesisData);
     await CalculationService.updateWoundModifier(targetActor);
+    new Dialog({
+      title: game.i18n.localize("splittermond.import-dialog.title"),
+      content: `<p style="padding: 10px">${game.i18n.localize("splittermond.import-dialog.content")}</p>`,
+      buttons: {
+        ok: {
+          icon: '<i class="fas fa-check"></i>',
+          label: "Ok",
+        }
+      }
+    }).render(true);
     return targetActor;
   }
 
