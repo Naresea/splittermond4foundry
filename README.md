@@ -197,20 +197,9 @@ How you can reach me if you need more details (optional):
 -> JS unfortunately interprets 0 as "false value", which keeps Foundry from rendering this.
 Fixing this is on my TODO list, but not the most important thing.
 
-- performance drops when rolling a lot
--> Not exactly a known issue, more an anticipation. Since each rolled chat message contains event
-listeners for the buttons I guess performance might drop on longer chat logs than I tested.
-Cleaning the chat log or deleting old messages should fix that again.
-
 - The item lists look monotonous.
 -> Right, but the standardized look was the fastest way to implement things.
 I'll try to improve the look and feel.
-
-- The skill list is astronomically long.
--> I want to split it up into combat, general, and magic skills in the future
-
-- Combat skills require attributes?
--> They do, but the attributes aren't evaluated since weapon rolls are linked to the weapon you use
 
 - Consumable items are not "usable"
 -> I want to add a "use" button similar to the rolls eventually.
@@ -218,10 +207,6 @@ That's the reason for the details fields
 
 - There's no compendium content
 -> I hope there will be at some point. :) I don't know how much of the rulebooks I am allowed to provide as compendium, though.
-
-- "Ausbildung", "Abstammung", "Kultur", etc provide modifiers?
--> Yes. I want to add an option to include the skill increases, strengths, masteries etc. in these items so
-eventually you only have to drag & drop them on a character to apply the associated changes
 
 - The portrait icon sucks.
 -> I know... it works for some portraits, for others you have to tweak the image a bit.
