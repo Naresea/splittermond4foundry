@@ -93,7 +93,7 @@ export type PlayerData = Record<string, unknown> & {
   merkmale: TableData;
   zustaende: TableData;
   mondzeichen: Partial<Mondzeichen> & { img?: string; name?: string };
-  view: ViewSpecificData;
+  view: ViewSpecificData
 };
 
 export class PlayerDataService {
@@ -153,7 +153,7 @@ export class PlayerDataService {
       merkmale,
       zustaende,
       resourcen,
-      mondzeichen,
+      mondzeichen
     };
   }
 
@@ -171,7 +171,20 @@ export class PlayerDataService {
     };
   }
 
-  private static getAttributes(
+  public static getWoundModifier(actor: Actor): {name: string, modifier: number} | undefined {
+    const modifierItem: Item<Zustand> | undefined = actor.items
+        .find(i =>
+            i.type === ItemType.Zustand
+            && (i as Item<Zustand>).data.data.internalId === CalculationService.WOUND_MODIFIER_ID
+        ) as Item<Zustand> | undefined;
+
+    return {
+      name: modifierItem?.data.data.beschreibung,
+      modifier: modifierItem?.data.data.modifier[0].value
+    };
+  }
+
+  public static getAttributes(
     actor: Actor,
     mods: Modifiers
   ): Record<keyof Attributes, AttributeVal> {
@@ -199,7 +212,7 @@ export class PlayerDataService {
     );
   }
 
-  private static getDerivedAttributes(
+  public static getDerivedAttributes(
     actor: Actor,
     mods: Modifiers,
     attributes: Record<keyof Attributes, AttributeVal>

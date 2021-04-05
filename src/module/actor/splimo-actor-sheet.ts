@@ -4,6 +4,7 @@ import { RollService } from "../services/roll-service";
 import { getSheetClass } from "../item/register-item-sheets";
 import { CalculationService } from "../services/calculation-service";
 import { ChargenService } from "../services/chargen-service";
+import {PlayerDataService} from '../services/player-data-service';
 
 export abstract class SplimoActorSheet<
   T extends AnySplimoActor
@@ -17,6 +18,11 @@ export abstract class SplimoActorSheet<
       return;
     }
     this.registerClick(html);
+  }
+
+  get title(): string {
+    const woundModifier = PlayerDataService.getWoundModifier(this.actor);
+    return `${super.title}${woundModifier ? ` ( ${woundModifier.name}: ${woundModifier.modifier} )` : ''}`;
   }
 
   protected _onDrop(event: Event | JQuery.Event): Promise<boolean | any> {

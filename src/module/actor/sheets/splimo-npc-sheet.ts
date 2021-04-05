@@ -131,6 +131,8 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
     formData: any
   ): Promise<any> {
     formData = this.updateViewSpecificData(formData);
-    return super._updateObject(event, formData);
+    return super._updateObject(event, formData).then(() => {
+      return CalculationService.updateWoundModifier(this.actor);
+    });
   }
 }

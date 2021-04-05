@@ -1,15 +1,16 @@
-import { Attributes } from "../models/actors/attributes";
-import { DerivedAttributes } from "../models/actors/derived-attributes";
-import { Modifiers, ModifierService } from "./modifier-service";
-import { ModifierType } from "../models/items/modifier";
-import { ItemType } from "../models/item-type";
-import { Fertigkeit } from "../models/items/fertigkeit";
-import { Waffe } from "../models/items/waffe";
-import { Schild } from "../models/items/schild";
-import { PlayerDataService } from "./player-data-service";
-import { ActorType } from "../models/actor-type";
-import { PlayerCharacter } from "../models/actors/player-character";
-import { NonPlayerCharacter } from "../models/actors/non-player-character";
+import {ATTRIBUTES, Attributes} from '../models/actors/attributes';
+import {DERIVED_ATTRIBUTES, DerivedAttributes} from '../models/actors/derived-attributes';
+import {Modifiers, ModifierService} from './modifier-service';
+import {Modifier, ModifierType} from '../models/items/modifier';
+import {ItemType} from '../models/item-type';
+import {Fertigkeit} from '../models/items/fertigkeit';
+import {Waffe} from '../models/items/waffe';
+import {Schild} from '../models/items/schild';
+import {PlayerDataService} from './player-data-service';
+import {ActorType} from '../models/actor-type';
+import {PlayerCharacter} from '../models/actors/player-character';
+import {NonPlayerCharacter} from '../models/actors/non-player-character';
+import {Zustand} from '../models/items/zustand';
 
 export interface CalculationResult {
   total: number;
@@ -17,6 +18,9 @@ export interface CalculationResult {
 }
 
 export class CalculationService {
+
+  public static readonly WOUND_MODIFIER_ID = 'splittermond.woundmodifier.statename';
+
   public static getInitiative(actor: Actor): number {
     if (actor.data.type === ActorType.PlayerCharacter) {
       const data = PlayerDataService.getPlayerData(
@@ -37,6 +41,13 @@ export class CalculationService {
     attribute: keyof Attributes | keyof DerivedAttributes,
     mods: Modifiers
   ): CalculationResult {
+    if (!ATTRIBUTES.includes(attribute as any) && !DERIVED_ATTRIBUTES.includes(attribute as any)) {
+      return {
+        total: 0,
+        explanation: 'No attribute'
+      }
+    }
+
     const startValue = actor.data.data[attribute] ?? 0;
     const increasedValue = actor.data.data["inc" + attribute] ?? 0;
     const modifierValue =
@@ -139,6 +150,69 @@ export class CalculationService {
       total,
       explanation,
     };
+  }
+
+  public static async updateWoundModifier(actor: Actor<PlayerCharacter | NonPlayerCharacter>): Promise<void> {
+    const modName = game.i18n.localize(CalculationService.WOUND_MODIFIER_ID);
+    const internalId =CalculationService.WOUND_MODIFIER_ID;
+    const modifiers = ModifierService.getModifiers(actor);
+
+    // Only "verzehrt" counts towards wound modifiers
+    const healthVerzehrt = actor.data.data.healthVerzehrt;
+    let hpPerWoundLevel = actor.data.data.LP;
+    if (actor.data.type === 'PlayerCharacter') {
+      const attributes = PlayerDataService.getAttributes(actor, modifiers);
+      const derivedAttributes = PlayerDataService.getDerivedAttributes(actor, modifiers, attributes);
+      hpPerWoundLevel = derivedAttributes.LP.total;
+    }
+
+    const numWoundLevels = actor.data.data.woundLevel.max + ModifierService.totalMod(modifiers, null, {modType: ModifierType.WoundLevels});
+
+    const lostHpLevels = Math.max(0, Math.min(numWoundLevels + 1, Math.floor((healthVerzehrt - 1) / hpPerWoundLevel)));
+    const modifierLists = numWoundLevels <= 1
+        ? [{name: 'Unverletzt', mod: 0}, {name: 'Sterbend', mod: -8}, {name: 'Tod', mod: -8}]
+        : numWoundLevels <= 3
+            ? [{name: 'Unverletzt', mod: 0}, {name: 'Verletzt', mod: -2}, {name: 'Todgeweiht', mod: -8}, {name: 'Sterbend', mod: -8}, {name: 'Tod', mod: -8}]
+            : [{name: 'Unverletzt', mod: 0}, {name: 'Angeschlagen', mod: -1}, {name: 'Verletzt', mod: -2}, {name: 'SchwerVerletzt', mod: -4}, {name: 'Todgeweiht', mod: -8}, {name: 'Sterbend', mod: -8}, {name: 'Tod', mod: -8}];
+
+    const modifier = modifierLists[lostHpLevels];
+
+    const affectedSkills = actor.items.filter(i => i.type === ItemType.Fertigkeit).map((i: Item<Fertigkeit>) => i.name);
+    const skillModifiers = affectedSkills.map(skillName => ({
+      type: ModifierType.Fertigkeit,
+      target: skillName,
+      value: modifier?.mod ?? 0
+    }));
+    const initMod = {
+      type: ModifierType.Attribute,
+      target: 'INI',
+      value: Math.abs(modifier?.mod ?? 0)
+    };
+    const gwsMod = {
+      type: ModifierType.Attribute,
+      target: 'GSW',
+      value: modifier?.mod ?? 0
+    };
+    const zustandModifiers = [
+        ...skillModifiers,
+        initMod,
+        gwsMod
+    ];
+
+    const ids = actor.items.filter(i => i.type === ItemType.Zustand && (i as Item<Zustand>).data.data.internalId === internalId).map(i => i._id);
+    await actor.deleteEmbeddedEntity('OwnedItem', ids);
+
+    await actor.createOwnedItem({
+      type: ItemType.Zustand,
+      name: modName,
+      data: {
+        modifier: zustandModifiers,
+        beschreibung: game.i18n.localize(`splittermond.woundmodifier.${modifier.name}`),
+        regelwerk: 'GRW',
+        internalId: internalId,
+        seite: 172
+      }
+    });
   }
 
   public static fromEKVString(

@@ -32,7 +32,6 @@ import { RollService } from "./module/services/roll-service";
 /* ------------------------------------ */
 Hooks.once("init", async function () {
   console.log("splittermond | Initializing splittermond");
-  CONFIG.debug.hooks = true;
 
   registerSettings();
 

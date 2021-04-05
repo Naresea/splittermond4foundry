@@ -17,9 +17,7 @@ export class SplimoActor extends Actor<AnySplimoActor> {
       });
     }
 
-    const fertigkeiten = this.items.filter(
-      (item) => item.type === ItemType.Fertigkeit
-    );
+    const fertigkeiten = this.items.filter(i => i.type === ItemType.Fertigkeit);
     if (fertigkeiten.length < 1) {
       this.addDefaultFertigkeiten();
     }
@@ -42,13 +40,23 @@ export class SplimoActor extends Actor<AnySplimoActor> {
     super.exportToJSON();
   }
 
-  private addDefaultFertigkeiten(): void {
+  private async addDefaultFertigkeiten(): Promise<void> {
     const data = DEFAULT_FERTIGKEITEN.map((fertigkeit) => ({
       name: fertigkeit.name,
       type: ItemType.Fertigkeit,
       data: fertigkeit,
     }));
 
-    this.createEmbeddedEntity("OwnedItem", data);
+    if (!this.data.data.isInitialized) {
+      const id = this._id;
+      this.createEmbeddedEntity("OwnedItem", data).then(() => {
+        this.update({
+          _id: id,
+          data: {
+            isInitialized: true
+          }
+        })
+      });
+    }
   }
 }

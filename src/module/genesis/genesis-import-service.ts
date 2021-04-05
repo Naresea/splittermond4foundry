@@ -1,4 +1,4 @@
-import {GenesisSchema} from './genesis';
+import {GenesisSchema, ItemFeature} from './genesis';
 import {ItemType} from '../models/item-type';
 import {PlayerCharacter} from '../models/actors/player-character';
 import {Rasse} from '../models/items/rasse';
@@ -6,7 +6,7 @@ import {ModifierType} from '../models/items/modifier';
 import {Abstammung} from '../models/items/abstammung';
 import {Kultur} from '../models/items/kultur';
 import {Ausbildung} from '../models/items/ausbildung';
-import {Fertigkeit} from '../models/items/fertigkeit';
+import {Fertigkeit, FertigkeitType} from '../models/items/fertigkeit';
 import {Meisterschaft} from '../models/items/meisterschaft';
 import {Staerke} from '../models/items/staerke';
 import {Schwaeche} from '../models/items/schwaeche';
@@ -17,6 +17,7 @@ import {CalculationService} from '../services/calculation-service';
 import {Waffe} from '../models/items/waffe';
 import {Schild} from '../models/items/schild';
 import {Ruestung} from '../models/items/ruestung';
+import {Mondzeichen} from '../models/items/mondzeichen';
 
 interface CreateItem<T> {
     name: string;
@@ -26,12 +27,45 @@ interface CreateItem<T> {
 
 type TargetActor = Actor<PlayerCharacter>;
 
+const KNOWN_COMBAT_SKILL_NAMES = [
+    'Handgemenge',
+    'Hiebwaffen',
+    'Kettenwaffen',
+    'Klingenwaffen',
+    'Schusswaffen',
+    'Stangenwaffen',
+    'Wurfwaffen'
+];
+
+const KNOWN_MAGIC_SKILL_NAMES = [
+    'Bannmagie',
+    'Beherrschungsmagie',
+    'Bewegungsmagie',
+    'Erkenntnismagie',
+    'Felsmagie',
+    'Feuermagie',
+    'Heilungsmagie',
+    'Illusionsmagie',
+    'Kampfmagie',
+    'Lichtmagie',
+    'Naturmagie',
+    'Schattenmagie',
+    'Schicksalsmagie',
+    'Schutzmagie',
+    'Stärkungsmagie',
+    'Todesmagie',
+    'Verwandlungsmagie',
+    'Wassermagie',
+    'Windmagie'
+];
+
 export class GenesisImportService {
 
     public static async importFromGenesis(targetActor: TargetActor, jsonString: string): Promise<Entity> {
         const genesisData: GenesisSchema = JSON.parse(jsonString);
         await GenesisImportService.importActorData(targetActor, genesisData);
         await GenesisImportService.importItemData(targetActor, genesisData);
+        await CalculationService.updateWoundModifier(targetActor);
         return targetActor;
     }
 
@@ -116,7 +150,8 @@ export class GenesisImportService {
 
     private static async importItemData(targetActor: TargetActor, genesisData: GenesisSchema): Promise<void> {
 
-        await Promise.all(targetActor.items.map(i => targetActor.deleteOwnedItem(i._id)));
+        const ids = targetActor.items.map(i => i._id);
+        await targetActor.deleteEmbeddedEntity('OwnedItem', ids);
 
         const race: CreateItem<Rasse> = GenesisImportService.getRasse(genesisData);
         const background: CreateItem<Abstammung> = GenesisImportService.getAbstammung(genesisData);
@@ -132,6 +167,7 @@ export class GenesisImportService {
         const waffen: Array<CreateItem<Waffe>> = GenesisImportService.getWaffen(genesisData);
         const schilde: Array<CreateItem<Schild>> = GenesisImportService.getSchilde(genesisData);
         const ruestungen: Array<CreateItem<Ruestung>> = GenesisImportService.getRuestungen(genesisData);
+        const mondzeichen: CreateItem<Mondzeichen> = GenesisImportService.getMondzeichen(genesisData);
 
         await targetActor.createOwnedItem([
             race,
@@ -147,7 +183,8 @@ export class GenesisImportService {
             ...gegenstaende,
             ...waffen,
             ...schilde,
-            ...ruestungen
+            ...ruestungen,
+            mondzeichen
         ]);
     }
 
@@ -209,6 +246,11 @@ export class GenesisImportService {
                 // do not import modifier: it will be applied automatically when the corresponding gear is equipped
                 attributEins: GenesisImportService.getAttributeShortname(skill.attribute1),
                 attributZwei: GenesisImportService.getAttributeShortname(skill.attribute2),
+                type: KNOWN_COMBAT_SKILL_NAMES.includes(skill.name)
+                    ? FertigkeitType.Kampf
+                    : KNOWN_MAGIC_SKILL_NAMES.includes(skill.name)
+                        ? FertigkeitType.Magie
+                        : FertigkeitType.Allgemein
             }
         }));
     }
@@ -310,7 +352,8 @@ export class GenesisImportService {
                     bereichString: '',
                     verstaerkung: spell.enhancement ?? '',
                     beschreibung: `<p>${spell.longDescription}</p>`,
-                    regelwerk: spell.page ?? ''
+                    regelwerk: spell.page ?? '',
+                    schaden: ''
                 }
             };
         });
@@ -331,6 +374,14 @@ export class GenesisImportService {
         }));
     }
 
+    private static getMerkmalString(feature: ItemFeature): string {
+        if (feature.level < 1 || feature.name.match(/\d+$/)) {
+            // level included in name
+            return `${feature.name}`;
+        }
+        return `${feature.name} ${feature.level}`;
+    }
+
     private static getWaffen(genesisData: GenesisSchema): Array<CreateItem<Waffe>> {
         const weapons = [
             ...(genesisData.meleeWeapons ?? []),
@@ -344,6 +395,9 @@ export class GenesisImportService {
                 attributeSecondary: GenesisImportService.getAttributeShortname(weapon.attribute2),
                 fertigkeit: weapon.skill ?? '',
                 schaden: weapon.damage.replace(/W/g, 'D') ?? '',
+                ticks: weapon.weaponSpeed ?? 0,
+                merkmale: (weapon?.features ?? []).map(GenesisImportService.getMerkmalString).join(', '),
+                reichweite: (weapon as {range?: number})?.range ?? 0,
                 isEquipped: idx === 0
             }
         }));
@@ -358,9 +412,12 @@ export class GenesisImportService {
             type: ItemType.Schild,
             data: {
                 VTD: shield.defensePlus,
+                BEH: shield.handicap,
+                schaden: shield.damage.replace(/W/g, 'D') ?? '',
                 fertigkeit: shield.skill ?? '',
                 attribute: 'INT',
                 attributeSecondary: 'STR',
+                merkmale: (shield?.features ?? []).map(GenesisImportService.getMerkmalString).join(', '),
                 isEquipped: idx === 0
             }
         }));
@@ -378,9 +435,28 @@ export class GenesisImportService {
                 SR: armor.damageReduction,
                 BEH: armor.handicap,
                 tickPlus: armor.tickMalus ?? 0,
+                merkmale: (armor?.features ?? []).map(GenesisImportService.getMerkmalString).join(', '),
                 isEquipped: idx === 0
             }
         }));
+    }
+
+    private static getMondzeichen(genesisData: GenesisSchema): CreateItem<Mondzeichen> {
+        if (!genesisData.moonSign) {
+            return {
+                name: `No moonsign`,
+                type: ItemType.Mondzeichen,
+                data: {}
+            }
+        }
+
+        return {
+            name: genesisData.moonSign.name,
+            type: ItemType.Mondzeichen,
+            data: {
+                beschreibung: `<p>${genesisData.moonSign.description}</p>`
+            }
+        }
     }
 
     private static mapToGenesisJson(actor: TargetActor): GenesisSchema | undefined {

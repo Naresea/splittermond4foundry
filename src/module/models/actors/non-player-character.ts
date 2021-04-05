@@ -15,4 +15,5 @@ export interface NonPlayerCharacter
   lore: string;
   beute: string;
   typus: string;
+  isInitialized: boolean;
 }

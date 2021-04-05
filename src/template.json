@@ -2,6 +2,9 @@
   "Actor": {
     "types": ["PlayerCharacter", "NonPlayerCharacter"],
     "templates": {
+      "initLogic": {
+        "isInitialized": false
+      },
       "hp": {
         "health": {
           "min": 0,
@@ -82,7 +85,7 @@
       }
     },
     "PlayerCharacter": {
-      "templates": ["hp", "fokus", "splittertraeger", "attributes", "derivedAttributes", "biography", "vermoegen"],
+      "templates": ["initLogic","hp", "fokus", "splittertraeger", "attributes", "derivedAttributes", "biography", "vermoegen"],
       "heldengrad": 0,
       "erfahrungGesamt": 0,
       "erfahrungEingesetzt": 0,
@@ -90,7 +93,7 @@
       "atemholenBenutzt": false
     },
     "NonPlayerCharacter": {
-      "templates": ["hp", "fokus", "splittertraeger", "attributes", "derivedAttributes"],
+      "templates": ["initLogic","hp", "fokus", "splittertraeger", "attributes", "derivedAttributes"],
       "monstergrad": "0",
       "kampfweise": "",
       "lore": "",
@@ -148,7 +151,8 @@
     },
     "zustand": {
       "templates": ["info", "quelle"],
-      "modifier": []
+      "modifier": [],
+      "internalId": ""
     },
     "gegenstand": {
       "templates": ["info", "quelle"],
@@ -173,12 +177,15 @@
       "wirdVerbraucht": false,
       "wertInTellaren": 0,
       "gewicht": 0,
-      "anzahl": 0
+      "anzahl": 0,
+      "reichweite": 0
     },
     "schild": {
       "templates": ["info", "quelle", "equipment"],
       "mod": 0,
       "VTD": 0,
+      "BEH": 0,
+      "schaden": "",
       "fertigkeit": "",
       "attribute": "INT",
       "attributeSecondary": "STR",

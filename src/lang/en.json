@@ -256,5 +256,18 @@
     "splittermond.chargen-select-one.ok": "Ok",
     "splittermond.pc.nav.fertigkeiten-allgemein": "Allgemein",
     "splittermond.pc.nav.fertigkeiten-kampf": "Kampf",
-    "splittermond.pc.nav.fertigkeiten-magie": "Magie"
+    "splittermond.pc.nav.fertigkeiten-magie": "Magie",
+    "splittermond.woundmodifier.statename": "Wunden",
+    "splittermond.woundmodifier.Unverletzt": "Unverletzt",
+    "splittermond.woundmodifier.Angeschlagen": "Angeschlagen",
+    "splittermond.woundmodifier.Verletzt": "Verletzt",
+    "splittermond.woundmodifier.SchwerVerletzt": "Schwer Verletzt",
+    "splittermond.woundmodifier.Todgeweiht": "Todgeweiht",
+    "splittermond.woundmodifier.Sterbend": "Sterbend",
+    "splittermond.woundmodifier.Tod": "Tod",
+    "splittermond.waffe.reichweite": "Reichweite",
+    "splittermond.equipment.aktiveAbwehr": "Aktive Abwehr Bonus",
+    "splittermond.equipment.schaden": "Schaden",
+    "splittermond.equipment.BEH": "Behinderung"
+
 }
