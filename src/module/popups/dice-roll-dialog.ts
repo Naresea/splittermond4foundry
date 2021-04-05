@@ -1,6 +1,7 @@
 export interface DiceRollOption {
   rollType: "sicherheit" | "risiko" | "standard";
   modifier: number;
+  difficulty?: number;
 }
 
 export class DiceRollDialog extends FormApplication<DiceRollOption> {
@@ -10,7 +11,7 @@ export class DiceRollDialog extends FormApplication<DiceRollOption> {
       template:
         "systems/splittermond/templates/sheets/popups/dice-roll-dialog.hbs",
       width: 512,
-      height: 340,
+      height: 400,
       submitOnChange: false,
       submitOnClose: false,
       closeOnSubmit: true,
@@ -44,11 +45,14 @@ export class DiceRollDialog extends FormApplication<DiceRollOption> {
       if (dataset) {
         const submitValue = dataset["dicerollSubmit"];
         const modifier = html.find('input[name="data.modifier"]').get()[0];
+        const difficulty = html.find('input[name="data.difficulty"]').get()[0];
         const value = +(modifier as HTMLInputElement)?.value ?? 0;
+        const difficultyValue = (difficulty as HTMLInputElement)?.value;
         if (this.submitCallback) {
           this.submitCallback({
             modifier: value,
             rollType: submitValue,
+            difficulty: Number.isNumeric(difficultyValue) ? +difficultyValue : undefined
           });
         }
         this.close();

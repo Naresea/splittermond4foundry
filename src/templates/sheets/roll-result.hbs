@@ -29,10 +29,18 @@
         {{#if maneuver}}
             <div class="d-flex flex-col">
                 <label class="d-flex align-items-center" style="min-height: var(--control-size);">
-                    <div class="col-4">{{localize "splittermond.rollresult.maneuverEg"}}</div>
-                    <div class="col-6">{{maneuver.egCost}}</div>
+                    <div class="col-6">{{localize "splittermond.rollresult.maneuverEg"}}</div>
+                    <div class="col-4">{{maneuver.egCost}}</div>
                 </label>
                 <p style="border: 1px solid black; padding: 5px; border-radius: 5px;">{{maneuver.effekt}}</p>
+            </div>
+        {{/if}}
+        {{#if erfolgsgrade}}
+            <div class="d-flex flex-col">
+                <label class="d-flex align-items-center" style="min-height: var(--control-size);">
+                    <div class="col-6">{{localize "splittermond.rollresult.erfolgsgrade"}}</div>
+                    <div class="col-4">{{erfolgsgrade}}</div>
+                </label>
             </div>
         {{/if}}
         <div class="d-flex align-items-center" style="min-height: var(--control-size); max-height: var(--control-size); justify-content: space-evenly">

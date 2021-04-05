@@ -269,6 +269,8 @@
     "splittermond.equipment.aktiveAbwehr": "Aktive Abwehr Bonus",
     "splittermond.equipment.schaden": "Schaden",
     "splittermond.equipment.BEH": "Behinderung",
+    "splittermond.diceroll.difficulty": "Schwierigkeit",
+    "splittermond.rollresult.erfolgsgrade": "Erreichte Erfolgsgrade",
     "splittermond.import-dialog.title": "Import abgeschlossen",
     "splittermond.import-dialog.content": "WICHTIG: Das Genesis JSON enthält (noch) keine numerischen Daten zu\nStärken / Schwächen / Meisterschaften u.Ä.\nFalls Werte hier von denen in Genesis abweichen, müssen diese Items ggfs von Hand angepasst werden."
 }
