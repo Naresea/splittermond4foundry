@@ -32,6 +32,7 @@ import { RollService } from "./module/services/roll-service";
 /* ------------------------------------ */
 Hooks.once("init", async function () {
   console.log("splittermond | Initializing splittermond");
+  CONFIG.debug.hooks = true;
 
   registerSettings();
 
@@ -44,12 +45,9 @@ Hooks.once("init", async function () {
   setupMacroHelpers();
 });
 
-Hooks.on(
-  "renderChatMessage",
-  (message: ChatMessage, html: JQuery<HTMLElement>, messageData: any) => {
-    RollService.chatMessageRendered(message, html, messageData);
-  }
-);
+Hooks.on('renderChatLog', (chatLog: SidebarTab) => {
+  RollService.registerClickListeners(chatLog.element);
+});
 
 /* ------------------------------------ */
 /* Setup system							*/

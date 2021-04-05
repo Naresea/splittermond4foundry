@@ -208,29 +208,28 @@ export class RollService {
     );
   }
 
-  static chatMessageRendered(
-    message: ChatMessage,
-    html: JQuery<HTMLElement>,
-    messageData: any
-  ): void {
-    html.find(".tick-button").on("click", (evt) => {
+  static registerClickListeners(htmlElement: JQuery<HTMLElement> | HTMLElement): void {
+    const html = htmlElement instanceof HTMLElement ? $(htmlElement) : htmlElement;
+
+    html.on("click", ".splittermond .tick-button", (evt) => {
       const ticks = (evt.currentTarget as HTMLElement).dataset["splimoBtnData"];
       const actorId = (evt.currentTarget as HTMLElement).dataset[
-        "splimoActorId"
-      ];
+          "splimoActorId"
+          ];
       if (Number.isNumeric(ticks) && actorId != null) {
         changeInitiative(+ticks, undefined, actorId);
       }
     });
-    html.find(".damage-button").on("click", (evt) => {
+
+    html.on("click", ".splittermond .damage-button", (evt) => {
       const dmg = (evt.currentTarget as HTMLElement).dataset["splimoBtnData"];
       new Roll(dmg).evaluate().toMessage();
     });
-    html.find(".fokus-button").on("click", (evt) => {
+    html.on("click", ".splittermond .fokus-button", (evt) => {
       const fokus = (evt.currentTarget as HTMLElement).dataset["splimoBtnData"];
       const actorId = (evt.currentTarget as HTMLElement).dataset[
-        "splimoActorId"
-      ];
+          "splimoActorId"
+          ];
       if (fokus && actorId) {
         const {
           erschoepft,
@@ -243,29 +242,31 @@ export class RollService {
             _id: actor.id,
             data: {
               fokusErschoepft:
-                (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
-                  .fokusErschoepft + erschoepft,
+                  (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
+                      .fokusErschoepft + erschoepft,
               fokusKanalisiert:
-                (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
-                  .fokusKanalisiert + kanalisiert,
+                  (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
+                      .fokusKanalisiert + kanalisiert,
               fokusVerzehrt:
-                (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
-                  .fokusVerzehrt + verzehrt,
+                  (actor as Actor<PlayerCharacter | NonPlayerCharacter>).data.data
+                      .fokusVerzehrt + verzehrt,
             },
           });
         }
       }
     });
-    html.find(".tick-explanation-label").on("click", (evt) => {
-      const text = html.find(".tick-explanation-text");
+    html.on("click", ".splittermond .tick-explanation-label", (evt) => {
+      const target = (evt.currentTarget instanceof HTMLElement) ? $(evt.currentTarget) : evt.currentTarget;
+      const text = target.find(".tick-explanation-text");
       if (text.hasClass("tick-explanation-text--active")) {
         text.removeClass("tick-explanation-text--active");
       } else {
         text.addClass("tick-explanation-text--active");
       }
     });
-    html.find(".explanation-label").on("click", (evt) => {
-      const text = html.find(".explanation-text");
+    html.on("click", ".splittermond .explanation-label", (evt) => {
+      const target = (evt.currentTarget instanceof HTMLElement) ? $(evt.currentTarget) : evt.currentTarget;
+      const text =  target.find(".explanation-text");
       if (text.hasClass("explanation-text--active")) {
         text.removeClass("explanation-text--active");
       } else {

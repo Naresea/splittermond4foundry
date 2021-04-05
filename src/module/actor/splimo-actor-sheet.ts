@@ -39,7 +39,7 @@ export abstract class SplimoActorSheet<
   }
 
   private registerClick(html: JQuery<HTMLElement>): void {
-    html.find(`.clickable`).on("click", (evt) => {
+    html.on('click', `.clickable`, (evt) => {
       const target = evt?.target;
       const operation = target?.dataset?.operation;
       const type = target?.dataset?.type;
