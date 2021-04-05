@@ -193,6 +193,10 @@ export class PlayerDataService {
           CalculationService.WOUND_MODIFIER_ID
     ) as Item<Zustand> | undefined;
 
+    if (!modifierItem) {
+      return undefined;
+    }
+
     return {
       name: modifierItem?.data.data.beschreibung,
       modifier: modifierItem?.data.data.modifier[0].value,

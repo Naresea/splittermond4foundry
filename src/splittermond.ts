@@ -48,6 +48,15 @@ Hooks.on("renderChatLog", (chatLog: SidebarTab) => {
   RollService.registerClickListeners(chatLog.element);
 });
 
+Hooks.on('preCreateActor', (createData) => {
+  if (createData.type === 'PlayerCharacter') {
+    createData.token = {
+      vision: true,
+      actorLink: true
+    };
+  }
+});
+
 /* ------------------------------------ */
 /* Setup system							*/
 /* ------------------------------------ */
