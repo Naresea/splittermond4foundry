@@ -15,6 +15,11 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
           contentSelector: ".sheet-body",
           initial: "description",
         },
+        {
+          navSelector: ".fertigkeiten-tabs",
+          contentSelector: ".fertigkeiten-content",
+          initial: "allgemein",
+        },
       ],
     });
   }

@@ -1,24 +1,24 @@
-import { PlayerCharacter } from "../models/actors/player-character";
-import { ATTRIBUTES, Attributes } from "../models/actors/attributes";
-import { DerivedAttributes } from "../models/actors/derived-attributes";
-import { Modifiers, ModifierService } from "./modifier-service";
-import { ItemType } from "../models/item-type";
-import { ModifierType } from "../models/items/modifier";
-import { Fertigkeit } from "../models/items/fertigkeit";
-import { CalculationService } from "./calculation-service";
-import { Waffe } from "../models/items/waffe";
-import { Schild } from "../models/items/schild";
-import { Ruestung } from "../models/items/ruestung";
-import { Benutzbar } from "../models/items/benutzbar";
-import { Gegenstand } from "../models/items/gegenstand";
-import { buildFokusString, Zauber } from "../models/items/zauber";
-import { Meisterschaft } from "../models/items/meisterschaft";
-import { Mondzeichen } from "../models/items/mondzeichen";
-import { Staerke } from "../models/items/staerke";
-import { Schwaeche } from "../models/items/schwaeche";
-import { Zustand } from "../models/items/zustand";
-import { Merkmal } from "../models/items/merkmal";
-import { Resource } from "../models/items/resource";
+import {PlayerCharacter} from '../models/actors/player-character';
+import {ATTRIBUTES, Attributes} from '../models/actors/attributes';
+import {DerivedAttributes} from '../models/actors/derived-attributes';
+import {Modifiers, ModifierService} from './modifier-service';
+import {ItemType} from '../models/item-type';
+import {ModifierType} from '../models/items/modifier';
+import {Fertigkeit, FertigkeitType} from '../models/items/fertigkeit';
+import {CalculationService} from './calculation-service';
+import {Waffe} from '../models/items/waffe';
+import {Schild} from '../models/items/schild';
+import {Ruestung} from '../models/items/ruestung';
+import {Benutzbar} from '../models/items/benutzbar';
+import {Gegenstand} from '../models/items/gegenstand';
+import {buildFokusString, Zauber} from '../models/items/zauber';
+import {Meisterschaft} from '../models/items/meisterschaft';
+import {Mondzeichen} from '../models/items/mondzeichen';
+import {Staerke} from '../models/items/staerke';
+import {Schwaeche} from '../models/items/schwaeche';
+import {Zustand} from '../models/items/zustand';
+import {Merkmal} from '../models/items/merkmal';
+import {Resource} from '../models/items/resource';
 
 export interface RollInfo {
   name?: string;
@@ -78,6 +78,8 @@ export type PlayerData = Record<string, unknown> & {
   attributes: Record<keyof Attributes, AttributeVal>;
   derivedAttributes: Record<keyof DerivedAttributes, AttributeVal>;
   fertigkeiten: TableData;
+  kampfFertigkeiten: TableData;
+  magieFertigkeiten: TableData;
   waffen: TableData;
   ruestungen: TableData;
   schilde: TableData;
@@ -104,7 +106,9 @@ export class PlayerDataService {
       modifiers,
       attributes
     );
-    const fertigkeiten = PlayerDataService.getFertigkeiten(actor, modifiers);
+    const fertigkeiten = PlayerDataService.getFertigkeitenByType(actor, modifiers, FertigkeitType.Allgemein);
+    const kampfFertigkeiten = PlayerDataService.getFertigkeitenByType(actor, modifiers, FertigkeitType.Kampf);
+    const magieFertigkeiten = PlayerDataService.getFertigkeitenByType(actor, modifiers, FertigkeitType.Magie);
     const waffen = PlayerDataService.getWaffen(actor, modifiers);
     const ruestungen = PlayerDataService.getRuestungen(actor, modifiers);
     const schilde = PlayerDataService.getSchilde(actor, modifiers);
@@ -134,6 +138,8 @@ export class PlayerDataService {
       attributes,
       derivedAttributes,
       fertigkeiten,
+      kampfFertigkeiten,
+      magieFertigkeiten,
       waffen,
       ruestungen,
       schilde,
@@ -231,7 +237,7 @@ export class PlayerDataService {
     );
   }
 
-  public static getFertigkeiten(actor: Actor, mods: Modifiers): TableData {
+  public static getFertigkeitenByType(actor: Actor, mods: Modifiers, ...fertigkeitType: Array<FertigkeitType>): TableData {
     const tableFields = [
       "splittermond.fertigkeiten.name",
       "splittermond.fertigkeiten.wert",
@@ -268,7 +274,9 @@ export class PlayerDataService {
     return PlayerDataService.getTableData(
       actor,
       mods,
-      ItemType.Fertigkeit,
+      (item) =>
+          item.type === ItemType.Fertigkeit
+          && fertigkeitType.includes((item as Item<Fertigkeit>).data.data.type),
       tableFields,
       getFields
     );
@@ -684,12 +692,12 @@ export class PlayerDataService {
   private static getTableData(
     actor: Actor,
     modifiers: Modifiers,
-    type: ItemType,
+    type: ItemType | ((item: Item<any>) => boolean),
     tableFields: Array<string>,
     getFields: (item: Item<any>) => { fields: Array<string>; roll?: number }
   ): TableData {
     const tableData = actor.items
-      .filter((i) => i.type === type)
+      .filter((i) => typeof type === 'string' ? i.type === type : type(i))
       .map((item: Item<Fertigkeit>) => ({
         id: item.id,
         ...getFields(item),

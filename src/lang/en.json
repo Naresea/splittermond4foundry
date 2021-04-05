@@ -253,5 +253,8 @@
     "splittermond.chargen-select-many.remaining": "Verbleibende Optionen: ",
     "splittermond.chargen-select-many.ok": "Ok",
     "splittermond.chargen-select-one.title": "Wähle aus",
-    "splittermond.chargen-select-one.ok": "Ok"
+    "splittermond.chargen-select-one.ok": "Ok",
+    "splittermond.pc.nav.fertigkeiten-allgemein": "Allgemein",
+    "splittermond.pc.nav.fertigkeiten-kampf": "Kampf",
+    "splittermond.pc.nav.fertigkeiten-magie": "Magie"
 }
