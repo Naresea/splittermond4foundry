@@ -52,7 +52,8 @@ Hooks.on('preCreateActor', (createData) => {
   if (createData.type === 'PlayerCharacter') {
     createData.token = {
       vision: true,
-      actorLink: true
+      actorLink: true,
+      name: createData.name,
     };
   }
 });
