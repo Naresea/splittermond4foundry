@@ -1,4 +1,4 @@
-<div class="d-flex flex-col item-list {{class}}" style="max-height: 100%; overflow: hidden">
+<div class="d-flex flex-col item-list {{class}}" style="{{#unless noOverflow}}max-height: 100%; overflow: hidden{{/unless}}">
     <div class="d-flex align-items-center item-list__item item-list__header">
         {{#each fields}}
             <div class="list-item__element flex-grow">

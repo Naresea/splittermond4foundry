@@ -15,24 +15,32 @@
         {{/if}}
         {{{roll}}}
         {{#if explanation}}
-            <div class="d-flex flex-col">
-                <label class="d-flex align-items-center clickable explanation-label" style="min-height: var(--control-size);">{{localize "splittermond.rollresult.explain"}}</label>
+            <div class="d-flex flex-col explanation-label">
+                <label class="d-flex align-items-center clickable" style="min-height: var(--control-size);">{{localize "splittermond.rollresult.explain"}}</label>
                 <p class="explanation-text" style="border: 1px solid black; padding: 5px; border-radius: 5px;">{{explanation}}</p>
             </div>
         {{/if}}
         {{#if ticksExplanation}}
-            <div class="d-flex flex-col">
-                <label class="d-flex align-items-center clickable tick-explanation-label" style="min-height: var(--control-size);">{{localize "splittermond.rollresult.ticksExplanation"}}</label>
+            <div class="d-flex flex-col  tick-explanation-label">
+                <label class="d-flex align-items-center clickable" style="min-height: var(--control-size);">{{localize "splittermond.rollresult.ticksExplanation"}}</label>
                 <p class="tick-explanation-text" style="border: 1px solid black; padding: 5px; border-radius: 5px;">{{ticksExplanation}}</p>
             </div>
         {{/if}}
         {{#if maneuver}}
             <div class="d-flex flex-col">
                 <label class="d-flex align-items-center" style="min-height: var(--control-size);">
-                    <div class="col-4">{{localize "splittermond.rollresult.maneuverEg"}}</div>
-                    <div class="col-6">{{maneuver.egCost}}</div>
+                    <div class="col-6">{{localize "splittermond.rollresult.maneuverEg"}}</div>
+                    <div class="col-4">{{maneuver.egCost}}</div>
                 </label>
                 <p style="border: 1px solid black; padding: 5px; border-radius: 5px;">{{maneuver.effekt}}</p>
+            </div>
+        {{/if}}
+        {{#if erfolgsgrade}}
+            <div class="d-flex flex-col">
+                <label class="d-flex align-items-center" style="min-height: var(--control-size);">
+                    <div class="col-6">{{localize "splittermond.rollresult.erfolgsgrade"}}</div>
+                    <div class="col-4">{{erfolgsgrade}}</div>
+                </label>
             </div>
         {{/if}}
         <div class="d-flex align-items-center" style="min-height: var(--control-size); max-height: var(--control-size); justify-content: space-evenly">

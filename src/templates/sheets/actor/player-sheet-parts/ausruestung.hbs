@@ -1,105 +1,99 @@
 <div class="d-flex flex-grow flex-col" style="overflow: auto;">
-    <div class="d-flex flex-grow flex-col" style="min-height: 100px; max-height: 200px; margin-top: 20px;">
-        <h3 class="m-0" style="font-weight: bold;  min-height: 20px; max-height: 20px;">{{localize "splittermond.inventar.waffen.header"}}</h3>
-        <div style="min-height: calc(100% - 20px); max-height: calc(100% - 20px); overflow: hidden">
-            {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="waffen-list" dynamic=true
-                                                                                item=data.waffen.tableData
-                                                                                fields=data.waffen.tableFields}}
+    {{!-- Waffen --}}
+    <h3 class="m-0" style="font-weight: bold;  min-height: 20px; max-height: 20px; margin-top: 20px;">{{localize "splittermond.inventar.waffen.header"}}</h3>
+    {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="waffen-list" dynamic=true
+                                                                        noOverflow=true
+                                                                        item=data.waffen.tableData
+                                                                        fields=data.waffen.tableFields}}
+        {{#*inline "icons-end"}}
+            <i class="fas fa-plus clickable" data-operation="add" data-type="waffe"></i>
+        {{/inline}}
+        {{#*inline "item-template"}}
+            {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields
+                                                                                     index=@index}}
                 {{#*inline "icons-end"}}
-                    <i class="fas fa-plus clickable" data-operation="add" data-type="waffe"></i>
+                    {{#if equipped}}
+                        <i class="fas fa-tshirt clickable" data-operation="unequip" data-type="waffe"
+                           data-click-id="{{id}}"></i>
+                    {{else}}
+                        <i class="fas fa-tshirt clickable"
+                           style="color: lightgrey; filter: drop-shadow(0 0 1px black)" data-operation="equip"
+                           data-type="waffe" data-click-id="{{id}}"></i>
+                    {{/if}}
+                    {{#if (isNotNull roll)}}
+                        <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}"
+                           data-click-id="{{id}}" data-roll-info="{{rollInfo}}"></i>
+                    {{/if}}
+                    <i class="fas fa-edit clickable" data-operation="edit" data-type="waffe"
+                       data-click-id="{{id}}"></i>
+                    <i class="fas fa-trash clickable" data-operation="delete" data-type="waffe"
+                       data-click-id="{{id}}"></i>
                 {{/inline}}
-                {{#*inline "item-template"}}
-                    {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields
-                                                                                             index=@index}}
-                        {{#*inline "icons-end"}}
-                            {{#if equipped}}
-                                <i class="fas fa-tshirt clickable" data-operation="unequip" data-type="waffe"
-                                   data-click-id="{{id}}"></i>
-                            {{else}}
-                                <i class="fas fa-tshirt clickable"
-                                   style="color: lightgrey; filter: drop-shadow(0 0 1px black)" data-operation="equip"
-                                   data-type="waffe" data-click-id="{{id}}"></i>
-                            {{/if}}
-                            {{#if (isNotNull roll)}}
-                                <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}"
-                                   data-click-id="{{id}}" data-roll-info="{{rollInfo}}"></i>
-                            {{/if}}
-                            <i class="fas fa-edit clickable" data-operation="edit" data-type="waffe"
-                               data-click-id="{{id}}"></i>
-                            <i class="fas fa-trash clickable" data-operation="delete" data-type="waffe"
-                               data-click-id="{{id}}"></i>
-                        {{/inline}}
-                    {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                {{/inline}}
-            {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-        </div>
-    </div>
+            {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+        {{/inline}}
+    {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
 
-    <div class="d-flex flex-grow flex-col" style="min-height: 100px; max-height: 200px; margin-top: 20px;">
-        <h3 class="m-0" style="font-weight: bold; min-height: 20px; max-height: 20px;">{{localize "splittermond.inventar.schilde.header"}}</h3>
-        <div style="min-height: calc(100% - 20px); max-height: calc(100% - 20px); overflow: hidden">
-            {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="schild-list" dynamic=true
-                                                                                item=data.schilde.tableData
-                                                                                fields=data.schilde.tableFields}}
+    {{!-- Schilde --}}
+    <h3 class="m-0" style="font-weight: bold; min-height: 20px; max-height: 20px; margin-top: 20px;">{{localize "splittermond.inventar.schilde.header"}}</h3>
+    {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="schild-list" dynamic=true
+                                                                        noOverflow=true
+                                                                        item=data.schilde.tableData
+                                                                        fields=data.schilde.tableFields}}
+        {{#*inline "icons-end"}}
+            <i class="fas fa-plus clickable" data-operation="add" data-type="schild"></i>
+        {{/inline}}
+        {{#*inline "item-template"}}
+            {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields
+                                                                                     index=@index}}
                 {{#*inline "icons-end"}}
-                    <i class="fas fa-plus clickable" data-operation="add" data-type="schild"></i>
+                    {{#if equipped}}
+                        <i class="fas fa-tshirt clickable" data-operation="unequip" data-type="schild"
+                           data-click-id="{{id}}"></i>
+                    {{else}}
+                        <i class="fas fa-tshirt clickable"
+                           style="color: lightgrey; filter: drop-shadow(0 0 1px black)" data-operation="equip"
+                           data-type="schild" data-click-id="{{id}}"></i>
+                    {{/if}}
+                    {{#if (isNotNull roll)}}
+                        <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}"
+                           data-click-id="{{id}}" data-roll-info="{{rollInfo}}"></i>
+                    {{/if}}
+                    <i class="fas fa-edit clickable" data-operation="edit" data-type="schild"
+                       data-click-id="{{id}}"></i>
+                    <i class="fas fa-trash clickable" data-operation="delete" data-type="schild"
+                       data-click-id="{{id}}"></i>
                 {{/inline}}
-                {{#*inline "item-template"}}
-                    {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields
-                                                                                             index=@index}}
-                        {{#*inline "icons-end"}}
-                            {{#if equipped}}
-                                <i class="fas fa-tshirt clickable" data-operation="unequip" data-type="schild"
-                                   data-click-id="{{id}}"></i>
-                            {{else}}
-                                <i class="fas fa-tshirt clickable"
-                                   style="color: lightgrey; filter: drop-shadow(0 0 1px black)" data-operation="equip"
-                                   data-type="schild" data-click-id="{{id}}"></i>
-                            {{/if}}
-                            {{#if (isNotNull roll)}}
-                                <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}"
-                                   data-click-id="{{id}}" data-roll-info="{{rollInfo}}"></i>
-                            {{/if}}
-                            <i class="fas fa-edit clickable" data-operation="edit" data-type="schild"
-                               data-click-id="{{id}}"></i>
-                            <i class="fas fa-trash clickable" data-operation="delete" data-type="schild"
-                               data-click-id="{{id}}"></i>
-                        {{/inline}}
-                    {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                {{/inline}}
-            {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-        </div>
-    </div>
+            {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+        {{/inline}}
+    {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
 
-    <div class="d-flex flex-grow flex-col" style="min-height: 100px; max-height: 200px; margin-top: 20px;">
-        <h3 class="m-0" style="font-weight: bold; min-height: 20px; max-height: 20px;">{{localize "splittermond.inventar.ruestungen.header"}}</h3>
-        <div style="min-height: calc(100% - 20px); max-height: calc(100% - 20px); overflow: hidden">
-            {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="ruestung-list" dynamic=true
-                                                                                item=data.ruestungen.tableData
-                                                                                fields=data.ruestungen.tableFields}}
+    {{!-- Ruestungen --}}
+    <h3 class="m-0" style="font-weight: bold; min-height: 20px; max-height: 20px; margin-top: 20px;">{{localize "splittermond.inventar.ruestungen.header"}}</h3>
+    {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="ruestung-list" dynamic=true
+                                                                        noOverflow=true
+                                                                        item=data.ruestungen.tableData
+                                                                        fields=data.ruestungen.tableFields}}
+        {{#*inline "icons-end"}}
+            <i class="fas fa-plus clickable" data-operation="add" data-type="ruestung"></i>
+        {{/inline}}
+        {{#*inline "item-template"}}
+            {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields
+                                                                                     index=@index}}
                 {{#*inline "icons-end"}}
-                    <i class="fas fa-plus clickable" data-operation="add" data-type="ruestung"></i>
+                    {{#if equipped}}
+                        <i class="fas fa-tshirt clickable" data-operation="unequip" data-type="ruestung"
+                           data-click-id="{{id}}"></i>
+                    {{else}}
+                        <i class="fas fa-tshirt clickable"
+                           style="color: lightgrey; filter: drop-shadow(0 0 1px black)" data-operation="equip"
+                           data-type="ruestung" data-click-id="{{id}}"></i>
+                    {{/if}}
+                    <i class="fas fa-edit clickable" data-operation="edit" data-type="ruestung"
+                       data-click-id="{{id}}"></i>
+                    <i class="fas fa-trash clickable" data-operation="delete" data-type="ruestung"
+                       data-click-id="{{id}}"></i>
                 {{/inline}}
-                {{#*inline "item-template"}}
-                    {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields
-                                                                                             index=@index}}
-                        {{#*inline "icons-end"}}
-                            {{#if equipped}}
-                                <i class="fas fa-tshirt clickable" data-operation="unequip" data-type="ruestung"
-                                   data-click-id="{{id}}"></i>
-                            {{else}}
-                                <i class="fas fa-tshirt clickable"
-                                   style="color: lightgrey; filter: drop-shadow(0 0 1px black)" data-operation="equip"
-                                   data-type="ruestung" data-click-id="{{id}}"></i>
-                            {{/if}}
-                            <i class="fas fa-edit clickable" data-operation="edit" data-type="ruestung"
-                               data-click-id="{{id}}"></i>
-                            <i class="fas fa-trash clickable" data-operation="delete" data-type="ruestung"
-                               data-click-id="{{id}}"></i>
-                        {{/inline}}
-                    {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                {{/inline}}
-            {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-        </div>
-    </div>
+            {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+        {{/inline}}
+    {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
 </div>

@@ -1,6 +1,7 @@
 import { SplimoActorSheet } from "../splimo-actor-sheet";
 import { PlayerCharacter } from "../../models/actors/player-character";
 import { PlayerDataService } from "../../services/player-data-service";
+import { CalculationService } from "../../services/calculation-service";
 
 export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
   static get defaultOptions() {
@@ -14,6 +15,11 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
           navSelector: ".sheet-tabs",
           contentSelector: ".sheet-body",
           initial: "description",
+        },
+        {
+          navSelector: ".fertigkeiten-tabs",
+          contentSelector: ".fertigkeiten-content",
+          initial: "allgemein",
         },
       ],
     });
@@ -36,6 +42,8 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
       delete formData["data.mondzeichen.beschreibung"];
     }
 
-    return super._updateObject(event, formData);
+    return super._updateObject(event, formData).then(() => {
+      return CalculationService.updateWoundModifier(this.actor);
+    });
   }
 }

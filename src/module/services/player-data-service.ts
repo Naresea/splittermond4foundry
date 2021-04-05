@@ -4,7 +4,7 @@ import { DerivedAttributes } from "../models/actors/derived-attributes";
 import { Modifiers, ModifierService } from "./modifier-service";
 import { ItemType } from "../models/item-type";
 import { ModifierType } from "../models/items/modifier";
-import { Fertigkeit } from "../models/items/fertigkeit";
+import { Fertigkeit, FertigkeitType } from "../models/items/fertigkeit";
 import { CalculationService } from "./calculation-service";
 import { Waffe } from "../models/items/waffe";
 import { Schild } from "../models/items/schild";
@@ -78,6 +78,8 @@ export type PlayerData = Record<string, unknown> & {
   attributes: Record<keyof Attributes, AttributeVal>;
   derivedAttributes: Record<keyof DerivedAttributes, AttributeVal>;
   fertigkeiten: TableData;
+  kampfFertigkeiten: TableData;
+  magieFertigkeiten: TableData;
   waffen: TableData;
   ruestungen: TableData;
   schilde: TableData;
@@ -104,7 +106,21 @@ export class PlayerDataService {
       modifiers,
       attributes
     );
-    const fertigkeiten = PlayerDataService.getFertigkeiten(actor, modifiers);
+    const fertigkeiten = PlayerDataService.getFertigkeitenByType(
+      actor,
+      modifiers,
+      FertigkeitType.Allgemein
+    );
+    const kampfFertigkeiten = PlayerDataService.getFertigkeitenByType(
+      actor,
+      modifiers,
+      FertigkeitType.Kampf
+    );
+    const magieFertigkeiten = PlayerDataService.getFertigkeitenByType(
+      actor,
+      modifiers,
+      FertigkeitType.Magie
+    );
     const waffen = PlayerDataService.getWaffen(actor, modifiers);
     const ruestungen = PlayerDataService.getRuestungen(actor, modifiers);
     const schilde = PlayerDataService.getSchilde(actor, modifiers);
@@ -134,6 +150,8 @@ export class PlayerDataService {
       attributes,
       derivedAttributes,
       fertigkeiten,
+      kampfFertigkeiten,
+      magieFertigkeiten,
       waffen,
       ruestungen,
       schilde,
@@ -165,7 +183,27 @@ export class PlayerDataService {
     };
   }
 
-  private static getAttributes(
+  public static getWoundModifier(
+    actor: Actor
+  ): { name: string; modifier: number } | undefined {
+    const modifierItem: Item<Zustand> | undefined = actor.items.find(
+      (i) =>
+        i.type === ItemType.Zustand &&
+        (i as Item<Zustand>).data.data.internalId ===
+          CalculationService.WOUND_MODIFIER_ID
+    ) as Item<Zustand> | undefined;
+
+    if (!modifierItem) {
+      return undefined;
+    }
+
+    return {
+      name: modifierItem?.data.data.beschreibung,
+      modifier: modifierItem?.data.data.modifier[0].value,
+    };
+  }
+
+  public static getAttributes(
     actor: Actor,
     mods: Modifiers
   ): Record<keyof Attributes, AttributeVal> {
@@ -193,7 +231,7 @@ export class PlayerDataService {
     );
   }
 
-  private static getDerivedAttributes(
+  public static getDerivedAttributes(
     actor: Actor,
     mods: Modifiers,
     attributes: Record<keyof Attributes, AttributeVal>
@@ -231,7 +269,11 @@ export class PlayerDataService {
     );
   }
 
-  public static getFertigkeiten(actor: Actor, mods: Modifiers): TableData {
+  public static getFertigkeitenByType(
+    actor: Actor,
+    mods: Modifiers,
+    ...fertigkeitType: Array<FertigkeitType>
+  ): TableData {
     const tableFields = [
       "splittermond.fertigkeiten.name",
       "splittermond.fertigkeiten.wert",
@@ -268,7 +310,9 @@ export class PlayerDataService {
     return PlayerDataService.getTableData(
       actor,
       mods,
-      ItemType.Fertigkeit,
+      (item) =>
+        item.type === ItemType.Fertigkeit &&
+        fertigkeitType.includes((item as Item<Fertigkeit>).data.data.type),
       tableFields,
       getFields
     );
@@ -463,13 +507,10 @@ export class PlayerDataService {
       "splittermond.zauber.name",
       "splittermond.zauber.schule",
       "splittermond.zauber.wert",
-      "splittermond.zauber.schaden",
       "splittermond.zauber.schwierigkeit",
       "splittermond.zauber.fokus",
       "splittermond.zauber.zauberdauer",
       "splittermond.zauber.reichweite",
-      "splittermond.zauber.wirkungsdauer",
-      "splittermond.zauber.bereich",
       "splittermond.zauber.verstaerkung",
     ];
     const getFields = (zauber: Item<Zauber>) => {
@@ -482,13 +523,10 @@ export class PlayerDataService {
         `${zauber.name}`,
         `${zauber.data.data.fertigkeit}`,
         `${roll.total}`,
-        `${zauber.data.data.schaden}`,
         `${zauber.data.data.schwierigkeitString}`,
         `${buildFokusString(zauber.data.data)}`,
         `${zauber.data.data.zauberdauerString}`,
         `${zauber.data.data.reichweiteString}`,
-        `${zauber.data.data.wirkungsdauerString}`,
-        `${zauber.data.data.bereichString}`,
         `${zauber.data.data.verstaerkung}`,
       ];
       return {
@@ -690,12 +728,12 @@ export class PlayerDataService {
   private static getTableData(
     actor: Actor,
     modifiers: Modifiers,
-    type: ItemType,
+    type: ItemType | ((item: Item<any>) => boolean),
     tableFields: Array<string>,
     getFields: (item: Item<any>) => { fields: Array<string>; roll?: number }
   ): TableData {
     const tableData = actor.items
-      .filter((i) => i.type === type)
+      .filter((i) => (typeof type === "string" ? i.type === type : type(i)))
       .map((item: Item<Fertigkeit>) => ({
         id: item.id,
         ...getFields(item),

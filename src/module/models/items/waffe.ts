@@ -7,4 +7,5 @@ export interface Waffe extends Benutzbar, Equipment {
   fertigkeit: string;
   mod: number;
   schaden: string;
+  reichweite?: number;
 }

@@ -26,6 +26,14 @@
                     <input class="col-6" type="text" name="data.merkmale" value="{{data.merkmale}}"/>
                 </div>
                 <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.BEH">{{localize "splittermond.equipment.BEH"}}</label>
+                    <input class="col-6" type="text" name="data.BEH" value="{{data.BEH}}"/>
+                </div>
+                <div class="d-flex align-items-center m-small">
+                    <label class="col-4" for="data.schaden">{{localize "splittermond.equipment.schaden"}}</label>
+                    <input class="col-6" type="text" name="data.schaden" value="{{data.schaden}}"/>
+                </div>
+                <div class="d-flex align-items-center m-small">
                     <label class="col-4" for="data.attribute">{{localize "splittermond.schild.attributEins"}}</label>
                     <div class="d-flex col-6">
                         {{#> systems/splittermond/templates/partials/includes/dropdown.hbs

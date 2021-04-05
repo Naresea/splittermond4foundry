@@ -83,7 +83,7 @@ export class ModifierService {
       ModifierService.getRuestungModifier(v, sorted)
     );
     ModifierService.addMods(result, ItemType.Schild, sorted, (v: Schild) =>
-      ModifierService.getSchildModifier(v)
+      ModifierService.getSchildModifier(v, sorted)
     );
 
     return result;
@@ -94,13 +94,14 @@ export class ModifierService {
     target?: string,
     opts?: { itemType?: ItemType; modType?: ModifierType }
   ): number {
-    let modifiers = target
-      ? mods.byTarget.get(target) ?? []
-      : opts?.modType
-      ? mods.byType.get(opts.modType) ?? []
-      : opts?.itemType
-      ? mods.byItemType.get(opts.itemType) ?? []
-      : [];
+    let modifiers =
+      target != null && target.length > 0
+        ? mods.byTarget.get(target) ?? []
+        : opts?.modType != null && opts.modType.length > 0
+        ? mods.byType.get(opts.modType) ?? []
+        : opts?.itemType != null && opts.itemType.length > 0
+        ? mods.byItemType.get(opts.itemType) ?? []
+        : [];
     if (opts) {
       modifiers = modifiers.filter((mod) => {
         return (
@@ -176,31 +177,23 @@ export class ModifierService {
       target: ModifierType.TickPlus,
       value: v.tickPlus,
     };
-    const bewSkills = (sorted.get(ItemType.Fertigkeit) ?? []).filter(
-      (f: Item<Fertigkeit>) =>
-        [f.data.data.attributEins, f.data.data.attributZwei].includes("BEW") &&
-        f.data.data.type === FertigkeitType.Allgemein
-    );
-    const behModifiers = bewSkills.map((skill) => ({
-      type: ModifierType.Fertigkeit,
-      target: skill.name,
-      value: -1 * v.BEH,
-    }));
-    const behGswModifier = {
-      type: ModifierType.Attribute,
-      target: "GSW",
-      value: Math.round(v.BEH / 2),
-    };
     const vtdModifier = {
       type: ModifierType.Attribute,
       target: "VTD",
       value: v.VTD,
     };
 
-    return [tickPlus, ...behModifiers, behGswModifier, vtdModifier];
+    return [
+      tickPlus,
+      ...ModifierService.getBehModifiers(v.BEH, sorted),
+      vtdModifier,
+    ];
   }
 
-  private static getSchildModifier(v: Schild): Array<Modifier> {
+  private static getSchildModifier(
+    v: Schild,
+    sorted: Map<ItemType, Array<Item>>
+  ): Array<Modifier> {
     if (!v.isEquipped) {
       return [];
     }
@@ -210,6 +203,29 @@ export class ModifierService {
       value: v.VTD,
     };
 
-    return [vtdModifier];
+    return [vtdModifier, ...ModifierService.getBehModifiers(v.BEH, sorted)];
+  }
+
+  private static getBehModifiers(
+    beh: number,
+    sorted: Map<ItemType, Array<Item>>
+  ): Array<Modifier> {
+    const bewSkills = (sorted.get(ItemType.Fertigkeit) ?? []).filter(
+      (f: Item<Fertigkeit>) =>
+        [f.data.data.attributEins, f.data.data.attributZwei].includes("BEW") &&
+        f.data.data.type === FertigkeitType.Allgemein
+    );
+    const behModifiers = bewSkills.map((skill) => ({
+      type: ModifierType.Fertigkeit,
+      target: skill.name,
+      value: -1 * beh,
+    }));
+    const behGswModifier = {
+      type: ModifierType.Attribute,
+      target: "GSW",
+      value: Math.round(beh / 2),
+    };
+
+    return [...behModifiers, behGswModifier];
   }
 }

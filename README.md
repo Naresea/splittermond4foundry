@@ -39,7 +39,7 @@ Bei Nutzung dieses Layouts bitte wenn möglich das endgültige Werk ebenfalls un
 
 ## Installation
 Install in Foundry using this link:
-https://raw.githubusercontent.com/Naresea/splittermond4foundry/naresea/splittermond-nx/package/v011/system.json
+https://raw.githubusercontent.com/Naresea/splittermond4foundry/naresea/splittermond-nx/package/v012/system.json
 
 ## Screenshots and Features
 
@@ -138,10 +138,6 @@ https://user-images.githubusercontent.com/64911281/113486196-6d5b0e80-94a9-11eb-
 The system now also supports importing player characters from Genesis.
 Just export the character from Genesis as JSON and right click on a newly created actor
 in Foundry.
-While I implemented this import today I realized that some fields are missing in my data model.
-For example I didn't know that shields could have a BEH (handicap) value and an Active Defense bonus.
-.... and while recording the video below I realized that I forgot about importing the moon signs.
-I'll fix that with the next update. :)
 
 
 https://user-images.githubusercontent.com/64911281/113516764-ff2f4e00-9573-11eb-8d7b-a85a78610e6a.mp4
@@ -197,20 +193,9 @@ How you can reach me if you need more details (optional):
 -> JS unfortunately interprets 0 as "false value", which keeps Foundry from rendering this.
 Fixing this is on my TODO list, but not the most important thing.
 
-- performance drops when rolling a lot
--> Not exactly a known issue, more an anticipation. Since each rolled chat message contains event
-listeners for the buttons I guess performance might drop on longer chat logs than I tested.
-Cleaning the chat log or deleting old messages should fix that again.
-
 - The item lists look monotonous.
 -> Right, but the standardized look was the fastest way to implement things.
 I'll try to improve the look and feel.
-
-- The skill list is astronomically long.
--> I want to split it up into combat, general, and magic skills in the future
-
-- Combat skills require attributes?
--> They do, but the attributes aren't evaluated since weapon rolls are linked to the weapon you use
 
 - Consumable items are not "usable"
 -> I want to add a "use" button similar to the rolls eventually.
@@ -218,10 +203,6 @@ That's the reason for the details fields
 
 - There's no compendium content
 -> I hope there will be at some point. :) I don't know how much of the rulebooks I am allowed to provide as compendium, though.
-
-- "Ausbildung", "Abstammung", "Kultur", etc provide modifiers?
--> Yes. I want to add an option to include the skill increases, strengths, masteries etc. in these items so
-eventually you only have to drag & drop them on a character to apply the associated changes
 
 - The portrait icon sucks.
 -> I know... it works for some portraits, for others you have to tweak the image a bit.

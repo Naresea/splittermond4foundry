@@ -20,4 +20,5 @@ export interface PlayerCharacter
   erfahrungEingesetzt: number;
   erfahrungNaechsterHeldengrad: number;
   atemholenBenutzt: boolean;
+  isInitialized: boolean;
 }

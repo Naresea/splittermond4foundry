@@ -6,6 +6,7 @@ import { ModifierType } from "../../models/items/modifier";
 import { PlayerDataService } from "../../services/player-data-service";
 import { ATTRIBUTES } from "../../models/actors/attributes";
 import { DERIVED_ATTRIBUTES } from "../../models/actors/derived-attributes";
+import { FertigkeitType } from "../../models/items/fertigkeit";
 
 export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
   static get defaultOptions() {
@@ -20,6 +21,11 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
           navSelector: ".sheet-tabs",
           contentSelector: ".sheet-body",
           initial: "attributes",
+        },
+        {
+          navSelector: ".fertigkeiten-tabs",
+          contentSelector: ".fertigkeiten-content",
+          initial: "allgemein",
         },
       ],
     });
@@ -90,10 +96,24 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
       return accu;
     }, {});
 
-    (data.data as any).fertigkeiten = PlayerDataService.getFertigkeiten(
+    (data.data as any).fertigkeiten = PlayerDataService.getFertigkeitenByType(
       this.actor,
-      modifiers
+      modifiers,
+      FertigkeitType.Allgemein
     );
+
+    (data.data as any).kampfFertigkeiten = PlayerDataService.getFertigkeitenByType(
+      this.actor,
+      modifiers,
+      FertigkeitType.Kampf
+    );
+
+    (data.data as any).magieFertigkeiten = PlayerDataService.getFertigkeitenByType(
+      this.actor,
+      modifiers,
+      FertigkeitType.Magie
+    );
+
     (data.data as any).meisterschaften = PlayerDataService.getMeisterschaften(
       this.actor,
       modifiers
@@ -111,6 +131,8 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
     formData: any
   ): Promise<any> {
     formData = this.updateViewSpecificData(formData);
-    return super._updateObject(event, formData);
+    return super._updateObject(event, formData).then(() => {
+      return CalculationService.updateWoundModifier(this.actor);
+    });
   }
 }

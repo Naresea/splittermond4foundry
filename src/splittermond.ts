@@ -44,12 +44,19 @@ Hooks.once("init", async function () {
   setupMacroHelpers();
 });
 
-Hooks.on(
-  "renderChatMessage",
-  (message: ChatMessage, html: JQuery<HTMLElement>, messageData: any) => {
-    RollService.chatMessageRendered(message, html, messageData);
+Hooks.on("renderChatLog", (chatLog: SidebarTab) => {
+  RollService.registerClickListeners(chatLog.element);
+});
+
+Hooks.on('preCreateActor', (createData) => {
+  if (createData.type === 'PlayerCharacter') {
+    createData.token = {
+      vision: true,
+      actorLink: true,
+      name: createData.name,
+    };
   }
-);
+});
 
 /* ------------------------------------ */
 /* Setup system							*/

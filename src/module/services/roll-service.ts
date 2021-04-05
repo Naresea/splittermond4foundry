@@ -1,12 +1,13 @@
-import { DiceRollDialog } from "../popups/dice-roll-dialog";
-import { RollInfo } from "./player-data-service";
-import { changeInitiative } from "../macros/setup-macro-helpers";
-import { CalculationService } from "./calculation-service";
-import { PlayerCharacter } from "../models/actors/player-character";
-import { NonPlayerCharacter } from "../models/actors/non-player-character";
+import {DiceRollDialog} from '../popups/dice-roll-dialog';
+import {RollInfo} from './player-data-service';
+import {changeInitiative} from '../macros/setup-macro-helpers';
+import {CalculationService} from './calculation-service';
+import {PlayerCharacter} from '../models/actors/player-character';
+import {NonPlayerCharacter} from '../models/actors/non-player-character';
 
 interface RollInfoExtended extends RollInfo {
   rollType?: "sicherheit" | "risiko" | "standard";
+  erfolgsgrade?: number;
 }
 
 export class RollService {
@@ -34,12 +35,15 @@ export class RollService {
           const isSicherheit = data.rollType === "sicherheit";
           const isRisiko = data.rollType === "risiko";
           const extraMod = data.modifier ?? 0;
+          const difficulty = data.difficulty;
+
           RollService.doRoll(
             isRisiko,
             isSicherheit,
             +rollModifier + extraMod,
             actor,
-            rollInfo
+            rollInfo,
+            difficulty
           );
           return Promise.resolve();
         }
@@ -54,7 +58,8 @@ export class RollService {
     isSicherheit: boolean,
     rollModifier: number,
     actor: Actor,
-    rollInfo?: RollInfoExtended
+    rollInfo?: RollInfoExtended,
+    difficulty?: number
   ): void {
     const formula = isRisiko
       ? RollService.riskRoll(+rollModifier)
@@ -72,7 +77,7 @@ export class RollService {
 
     const roll = new Roll(formula, actor.data.data);
     const result = roll.evaluate();
-    RollService.evaluateResult(result, isSicherheit, actor, rollInfo);
+    RollService.evaluateResult(result, isSicherheit, actor, rollInfo, difficulty);
   }
 
   public static rollInitiative(evt: Event, actor: Actor): void {
@@ -106,20 +111,27 @@ export class RollService {
     roll: Roll,
     safe: boolean,
     actor: Actor,
-    rollInfo?: RollInfoExtended
+    rollInfo?: RollInfoExtended,
+    difficulty?: number
   ): void {
     const dice = roll.dice;
     const values = dice[0].results.map((r) => r.result).sort((a, b) => a - b);
+
+    rollInfo.erfolgsgrade = difficulty != null
+        ? Math.sign(roll.total - difficulty) * Math.floor(Math.abs(difficulty - roll.total) / 3)
+        : undefined;
 
     if (safe) {
       RollService.result(roll, actor, rollInfo);
       return;
     }
     if (RollService.isCritFail(values)) {
+      rollInfo.erfolgsgrade = Math.min(-1, rollInfo.erfolgsgrade - 3);
       RollService.critFail(roll, actor, rollInfo);
       return;
     }
     if (RollService.isCritSuccess(values)) {
+      rollInfo.erfolgsgrade = rollInfo.erfolgsgrade >= 0 ? rollInfo.erfolgsgrade + 3 : rollInfo.erfolgsgrade;
       RollService.critSuccess(roll, actor, rollInfo);
       return;
     }
@@ -208,12 +220,13 @@ export class RollService {
     );
   }
 
-  static chatMessageRendered(
-    message: ChatMessage,
-    html: JQuery<HTMLElement>,
-    messageData: any
+  static registerClickListeners(
+    htmlElement: JQuery<HTMLElement> | HTMLElement
   ): void {
-    html.find(".tick-button").on("click", (evt) => {
+    const html =
+      htmlElement instanceof HTMLElement ? $(htmlElement) : htmlElement;
+
+    html.on("click", ".splittermond .tick-button", (evt) => {
       const ticks = (evt.currentTarget as HTMLElement).dataset["splimoBtnData"];
       const actorId = (evt.currentTarget as HTMLElement).dataset[
         "splimoActorId"
@@ -222,11 +235,12 @@ export class RollService {
         changeInitiative(+ticks, undefined, actorId);
       }
     });
-    html.find(".damage-button").on("click", (evt) => {
+
+    html.on("click", ".splittermond .damage-button", (evt) => {
       const dmg = (evt.currentTarget as HTMLElement).dataset["splimoBtnData"];
       new Roll(dmg).evaluate().toMessage();
     });
-    html.find(".fokus-button").on("click", (evt) => {
+    html.on("click", ".splittermond .fokus-button", (evt) => {
       const fokus = (evt.currentTarget as HTMLElement).dataset["splimoBtnData"];
       const actorId = (evt.currentTarget as HTMLElement).dataset[
         "splimoActorId"
@@ -256,16 +270,24 @@ export class RollService {
         }
       }
     });
-    html.find(".tick-explanation-label").on("click", (evt) => {
-      const text = html.find(".tick-explanation-text");
+    html.on("click", ".splittermond .tick-explanation-label", (evt) => {
+      const target =
+        evt.currentTarget instanceof HTMLElement
+          ? $(evt.currentTarget)
+          : evt.currentTarget;
+      const text = target.find(".tick-explanation-text");
       if (text.hasClass("tick-explanation-text--active")) {
         text.removeClass("tick-explanation-text--active");
       } else {
         text.addClass("tick-explanation-text--active");
       }
     });
-    html.find(".explanation-label").on("click", (evt) => {
-      const text = html.find(".explanation-text");
+    html.on("click", ".splittermond .explanation-label", (evt) => {
+      const target =
+        evt.currentTarget instanceof HTMLElement
+          ? $(evt.currentTarget)
+          : evt.currentTarget;
+      const text = target.find(".explanation-text");
       if (text.hasClass("explanation-text--active")) {
         text.removeClass("explanation-text--active");
       } else {
