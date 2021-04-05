@@ -39,7 +39,7 @@ Bei Nutzung dieses Layouts bitte wenn möglich das endgültige Werk ebenfalls un
 
 ## Installation
 Install in Foundry using this link:
-https://raw.githubusercontent.com/Naresea/splittermond4foundry/naresea/splittermond-nx/package/v011/system.json
+https://raw.githubusercontent.com/Naresea/splittermond4foundry/naresea/splittermond-nx/package/v012/system.json
 
 ## Screenshots and Features
 
