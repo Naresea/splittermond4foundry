@@ -463,13 +463,10 @@ export class PlayerDataService {
       "splittermond.zauber.name",
       "splittermond.zauber.schule",
       "splittermond.zauber.wert",
-      "splittermond.zauber.schaden",
       "splittermond.zauber.schwierigkeit",
       "splittermond.zauber.fokus",
       "splittermond.zauber.zauberdauer",
       "splittermond.zauber.reichweite",
-      "splittermond.zauber.wirkungsdauer",
-      "splittermond.zauber.bereich",
       "splittermond.zauber.verstaerkung",
     ];
     const getFields = (zauber: Item<Zauber>) => {
@@ -482,13 +479,10 @@ export class PlayerDataService {
         `${zauber.name}`,
         `${zauber.data.data.fertigkeit}`,
         `${roll.total}`,
-        `${zauber.data.data.schaden}`,
         `${zauber.data.data.schwierigkeitString}`,
         `${buildFokusString(zauber.data.data)}`,
         `${zauber.data.data.zauberdauerString}`,
         `${zauber.data.data.reichweiteString}`,
-        `${zauber.data.data.wirkungsdauerString}`,
-        `${zauber.data.data.bereichString}`,
         `${zauber.data.data.verstaerkung}`,
       ];
       return {

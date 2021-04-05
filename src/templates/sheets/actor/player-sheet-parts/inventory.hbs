@@ -1,7 +1,8 @@
 <div class="inventar d-flex flex-col flex-grow overflow-hidden">
     <div class="d-flex flex-grow" style="max-height: 100%; overflow: hidden;">
         <div class="d-flex flex-col flex-grow">
-            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize "splittermond.inventar.vermoegen.header"}}</h3>
+            <h3 class="m-0" style="font-weight: bold; margin-top: 10px">{{localize
+                    "splittermond.inventar.vermoegen.header"}}</h3>
             <div class="d-flex align-items-center">
                 <div class="d-flex flex-col flex-grow">
                     <label for="data.solare">{{localize "splittermond.inventar.vermoegen.solare"}}</label>
@@ -17,45 +18,55 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-grow flex-col" style="overflow: auto; margin-top: 5px;">
+            <div class="d-flex flex-grow flex-col" style="overflow-y: auto; margin-top: 5px;">
                 {{!-- Consumable / Benutzbar --}}
-                <div class="d-flex flex-grow flex-col" style="min-height: 100px; max-height: 200px; margin-top: 20px;">
-                    <h3 class="m-0" style="font-weight: bold; min-height: 20px; max-height: 20px;">{{localize "splittermond.inventar.benutzbares.header"}}</h3>
-                    <div style="min-height: calc(100% - 20px); max-height: calc(100% - 20px); overflow: hidden">
-                        {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="consumable-list" dynamic=true item=data.benutzbares.tableData fields=data.benutzbares.tableFields}}
+                <h3 class="m-0" style="font-weight: bold; min-height: 20px; max-height: 20px; margin-top: 20px;">{{localize
+                        "splittermond.inventar.benutzbares.header"}}</h3>
+                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="consumable-list"
+                                                                                    dynamic=true
+                                                                                    noOverflow=true
+                                                                                    item=data.benutzbares.tableData
+                                                                                    fields=data.benutzbares.tableFields}}
+                    {{#*inline "icons-end"}}
+                        <i class="fas fa-plus clickable" data-operation="add" data-type="benutzbar"></i>
+                    {{/inline}}
+                    {{#*inline "item-template"}}
+                        {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields
+                                                                                                 index=@index}}
                             {{#*inline "icons-end"}}
-                                <i class="fas fa-plus clickable" data-operation="add" data-type="benutzbar"></i>
+                                <i class="fas fa-edit clickable" data-operation="edit" data-type="benutzbar"
+                                   data-click-id="{{id}}"></i>
+                                <i class="fas fa-trash clickable" data-operation="delete" data-type="benutzbar"
+                                   data-click-id="{{id}}"></i>
                             {{/inline}}
-                            {{#*inline "item-template"}}
-                                {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                                    {{#*inline "icons-end"}}
-                                        <i class="fas fa-edit clickable" data-operation="edit" data-type="benutzbar" data-click-id="{{id}}"></i>
-                                        <i class="fas fa-trash clickable" data-operation="delete" data-type="benutzbar" data-click-id="{{id}}"></i>
-                                    {{/inline}}
-                                {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                            {{/inline}}
-                        {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-                    </div>
-                </div>
+                        {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+                    {{/inline}}
+                {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
+
+
                 {{!-- Sonstige Gegenstaende --}}
-                <div class="d-flex flex-grow flex-col" style="min-height: 100px; max-height: 400px; margin-top: 20px;">
-                    <h3 class="m-0" style="font-weight: bold;  min-height: 20px; max-height: 20px;">{{localize "splittermond.inventar.sonstiges.header"}}</h3>
-                    <div style="min-height: calc(100% - 20px); max-height: calc(100% - 20px); overflow: hidden">
-                        {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="items-list" dynamic=true item=data.sonstiges.tableData fields=data.sonstiges.tableFields}}
+                <h3 class="m-0" style="font-weight: bold;  min-height: 20px; max-height: 20px; margin-top: 20px;">{{localize
+                        "splittermond.inventar.sonstiges.header"}}</h3>
+                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="items-list"
+                                                                                    dynamic=true
+                                                                                    noOverflow=true
+                                                                                    item=data.sonstiges.tableData
+                                                                                    fields=data.sonstiges.tableFields}}
+                    {{#*inline "icons-end"}}
+                        <i class="fas fa-plus clickable" data-operation="add" data-type="gegenstand"></i>
+                    {{/inline}}
+                    {{#*inline "item-template"}}
+                        {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields
+                                                                                                 index=@index}}
                             {{#*inline "icons-end"}}
-                                <i class="fas fa-plus clickable" data-operation="add" data-type="gegenstand"></i>
+                                <i class="fas fa-edit clickable" data-operation="edit" data-type="gegenstand"
+                                   data-click-id="{{id}}"></i>
+                                <i class="fas fa-trash clickable" data-operation="delete" data-type="gegenstand"
+                                   data-click-id="{{id}}"></i>
                             {{/inline}}
-                            {{#*inline "item-template"}}
-                                {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                                    {{#*inline "icons-end"}}
-                                        <i class="fas fa-edit clickable" data-operation="edit" data-type="gegenstand" data-click-id="{{id}}"></i>
-                                        <i class="fas fa-trash clickable" data-operation="delete" data-type="gegenstand" data-click-id="{{id}}"></i>
-                                    {{/inline}}
-                                {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                            {{/inline}}
-                        {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-                    </div>
-                </div>
+                        {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
+                    {{/inline}}
+                {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
             </div>
         </div>
     </div>
