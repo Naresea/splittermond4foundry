@@ -68,6 +68,16 @@ export class SplimoActor extends Actor<AnySplimoActor> {
   }
 
   private async addDefaultFertigkeiten(): Promise<void> {
+    if (this.data.type === 'NonPlayerCharacter') {
+      this.update({
+        _id: this._id,
+        data: {
+          isInitialized: true,
+        },
+      });
+      return;
+    }
+
     const data = DEFAULT_FERTIGKEITEN.map((fertigkeit) => ({
       name: fertigkeit.name,
       type: ItemType.Fertigkeit,

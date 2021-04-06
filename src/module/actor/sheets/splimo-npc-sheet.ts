@@ -1,12 +1,13 @@
 import { SplimoActorSheet } from "../splimo-actor-sheet";
 import { NonPlayerCharacter } from "../../models/actors/non-player-character";
 import { CalculationService } from "../../services/calculation-service";
-import { ModifierService } from "../../services/modifier-service";
+import {DecoratedModifier, ModifierService} from '../../services/modifier-service';
 import { ModifierType } from "../../models/items/modifier";
 import { PlayerDataService } from "../../services/player-data-service";
 import { ATTRIBUTES } from "../../models/actors/attributes";
 import { DERIVED_ATTRIBUTES } from "../../models/actors/derived-attributes";
 import { FertigkeitType } from "../../models/items/fertigkeit";
+import {ItemType} from '../../models/item-type';
 
 export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
   static get defaultOptions() {
@@ -33,7 +34,12 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
 
   getData(): ActorSheet.Data<NonPlayerCharacter> {
     const data = super.getData();
-    const modifiers = ModifierService.getModifiers(this.actor);
+    const modifiers = {
+      byType: new Map<ModifierType, Array<DecoratedModifier>>(),
+      byTarget: new Map<string, Array<DecoratedModifier>>(),
+      byItemType: new Map<ItemType, Array<DecoratedModifier>>(),
+    };
+
     const npcData: NonPlayerCharacter = (this
       .actor as Actor<NonPlayerCharacter>).data.data;
     const maxHealth =
