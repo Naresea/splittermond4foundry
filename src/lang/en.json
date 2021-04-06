@@ -280,5 +280,16 @@
     "splittermond.export-dialog.title": "Export",
     "splittermond.export-dialog.content": "In welchem Format soll exportiert werden?",
     "splittermond.export-dialog.btn-genesis": "Genesis",
-    "splittermond.export-dialog.btn-default": "Foundry"
+    "splittermond.export-dialog.btn-default": "Foundry",
+    "splittermond.npc.fertigkeiten.newSkill": "Neue Fertigkeit",
+    "splittermond.npc.fertigkeiten.skills": "Fertigkeiten",
+    "splittermond.npc.fertigkeiten.name": "Name",
+    "splittermond.npc.fertigkeiten.wert": "Wert",
+    "splittermond.npc.waffen.newWaffe": "Neue Waffe",
+    "splittermond.npc.waffen.waffen": "Waffen",
+    "splittermond.npc.waffen.name": "Name",
+    "splittermond.npc.waffen.wert": "Wert",
+    "splittermond.npc.waffen.schaden": "Schaden",
+    "splittermond.npc.waffen.wgs": "WGS",
+    "splittermond.npc.waffen.merkmale": "Merkmale"
 }
