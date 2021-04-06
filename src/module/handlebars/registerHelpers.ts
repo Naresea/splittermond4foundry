@@ -1,5 +1,6 @@
 import { ATTRIBUTES } from "../models/actors/attributes";
 import { DERIVED_ATTRIBUTES } from "../models/actors/derived-attributes";
+import {Portrait} from '../models/portrait';
 
 export function registerHelpers(): void {
   Handlebars.registerHelper(
@@ -138,4 +139,11 @@ export function registerHelpers(): void {
       return options.includes(val);
     }
   );
+
+  Handlebars.registerHelper('portraitPosition', (port: Partial<Portrait> | undefined): string => {
+      if (!port) {
+          return `transform: translate(0px, 0px) scale(1.0);`
+      }
+      return `transform: translate(${port.iconPosX ?? 0}px, ${port.iconPosY}px) scale(${Math.max(0.1, port.iconScale ?? 1)})`;
+  });
 }

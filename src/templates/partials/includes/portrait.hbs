@@ -1,4 +1,17 @@
 <div class="portrait">
-    {{#> portrait-image}}{{/portrait-image}}
+    <div class="portrait__layer">
+        <div style="{{portraitPosition data}}">
+            {{#> portrait-image}}{{/portrait-image}}
+        </div>
+    </div>
     <div class="portrait__frame"></div>
+
+    {{#unless unmovable}}
+        <i class="fas fa-caret-up portrait-move-icon clickable" data-move="up"></i>
+        <i class="fas fa-caret-down portrait-move-icon clickable" data-move="down"></i>
+        <i class="fas fa-caret-left portrait-move-icon clickable" data-move="left"></i>
+        <i class="fas fa-caret-right portrait-move-icon clickable" data-move="right"></i>
+        <i class="fas fa-search-minus portrait-move-icon clickable" data-move="zoomOut"></i>
+        <i class="fas fa-search-plus portrait-move-icon clickable" data-move="zoomIn"></i>
+    {{/unless}}
 </div>
