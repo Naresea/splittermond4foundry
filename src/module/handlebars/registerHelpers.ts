@@ -1,7 +1,7 @@
 import { ATTRIBUTES } from "../models/actors/attributes";
 import { DERIVED_ATTRIBUTES } from "../models/actors/derived-attributes";
-import {Portrait} from '../models/portrait';
-import {RollInfo} from '../services/player-data-service';
+import { Portrait } from "../models/portrait";
+import { RollInfo } from "../services/player-data-service";
 
 export function registerHelpers(): void {
   Handlebars.registerHelper(
@@ -141,24 +141,40 @@ export function registerHelpers(): void {
     }
   );
 
-  Handlebars.registerHelper('portraitPosition', (port: Partial<Portrait> | undefined): string => {
+  Handlebars.registerHelper(
+    "portraitPosition",
+    (port: Partial<Portrait> | undefined): string => {
       if (!port) {
-          return `transform: translate(0px, 0px) scale(1.0);`
+        return `transform: translate(0px, 0px) scale(1.0);`;
       }
-      return `transform: translate(${port.iconPosX ?? 0}px, ${port.iconPosY}px) scale(${Math.max(0.1, port.iconScale ?? 1)})`;
-  });
+      return `transform: translate(${port.iconPosX ?? 0}px, ${
+        port.iconPosY
+      }px) scale(${Math.max(0.1, port.iconScale ?? 1)})`;
+    }
+  );
 
-  Handlebars.registerHelper('npcWeaponRollInfo', (weapon: {name: string; wert: number; schaden: string; wgs: number}): string => {
+  Handlebars.registerHelper(
+    "npcWeaponRollInfo",
+    (weapon: {
+      name: string;
+      wert: number;
+      schaden: string;
+      wgs: number;
+    }): string => {
       return JSON.stringify({
-          name: weapon.name,
-          damage: weapon.schaden,
-          ticks: weapon.wgs
+        name: weapon.name,
+        damage: weapon.schaden,
+        ticks: weapon.wgs,
       });
-  });
+    }
+  );
 
-    Handlebars.registerHelper('npcSkillRollInfo', (weapon: {name: string; wert: number;}): string => {
-        return JSON.stringify({
-            name: weapon.name,
-        });
-    });
+  Handlebars.registerHelper(
+    "npcSkillRollInfo",
+    (weapon: { name: string; wert: number }): string => {
+      return JSON.stringify({
+        name: weapon.name,
+      });
+    }
+  );
 }

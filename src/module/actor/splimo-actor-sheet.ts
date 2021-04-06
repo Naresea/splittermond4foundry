@@ -5,13 +5,12 @@ import { getSheetClass } from "../item/register-item-sheets";
 import { CalculationService } from "../services/calculation-service";
 import { ChargenService } from "../services/chargen-service";
 import { PlayerDataService } from "../services/player-data-service";
-import {PortraitListener, PortraitSheet} from './sheets/portrait-sheet';
-import {Portrait} from '../models/portrait';
+import { PortraitListener, PortraitSheet } from "./sheets/portrait-sheet";
+import { Portrait } from "../models/portrait";
 
-export abstract class SplimoActorSheet<
-  T extends AnySplimoActor
-> extends ActorSheet<T> implements PortraitListener {
-
+export abstract class SplimoActorSheet<T extends AnySplimoActor>
+  extends ActorSheet<T>
+  implements PortraitListener {
   getPortraitSource(): Partial<Portrait> | undefined {
     return this.actor.data.data;
   }
@@ -20,11 +19,10 @@ export abstract class SplimoActorSheet<
     this.actor.update({
       _id: this.actor._id,
       data: {
-        ...port
-      }
+        ...port,
+      },
     });
   }
-
 
   protected activateListeners(html: JQuery<HTMLElement> | HTMLElement): void {
     super.activateListeners(html);

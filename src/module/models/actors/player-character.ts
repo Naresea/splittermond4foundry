@@ -5,7 +5,7 @@ import { Splittertraeger } from "./splittertraeger";
 import { DerivedAttributes } from "./derived-attributes";
 import { Biography } from "./biography";
 import { Vermoegen } from "./vermoegen";
-import {Portrait} from '../portrait';
+import { Portrait } from "../portrait";
 
 export interface PlayerCharacter
   extends Hp,

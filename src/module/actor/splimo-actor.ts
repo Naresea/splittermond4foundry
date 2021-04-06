@@ -4,16 +4,15 @@ import { DEFAULT_FERTIGKEITEN } from "../item/default-fertigkeiten";
 import { CalculationService } from "../services/calculation-service";
 import { GenesisImportService } from "../genesis/genesis-import-service";
 import { PlayerCharacter } from "../models/actors/player-character";
-import {GenesisExportService} from '../genesis/genesis-export-service';
+import { GenesisExportService } from "../genesis/genesis-export-service";
 
 export class SplimoActor extends Actor<AnySplimoActor> {
-
   prepareData(): void {
     super.prepareData();
 
     this.initInitiative().then(() => {
       const fertigkeiten = this.items.filter(
-          (i) => i.type === ItemType.Fertigkeit
+        (i) => i.type === ItemType.Fertigkeit
       );
       if (fertigkeiten.length < 1) {
         this.addDefaultFertigkeiten();
@@ -24,19 +23,27 @@ export class SplimoActor extends Actor<AnySplimoActor> {
   importFromJSON(json: string): Promise<Entity> {
     return new Promise((resolve) => {
       const d = new Dialog({
-        title: game.i18n.localize('splittermond.start-import-dialog.title'),
-        content: game.i18n.localize('splittermond.start-import-dialog.content'),
+        title: game.i18n.localize("splittermond.start-import-dialog.title"),
+        content: game.i18n.localize("splittermond.start-import-dialog.content"),
         buttons: {
           genesis: {
-            label: game.i18n.localize('splittermond.start-import-dialog.btn-genesis'),
-            callback: () => GenesisImportService.importFromGenesis(this as Actor<PlayerCharacter>, json)
+            label: game.i18n.localize(
+              "splittermond.start-import-dialog.btn-genesis"
+            ),
+            callback: () =>
+              GenesisImportService.importFromGenesis(
+                this as Actor<PlayerCharacter>,
+                json
+              ),
           },
           default: {
-            label: game.i18n.localize('splittermond.start-import-dialog.btn-default'),
-            callback: () => super.importFromJSON(json)
-          }
+            label: game.i18n.localize(
+              "splittermond.start-import-dialog.btn-default"
+            ),
+            callback: () => super.importFromJSON(json),
+          },
         },
-        default: 'default'
+        default: "default",
       });
       d.render(true);
     });
@@ -44,21 +51,24 @@ export class SplimoActor extends Actor<AnySplimoActor> {
 
   exportToJSON(): void {
     const d = new Dialog({
-        title: game.i18n.localize('splittermond.export-dialog.title'),
-        content: game.i18n.localize('splittermond.export-dialog.content'),
-        buttons: {
-          genesis: {
-            label: game.i18n.localize('splittermond.export-dialog.btn-genesis'),
-            callback: () => GenesisExportService.exportToGenesis(this as Actor<PlayerCharacter>)
-          },
-          default: {
-            label: game.i18n.localize('splittermond.export-dialog.btn-default'),
-            callback: () => super.exportToJSON()
-          }
+      title: game.i18n.localize("splittermond.export-dialog.title"),
+      content: game.i18n.localize("splittermond.export-dialog.content"),
+      buttons: {
+        genesis: {
+          label: game.i18n.localize("splittermond.export-dialog.btn-genesis"),
+          callback: () =>
+            GenesisExportService.exportToGenesis(
+              this as Actor<PlayerCharacter>
+            ),
         },
-        default: 'default'
-      });
-      d.render(true);
+        default: {
+          label: game.i18n.localize("splittermond.export-dialog.btn-default"),
+          callback: () => super.exportToJSON(),
+        },
+      },
+      default: "default",
+    });
+    d.render(true);
   }
 
   private async initInitiative(): Promise<void> {
@@ -72,7 +82,7 @@ export class SplimoActor extends Actor<AnySplimoActor> {
   }
 
   private async addDefaultFertigkeiten(): Promise<void> {
-    if (this.data.type === 'NonPlayerCharacter') {
+    if (this.data.type === "NonPlayerCharacter") {
       this.update({
         _id: this._id,
         data: {

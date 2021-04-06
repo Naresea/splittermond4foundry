@@ -1,13 +1,16 @@
 import { SplimoActorSheet } from "../splimo-actor-sheet";
 import { NonPlayerCharacter } from "../../models/actors/non-player-character";
 import { CalculationService } from "../../services/calculation-service";
-import {DecoratedModifier, ModifierService} from '../../services/modifier-service';
+import {
+  DecoratedModifier,
+  ModifierService,
+} from "../../services/modifier-service";
 import { ModifierType } from "../../models/items/modifier";
 import { PlayerDataService } from "../../services/player-data-service";
 import { ATTRIBUTES } from "../../models/actors/attributes";
 import { DERIVED_ATTRIBUTES } from "../../models/actors/derived-attributes";
 import { FertigkeitType } from "../../models/items/fertigkeit";
-import {ItemType} from '../../models/item-type';
+import { ItemType } from "../../models/item-type";
 
 export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
   static get defaultOptions() {
@@ -71,11 +74,11 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
           npcData.fokusErschoepft -
           npcData.fokusVerzehrt -
           npcData.fokusKanalisiert,
-          asString: CalculationService.toEKVString(
-            npcData.fokusErschoepft,
-            npcData.fokusKanalisiert,
-            npcData.fokusVerzehrt
-          ),
+        asString: CalculationService.toEKVString(
+          npcData.fokusErschoepft,
+          npcData.fokusKanalisiert,
+          npcData.fokusVerzehrt
+        ),
       },
     };
 
@@ -115,31 +118,31 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
     const query = html instanceof HTMLElement ? $(html) : html;
 
     // trash listener for skills
-    query.on('click', '.fertigkeiten .fa-trash', (evt) => {
+    query.on("click", ".fertigkeiten .fa-trash", (evt) => {
       const targetDataset = (evt.currentTarget as HTMLElement)?.dataset;
       if (targetDataset) {
-        const deleteIdx = targetDataset['index'];
+        const deleteIdx = targetDataset["index"];
         this.actor.data.data.fertigkeiten.splice(+deleteIdx, 1);
         this.actor.update({
           _id: this.actor._id,
           data: {
-            fertigkeiten: this.actor.data.data.fertigkeiten
-          }
+            fertigkeiten: this.actor.data.data.fertigkeiten,
+          },
         });
       }
     });
 
     // trash listener for weapons
-    query.on('click', '.waffen .fa-trash', (evt) => {
+    query.on("click", ".waffen .fa-trash", (evt) => {
       const targetDataset = (evt.currentTarget as HTMLElement)?.dataset;
       if (targetDataset) {
-        const deleteIdx = targetDataset['index'];
+        const deleteIdx = targetDataset["index"];
         this.actor.data.data.waffen.splice(+deleteIdx, 1);
         this.actor.update({
           _id: this.actor._id,
           data: {
-            waffen: this.actor.data.data.waffen
-          }
+            waffen: this.actor.data.data.waffen,
+          },
         });
       }
     });
@@ -159,10 +162,10 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
       delete formData[`data.fertigkeiten[${i}].name`];
     }
 
-    const newFertigkeitName = formData['data.newFertigkeit.name'];
+    const newFertigkeitName = formData["data.newFertigkeit.name"];
     if (newFertigkeitName && newFertigkeitName.trim().length > 0) {
-      delete formData['data.newFertigkeit.name'];
-      const newFertigkeit = { name: newFertigkeitName, wert: 0};
+      delete formData["data.newFertigkeit.name"];
+      const newFertigkeit = { name: newFertigkeitName, wert: 0 };
       fertigkeiten.push(newFertigkeit);
     }
 
@@ -180,25 +183,27 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
       delete formData[`data.waffen[${i}].merkmale`];
     }
 
-    const newWaffeName = formData['data.newWaffe.name'];
+    const newWaffeName = formData["data.newWaffe.name"];
     if (newWaffeName && newWaffeName.trim().length > 0) {
-      delete formData['data.newWaffe.name'];
+      delete formData["data.newWaffe.name"];
       waffen.push({
         name: newWaffeName,
         wgs: 0,
         wert: 0,
-        schaden: '',
-        merkmale: ''
+        schaden: "",
+        merkmale: "",
       });
     }
 
-    return this.actor.update({
-      _id: this.actor.id,
-      data: {
-        fertigkeiten: fertigkeiten,
-        waffen: waffen
-      }
-    }).then(() => super._updateObject(event, formData))
+    return this.actor
+      .update({
+        _id: this.actor.id,
+        data: {
+          fertigkeiten: fertigkeiten,
+          waffen: waffen,
+        },
+      })
+      .then(() => super._updateObject(event, formData))
       .then(() => CalculationService.updateWoundModifier(this.actor));
   }
 }

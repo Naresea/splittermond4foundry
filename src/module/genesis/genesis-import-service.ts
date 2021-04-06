@@ -70,13 +70,15 @@ export class GenesisImportService {
     await CalculationService.updateWoundModifier(targetActor);
     new Dialog({
       title: game.i18n.localize("splittermond.import-dialog.title"),
-      content: `<p style="padding: 10px">${game.i18n.localize("splittermond.import-dialog.content")}</p>`,
+      content: `<p style="padding: 10px">${game.i18n.localize(
+        "splittermond.import-dialog.content"
+      )}</p>`,
       buttons: {
         ok: {
           icon: '<i class="fas fa-check"></i>',
           label: "Ok",
-        }
-      }
+        },
+      },
     }).render(true);
     return targetActor;
   }
