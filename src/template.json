@@ -103,7 +103,9 @@
       "kampfweise": "",
       "lore": "",
       "beute": "",
-      "typus": ""
+      "typus": "",
+      "waffen": [],
+      "fertigkeiten": []
     }
   },
   "Item": {

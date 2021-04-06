@@ -11,20 +11,14 @@ export class SplimoActor extends Actor<AnySplimoActor> {
   prepareData(): void {
     super.prepareData();
 
-    if (this.data.data.initiativeTotal == null) {
-      this.data.data.initiativeTotal = CalculationService.getInitiative(this);
-      this.update({
-        id: this.id,
-        data: { initiativeTotal: this.data.data.initiativeTotal },
-      });
-    }
-
-    const fertigkeiten = this.items.filter(
-      (i) => i.type === ItemType.Fertigkeit
-    );
-    if (fertigkeiten.length < 1) {
-      this.addDefaultFertigkeiten();
-    }
+    this.initInitiative().then(() => {
+      const fertigkeiten = this.items.filter(
+          (i) => i.type === ItemType.Fertigkeit
+      );
+      if (fertigkeiten.length < 1) {
+        this.addDefaultFertigkeiten();
+      }
+    });
   }
 
   importFromJSON(json: string): Promise<Entity> {
@@ -65,6 +59,16 @@ export class SplimoActor extends Actor<AnySplimoActor> {
         default: 'default'
       });
       d.render(true);
+  }
+
+  private async initInitiative(): Promise<void> {
+    if (this.data.data.initiativeTotal == null) {
+      this.data.data.initiativeTotal = CalculationService.getInitiative(this);
+      await this.update({
+        id: this.id,
+        data: { initiativeTotal: this.data.data.initiativeTotal },
+      });
+    }
   }
 
   private async addDefaultFertigkeiten(): Promise<void> {

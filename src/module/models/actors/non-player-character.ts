@@ -18,4 +18,15 @@ export interface NonPlayerCharacter
   beute: string;
   typus: string;
   isInitialized: boolean;
+  waffen: Array<{
+    name: string;
+    wert: number;
+    schaden: string;
+    wgs: number;
+    merkmale: string;
+  }>;
+  fertigkeiten: Array<{
+    name: string;
+    wert: number;
+  }>;
 }

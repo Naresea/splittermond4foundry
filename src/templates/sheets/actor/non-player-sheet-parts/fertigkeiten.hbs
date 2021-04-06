@@ -1,72 +1,21 @@
-<div class="fertigkeiten d-flex flex-col flex-grow overflow-hidden">
-    <div class="d-flex fertigkeiten-tabs tabs" data-group="fertigkeiten">
-        <a class="item control-height" data-tab="allgemein">{{localize "splittermond.pc.nav.fertigkeiten-allgemein"}}</a>
-        <a class="item control-height" data-tab="kampf">{{localize "splittermond.pc.nav.fertigkeiten-kampf"}}</a>
-        <a class="item control-height" data-tab="magie">{{localize "splittermond.pc.nav.fertigkeiten-magie"}}</a>
+<div class="fertigkeiten d-flex flex-col flex-grow overflow-hidden" style="overflow-y: auto">
+    <h3>{{localize "splittermond.npc.fertigkeiten.newSkill"}}</h3>
+    <div class="d-flex align-items-center m-big">
+        <input class="col-4 m-small" type="text" name="data.newFertigkeit.name" value=""/>
     </div>
-    <div class="fertigkeiten-content p-big overflow-hidden" style="width: 100%; height: 100%;">
-        {{!-- Allgemein --}}
-        <div class="tab overflow-hidden" data-group="fertigkeiten" data-tab="allgemein">
-            <div class="d-flex flex-col flex-grow">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="fertigkeiten-list" dynamic=true item=data.fertigkeiten.tableData fields=data.fertigkeiten.tableFields}}
-                    {{#*inline "icons-end"}}
-                        <i class="fas fa-plus clickable" data-operation="add" data-type="fertigkeit"></i>
-                    {{/inline}}
-                    {{#*inline "item-template"}}
-                        {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                            {{#*inline "icons-end"}}
-                                {{#if (isNotNull roll)}}
-                                    <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}" data-roll-info="{{rollInfo}}" data-click-id="{{id}}"></i>
-                                {{/if}}
-                                <i class="fas fa-edit clickable" data-operation="edit" data-type="fertigkeit" data-click-id="{{id}}"></i>
-                                <i class="fas fa-trash clickable" data-operation="delete" data-type="fertigkeit" data-click-id="{{id}}"></i>
-                            {{/inline}}
-                        {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                    {{/inline}}
-                {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-            </div>
-        </div>
-        {{!-- Kampf --}}
-        <div class="tab overflow-hidden" data-group="fertigkeiten" data-tab="kampf">
-            <div class="d-flex flex-col flex-grow">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="fertigkeiten-list" dynamic=true item=data.kampfFertigkeiten.tableData fields=data.kampfFertigkeiten.tableFields}}
-                    {{#*inline "icons-end"}}
-                        <i class="fas fa-plus clickable" data-operation="add" data-type="fertigkeit"></i>
-                    {{/inline}}
-                    {{#*inline "item-template"}}
-                        {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                            {{#*inline "icons-end"}}
-                                {{#if (isNotNull roll)}}
-                                    <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}" data-roll-info="{{rollInfo}}" data-click-id="{{id}}"></i>
-                                {{/if}}
-                                <i class="fas fa-edit clickable" data-operation="edit" data-type="fertigkeit" data-click-id="{{id}}"></i>
-                                <i class="fas fa-trash clickable" data-operation="delete" data-type="fertigkeit" data-click-id="{{id}}"></i>
-                            {{/inline}}
-                        {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                    {{/inline}}
-                {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-            </div>
-        </div>
-        {{!-- Magie --}}
-        <div class="tab overflow-hidden" data-group="fertigkeiten" data-tab="magie">
-            <div class="d-flex flex-col flex-grow">
-                {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="fertigkeiten-list" dynamic=true item=data.magieFertigkeiten.tableData fields=data.magieFertigkeiten.tableFields}}
-                    {{#*inline "icons-end"}}
-                        <i class="fas fa-plus clickable" data-operation="add" data-type="fertigkeit"></i>
-                    {{/inline}}
-                    {{#*inline "item-template"}}
-                        {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                            {{#*inline "icons-end"}}
-                                {{#if (isNotNull roll)}}
-                                    <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}" data-roll-info="{{rollInfo}}" data-click-id="{{id}}"></i>
-                                {{/if}}
-                                <i class="fas fa-edit clickable" data-operation="edit" data-type="fertigkeit" data-click-id="{{id}}"></i>
-                                <i class="fas fa-trash clickable" data-operation="delete" data-type="fertigkeit" data-click-id="{{id}}"></i>
-                            {{/inline}}
-                        {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-                    {{/inline}}
-                {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
-            </div>
-        </div>
+    <h3>{{localize "splittermond.npc.fertigkeiten.skills"}}</h3>
+    <div class="d-flex align-items-center">
+        <div class="d-flex col-6">{{localize "splittermond.npc.fertigkeiten.name"}}</div>
+        <div class="d-flex col-3">{{localize "splittermond.npc.fertigkeiten.wert"}}</div>
     </div>
+    {{#each data.fertigkeiten}}
+        <div class="d-flex align-items-center m-big">
+            <input class="col-6 m-small" type="text" name="data.fertigkeiten[{{@index}}].name" value="{{name}}"/>
+            <input class="col-3 m-small" type="number" name="data.fertigkeiten[{{@index}}].wert" value="{{wert}}"/>
+            <div class="d-flex align-items-center col-1 m-small">
+                <i class="fas fa-dice-d20 clickable" style="margin-right: 5px;" data-operation="roll" data-roll="{{wert}}" data-roll-info="{{npcSkillRollInfo this}}"></i>
+                <i class="fas fa-trash clickable" data-index="{{@index}}"></i>
+            </div>
+        </div>
+    {{/each}}
 </div>

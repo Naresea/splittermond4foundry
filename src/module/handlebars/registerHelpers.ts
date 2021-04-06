@@ -1,6 +1,7 @@
 import { ATTRIBUTES } from "../models/actors/attributes";
 import { DERIVED_ATTRIBUTES } from "../models/actors/derived-attributes";
 import {Portrait} from '../models/portrait';
+import {RollInfo} from '../services/player-data-service';
 
 export function registerHelpers(): void {
   Handlebars.registerHelper(
@@ -146,4 +147,18 @@ export function registerHelpers(): void {
       }
       return `transform: translate(${port.iconPosX ?? 0}px, ${port.iconPosY}px) scale(${Math.max(0.1, port.iconScale ?? 1)})`;
   });
+
+  Handlebars.registerHelper('npcWeaponRollInfo', (weapon: {name: string; wert: number; schaden: string; wgs: number}): string => {
+      return JSON.stringify({
+          name: weapon.name,
+          damage: weapon.schaden,
+          ticks: weapon.wgs
+      });
+  });
+
+    Handlebars.registerHelper('npcSkillRollInfo', (weapon: {name: string; wert: number;}): string => {
+        return JSON.stringify({
+            name: weapon.name,
+        });
+    });
 }

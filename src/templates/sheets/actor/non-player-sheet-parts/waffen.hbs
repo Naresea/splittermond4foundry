@@ -1,28 +1,28 @@
-<div class="d-flex flex-col flex-grow p-small overflow-hidden">
-    <div style="min-height: 100%; max-height: 100%; overflow: hidden">
-        {{#> systems/splittermond/templates/partials/includes/item-list.hbs class="waffen-list" dynamic=true item=data.waffen.tableData fields=data.waffen.tableFields}}
-            {{#*inline "icons-end"}}
-                <i class="fas fa-plus clickable" data-operation="add" data-type="waffe"></i>
-            {{/inline}}
-            {{#*inline "item-template"}}
-                {{#> systems/splittermond/templates/partials/includes/item-list-item.hbs fields=fields index=@index}}
-                    {{#*inline "icons-end"}}
-                        {{#if equipped}}
-                            <i class="fas fa-tshirt clickable" data-operation="unequip" data-type="waffe"
-                               data-click-id="{{id}}"></i>
-                        {{else}}
-                            <i class="fas fa-tshirt clickable"
-                               style="color: lightgrey; filter: drop-shadow(0 0 1px black)" data-operation="equip"
-                               data-type="waffe" data-click-id="{{id}}"></i>
-                        {{/if}}
-                        {{#if (isNotNull roll)}}
-                            <i class="fas fa-dice-d20 clickable" data-operation="roll" data-roll="{{roll}}"  data-roll-info="{{rollInfo}}" data-click-id="{{id}}"></i>
-                        {{/if}}
-                        <i class="fas fa-edit clickable" data-operation="edit" data-type="waffe" data-click-id="{{id}}"></i>
-                        <i class="fas fa-trash clickable" data-operation="delete" data-type="waffe" data-click-id="{{id}}"></i>
-                    {{/inline}}
-                {{/systems/splittermond/templates/partials/includes/item-list-item.hbs}}
-            {{/inline}}
-        {{/systems/splittermond/templates/partials/includes/item-list.hbs}}
+<div class="waffen d-flex flex-col flex-grow overflow-hidden" style="overflow-y: auto">
+    <h3>{{localize "splittermond.npc.waffen.newWaffe"}}</h3>
+    <div class="d-flex align-items-center m-big">
+        <input class="col-4 m-small" type="text" name="data.newWaffe.name" value=""/>
     </div>
+    <h3>{{localize "splittermond.npc.waffen.waffen"}}</h3>
+    <div class="d-flex align-items-center">
+        <div class="d-flex col-3">{{localize "splittermond.npc.waffen.name"}}</div>
+        <div class="d-flex col-1">{{localize "splittermond.npc.waffen.wert"}}</div>
+        <div class="d-flex col-2">{{localize "splittermond.npc.waffen.schaden"}}</div>
+        <div class="d-flex col-1">{{localize "splittermond.npc.waffen.wgs"}}</div>
+        <div class="d-flex col-2">{{localize "splittermond.npc.waffen.merkmale"}}</div>
+    </div>
+    {{#each data.waffen}}
+        <div class="d-flex align-items-center m-big">
+            <input class="col-3 m-small" type="text" name="data.waffen[{{@index}}].name" value="{{name}}"/>
+            <input class="col-1 m-small" type="number" name="data.waffen[{{@index}}].wert" value="{{wert}}"/>
+            <input class="col-2 m-small" type="text" name="data.waffen[{{@index}}].schaden" value="{{schaden}}"/>
+            <input class="col-1 m-small" type="number" name="data.waffen[{{@index}}].wgs" value="{{wgs}}"/>
+            <input class="col-2 m-small" type="text" name="data.waffen[{{@index}}].merkmale" value="{{merkmale}}"/>
+            <div class="d-flex align-items-center col-1 m-small">
+                <i class="fas fa-dice-d20 clickable" style="margin-right: 5px;" data-operation="roll" data-roll="{{wert}}" data-roll-info="{{npcWeaponRollInfo this}}"></i>
+                <i class="fas fa-trash clickable" data-index="{{@index}}"></i>
+            </div>
+        </div>
+    {{/each}}
 </div>
+

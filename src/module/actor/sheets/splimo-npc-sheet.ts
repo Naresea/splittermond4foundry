@@ -71,18 +71,14 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
           npcData.fokusErschoepft -
           npcData.fokusVerzehrt -
           npcData.fokusKanalisiert,
-        asString: CalculationService.toEKVString(
-          npcData.fokusErschoepft,
-          npcData.fokusKanalisiert,
-          npcData.fokusVerzehrt
-        ),
+          asString: CalculationService.toEKVString(
+            npcData.fokusErschoepft,
+            npcData.fokusKanalisiert,
+            npcData.fokusVerzehrt
+          ),
       },
     };
 
-    (data.data as any).waffen = PlayerDataService.getWaffen(
-      this.actor,
-      modifiers
-    );
     (data.data as any).merkmale = PlayerDataService.getMerkmale(
       this.actor,
       modifiers
@@ -102,24 +98,6 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
       return accu;
     }, {});
 
-    (data.data as any).fertigkeiten = PlayerDataService.getFertigkeitenByType(
-      this.actor,
-      modifiers,
-      FertigkeitType.Allgemein
-    );
-
-    (data.data as any).kampfFertigkeiten = PlayerDataService.getFertigkeitenByType(
-      this.actor,
-      modifiers,
-      FertigkeitType.Kampf
-    );
-
-    (data.data as any).magieFertigkeiten = PlayerDataService.getFertigkeitenByType(
-      this.actor,
-      modifiers,
-      FertigkeitType.Magie
-    );
-
     (data.data as any).meisterschaften = PlayerDataService.getMeisterschaften(
       this.actor,
       modifiers
@@ -132,13 +110,95 @@ export class SplimoNpcSheet extends SplimoActorSheet<NonPlayerCharacter> {
     return data;
   }
 
+  protected activateListeners(html: JQuery<HTMLElement> | HTMLElement): void {
+    super.activateListeners(html);
+    const query = html instanceof HTMLElement ? $(html) : html;
+
+    // trash listener for skills
+    query.on('click', '.fertigkeiten .fa-trash', (evt) => {
+      const targetDataset = (evt.currentTarget as HTMLElement)?.dataset;
+      if (targetDataset) {
+        const deleteIdx = targetDataset['index'];
+        this.actor.data.data.fertigkeiten.splice(+deleteIdx, 1);
+        this.actor.update({
+          _id: this.actor._id,
+          data: {
+            fertigkeiten: this.actor.data.data.fertigkeiten
+          }
+        });
+      }
+    });
+
+    // trash listener for weapons
+    query.on('click', '.waffen .fa-trash', (evt) => {
+      const targetDataset = (evt.currentTarget as HTMLElement)?.dataset;
+      if (targetDataset) {
+        const deleteIdx = targetDataset['index'];
+        this.actor.data.data.waffen.splice(+deleteIdx, 1);
+        this.actor.update({
+          _id: this.actor._id,
+          data: {
+            waffen: this.actor.data.data.waffen
+          }
+        });
+      }
+    });
+  }
+
   protected _updateObject(
     event: Event | JQuery.Event,
     formData: any
   ): Promise<any> {
     formData = this.updateViewSpecificData(formData);
-    return super._updateObject(event, formData).then(() => {
-      return CalculationService.updateWoundModifier(this.actor);
-    });
+
+    const fertigkeiten = this.actor.data.data.fertigkeiten;
+    for (let i = 0; i < fertigkeiten.length; i++) {
+      fertigkeiten[i].name = formData[`data.fertigkeiten[${i}].name`];
+      fertigkeiten[i].wert = formData[`data.fertigkeiten[${i}].wert`];
+      delete formData[`data.fertigkeiten[${i}].name`];
+      delete formData[`data.fertigkeiten[${i}].name`];
+    }
+
+    const newFertigkeitName = formData['data.newFertigkeit.name'];
+    if (newFertigkeitName && newFertigkeitName.trim().length > 0) {
+      delete formData['data.newFertigkeit.name'];
+      const newFertigkeit = { name: newFertigkeitName, wert: 0};
+      fertigkeiten.push(newFertigkeit);
+    }
+
+    const waffen = this.actor.data.data.waffen;
+    for (let i = 0; i < waffen.length; i++) {
+      waffen[i].name = formData[`data.waffen[${i}].name`];
+      waffen[i].wert = formData[`data.waffen[${i}].wert`];
+      waffen[i].wgs = formData[`data.waffen[${i}].wgs`];
+      waffen[i].schaden = formData[`data.waffen[${i}].schaden`];
+      waffen[i].merkmale = formData[`data.waffen[${i}].merkmale`];
+      delete formData[`data.waffen[${i}].name`];
+      delete formData[`data.waffen[${i}].wert`];
+      delete formData[`data.waffen[${i}].wgs`];
+      delete formData[`data.waffen[${i}].schaden`];
+      delete formData[`data.waffen[${i}].merkmale`];
+    }
+
+    const newWaffeName = formData['data.newWaffe.name'];
+    if (newWaffeName && newWaffeName.trim().length > 0) {
+      delete formData['data.newWaffe.name'];
+      waffen.push({
+        name: newWaffeName,
+        wgs: 0,
+        wert: 0,
+        schaden: '',
+        merkmale: ''
+      });
+    }
+
+    return this.actor.update({
+      _id: this.actor.id,
+      data: {
+        fertigkeiten: fertigkeiten,
+        waffen: waffen
+      }
+    }).then(() => super._updateObject(event, formData))
+      .then(() => CalculationService.updateWoundModifier(this.actor));
   }
 }
