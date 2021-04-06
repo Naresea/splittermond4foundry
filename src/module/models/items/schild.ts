@@ -9,4 +9,5 @@ export interface Schild extends Gegenstand, Equipment {
   fertigkeit: string;
   attribute: string;
   attributeSecondary: string;
+  tickPlus: number;
 }

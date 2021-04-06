@@ -29,6 +29,7 @@ export class SplimoPlayerSheet extends SplimoActorSheet<PlayerCharacter> {
     const calcData = PlayerDataService.getPlayerData(this.actor);
     const data = super.getData();
     (data as any).data = calcData;
+    console.log("Sheet data: ", data);
     return data;
   }
 

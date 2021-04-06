@@ -70,22 +70,17 @@ export class GenesisImportService {
     await CalculationService.updateWoundModifier(targetActor);
     new Dialog({
       title: game.i18n.localize("splittermond.import-dialog.title"),
-      content: `<p style="padding: 10px">${game.i18n.localize("splittermond.import-dialog.content")}</p>`,
+      content: `<p style="padding: 10px">${game.i18n.localize(
+        "splittermond.import-dialog.content"
+      )}</p>`,
       buttons: {
         ok: {
           icon: '<i class="fas fa-check"></i>',
           label: "Ok",
-        }
-      }
+        },
+      },
     }).render(true);
     return targetActor;
-  }
-
-  public static exportToGenesis(actor: Actor): void {
-    // TODO: implement
-    // const filename = `fvtt-${actor.entity}-${actor.name.replace(/\s/g, "_")}.json`;
-    // const data = GenesisImportService.mapToGenesisJson(actor);
-    // saveDataToFile(JSON.stringify(data), 'text/json', filename);
   }
 
   private static async importActorData(
@@ -164,7 +159,7 @@ export class GenesisImportService {
     data.erfahrungGesamt = xpFree + xpUsed;
     data.erfahrungEingesetzt = xpUsed;
     data.heldengrad =
-      xpUsed < 100 ? 1 : xpUsed < 200 ? 2 : xpUsed < 300 ? 3 : 4;
+      xpUsed < 100 ? 1 : xpUsed < 300 ? 2 : xpUsed < 600 ? 3 : 4;
   }
 
   private static async importItemData(
@@ -554,12 +549,5 @@ export class GenesisImportService {
         beschreibung: `<p>${genesisData.moonSign.description}</p>`,
       },
     };
-  }
-
-  private static mapToGenesisJson(
-    actor: TargetActor
-  ): GenesisSchema | undefined {
-    // TODO: implement
-    return undefined;
   }
 }

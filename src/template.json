@@ -5,6 +5,11 @@
       "initLogic": {
         "isInitialized": false
       },
+      "portrait": {
+        "iconPosX": 0,
+        "iconPosY": 0,
+        "iconScale": 1
+      },
       "hp": {
         "health": {
           "min": 0,
@@ -85,7 +90,7 @@
       }
     },
     "PlayerCharacter": {
-      "templates": ["initLogic","hp", "fokus", "splittertraeger", "attributes", "derivedAttributes", "biography", "vermoegen"],
+      "templates": ["initLogic","hp", "fokus", "splittertraeger", "attributes", "derivedAttributes", "biography", "vermoegen", "portrait"],
       "heldengrad": 0,
       "erfahrungGesamt": 0,
       "erfahrungEingesetzt": 0,
@@ -93,12 +98,14 @@
       "atemholenBenutzt": false
     },
     "NonPlayerCharacter": {
-      "templates": ["initLogic","hp", "fokus", "splittertraeger", "attributes", "derivedAttributes"],
+      "templates": ["initLogic","hp", "fokus", "splittertraeger", "attributes", "derivedAttributes", "portrait"],
       "monstergrad": "0",
       "kampfweise": "",
       "lore": "",
       "beute": "",
-      "typus": ""
+      "typus": "",
+      "waffen": [],
+      "fertigkeiten": []
     }
   },
   "Item": {
@@ -124,7 +131,10 @@
     ],
     "templates": {
       "info": {
-        "beschreibung": ""
+        "beschreibung": "",
+        "iconPosX": 0,
+        "iconPosY": 0,
+        "iconScale": 1
       },
       "quelle": {
         "regelwerk": "",

@@ -52,7 +52,9 @@ export class DiceRollDialog extends FormApplication<DiceRollOption> {
           this.submitCallback({
             modifier: value,
             rollType: submitValue,
-            difficulty: Number.isNumeric(difficultyValue) ? +difficultyValue : undefined
+            difficulty: Number.isNumeric(difficultyValue)
+              ? +difficultyValue
+              : undefined,
           });
         }
         this.close();

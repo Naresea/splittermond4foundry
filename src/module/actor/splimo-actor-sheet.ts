@@ -5,10 +5,25 @@ import { getSheetClass } from "../item/register-item-sheets";
 import { CalculationService } from "../services/calculation-service";
 import { ChargenService } from "../services/chargen-service";
 import { PlayerDataService } from "../services/player-data-service";
+import { PortraitListener, PortraitSheet } from "./sheets/portrait-sheet";
+import { Portrait } from "../models/portrait";
 
-export abstract class SplimoActorSheet<
-  T extends AnySplimoActor
-> extends ActorSheet<T> {
+export abstract class SplimoActorSheet<T extends AnySplimoActor>
+  extends ActorSheet<T>
+  implements PortraitListener {
+  getPortraitSource(): Partial<Portrait> | undefined {
+    return this.actor.data.data;
+  }
+
+  savePortraitTransform(port: Required<Portrait>): void {
+    this.actor.update({
+      _id: this.actor._id,
+      data: {
+        ...port,
+      },
+    });
+  }
+
   protected activateListeners(html: JQuery<HTMLElement> | HTMLElement): void {
     super.activateListeners(html);
     if (html instanceof HTMLElement) {
@@ -18,6 +33,7 @@ export abstract class SplimoActorSheet<
       return;
     }
     this.registerClick(html);
+    PortraitSheet.activatePortraitListener(html, this);
   }
 
   get title(): string {
