@@ -4,8 +4,10 @@ import { DEFAULT_FERTIGKEITEN } from "../item/default-fertigkeiten";
 import { CalculationService } from "../services/calculation-service";
 import { GenesisImportService } from "../genesis/genesis-import-service";
 import { PlayerCharacter } from "../models/actors/player-character";
+import {GenesisExportService} from '../genesis/genesis-export-service';
 
 export class SplimoActor extends Actor<AnySplimoActor> {
+
   prepareData(): void {
     super.prepareData();
 
@@ -26,23 +28,43 @@ export class SplimoActor extends Actor<AnySplimoActor> {
   }
 
   importFromJSON(json: string): Promise<Entity> {
-    if (this.data.type === "PlayerCharacter") {
-      return GenesisImportService.importFromGenesis(
-        this as Actor<PlayerCharacter>,
-        json
-      );
-    } else {
-      return super.importFromJSON(json);
-    }
+    return new Promise((resolve) => {
+      const d = new Dialog({
+        title: game.i18n.localize('splittermond.start-import-dialog.title'),
+        content: game.i18n.localize('splittermond.start-import-dialog.content'),
+        buttons: {
+          genesis: {
+            label: game.i18n.localize('splittermond.start-import-dialog.btn-genesis'),
+            callback: () => GenesisImportService.importFromGenesis(this as Actor<PlayerCharacter>, json)
+          },
+          default: {
+            label: game.i18n.localize('splittermond.start-import-dialog.btn-default'),
+            callback: () => super.importFromJSON(json)
+          }
+        },
+        default: 'default'
+      });
+      d.render(true);
+    });
   }
 
   exportToJSON(): void {
-    /* if (this.data.type === 'PlayerCharacter') {
-      GenesisImportService.exportToGenesis(this as Actor<PlayerCharacter>);
-    } else {
-      super.exportToJSON();
-    }*/
-    super.exportToJSON();
+    const d = new Dialog({
+        title: game.i18n.localize('splittermond.export-dialog.title'),
+        content: game.i18n.localize('splittermond.export-dialog.content'),
+        buttons: {
+          genesis: {
+            label: game.i18n.localize('splittermond.export-dialog.btn-genesis'),
+            callback: () => GenesisExportService.exportToGenesis(this as Actor<PlayerCharacter>)
+          },
+          default: {
+            label: game.i18n.localize('splittermond.export-dialog.btn-default'),
+            callback: () => super.exportToJSON()
+          }
+        },
+        default: 'default'
+      });
+      d.render(true);
   }
 
   private async addDefaultFertigkeiten(): Promise<void> {

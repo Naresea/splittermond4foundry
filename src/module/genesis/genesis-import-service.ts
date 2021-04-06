@@ -81,13 +81,6 @@ export class GenesisImportService {
     return targetActor;
   }
 
-  public static exportToGenesis(actor: Actor): void {
-    // TODO: implement
-    // const filename = `fvtt-${actor.entity}-${actor.name.replace(/\s/g, "_")}.json`;
-    // const data = GenesisImportService.mapToGenesisJson(actor);
-    // saveDataToFile(JSON.stringify(data), 'text/json', filename);
-  }
-
   private static async importActorData(
     targetActor: TargetActor,
     genesisData: GenesisSchema
@@ -164,7 +157,7 @@ export class GenesisImportService {
     data.erfahrungGesamt = xpFree + xpUsed;
     data.erfahrungEingesetzt = xpUsed;
     data.heldengrad =
-      xpUsed < 100 ? 1 : xpUsed < 200 ? 2 : xpUsed < 300 ? 3 : 4;
+      xpUsed < 100 ? 1 : xpUsed < 300 ? 2 : xpUsed < 600 ? 3 : 4;
   }
 
   private static async importItemData(
@@ -554,12 +547,5 @@ export class GenesisImportService {
         beschreibung: `<p>${genesisData.moonSign.description}</p>`,
       },
     };
-  }
-
-  private static mapToGenesisJson(
-    actor: TargetActor
-  ): GenesisSchema | undefined {
-    // TODO: implement
-    return undefined;
   }
 }

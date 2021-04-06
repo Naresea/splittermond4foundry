@@ -272,5 +272,13 @@
     "splittermond.diceroll.difficulty": "Schwierigkeit",
     "splittermond.rollresult.erfolgsgrade": "Erreichte Erfolgsgrade",
     "splittermond.import-dialog.title": "Import abgeschlossen",
-    "splittermond.import-dialog.content": "WICHTIG: Das Genesis JSON enthält (noch) keine numerischen Daten zu\nStärken / Schwächen / Meisterschaften u.Ä.\nFalls Werte hier von denen in Genesis abweichen, müssen diese Items ggfs von Hand angepasst werden."
+    "splittermond.import-dialog.content": "WICHTIG: Das Genesis JSON enthält (noch) keine numerischen Daten zu\nStärken / Schwächen / Meisterschaften u.Ä.\nFalls Werte hier von denen in Genesis abweichen, müssen diese Items ggfs von Hand angepasst werden.",
+    "splittermond.start-import-dialog.title": "Import",
+    "splittermond.start-import-dialog.content": "Ist das JSON ein Genesis-Export oder ein normaler Foundry Export? (Genesis wird nur für Spielercharaktere unterstützt)",
+    "splittermond.start-import-dialog.btn-genesis": "Genesis",
+    "splittermond.start-import-dialog.btn-default": "Foundry",
+    "splittermond.export-dialog.title": "Export",
+    "splittermond.export-dialog.content": "In welchem Format soll exportiert werden?",
+    "splittermond.export-dialog.btn-genesis": "Genesis",
+    "splittermond.export-dialog.btn-default": "Foundry"
 }
