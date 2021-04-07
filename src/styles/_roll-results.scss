@@ -1,6 +1,6 @@
 .explanation-text {
   display: none;
-  height: var(--control-size) !important;
+  min-height: var(--control-size) !important;
 }
 
 .explanation-text--active {
@@ -9,7 +9,7 @@
 
 .tick-explanation-text {
   display: none;
-  height: var(--control-size) !important;
+  min-height: var(--control-size) !important;
 }
 
 .tick-explanation-text--active {

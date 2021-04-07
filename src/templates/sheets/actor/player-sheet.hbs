@@ -35,12 +35,12 @@
                         {{localize "splittermond.indicator.splitterpunkte"}}
                     </div>
                     <div class="d-flex align-items-center m-small flex-grow">
-                        <div class="d-flex flex-grow" style="justify-content: flex-end">
+                        <div class="d-flex flex-grow" style="justify-content: flex-start">
                             <i class="fas fa-minus clickable" style="margin-right: 5px;" data-operation="sp-reduce"></i>
-                            {{#each (repeatTimes (clampMax data.splitterpunkte.value 15))}}
+                            {{#each (repeatTimes (clampMax data.splitterpunkte.value (clampMax data.splitterpunkte.max 15)))}}
                                 <i class="fas fa-moon" style="margin-right: 3px"></i>
                             {{/each}}
-                            {{#each (repeatTimes (subtractClamp 15 data.splitterpunkte.value))}}
+                            {{#each (repeatTimes (subtractClamp (clampMax data.splitterpunkte.max 15) data.splitterpunkte.value))}}
                                 <i class="fas fa-moon" style="margin-right: 3px; color: lightgrey"></i>
                             {{/each}}
                             <i class="fas fa-plus clickable" style="margin-left: 5px;" data-operation="sp-add"></i>

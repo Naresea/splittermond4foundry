@@ -132,6 +132,13 @@ export class GenesisExportService {
         id: GENESIS_ATTRIBUTE_IDS[shortName],
       })
     );
+    const splitterpunkte = {
+        name: 'Splitterpunkte',
+        shortName: 'SPL',
+        value: actor.data.data.splitterpunkte.max,
+        startValue: actor.data.data.splitterpunkte.max,
+        id: GENESIS_ATTRIBUTE_IDS['SPL']
+    };
     data.attributes = [...attributes, ...derivedAttributes];
   }
 

@@ -13,6 +13,11 @@
                 {{/unless}}
             </div>
         </div>
+        <div class="d-flex flex-row align-items-center m-small">
+            <label class="col-4" for="data.{{this}}">{{localize (concat "splittermond.attribute.splitterpunkte")}}</label>
+            <div class="col-2" style="margin-right: 5px;"></div>
+            <input class="col-1" style="text-align: center; margin-right: 5px" type="number" name="data.splitterpunkte.max" value="{{data.splitterpunkte.max}}"/>
+        </div>
         {{#if data.mondzeichen.img}}
             <div class="d-flex; flex-grow; align-items-center; justify-items-center">
                 <img src="{{data.mondzeichen.img}}" style="width: 100%; height: 100%;"/>

@@ -23,6 +23,11 @@ export interface Modifiers {
   byItemType: Map<ItemType, Array<DecoratedModifier>>;
 }
 
+export interface ModifierResult {
+  total: number;
+  explanation: string;
+}
+
 export class ModifierService {
   public static getModifiers(actor: Actor): Modifiers {
     const result = {
@@ -89,11 +94,11 @@ export class ModifierService {
     return result;
   }
 
-  public static totalMod(
+  public static totalModWithExplanation(
     mods: Modifiers,
     target?: string,
     opts?: { itemType?: ItemType; modType?: ModifierType }
-  ): number {
+  ): ModifierResult {
     let modifiers =
       target != null && target.length > 0
         ? mods.byTarget.get(target) ?? []
@@ -110,7 +115,20 @@ export class ModifierService {
         );
       });
     }
-    return modifiers.reduce((accu, curr) => accu + curr.modifier.value, 0);
+    const total = modifiers.reduce((accu, curr) => accu + curr.modifier.value, 0);
+    const explanation = modifiers.map((curr) =>`${curr.source.name} (${curr.modifier.value})`).join(' + ');
+    return {
+      total,
+      explanation
+    };
+  }
+
+  public static totalMod(
+      mods: Modifiers,
+      target?: string,
+      opts?: { itemType?: ItemType; modType?: ModifierType }
+  ): number {
+    return ModifierService.totalModWithExplanation(mods, target, opts).total;
   }
 
   private static sortItems(
