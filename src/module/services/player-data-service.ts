@@ -1,24 +1,24 @@
-import { PlayerCharacter } from "../models/actors/player-character";
-import { ATTRIBUTES, Attributes } from "../models/actors/attributes";
-import { DerivedAttributes } from "../models/actors/derived-attributes";
-import { Modifiers, ModifierService } from "./modifier-service";
-import { ItemType } from "../models/item-type";
-import { ModifierType } from "../models/items/modifier";
-import { Fertigkeit, FertigkeitType } from "../models/items/fertigkeit";
-import { CalculationService } from "./calculation-service";
-import { Waffe } from "../models/items/waffe";
-import { Schild } from "../models/items/schild";
-import { Ruestung } from "../models/items/ruestung";
-import { Benutzbar } from "../models/items/benutzbar";
-import { Gegenstand } from "../models/items/gegenstand";
-import { buildFokusString, Zauber } from "../models/items/zauber";
-import { Meisterschaft } from "../models/items/meisterschaft";
-import { Mondzeichen } from "../models/items/mondzeichen";
-import { Staerke } from "../models/items/staerke";
-import { Schwaeche } from "../models/items/schwaeche";
-import { Zustand } from "../models/items/zustand";
-import { Merkmal } from "../models/items/merkmal";
-import { Resource } from "../models/items/resource";
+import {PlayerCharacter} from '../models/actors/player-character';
+import {ATTRIBUTES, Attributes} from '../models/actors/attributes';
+import {DerivedAttributes} from '../models/actors/derived-attributes';
+import {Modifiers, ModifierService} from './modifier-service';
+import {ItemType} from '../models/item-type';
+import {ModifierType} from '../models/items/modifier';
+import {Fertigkeit, FertigkeitType} from '../models/items/fertigkeit';
+import {CalculationService} from './calculation-service';
+import {Waffe} from '../models/items/waffe';
+import {Schild} from '../models/items/schild';
+import {Ruestung} from '../models/items/ruestung';
+import {Benutzbar} from '../models/items/benutzbar';
+import {Gegenstand} from '../models/items/gegenstand';
+import {buildFokusString, Zauber} from '../models/items/zauber';
+import {Meisterschaft} from '../models/items/meisterschaft';
+import {Mondzeichen} from '../models/items/mondzeichen';
+import {Staerke} from '../models/items/staerke';
+import {Schwaeche} from '../models/items/schwaeche';
+import {Zustand} from '../models/items/zustand';
+import {Merkmal} from '../models/items/merkmal';
+import {Resource} from '../models/items/resource';
 
 export interface RollInfo {
   name?: string;
@@ -335,7 +335,7 @@ export class PlayerDataService {
         mods,
         waffe.name
       );
-      const tickPlus = ModifierService.totalMod(mods, null, {
+      const tickPlus = ModifierService.totalModWithExplanation(mods, null, {
         modType: ModifierType.TickPlus,
       });
 
@@ -352,8 +352,8 @@ export class PlayerDataService {
         roll: roll.total,
         rollInfo: JSON.stringify({
           explanation: roll.explanation,
-          ticks: waffe.data.data.ticks + tickPlus,
-          ticksExplanation: `WGS ${waffe.data.data.ticks} + Tick+ ${tickPlus}`,
+          ticks: waffe.data.data.ticks + tickPlus.total,
+          ticksExplanation: `WGS ${waffe.data.data.ticks} + ${tickPlus.explanation}`,
           name: waffe.name,
           damage: waffe.data.data.schaden,
         }),
@@ -397,7 +397,7 @@ export class PlayerDataService {
         roll: roll.total,
         rollInfo: JSON.stringify({
           explanation: roll.explanation,
-          name: schild.name,
+          name: schild.name
         }),
         equipped: schild.data.data.isEquipped,
       };

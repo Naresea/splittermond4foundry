@@ -57,13 +57,19 @@ export class CalculationService {
     const startValue = actor.data.data[attribute] ?? 0;
     const increasedValue = actor.data.data["inc" + attribute] ?? 0;
     const modifierValue =
-      ModifierService.totalMod(mods, attribute, {
+      ModifierService.totalModWithExplanation(mods, attribute, {
         modType: ModifierType.Attribute,
-      }) ?? 0;
-    const total = startValue + increasedValue + modifierValue;
+      });
+    const total = startValue + increasedValue + modifierValue.total;
+    const explanation = [
+      `Start ${startValue}`,
+      `Erhöht ${increasedValue}`,
+        modifierValue.explanation
+    ].join(' + ');
+
     return {
       total,
-      explanation: `Start ${startValue} + Erhöht ${increasedValue} + Mod ${modifierValue}`,
+      explanation,
     };
   }
 
@@ -93,19 +99,28 @@ export class CalculationService {
       fertigkeitItem.data.data.attributZwei as keyof Attributes,
       mods
     ).total;
-    const mod = ModifierService.totalMod(mods, fertigkeit, {
+    const mod = ModifierService.totalModWithExplanation(mods, fertigkeit, {
       modType: ModifierType.Fertigkeit,
     });
 
     const total =
       attrEins +
       attrZwei +
-      mod +
+      mod.total +
       fertigkeitItem.data.data.punkte +
       fertigkeitItem.data.data.mod;
+
+    const explanation = [
+      `${fertigkeitItem.data.data.attributEins} ${attrEins}`,
+      `${fertigkeitItem.data.data.attributZwei} ${attrZwei}`,
+      `${fertigkeitItem.name} ${fertigkeitItem.data.data.punkte}`,
+      `Mod ${fertigkeitItem.data.data.mod}`,
+        mod.explanation
+    ].join(' + ');
+
     return {
       total,
-      explanation: `${fertigkeitItem.data.data.attributEins} ${attrEins} + ${fertigkeitItem.data.data.attributZwei} ${attrZwei} + ${fertigkeitItem.name} ${fertigkeitItem.data.data.punkte} + Mod ${fertigkeitItem.data.data.mod}`,
+      explanation
     };
   }
 

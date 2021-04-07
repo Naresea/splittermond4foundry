@@ -291,5 +291,6 @@
     "splittermond.npc.waffen.wert": "Wert",
     "splittermond.npc.waffen.schaden": "Schaden",
     "splittermond.npc.waffen.wgs": "WGS",
-    "splittermond.npc.waffen.merkmale": "Merkmale"
+    "splittermond.npc.waffen.merkmale": "Merkmale",
+    "splittermond.attribute.splitterpunkte": "Max. Splitterpunkte"
 }
