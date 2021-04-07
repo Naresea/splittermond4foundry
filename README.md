@@ -203,9 +203,3 @@ That's the reason for the details fields
 
 - There's no compendium content
 -> I hope there will be at some point. :) I don't know how much of the rulebooks I am allowed to provide as compendium, though.
-
-- The portrait icon sucks.
--> I know... it works for some portraits, for others you have to tweak the image a bit.
-Eventually I want to add a "journal" tab that displays the full image and where you can keep records
-on how you earned money, XP etc. When I'm there I'll change the portrait field to display the token, which
-should be a far better fit.
